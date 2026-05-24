@@ -63,3 +63,22 @@ Use these lenses to decide what to inspect. Choose only the lenses relevant to t
 - what coupling remains
 - what can be copied as a pattern
 - what depends too much on the original ecosystem
+
+## Comparison
+
+- positioning
+- runtime model
+- tool or plugin model
+- workflow or DAG support
+- memory or context model
+- engineering maturity
+- enterprise integration cost
+
+## Adoption
+
+- directly reusable designs
+- designs requiring adaptation
+- designs to avoid copying
+- mapping to the target system
+- migration prerequisites
+- phased validation plan

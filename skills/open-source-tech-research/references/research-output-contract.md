@@ -10,10 +10,15 @@ For a full research pass, produce or update:
 - `source-map.md`
 - `architecture.md`
 - `key-abstractions.md`
+- `extension-points.md`
 - `runtime-flows.md`
 - `design-philosophy.md`
+- `comparison.md`
+- `adoption-notes.md`
+- `refactor-opportunities.md`
 - `refactor-insights.md`
 - `evidence-index.md`
+- `research-review.md`
 
 For a focused research pass, produce only the documents needed for the user's question, but still keep `evidence-index.md` updated.
 
@@ -28,6 +33,7 @@ A good output:
 - distinguishes facts, inferences, and open questions
 - links key conclusions to source evidence
 - turns design observations into practical learning or refactor guidance
+- explains which designs can be copied, adapted, avoided, or validated first
 
 ## Evidence Labels
 

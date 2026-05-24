@@ -23,10 +23,15 @@ Use `docs/research/<framework-name>/` for each research target. A research direc
 - `source-map.md`
 - `architecture.md`
 - `key-abstractions.md`
+- `extension-points.md`
 - `runtime-flows.md`
 - `design-philosophy.md`
+- `comparison.md`
+- `adoption-notes.md`
+- `refactor-opportunities.md`
 - `refactor-insights.md`
 - `evidence-index.md`
+- `research-review.md`
 - `references/`
 
 Key rule: important research conclusions must be tied to source evidence, such as files, classes, functions, tests, config, docs, line numbers, or commit/version information. Mark assumptions and inferences explicitly.

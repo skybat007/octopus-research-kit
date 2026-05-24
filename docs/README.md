@@ -18,10 +18,15 @@ docs/
       source-map.md
       architecture.md
       key-abstractions.md
+      extension-points.md
       runtime-flows.md
       design-philosophy.md
+      comparison.md
+      adoption-notes.md
+      refactor-opportunities.md
       refactor-insights.md
       evidence-index.md
+      research-review.md
       references/
   spec-coding-guide/
   specs/
@@ -33,6 +38,7 @@ docs/
 技术调研使用：
 
 - [tech-research-guide/TECH_RESEARCH_GUIDE.md](./tech-research-guide/TECH_RESEARCH_GUIDE.md)
+- [tech-research-guide/AI_TECH_RESEARCH_QUICKSTART.md](./tech-research-guide/AI_TECH_RESEARCH_QUICKSTART.md)
 - [tech-research-guide/templates/](./tech-research-guide/templates/)
 - [research/example-framework/](./research/example-framework/)
 

@@ -48,19 +48,31 @@ Last Updated: YYYY-MM-DD
 
 - 待填写
 
-## 6. 预期交付物
+## 6. 适用场景
+
+- 待填写：学习架构、横向对比、指导重构或定位某条运行链路。
+
+## 7. 后续如何反哺目标系统
+
+- 待填写：说明本次调研和目标系统之间的映射关系。
+
+## 8. 预期交付物
 
 | 交付物 | 文件 | 说明 |
 |---|---|---|
 | 源码地图 | source-map.md | 仓库结构、入口、核心模块和阅读顺序 |
 | 技术架构 | architecture.md | 模块边界、核心抽象、依赖方向和扩展点 |
 | 核心抽象 | key-abstractions.md | 关键接口、数据结构、生命周期对象和协作关系 |
+| 扩展点 | extension-points.md | 插件、Hook、Registry、Provider 等扩展机制 |
 | 主流程追踪 | runtime-flows.md | 从入口到核心执行的源码链路 |
 | 设计思想 | design-philosophy.md | 设计原则、取舍和非显而易见的设计 |
+| 借鉴落地 | adoption-notes.md | 与目标系统的映射、落地优先级和风险 |
+| 重构机会 | refactor-opportunities.md | 可执行的重构机会、阶段和最小验证 |
 | 重构启发 | refactor-insights.md | 可迁移模式、风险和阶段建议 |
 | 证据索引 | evidence-index.md | 关键结论和源码证据 |
+| 调研审查 | research-review.md | 质量门禁、证据完整性和开放问题 |
 
-## 7. 验收标准
+## 9. 验收标准
 
 | 编号 | 标准 | 验收方式 |
 |---|---|---|

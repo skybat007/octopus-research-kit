@@ -79,9 +79,14 @@ docs/research/<framework-name>/
   architecture.md
   runtime-flows.md
   key-abstractions.md
+  extension-points.md
   design-philosophy.md
+  comparison.md
+  adoption-notes.md
+  refactor-opportunities.md
   refactor-insights.md
   evidence-index.md
+  research-review.md
   references/
 ```
 
@@ -95,11 +100,19 @@ docs/research/<framework-name>/
 - 证据索引
 - 重构启发
 
+完整调研建议再补充：
+
+- 扩展机制分析
+- 横向对比
+- 借鉴与落地建议
+- 重构机会
+- 调研质量审查
+
 ## 3. 调研生命周期
 
 ### 3.1 Research Brief
 
-先完成 `research-brief.md`：
+先完成 `research-brief.md`。它也可以叫 Research Charter，含义是“这次调研的章程”：
 
 - 研究对象
 - 版本信息
@@ -131,7 +144,17 @@ docs/research/<framework-name>/
 - 扩展点
 - 状态和数据流
 
-### 3.4 Runtime Flows
+### 3.4 Key Abstractions
+
+完成 `key-abstractions.md`：
+
+- 核心接口、类、函数和数据结构
+- 生命周期对象
+- 抽象之间的协作关系
+- 每个抽象解决的问题
+- 每个抽象的设计限制和可借鉴点
+
+### 3.5 Runtime Flows
 
 完成 `runtime-flows.md`：
 
@@ -140,7 +163,16 @@ docs/research/<framework-name>/
 - 画出时序图或流程图
 - 标注关键函数和状态变化
 
-### 3.5 Design Philosophy
+### 3.6 Extension Points
+
+完成 `extension-points.md`：
+
+- 插件、Hook、Registry、Provider、Middleware 等扩展点
+- 扩展点如何注册、发现、加载、执行和隔离
+- 扩展失败如何处理
+- 哪些扩展机制适合借鉴
+
+### 3.7 Design Philosophy
 
 完成 `design-philosophy.md`：
 
@@ -150,7 +182,37 @@ docs/research/<framework-name>/
 - 与常见替代设计相比有什么不同
 - 哪些设计体现了作者的核心取舍
 
-### 3.6 Refactor Insights
+### 3.8 Comparison
+
+当用户需要比较多个框架时，完成 `comparison.md`：
+
+- 定位和架构风格
+- Runtime、Tool、Workflow、Memory、Plugin 等核心抽象差异
+- 工程化程度和二次开发友好度
+- 对自有系统的启发
+
+### 3.9 Adoption Notes
+
+完成 `adoption-notes.md`：
+
+- 可以直接借鉴的设计
+- 需要改造后借鉴的设计
+- 不建议借鉴的设计
+- 和目标系统的映射关系
+- 落地优先级、风险和验证方式
+
+### 3.10 Refactor Opportunities
+
+完成 `refactor-opportunities.md`：
+
+- 当前系统痛点
+- 从框架学到的模式
+- 可重构模块
+- 重构前后对比
+- 最小验证方案
+- 分阶段演进路径
+
+### 3.11 Refactor Insights
 
 完成 `refactor-insights.md`：
 
@@ -160,7 +222,9 @@ docs/research/<framework-name>/
 - 分阶段改造建议
 - 风险和验证方式
 
-### 3.7 Evidence Index
+`refactor-insights.md` 可以作为 `adoption-notes.md` 和 `refactor-opportunities.md` 的综合摘要。
+
+### 3.12 Evidence Index
 
 持续维护 `evidence-index.md`：
 
@@ -168,6 +232,17 @@ docs/research/<framework-name>/
 - 证据类型和位置明确
 - 推断结论标明推断链路
 - 低置信度结论不能进入最终建议
+
+### 3.13 Research Review
+
+完成 `research-review.md`：
+
+- 调研版本是否固定
+- 结论是否有证据
+- 架构图是否由源码支撑
+- 设计思想是否过度解读
+- 落地建议是否可执行
+- 是否明确待验证问题
 
 ## 4. 输出质量标准
 
@@ -180,7 +255,39 @@ docs/research/<framework-name>/
 - 设计思想不是泛泛而谈，而是从源码结构和取舍中提炼
 - 重构启发能落到边界、阶段和风险
 
-## 5. 不推荐的写法
+## 5. Research Quality Gate
+
+最终输出前做一次质量门禁：
+
+| 检查项 | 要求 |
+|---|---|
+| 版本固定 | 明确 branch、tag、commit 或当前快照 |
+| 范围明确 | 明确本次调研范围和不做范围 |
+| 源码地图 | 已说明仓库结构、入口、模块和阅读顺序 |
+| 主链路 | 至少追踪一条从入口到核心执行的运行链路 |
+| 核心抽象 | 已识别关键接口、对象、数据结构和生命周期 |
+| 扩展点 | 已识别注册、加载、执行、隔离和失败处理方式 |
+| 架构图 | 架构图由源码、文档、测试或示例支撑 |
+| 设计思想 | 来自源码结构和设计取舍，不是主观想象 |
+| 证据索引 | 关键结论已记录到 evidence-index.md |
+| 事实区分 | 区分源码事实、文档事实、测试事实、推断和待确认 |
+| 落地建议 | 输出可借鉴、不建议照搬和需要验证的内容 |
+| 审查记录 | 复杂调研已完成 research-review.md |
+
+## 6. 调研角色
+
+复杂调研可以按角色思考，不要求机械拆成多人执行：
+
+| 角色 | 职责 | 边界 |
+|---|---|---|
+| Research Lead | 定义目标、范围、研究问题和输出物 | 不直接下源码结论 |
+| Source Code Analyst | 梳理目录、入口、关键类和调用链 | 结论必须关联源码路径 |
+| Architecture Analyst | 提炼架构分层、模块职责、运行链路和扩展机制 | 不脱离证据画架构图 |
+| Design Philosophy Analyst | 提炼设计原则、取舍和背后思想 | 不把个人偏好写成框架思想 |
+| Adoption Architect | 映射到目标系统，形成借鉴和演进建议 | 不直接照搬开源设计 |
+| Research Reviewer | 审查证据、结论、架构图和落地建议 | 不扩大调研结论 |
+
+## 7. 不推荐的写法
 
 避免：
 

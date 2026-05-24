@@ -1,6 +1,6 @@
 ---
 name: open-source-tech-research
-description: Analyze open-source frameworks or unfamiliar codebases and produce source-backed technical research documents, including source maps, architecture, runtime flows, design philosophy, and refactor insights. Use when the user asks to research, study, read, compare, or document an open-source technology or framework.
+description: Analyze open-source frameworks or unfamiliar codebases and produce source-backed technical research documents, including source maps, architecture, key abstractions, extension points, runtime flows, design philosophy, comparison, adoption notes, and refactor insights. Use when the user asks to research, study, read, compare, or document an open-source technology or framework.
 ---
 
 # Open Source Tech Research
@@ -31,24 +31,31 @@ Do not produce generic introductions. Important conclusions must be backed by so
 5. Extract key abstractions:
    - document important interfaces, classes, functions, data structures, lifecycle objects, and their collaboration
    - write findings to `key-abstractions.md`
-6. Trace runtime flows:
+6. Trace extension points when relevant:
+   - inspect plugin, hook, registry, provider, middleware, tool, skill, or integration mechanisms
+   - document registration, discovery, loading, execution, isolation, configuration, and failure handling
+   - write findings to `extension-points.md`
+7. Trace runtime flows:
    - start from a real user-facing API, example, test, CLI, or bootstrap path
    - follow the call chain into core execution
    - capture state changes, important branching, error handling, and extension hooks
    - write findings to `runtime-flows.md`
-7. Extract design philosophy:
+8. Extract design philosophy:
    - explain why the code is organized this way
    - compare tradeoffs and likely alternatives
    - avoid empty labels such as "high cohesion" unless tied to concrete code structure
    - write findings to `design-philosophy.md`
-8. Convert findings into refactor insights:
-   - reusable patterns
-   - designs not worth copying
-   - migration prerequisites
-   - phased refactor suggestions
-   - risks and validation methods
-   - write findings to `refactor-insights.md`
-9. Maintain `evidence-index.md` throughout the work.
+9. Compare frameworks when the user asks for comparison:
+   - compare positioning, architecture style, runtime, tool abstractions, workflow, memory, plugin model, engineering maturity, and adoption cost
+   - write findings to `comparison.md`
+10. Convert findings into adoption and refactor outputs:
+   - map framework designs to the user's target system
+   - identify directly reusable designs, designs requiring adaptation, and designs not worth copying
+   - write findings to `adoption-notes.md`, `refactor-opportunities.md`, or `refactor-insights.md`
+11. Review research quality:
+   - verify version, scope, source map, main runtime flow, core abstractions, extension points, evidence, fact/inference labels, and adoption advice
+   - write findings to `research-review.md` for complex research
+12. Maintain `evidence-index.md` throughout the work.
 
 ## Output Contract
 
@@ -65,6 +72,22 @@ For each key conclusion, include:
 - file path and line number when local source is available
 - version, tag, commit, or snapshot date
 - confidence: high, medium, or low
+
+## Quality Gate
+
+Before finalizing complex research, check:
+
+- version, branch, tag, commit, or snapshot is explicit
+- scope and non-scope are explicit
+- source map exists
+- at least one main runtime flow is traced
+- core abstractions are identified
+- extension points are identified when relevant
+- architecture diagrams are evidence-backed
+- design philosophy is grounded in code structure and tradeoffs
+- key conclusions are in `evidence-index.md`
+- facts, inferences, and pending questions are separated
+- adoption advice explains what to copy, adapt, avoid, and validate
 
 ## Relationship to Project Docs
 

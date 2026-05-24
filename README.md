@@ -55,6 +55,7 @@
 ## 关键入口
 
 - [技术调研规范](docs/tech-research-guide/TECH_RESEARCH_GUIDE.md)
+- [技术调研快速开始](docs/tech-research-guide/AI_TECH_RESEARCH_QUICKSTART.md)
 - [技术调研模板](docs/tech-research-guide/templates/)
 - [示例调研 Spec](docs/research/example-framework/README.md)
 - [开源技术调研 Skill](skills/open-source-tech-research/SKILL.md)
@@ -81,6 +82,6 @@
 1. 在 `docs/research/<framework-name>/` 新建调研目录。
 2. 复制 `docs/tech-research-guide/templates/` 中的模板。
 3. 先完成 `research-brief.md`，明确研究目标和边界。
-4. 使用 `open-source-tech-research` skill 推进源码扫描、架构拆解、主流程追踪和设计思想提炼。
+4. 使用 `open-source-tech-research` skill 推进源码扫描、核心抽象、架构拆解、主流程追踪、扩展点和设计思想提炼。
 5. 将每个关键结论记录到 `evidence-index.md`，保留源码证据。
-6. 在 `refactor-insights.md` 中沉淀对你自己系统的可迁移启发。
+6. 在 `adoption-notes.md`、`refactor-opportunities.md` 或 `refactor-insights.md` 中沉淀对你自己系统的可迁移启发。

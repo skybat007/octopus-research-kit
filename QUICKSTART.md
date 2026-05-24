@@ -35,10 +35,15 @@ research-brief.md
 source-map.md
 architecture.md
 key-abstractions.md
+extension-points.md
 runtime-flows.md
 design-philosophy.md
+comparison.md
+adoption-notes.md
+refactor-opportunities.md
 refactor-insights.md
 evidence-index.md
+research-review.md
 references/
 ```
 
@@ -54,6 +59,8 @@ references/
 - 要回答哪些关键问题
 - 最终要产出哪些文档
 - 结论需要达到什么证据标准
+
+它也可以理解为 Research Charter：先定义这次调研到底要搞明白什么。
 
 如果目标还不清楚，先写待确认问题，不要直接进入大范围源码阅读。
 
@@ -105,6 +112,7 @@ refactor-insights.md
 ## 更多入口
 
 - [技术调研规范](docs/tech-research-guide/TECH_RESEARCH_GUIDE.md)
+- [技术调研快速开始](docs/tech-research-guide/AI_TECH_RESEARCH_QUICKSTART.md)
 - [模板目录](docs/tech-research-guide/templates/)
 - [示例调研目录](docs/research/example-framework/README.md)
 - [调研 Skill](skills/open-source-tech-research/SKILL.md)

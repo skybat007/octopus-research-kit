@@ -41,19 +41,35 @@ Last Updated: YYYY-MM-DD
 
 - 
 
-## 6. 预期交付物
+## 6. 适用场景
+
+- 
+
+## 7. 后续如何反哺目标系统
+
+- 
+
+## 8. 预期交付物
 
 | 交付物 | 文件 | 说明 |
 |---|---|---|
 | 源码地图 | source-map.md |  |
 | 技术架构 | architecture.md |  |
+| 核心抽象 | key-abstractions.md |  |
+| 扩展点 | extension-points.md |  |
 | 主流程追踪 | runtime-flows.md |  |
 | 设计思想 | design-philosophy.md |  |
+| 横向对比 | comparison.md | 可选 |
+| 借鉴落地 | adoption-notes.md |  |
+| 重构机会 | refactor-opportunities.md |  |
 | 重构启发 | refactor-insights.md |  |
 | 证据索引 | evidence-index.md |  |
+| 调研审查 | research-review.md | 复杂调研建议 |
 
-## 7. 验收标准
+## 9. 验收标准
 
 | 编号 | 标准 | 验收方式 |
 |---|---|---|
 | AC-001 | 关键结论均有源码、文档或测试证据 | 检查 evidence-index.md |
+| AC-002 | 至少追踪一条主运行链路 | 检查 runtime-flows.md |
+| AC-003 | 借鉴建议区分可直接借鉴、需改造和不建议照搬 | 检查 adoption-notes.md |
