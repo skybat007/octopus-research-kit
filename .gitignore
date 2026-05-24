@@ -1,0 +1,21 @@
+# Ignore IDE-specific files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore build and log files
+build/
+logs/
+*.log
+
+# Ignore temporary and generated files
+*.tmp
+*.swp
+*.bak
+output/
+/dist/

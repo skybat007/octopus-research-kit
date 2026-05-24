@@ -1,0 +1,27 @@
+# Example Framework Research
+
+Status: example
+Owner:
+Last Updated: YYYY-MM-DD
+
+本目录是一次开源框架技术调研的示例结构。开始真实调研时，可以复制本目录或直接使用 `docs/tech-research-guide/templates/` 下的模板。
+
+## 文件导航
+
+| 文件 | 说明 |
+|---|---|
+| [research-brief.md](./research-brief.md) | 调研目标、范围、问题和交付物 |
+| [source-map.md](./source-map.md) | 仓库结构、模块边界、入口和阅读顺序 |
+| [architecture.md](./architecture.md) | 技术架构、核心抽象、依赖方向和扩展机制 |
+| [key-abstractions.md](./key-abstractions.md) | 核心抽象、接口、数据结构和协作关系 |
+| [runtime-flows.md](./runtime-flows.md) | 主流程追踪和关键状态变化 |
+| [design-philosophy.md](./design-philosophy.md) | 设计思想、取舍和非显而易见的设计 |
+| [refactor-insights.md](./refactor-insights.md) | 对其他系统重构的启发 |
+| [evidence-index.md](./evidence-index.md) | 关键结论的证据索引 |
+
+## 使用建议
+
+1. 将 `example-framework` 改成真实框架名。
+2. 先补全 `research-brief.md`。
+3. 再从源码地图开始推进。
+4. 所有关键结论同步写入 `evidence-index.md`。
