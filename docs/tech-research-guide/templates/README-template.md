@@ -15,6 +15,7 @@ Last Updated: YYYY-MM-DD
 | research-questions.md | 由外部资料和用户目标生成的源码验证问题 |
 | source-map.md | 仓库结构、入口、模块和阅读顺序 |
 | architecture.md | 技术架构、模块边界和依赖方向 |
+| visual-architecture.html | 复杂架构的可视化分层图 |
 | key-abstractions.md | 核心抽象、接口、数据结构和生命周期 |
 | extension-points.md | 插件、Hook、Registry、Provider 等扩展机制 |
 | runtime-flows.md | 主流程追踪和关键状态变化 |

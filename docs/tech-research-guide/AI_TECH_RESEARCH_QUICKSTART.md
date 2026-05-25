@@ -35,9 +35,10 @@
 5. 生成 `source-map.md`。
 6. 追踪一条主运行链路，生成 `runtime-flows.md`。
 7. 提炼核心抽象，生成 `key-abstractions.md`。
-8. 生成 `architecture.md` 和 `design-philosophy.md`。
-9. 记录证据到 `evidence-index.md`。
-10. 输出 `adoption-notes.md`。
+8. 生成 `architecture.md`；如果架构图在 Markdown 中不直观，补充 `visual-architecture.html`。
+9. 生成 `design-philosophy.md`。
+10. 记录证据到 `evidence-index.md`。
+11. 输出 `adoption-notes.md`。
 
 ## 3. 完整调研流程
 
@@ -71,6 +72,10 @@
 ```
 
 ```text
+请基于 architecture.md、runtime-flows.md 和 evidence-index.md 生成 visual-architecture.html。要求输出离线可打开的 HTML，可包含多个 tab/view，例如架构总览、运行流程、分层视图、扩展点；图中节点和连线必须标注或能追溯到证据编号，不要新增未经验证的能力或数量。
+```
+
+```text
 请提炼 key-abstractions.md。每个抽象都说明它解决什么问题、关键源码、生命周期、和其他对象的关系、可借鉴点。
 ```
 
@@ -88,6 +93,7 @@
 - 是否把外部观点转成研究问题并记录源码验证状态
 - 是否有源码地图
 - 是否至少追踪一条主运行链路
+- 复杂架构是否补充 HTML 可视化图，或说明无需补充
 - 是否识别核心抽象
 - 是否识别扩展点
 - 架构图是否有源码证据

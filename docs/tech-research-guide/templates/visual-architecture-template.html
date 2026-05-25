@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><框架名称> 可视化架构图</title>
+<style>
+:root {
+  --bg: #f7f8fb;
+  --panel: #ffffff;
+  --text: #172033;
+  --muted: #637083;
+  --line: #c9d1df;
+  --entry: #2563eb;
+  --core: #059669;
+  --runtime: #7c3aed;
+  --extension: #d97706;
+  --state: #db2777;
+  --infra: #0891b2;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif; }
+button { font: inherit; }
+.tabs { position: fixed; top: 0; left: 0; right: 0; z-index: 20; height: 48px; display: flex; gap: 6px; align-items: center; padding: 8px 16px; background: rgba(255,255,255,.94); border-bottom: 1px solid #e3e8f2; }
+.tab { border: 1px solid transparent; background: transparent; color: var(--muted); padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+.tab:hover { color: var(--text); background: #eef2f8; }
+.tab.active { color: var(--entry); background: #e8f0ff; border-color: #bfd4ff; }
+.title { position: fixed; left: 18px; bottom: 16px; z-index: 15; max-width: 540px; padding: 10px 12px; background: rgba(255,255,255,.9); border: 1px solid #e3e8f2; border-radius: 8px; box-shadow: 0 8px 22px rgba(19,33,68,.08); }
+.title h1 { margin: 0 0 4px; font-size: 15px; }
+.title p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.canvas-wrap { position: fixed; top: 48px; left: 0; right: 0; bottom: 0; overflow: hidden; cursor: grab; }
+.canvas-wrap.dragging { cursor: grabbing; }
+.canvas { position: absolute; transform-origin: 0 0; }
+svg { display: block; }
+.node { cursor: pointer; }
+.node rect { stroke-width: 1.4; filter: drop-shadow(0 5px 10px rgba(19,33,68,.08)); }
+.node text { pointer-events: none; }
+.label { font-size: 13px; font-weight: 700; fill: var(--text); }
+.sub { font-size: 10px; fill: var(--muted); }
+.evidence { font-size: 9px; fill: var(--muted); font-family: "SF Mono", Consolas, monospace; }
+.conn { fill: none; stroke: var(--line); stroke-width: 1.4; marker-end: url(#arrow); }
+.flow { stroke-dasharray: 7 5; animation: dash 1.4s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -24; } }
+.legend { position: fixed; right: 16px; bottom: 16px; z-index: 15; display: flex; gap: 10px; flex-wrap: wrap; max-width: 480px; padding: 9px 12px; background: rgba(255,255,255,.9); border: 1px solid #e3e8f2; border-radius: 8px; box-shadow: 0 8px 22px rgba(19,33,68,.08); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); font-size: 11px; }
+.dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.zoom { position: fixed; right: 16px; top: 64px; z-index: 15; display: grid; gap: 6px; }
+.zoom button { width: 34px; height: 34px; border: 1px solid #d8e0ec; border-radius: 7px; background: var(--panel); color: var(--muted); cursor: pointer; }
+.zoom button:hover { color: var(--text); background: #eef2f8; }
+.tooltip { position: fixed; z-index: 40; max-width: 320px; opacity: 0; pointer-events: none; padding: 10px 12px; background: #142033; color: #f8fafc; border-radius: 8px; font-size: 12px; line-height: 1.5; transition: opacity .12s; }
+.tooltip.show { opacity: 1; }
+.tooltip strong { display: block; margin-bottom: 4px; }
+.tooltip code { color: #bfdbfe; }
+</style>
+</head>
+<body>
+<div class="tabs" id="tabs"></div>
+<div class="zoom">
+  <button onclick="zoom(1.15)">+</button>
+  <button onclick="zoom(.87)">-</button>
+  <button onclick="fit()">⊡</button>
+</div>
+<div class="canvas-wrap" id="wrap"><div class="canvas" id="canvas"></div></div>
+<div class="title">
+  <h1><框架名称> 可视化架构图</h1>
+  <p>本图是 <code>architecture.md</code> 的视觉补充。节点中的证据编号应能回到 <code>evidence-index.md</code>；不要在图里新增未验证结论。</p>
+</div>
+<div class="legend" id="legend"></div>
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+const palette = {
+  entry: getCSS('--entry'),
+  core: getCSS('--core'),
+  runtime: getCSS('--runtime'),
+  extension: getCSS('--extension'),
+  state: getCSS('--state'),
+  infra: getCSS('--infra')
+};
+
+const views = [
+  {
+    id: 'overview',
+    label: '架构总览',
+    description: '展示入口、核心、运行时、扩展点、状态和基础设施的主要关系。',
+    width: 1200,
+    height: 760,
+    nodes: [
+      { id: 'entry', type: 'entry', x: 70, y: 100, w: 190, h: 78, title: '入口层', sub: 'CLI / API / UI / Gateway', ev: 'EVD-001', tip: '替换为真实入口证据。' },
+      { id: 'core', type: 'core', x: 430, y: 90, w: 230, h: 92, title: '核心控制面', sub: 'Router / Registry / Policy', ev: 'EVD-002', tip: '核心控制面或主 runtime。' },
+      { id: 'runtime', type: 'runtime', x: 805, y: 100, w: 230, h: 78, title: '执行运行时', sub: 'Loop / Scheduler / Worker', ev: 'EVD-003', tip: '处理真实任务执行。' },
+      { id: 'extension', type: 'extension', x: 420, y: 330, w: 250, h: 84, title: '扩展机制', sub: 'Plugin / Hook / Provider / Tool', ev: 'EVD-004', tip: '说明如何注册、加载、隔离。' },
+      { id: 'state', type: 'state', x: 90, y: 470, w: 220, h: 78, title: '状态与持久化', sub: 'Session / Memory / Config', ev: 'EVD-005', tip: '状态、上下文、配置、存储。' },
+      { id: 'infra', type: 'infra', x: 805, y: 470, w: 230, h: 78, title: '基础设施', sub: 'Auth / Network / Sandbox / Logs', ev: 'EVD-006', tip: '边界能力和可靠性设施。' }
+    ],
+    edges: [
+      ['entry', 'core', '请求进入'],
+      ['core', 'runtime', '调度执行'],
+      ['core', 'extension', '发现/注册'],
+      ['core', 'state', '读取/写入'],
+      ['runtime', 'infra', '依赖'],
+      ['extension', 'runtime', '提供能力']
+    ]
+  },
+  {
+    id: 'flow',
+    label: '运行流程',
+    description: '展示一次用户请求从入口到核心执行、工具调用、结果返回的主路径。',
+    width: 1200,
+    height: 560,
+    nodes: [
+      { id: 'f1', type: 'entry', x: 70, y: 210, w: 150, h: 70, title: '用户入口', sub: 'request/event', ev: 'EVD-101', tip: '真实入口，例如 CLI 命令、HTTP、消息事件。' },
+      { id: 'f2', type: 'core', x: 280, y: 210, w: 160, h: 70, title: '解析与鉴权', sub: 'parse/auth/context', ev: 'EVD-102', tip: '入口边界处理。' },
+      { id: 'f3', type: 'runtime', x: 500, y: 210, w: 170, h: 70, title: '主循环', sub: 'plan/loop/dispatch', ev: 'EVD-103', tip: '核心运行链路。' },
+      { id: 'f4', type: 'extension', x: 730, y: 210, w: 170, h: 70, title: '工具/扩展', sub: 'tool/provider/plugin', ev: 'EVD-104', tip: '外部能力调用。' },
+      { id: 'f5', type: 'state', x: 960, y: 210, w: 160, h: 70, title: '响应与持久化', sub: 'result/session/log', ev: 'EVD-105', tip: '结果输出、session、日志。' }
+    ],
+    edges: [
+      ['f1', 'f2', '输入'],
+      ['f2', 'f3', '上下文'],
+      ['f3', 'f4', '调用'],
+      ['f4', 'f3', '结果反馈', true],
+      ['f3', 'f5', '输出']
+    ]
+  },
+  {
+    id: 'layers',
+    label: '分层视图',
+    description: '展示系统层次和依赖方向，适合比 Mermaid 更清晰地表达横向模块。',
+    width: 1100,
+    height: 720,
+    layers: [
+      { type: 'entry', title: '接入层', sub: 'CLI / API / UI / Channel', ev: 'EVD-201', items: ['入口适配', '协议转换', '用户交互'] },
+      { type: 'core', title: '控制层', sub: 'Routing / Registry / Policy', ev: 'EVD-202', items: ['配置加载', '注册表', '权限策略'] },
+      { type: 'runtime', title: '执行层', sub: 'Loop / Worker / Scheduler', ev: 'EVD-203', items: ['主循环', '任务调度', '错误处理'] },
+      { type: 'extension', title: '能力层', sub: 'Plugin / Tool / Provider', ev: 'EVD-204', items: ['工具', 'Provider', 'Hook'] },
+      { type: 'state', title: '状态层', sub: 'Session / Memory / Storage', ev: 'EVD-205', items: ['会话', '上下文', '持久化'] }
+    ]
+  }
+];
+
+let current = 0;
+let scale = 1, panX = 0, panY = 0, dragging = false, lastX = 0, lastY = 0;
+const tabs = document.getElementById('tabs');
+const wrap = document.getElementById('wrap');
+const canvas = document.getElementById('canvas');
+const tooltip = document.getElementById('tooltip');
+
+views.forEach((v, i) => {
+  const b = document.createElement('button');
+  b.className = 'tab' + (i === 0 ? ' active' : '');
+  b.textContent = v.label;
+  b.onclick = () => render(i);
+  tabs.appendChild(b);
+});
+renderLegend();
+render(0);
+
+function getCSS(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function render(i) {
+  current = i;
+  document.querySelectorAll('.tab').forEach((t, idx) => t.classList.toggle('active', idx === i));
+  const v = views[i];
+  canvas.innerHTML = v.layers ? layerSVG(v) : graphSVG(v);
+  document.querySelector('.title p').innerHTML = `${v.description} 节点证据编号应对应 <code>evidence-index.md</code>。`;
+  bindTooltips();
+  fit();
+}
+function graphSVG(v) {
+  const nodes = Object.fromEntries(v.nodes.map(n => [n.id, n]));
+  let s = svgOpen(v);
+  v.edges.forEach(e => {
+    const a = center(nodes[e[0]]), b = center(nodes[e[1]]);
+    const cls = e[3] ? 'conn flow' : 'conn';
+    s += `<path class="${cls}" d="M${a.x},${a.y} L${b.x},${b.y}"/>`;
+    if (e[2]) s += `<text x="${(a.x+b.x)/2}" y="${(a.y+b.y)/2-8}" text-anchor="middle" class="sub">${e[2]}</text>`;
+  });
+  v.nodes.forEach(n => s += node(n));
+  return s + '</svg>';
+}
+function layerSVG(v) {
+  let s = svgOpen(v);
+  v.layers.forEach((l, i) => {
+    const y = 70 + i * 120, c = palette[l.type];
+    s += `<g class="node" data-tip="${escapeTip(l.title, l.sub, l.ev)}">`;
+    s += `<rect x="90" y="${y}" width="920" height="88" rx="8" fill="${c}14" stroke="${c}"/>`;
+    s += `<text x="130" y="${y+30}" class="label" fill="${c}">${l.title}</text>`;
+    s += `<text x="130" y="${y+50}" class="sub">${l.sub}</text>`;
+    s += `<text x="130" y="${y+70}" class="evidence">${l.ev}</text>`;
+    l.items.forEach((it, k) => {
+      const x = 400 + k * 160;
+      s += `<rect x="${x}" y="${y+25}" width="130" height="30" rx="6" fill="#fff" stroke="${c}55"/>`;
+      s += `<text x="${x+65}" y="${y+45}" text-anchor="middle" class="sub">${it}</text>`;
+    });
+    s += '</g>';
+    if (i < v.layers.length - 1) s += `<path class="conn flow" d="M550,${y+88} L550,${y+120}"/>`;
+  });
+  return s + '</svg>';
+}
+function svgOpen(v) {
+  return `<svg width="${v.width}" height="${v.height}" viewBox="0 0 ${v.width} ${v.height}" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8" fill="none" stroke="context-stroke" stroke-width="1.5"/></marker></defs>
+  <rect width="${v.width}" height="${v.height}" fill="transparent"/>`;
+}
+function node(n) {
+  const c = palette[n.type];
+  return `<g class="node" data-tip="${escapeTip(n.title, n.tip, n.ev)}">
+    <rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="8" fill="${c}12" stroke="${c}"/>
+    <text x="${n.x + n.w/2}" y="${n.y + 28}" text-anchor="middle" class="label">${n.title}</text>
+    <text x="${n.x + n.w/2}" y="${n.y + 48}" text-anchor="middle" class="sub">${n.sub}</text>
+    <text x="${n.x + n.w/2}" y="${n.y + n.h - 12}" text-anchor="middle" class="evidence">${n.ev}</text>
+  </g>`;
+}
+function center(n) { return { x: n.x + n.w / 2, y: n.y + n.h / 2 }; }
+function escapeTip(title, desc, ev) { return `${title}|${(desc || '').replaceAll('"','&quot;')}|${ev || ''}`; }
+function bindTooltips() {
+  document.querySelectorAll('.node').forEach(el => {
+    el.onmouseenter = () => {
+      const [title, desc, ev] = el.dataset.tip.split('|');
+      tooltip.innerHTML = `<strong>${title}</strong><div>${desc || ''}</div><div><code>${ev || ''}</code></div>`;
+      tooltip.classList.add('show');
+    };
+    el.onmousemove = e => { tooltip.style.left = e.clientX + 12 + 'px'; tooltip.style.top = e.clientY + 12 + 'px'; };
+    el.onmouseleave = () => tooltip.classList.remove('show');
+  });
+}
+function renderLegend() {
+  const legend = document.getElementById('legend');
+  const labels = [['entry','入口'], ['core','核心'], ['runtime','运行时'], ['extension','扩展'], ['state','状态'], ['infra','基础设施']];
+  legend.innerHTML = labels.map(([k,l]) => `<span><i class="dot" style="background:${palette[k]}"></i>${l}</span>`).join('');
+}
+function fit() {
+  const svg = canvas.querySelector('svg');
+  if (!svg) return;
+  const w = Number(svg.getAttribute('width')), h = Number(svg.getAttribute('height'));
+  scale = Math.min((wrap.clientWidth - 120) / w, (wrap.clientHeight - 120) / h, 1.2);
+  panX = (wrap.clientWidth - w * scale) / 2;
+  panY = (wrap.clientHeight - h * scale) / 2;
+  apply();
+}
+function zoom(factor) { scale = Math.max(.25, Math.min(2.5, scale * factor)); apply(); }
+function apply() { canvas.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`; }
+wrap.addEventListener('mousedown', e => { dragging = true; wrap.classList.add('dragging'); lastX = e.clientX; lastY = e.clientY; });
+window.addEventListener('mousemove', e => { if (!dragging) return; panX += e.clientX - lastX; panY += e.clientY - lastY; lastX = e.clientX; lastY = e.clientY; apply(); });
+window.addEventListener('mouseup', () => { dragging = false; wrap.classList.remove('dragging'); });
+wrap.addEventListener('wheel', e => { e.preventDefault(); zoom(e.deltaY < 0 ? 1.08 : .92); }, { passive: false });
+</script>
+</body>
+</html>

@@ -11,6 +11,7 @@ For a full research pass, produce or update:
 - `research-questions.md`
 - `source-map.md`
 - `architecture.md`
+- `visual-architecture.html` when Markdown diagrams are too dense or the framework has multiple major views
 - `key-abstractions.md`
 - `extension-points.md`
 - `runtime-flows.md`
@@ -32,6 +33,7 @@ A good output:
 - converts external claims into source-verifiable research questions
 - explains module relationships, not just directory names
 - traces at least one concrete runtime path for full research
+- uses `visual-architecture.html` for complex layered diagrams that are hard to read in Markdown
 - distinguishes facts, inferences, and open questions
 - links key conclusions to explicit evidence
 - separates official intent, source-verified behavior, community practice, and inference

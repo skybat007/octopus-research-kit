@@ -8,6 +8,10 @@
 
 源码地图。用于说明仓库结构、核心模块、入口、测试、示例和推荐阅读顺序。
 
+## 可视化架构图
+
+可视化架构图。通常是 `visual-architecture.html`，用于承载 Markdown/Mermaid 不易表达的复杂分层图、多视图架构图、流程图和扩展点图。它是 `architecture.md` 的视觉补充，不能替代证据索引和源码验证。
+
 ## External Research
 
 外部资料调研。用于记录官方文档、Release Notes、Issue、PR、Discussion、社区文章和第三方分析，并标记可信度与待源码验证的观点。

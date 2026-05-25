@@ -1,6 +1,6 @@
 ---
 name: open-source-tech-research
-description: Analyze open-source frameworks or unfamiliar codebases with external research plus source verification, then produce technical research documents including external research, research questions, source maps, architecture, key abstractions, extension points, runtime flows, design philosophy, comparison, and adoption notes. Use when the user asks to research, study, read, compare, or document an open-source technology or framework.
+description: Analyze open-source frameworks or unfamiliar codebases with external research plus source verification, then produce technical research documents including external research, research questions, source maps, architecture, optional visual architecture HTML, key abstractions, extension points, runtime flows, design philosophy, comparison, and adoption notes. Use when the user asks to research, study, read, compare, or document an open-source technology or framework.
 ---
 
 # Open Source Tech Research
@@ -38,36 +38,41 @@ Do not produce generic introductions. Important conclusions must be backed by of
    - identify core abstractions, module boundaries, dependency direction, state flow, extension points, and lifecycle
    - use official evidence for design goals and source evidence for implementation behavior
    - write findings to `architecture.md`
-7. Extract key abstractions:
+7. Add visual architecture when Markdown diagrams are not enough:
+   - create `visual-architecture.html` for complex layered diagrams, multi-flow diagrams, or diagrams with many nodes
+   - keep `architecture.md` as the canonical explanation and evidence surface
+   - include evidence IDs in node labels, tooltips, or a source panel
+   - use only offline HTML/CSS/SVG/JS; do not depend on remote assets or CDNs
+8. Extract key abstractions:
    - document important interfaces, classes, functions, data structures, lifecycle objects, and their collaboration
    - write findings to `key-abstractions.md`
-8. Trace extension points when relevant:
+9. Trace extension points when relevant:
    - inspect plugin, hook, registry, provider, middleware, tool, skill, or integration mechanisms
    - document registration, discovery, loading, execution, isolation, configuration, and failure handling
    - write findings to `extension-points.md`
-9. Trace runtime flows:
+10. Trace runtime flows:
    - start from a real user-facing API, example, test, CLI, or bootstrap path
    - follow the call chain into core execution
    - capture state changes, important branching, error handling, and extension hooks
    - write findings to `runtime-flows.md`
-10. Extract design philosophy:
+11. Extract design philosophy:
    - explain why the code is organized this way
    - compare tradeoffs and likely alternatives
    - separate official design intent, source-verified behavior, community practice, and inference
    - avoid empty labels such as "high cohesion" unless tied to concrete code structure
    - write findings to `design-philosophy.md`
-11. Compare frameworks when the user asks for comparison:
+12. Compare frameworks when the user asks for comparison:
    - fix version/source evidence for every compared framework; use web research unless each comparison target already has local evidence
    - compare positioning, architecture style, runtime, tool abstractions, workflow, memory, plugin model, engineering maturity, and adoption cost
    - write findings to `comparison.md`
-12. Convert findings into adoption notes when useful:
+13. Convert findings into adoption notes when useful:
    - identify directly reusable designs, designs requiring adaptation, and designs not worth copying
    - explain applicability, constraints, risks, and open validation questions
    - write findings to `adoption-notes.md`
-13. Review research quality:
-   - verify version, scope, external research coverage, research question validation, source map, main runtime flow, core abstractions, extension points, evidence, fact/inference labels, and adoption advice
+14. Review research quality:
+   - verify version, scope, external research coverage, research question validation, source map, main runtime flow, visual architecture need, core abstractions, extension points, evidence, fact/inference labels, and adoption advice
    - write findings to `research-review.md` for complex research
-14. Maintain `evidence-index.md` throughout the work.
+15. Maintain `evidence-index.md` throughout the work.
 
 ## Output Contract
 
@@ -101,6 +106,7 @@ Before finalizing complex research, check:
 - core abstractions are identified
 - extension points are identified when relevant
 - architecture diagrams are evidence-backed
+- visual architecture is present for complex diagrams or explicitly skipped
 - design philosophy is grounded in code structure and tradeoffs
 - key conclusions are in `evidence-index.md`
 - facts, inferences, and pending questions are separated

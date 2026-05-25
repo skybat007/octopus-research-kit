@@ -58,6 +58,7 @@ Last Updated: YYYY-MM-DD
 | 研究问题 | research-questions.md | 将外部观点和用户目标转成源码验证问题 |
 | 源码地图 | source-map.md |  |
 | 技术架构 | architecture.md |  |
+| 可视化架构图 | visual-architecture.html | 当 Markdown 架构图不直观时生成 |
 | 核心抽象 | key-abstractions.md |  |
 | 扩展点 | extension-points.md |  |
 | 主流程追踪 | runtime-flows.md |  |
@@ -74,4 +75,5 @@ Last Updated: YYYY-MM-DD
 | AC-001 | 关键结论均有官方资料、源码、测试、协作资料或社区资料证据 | 检查 evidence-index.md |
 | AC-002 | 至少追踪一条主运行链路 | 检查 runtime-flows.md |
 | AC-003 | 外部资料中的关键观点已转成研究问题并记录验证状态 | 检查 external-research.md、research-questions.md |
-| AC-004 | 借鉴建议区分可直接学习、需结合语境后借鉴和不建议照搬 | 检查 adoption-notes.md |
+| AC-004 | 复杂架构已补充可视化图，或说明无需生成 | 检查 visual-architecture.html、research-review.md |
+| AC-005 | 借鉴建议区分可直接学习、需结合语境后借鉴和不建议照搬 | 检查 adoption-notes.md |

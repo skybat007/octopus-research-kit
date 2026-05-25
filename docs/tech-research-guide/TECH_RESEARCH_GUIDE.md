@@ -2,7 +2,7 @@
 
 本文档用于指导 Agent 在本项目中进行开源框架、基础设施、中间件、工具链或陌生代码库的技术调研。
 
-调研目标不是堆资料，而是形成一套能反复复用的理解资产：外部资料摘要、研究问题、架构图、源码地图、关键流程、设计思想、证据索引和学习借鉴笔记。
+调研目标不是堆资料，而是形成一套能反复复用的理解资产：外部资料摘要、研究问题、架构图、可视化架构图、源码地图、关键流程、设计思想、证据索引和学习借鉴笔记。
 
 ## 1. 基本原则
 
@@ -123,6 +123,7 @@ research/<framework-name>/
   research-questions.md
   source-map.md
   architecture.md
+  visual-architecture.html
   runtime-flows.md
   key-abstractions.md
   extension-points.md
@@ -148,6 +149,7 @@ research/<framework-name>/
 完整调研建议再补充：
 
 - 扩展机制分析
+- 可视化架构图
 - 横向对比
 - 学习借鉴笔记
 - 调研质量审查
@@ -210,7 +212,27 @@ research/<framework-name>/
 - 扩展点
 - 状态和数据流
 
-### 3.6 Key Abstractions
+### 3.6 可视化架构图
+
+当 Markdown/Mermaid 图无法清晰表达多层架构、多入口、多流程或大量扩展点时，补充 `visual-architecture.html`。
+
+适合生成 HTML 可视化图的情况：
+
+- 架构图超过 3 层或 12 个关键节点
+- 同一框架需要同时展示总览、运行流、分层、扩展点、状态流
+- Mermaid 图在文档中太拥挤、连线交叉或需要频繁横向滚动
+- 用户需要面向阅读、汇报、复盘的直观图，而不只是源码追踪证据
+
+HTML 可视化图要求：
+
+- 必须是 Markdown 架构文档的视觉补充，不替代 `architecture.md`
+- 节点、连线和说明必须能回溯到 `evidence-index.md` 中的证据编号
+- 推荐拆成多个 tab/view，例如“架构总览”“运行流程”“分层视图”“扩展点”
+- 大图应支持缩放、拖拽、图例、tooltip 或说明面板
+- 必须离线可打开，不依赖外部 CDN、远程图片或运行服务
+- 不要在图中新增未经验证的能力、数量或设计结论
+
+### 3.7 Key Abstractions
 
 完成 `key-abstractions.md`：
 
@@ -220,7 +242,7 @@ research/<framework-name>/
 - 每个抽象解决的问题
 - 每个抽象的设计限制和可借鉴点
 
-### 3.7 Runtime Flows
+### 3.8 Runtime Flows
 
 完成 `runtime-flows.md`：
 
@@ -229,7 +251,7 @@ research/<framework-name>/
 - 画出时序图或流程图
 - 标注关键函数和状态变化
 
-### 3.8 Extension Points
+### 3.9 Extension Points
 
 完成 `extension-points.md`：
 
@@ -238,7 +260,7 @@ research/<framework-name>/
 - 扩展失败如何处理
 - 哪些扩展机制适合借鉴
 
-### 3.9 Design Philosophy
+### 3.10 Design Philosophy
 
 完成 `design-philosophy.md`：
 
@@ -251,7 +273,7 @@ research/<framework-name>/
 - 源码证据必须用于确认真实实现
 - 社区资料只能作为实践经验或问题背景
 
-### 3.10 Comparison
+### 3.11 Comparison
 
 当用户需要比较多个框架时，完成 `comparison.md`：
 
@@ -260,7 +282,7 @@ research/<framework-name>/
 - 工程化程度和二次开发友好度
 - 对学习、选型或设计判断的启发
 
-### 3.11 Adoption Notes
+### 3.12 Adoption Notes
 
 完成 `adoption-notes.md`：
 
@@ -270,7 +292,7 @@ research/<framework-name>/
 - 适用前提、约束和验证问题
 - 学习价值和后续单独评估方向
 
-### 3.12 Evidence Index
+### 3.13 Evidence Index
 
 持续维护 `evidence-index.md`：
 
@@ -281,7 +303,7 @@ research/<framework-name>/
 - 推断结论标明推断链路
 - 低置信度结论不能进入最终建议
 
-### 3.13 Research Review
+### 3.14 Research Review
 
 完成 `research-review.md`：
 
@@ -320,6 +342,7 @@ research/<framework-name>/
 | 核心抽象 | 已识别关键接口、对象、数据结构和生命周期 |
 | 扩展点 | 已识别注册、加载、执行、隔离和失败处理方式 |
 | 架构图 | 架构图由源码、文档、测试或示例支撑 |
+| 可视化架构图 | 复杂架构已补充 `visual-architecture.html`，或说明为什么不需要 |
 | 设计思想 | 来自源码结构和设计取舍，不是主观想象 |
 | 证据索引 | 关键结论已记录到 evidence-index.md |
 | 事实区分 | 区分源码事实、官方事实、仓库文档事实、协作事实、社区事实、测试事实、推断和待确认 |
@@ -346,6 +369,7 @@ research/<framework-name>/
 - 只摘抄官网介绍
 - 只列目录，不解释模块关系
 - 只画架构图，没有源码证据
+- 把复杂关系硬塞进一个难以阅读的 Markdown 图
 - 把推测写成事实
 - 用“高内聚低耦合”等空泛词替代具体设计分析
 - 不固定版本就给确定结论

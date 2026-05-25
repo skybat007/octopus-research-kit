@@ -22,6 +22,7 @@ research/
     research-questions.md
     source-map.md
     architecture.md
+    visual-architecture.html
     key-abstractions.md
     extension-points.md
     runtime-flows.md
@@ -47,6 +48,7 @@ research/
 - 分析开源框架源码
 - 收集官方文档、Release Notes、Issue/PR 和高质量社区资料
 - 梳理技术架构
+- 生成复杂架构的 HTML 可视化分层图
 - 追踪核心运行流程
 - 总结设计思想
 - 沉淀可学习、可借鉴和不宜照搬的设计模式
