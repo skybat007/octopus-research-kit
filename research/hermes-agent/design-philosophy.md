@@ -1,4 +1,4 @@
-# Design Philosophy
+# 设计思想
 
 ## 1. 多入口，共用内核
 

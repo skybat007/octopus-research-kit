@@ -1,4 +1,4 @@
-# Research Brief
+# 调研简报
 
 Status: draft
 Owner:

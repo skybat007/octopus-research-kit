@@ -1,4 +1,4 @@
-# Comparison
+# 横向对比
 
 Status: pending
 Last Updated: 2026-05-25

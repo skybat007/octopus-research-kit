@@ -1,4 +1,4 @@
-# Design Philosophy
+# 设计思想
 
 ## 1. 模式先行，入口归一
 

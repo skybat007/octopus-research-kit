@@ -1,4 +1,4 @@
-# Architecture
+# 技术架构
 
 Status: draft
 Last Updated: 2026-05-25

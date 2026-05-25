@@ -1,4 +1,4 @@
-# OpenClaw Research
+# OpenClaw 技术调研
 
 Status: draft
 Owner: cheng / Codex

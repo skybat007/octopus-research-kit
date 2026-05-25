@@ -1,4 +1,4 @@
-# Architecture
+# 技术架构
 
 ## 1. 总览
 

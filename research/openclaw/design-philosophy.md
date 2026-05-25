@@ -1,4 +1,4 @@
-# Design Philosophy
+# 设计思想
 
 Status: draft
 Last Updated: 2026-05-25

@@ -44,7 +44,7 @@
 │   │   ├── README.md
 │   │   ├── TECH_RESEARCH_GUIDE.md
 │   │   └── templates/
-│   ├── references/
+│   ├── memory/
 │   └── specs-archive/
 ├── research/
 │   └── example-framework/

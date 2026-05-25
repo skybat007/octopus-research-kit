@@ -1,4 +1,4 @@
-# Key Abstractions
+# 核心抽象
 
 Status: draft
 Last Updated: 2026-05-25

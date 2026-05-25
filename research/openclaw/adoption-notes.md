@@ -1,4 +1,4 @@
-# Adoption Notes
+# 学习借鉴笔记
 
 Status: draft
 Last Updated: 2026-05-25

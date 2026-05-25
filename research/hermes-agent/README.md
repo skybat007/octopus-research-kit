@@ -1,4 +1,4 @@
-# Hermes Agent Research
+# Hermes Agent 技术调研
 
 Status: draft
 Owner: cheng / Codex

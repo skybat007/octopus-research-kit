@@ -1,4 +1,4 @@
-# Extension Points
+# 扩展点
 
 待调研后填写。参考模板：
 

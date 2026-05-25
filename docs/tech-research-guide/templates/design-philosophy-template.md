@@ -1,4 +1,4 @@
-# Design Philosophy
+# 设计思想
 
 ## 1. 总体设计思想
 

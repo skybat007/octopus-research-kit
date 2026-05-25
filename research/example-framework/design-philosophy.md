@@ -1,4 +1,4 @@
-# Design Philosophy
+# 设计思想
 
 待调研后填写。参考模板：
 

@@ -1,4 +1,4 @@
-# Extension Points
+# 扩展点
 
 Status: draft
 Last Updated: 2026-05-25

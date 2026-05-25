@@ -11,7 +11,7 @@ docs/
     README.md
     TECH_RESEARCH_GUIDE.md
     templates/
-  references/
+  memory/
   specs-archive/
 
 research/
@@ -53,8 +53,8 @@ research/
 
 ## 参考与归档
 
-- `docs/references/`：存放外部建议、历史讨论稿等非主线材料。
-- `docs/specs-archive/legacy/`：存放历史残留的旧业务 spec，仅作历史参考。
+- `docs/memory/`：预留给项目级长期记忆、约定和调研上下文沉淀。
+- `docs/specs-archive/`：存放历史残留的旧业务 spec 说明，仅作历史参考。
 
 新的开源技术调研统一放到：
 

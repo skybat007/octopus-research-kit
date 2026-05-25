@@ -1,4 +1,4 @@
-# Extension Points
+# 扩展点
 
 ## 1. Slash Commands
 
