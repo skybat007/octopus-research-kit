@@ -45,7 +45,7 @@ Last Updated: YYYY-MM-DD
 
 - 
 
-## 7. 后续如何反哺目标系统
+## 7. 后续如何用于学习借鉴
 
 - 
 
@@ -60,9 +60,7 @@ Last Updated: YYYY-MM-DD
 | 主流程追踪 | runtime-flows.md |  |
 | 设计思想 | design-philosophy.md |  |
 | 横向对比 | comparison.md | 可选 |
-| 借鉴落地 | adoption-notes.md |  |
-| 重构机会 | refactor-opportunities.md |  |
-| 重构启发 | refactor-insights.md |  |
+| 学习借鉴 | adoption-notes.md |  |
 | 证据索引 | evidence-index.md |  |
 | 调研审查 | research-review.md | 复杂调研建议 |
 
@@ -72,4 +70,4 @@ Last Updated: YYYY-MM-DD
 |---|---|---|
 | AC-001 | 关键结论均有源码、文档或测试证据 | 检查 evidence-index.md |
 | AC-002 | 至少追踪一条主运行链路 | 检查 runtime-flows.md |
-| AC-003 | 借鉴建议区分可直接借鉴、需改造和不建议照搬 | 检查 adoption-notes.md |
+| AC-003 | 借鉴建议区分可直接学习、需结合语境后借鉴和不建议照搬 | 检查 adoption-notes.md |

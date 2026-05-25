@@ -8,7 +8,7 @@
 
 ## 2. 总体定位
 
-| 维度 | Framework A | Framework B | 对目标系统的启发 |
+| 维度 | Framework A | Framework B | 对学习和设计判断的启发 |
 |---|---|---|---|
 | 定位 |  |  |  |
 | 架构风格 |  |  |  |

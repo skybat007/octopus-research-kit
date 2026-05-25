@@ -4,7 +4,7 @@ A skill is a set of local instructions stored in a `SKILL.md` file.
 
 ## Available skills
 
-- open-source-tech-research: 开源技术调研 Skill。用于分析开源框架源码、生成技术架构文档、源码地图、核心流程、设计思想和重构启发。 (file: ./skills/open-source-tech-research/SKILL.md)
+- open-source-tech-research: 开源技术调研 Skill。用于分析开源框架源码、生成技术架构文档、源码地图、核心流程、设计思想和学习借鉴笔记。 (file: ./skills/open-source-tech-research/SKILL.md)
 
 ## How to use skills
 
@@ -28,8 +28,6 @@ Use `research/<framework-name>/` for each research target. A research directory 
 - `design-philosophy.md`
 - `comparison.md`
 - `adoption-notes.md`
-- `refactor-opportunities.md`
-- `refactor-insights.md`
 - `evidence-index.md`
 - `research-review.md`
 - `references/`

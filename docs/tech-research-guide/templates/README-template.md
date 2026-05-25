@@ -18,9 +18,7 @@ Last Updated: YYYY-MM-DD
 | runtime-flows.md | 主流程追踪和关键状态变化 |
 | design-philosophy.md | 设计思想和关键取舍 |
 | comparison.md | 横向对比 |
-| adoption-notes.md | 借鉴与落地建议 |
-| refactor-opportunities.md | 重构机会 |
-| refactor-insights.md | 重构启发摘要 |
+| adoption-notes.md | 学习借鉴笔记 |
 | evidence-index.md | 证据索引 |
 | research-review.md | 调研审查 |
 

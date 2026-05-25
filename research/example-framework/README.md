@@ -18,9 +18,7 @@ Last Updated: YYYY-MM-DD
 | [runtime-flows.md](runtime-flows.md) | 主流程追踪和关键状态变化 |
 | [design-philosophy.md](design-philosophy.md) | 设计思想、取舍和非显而易见的设计 |
 | [comparison.md](comparison.md) | 与同类框架或历史版本的横向对比 |
-| [adoption-notes.md](adoption-notes.md) | 借鉴、落地、映射和风险说明 |
-| [refactor-opportunities.md](refactor-opportunities.md) | 目标系统的具体重构机会 |
-| [refactor-insights.md](refactor-insights.md) | 对其他系统重构的启发 |
+| [adoption-notes.md](adoption-notes.md) | 学习借鉴、适用前提和误读风险说明 |
 | [evidence-index.md](evidence-index.md) | 关键结论的证据索引 |
 | [research-review.md](research-review.md) | 调研质量门禁和审查记录 |
 

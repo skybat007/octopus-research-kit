@@ -15,8 +15,6 @@ For a full research pass, produce or update:
 - `design-philosophy.md`
 - `comparison.md`
 - `adoption-notes.md`
-- `refactor-opportunities.md`
-- `refactor-insights.md`
 - `evidence-index.md`
 - `research-review.md`
 
@@ -32,7 +30,7 @@ A good output:
 - traces at least one concrete runtime path for full research
 - distinguishes facts, inferences, and open questions
 - links key conclusions to source evidence
-- turns design observations into practical learning or refactor guidance
+- turns design observations into practical learning and adoption notes
 - explains which designs can be copied, adapted, avoided, or validated first
 
 ## Evidence Labels
@@ -53,5 +51,5 @@ When summarizing a research pass to the user, include:
 - current version or snapshot
 - main findings
 - documents created or updated
-- highest-value refactor insights
+- highest-value design and adoption insights
 - remaining open questions

@@ -23,7 +23,7 @@
 我希望最终用于：
 - 学习架构
 - 对比框架
-- 指导某个系统重构
+- 沉淀可借鉴设计
 ```
 
 ## 2. 最小调研流程
@@ -35,7 +35,7 @@
 5. 提炼核心抽象，生成 `key-abstractions.md`。
 6. 生成 `architecture.md` 和 `design-philosophy.md`。
 7. 记录证据到 `evidence-index.md`。
-8. 输出 `refactor-insights.md`。
+8. 输出 `adoption-notes.md`。
 
 ## 3. 完整调研流程
 
@@ -43,8 +43,7 @@
 
 - `extension-points.md`：扩展机制分析
 - `comparison.md`：横向对比
-- `adoption-notes.md`：借鉴和落地建议
-- `refactor-opportunities.md`：目标系统的重构机会
+- `adoption-notes.md`：学习借鉴笔记
 - `research-review.md`：调研质量门禁
 
 ## 4. 常用提示词
@@ -62,7 +61,7 @@
 ```
 
 ```text
-请生成 adoption-notes.md 和 refactor-opportunities.md，把这个框架的设计映射到我的目标系统，不要直接照搬。
+请生成 adoption-notes.md，说明哪些设计值得学习、哪些需要结合语境后再借鉴、哪些不适合照搬，并标注证据和适用前提。
 ```
 
 ## 5. 质量门禁
@@ -79,4 +78,4 @@
 - 设计思想是否来自源码结构和设计取舍
 - 关键结论是否进入 `evidence-index.md`
 - 是否区分事实、推断和待确认
-- 是否输出可执行的借鉴或重构建议
+- 是否输出可学习、可借鉴和不适合照搬的设计判断

@@ -26,8 +26,6 @@ research/
     design-philosophy.md
     comparison.md
     adoption-notes.md
-    refactor-opportunities.md
-    refactor-insights.md
     evidence-index.md
     research-review.md
     references/
@@ -48,12 +46,12 @@ research/
 - 梳理技术架构
 - 追踪核心运行流程
 - 总结设计思想
-- 沉淀对其他系统重构有帮助的模式
+- 沉淀可学习、可借鉴和不宜照搬的设计模式
 
 ## 参考与归档
 
 - `docs/references/`：存放外部建议、历史讨论稿等非主线材料。
-- `docs/specs-archive/legacy/`：存放迁移残留的旧业务 spec，仅作历史参考。
+- `docs/specs-archive/legacy/`：存放历史残留的旧业务 spec，仅作历史参考。
 
 新的开源技术调研统一放到：
 

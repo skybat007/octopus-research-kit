@@ -1,6 +1,6 @@
 ---
 name: open-source-tech-research
-description: Analyze open-source frameworks or unfamiliar codebases and produce source-backed technical research documents, including source maps, architecture, key abstractions, extension points, runtime flows, design philosophy, comparison, adoption notes, and refactor insights. Use when the user asks to research, study, read, compare, or document an open-source technology or framework.
+description: Analyze open-source frameworks or unfamiliar codebases and produce source-backed technical research documents, including source maps, architecture, key abstractions, extension points, runtime flows, design philosophy, comparison, and adoption notes. Use when the user asks to research, study, read, compare, or document an open-source technology or framework.
 ---
 
 # Open Source Tech Research
@@ -16,7 +16,7 @@ Do not produce generic introductions. Important conclusions must be backed by so
 1. Identify the research target:
    - local path or remote repository
    - branch, tag, commit, or current snapshot
-   - user's learning or refactor goal
+   - user's learning goal
    - modules and scenarios in scope
 2. Read or create `research/<framework-name>/research-brief.md`.
    - If the research goal is unclear, ask concise clarification before broad code reading.
@@ -48,10 +48,10 @@ Do not produce generic introductions. Important conclusions must be backed by so
 9. Compare frameworks when the user asks for comparison:
    - compare positioning, architecture style, runtime, tool abstractions, workflow, memory, plugin model, engineering maturity, and adoption cost
    - write findings to `comparison.md`
-10. Convert findings into adoption and refactor outputs:
-   - map framework designs to the user's target system
+10. Convert findings into adoption notes when useful:
    - identify directly reusable designs, designs requiring adaptation, and designs not worth copying
-   - write findings to `adoption-notes.md`, `refactor-opportunities.md`, or `refactor-insights.md`
+   - explain applicability, constraints, risks, and open validation questions
+   - write findings to `adoption-notes.md`
 11. Review research quality:
    - verify version, scope, source map, main runtime flow, core abstractions, extension points, evidence, fact/inference labels, and adoption advice
    - write findings to `research-review.md` for complex research
@@ -87,7 +87,7 @@ Before finalizing complex research, check:
 - design philosophy is grounded in code structure and tradeoffs
 - key conclusions are in `evidence-index.md`
 - facts, inferences, and pending questions are separated
-- adoption advice explains what to copy, adapt, avoid, and validate
+- adoption notes explain what to learn from, adapt, avoid, and validate later
 
 ## Relationship to Project Docs
 

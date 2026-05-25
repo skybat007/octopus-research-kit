@@ -17,13 +17,13 @@ Last Updated: YYYY-MM-DD
 
 ## 2. 背景和动机
 
-待填写：为什么研究这个框架，它与你当前学习或系统重构目标有什么关系。
+待填写：为什么研究这个框架，它与你当前学习目标、架构理解或技术选型判断有什么关系。
 
 ## 3. 研究目标
 
 - OBJ-001：理解该框架的核心架构和模块边界。
 - OBJ-002：追踪一条关键运行流程，并定位核心抽象如何协作。
-- OBJ-003：提炼可迁移到其他系统的设计模式和重构启发。
+- OBJ-003：提炼值得学习、借鉴和不宜照搬的设计模式。
 
 ## 4. 核心研究问题
 
@@ -32,7 +32,7 @@ Last Updated: YYYY-MM-DD
 | Q-001 | 这个框架的核心抽象是什么？ | P0 | architecture.md |
 | Q-002 | 一个典型用户调用如何进入核心执行流程？ | P0 | runtime-flows.md |
 | Q-003 | 它的扩展机制如何设计？ | P1 | architecture.md |
-| Q-004 | 哪些设计值得迁移到我的系统？ | P1 | refactor-insights.md |
+| Q-004 | 哪些设计值得学习、借鉴或不宜照搬？ | P1 | adoption-notes.md |
 
 ## 5. 范围
 
@@ -50,11 +50,11 @@ Last Updated: YYYY-MM-DD
 
 ## 6. 适用场景
 
-- 待填写：学习架构、横向对比、指导重构或定位某条运行链路。
+- 待填写：学习架构、横向对比、技术选型或定位某条运行链路。
 
-## 7. 后续如何反哺目标系统
+## 7. 后续如何用于学习借鉴
 
-- 待填写：说明本次调研和目标系统之间的映射关系。
+- 待填写：说明本次调研能帮助你理解哪些设计问题、判断哪些适用前提、避免哪些误读。
 
 ## 8. 预期交付物
 
@@ -66,9 +66,7 @@ Last Updated: YYYY-MM-DD
 | 扩展点 | extension-points.md | 插件、Hook、Registry、Provider 等扩展机制 |
 | 主流程追踪 | runtime-flows.md | 从入口到核心执行的源码链路 |
 | 设计思想 | design-philosophy.md | 设计原则、取舍和非显而易见的设计 |
-| 借鉴落地 | adoption-notes.md | 与目标系统的映射、落地优先级和风险 |
-| 重构机会 | refactor-opportunities.md | 可执行的重构机会、阶段和最小验证 |
-| 重构启发 | refactor-insights.md | 可迁移模式、风险和阶段建议 |
+| 学习借鉴 | adoption-notes.md | 可直接学习、需结合语境后借鉴、不建议照搬 |
 | 证据索引 | evidence-index.md | 关键结论和源码证据 |
 | 调研审查 | research-review.md | 质量门禁、证据完整性和开放问题 |
 
@@ -78,4 +76,4 @@ Last Updated: YYYY-MM-DD
 |---|---|---|
 | AC-001 | 关键结论均有源码、文档或测试证据 | 检查 evidence-index.md |
 | AC-002 | 至少完成一条主流程追踪 | 检查 runtime-flows.md |
-| AC-003 | 重构启发能落到边界、阶段和风险 | 检查 refactor-insights.md |
+| AC-003 | 学习借鉴能说明适用前提、约束和误读风险 | 检查 adoption-notes.md |
