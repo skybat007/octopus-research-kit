@@ -6,12 +6,14 @@
 |---|---|---|
 | 版本信息 | 已覆盖 | 本地路径、remote、branch、commit 和调研日期已记录。[C-002] |
 | 快照属性 | 已覆盖 | README 明确这是非官方 security research snapshot。[C-001] |
+| 外部资料 | 已覆盖 | external-research.md 已覆盖 Claude Code 官方 overview/how-it-works/permissions/MCP/skills/hooks 文档。 |
+| 研究问题 | 已覆盖 | research-questions.md 已记录 RQ-CC-001 到 RQ-CC-005，并区分官方当前行为和本地 snapshot。 |
 | Source map | 已覆盖 | 已整理入口、核心模块、扩展模块、状态和远程通道。 |
 | 主运行流 | 已覆盖 | CLI 启动、REPL turn、QueryEngine、queryLoop、tool execution、MCP、session、remote flows 已追踪。 |
 | 核心抽象 | 已覆盖 | QueryEngine、queryLoop、Tool、ToolUseContext、PermissionContext、Command、Skill、Plugin、MCP、Session。 |
 | 扩展点 | 已覆盖 | Commands、Skills、Plugins、MCP、Hooks、Model/API providers、Remote/Bridge。 |
 | 设计思想 | 已覆盖 | 模式归一、trust 前置、Tool 协议、权限流水线、扩展分层、prompt-cache 稳定性。 |
-| 证据索引 | 已覆盖 | 15 条证据、4 条推断链路。 |
+| 证据索引 | 已覆盖 | 15 条本地证据、5 条外部资料证据、4 条推断链路。 |
 | 运行验证 | 未覆盖 | 本轮未启动 CLI、未跑测试、未访问模型 API。 |
 
 ## 2. 置信度
@@ -29,7 +31,7 @@
 低置信度或未确认：
 
 - direct-connect server-side 内部机制，因为当前快照缺少部分被入口引用的文件。[C-004][C-015]
-- 真实 Anthropic/Claude 平台侧协议和当前官方行为。
+- 真实 Anthropic/Claude 平台侧协议和当前官方行为只能由官方 docs 说明，不能由本地非官方 snapshot 完整证明。
 - 性能、错误恢复、权限交互体验和模型成本表现。
 
 ## 3. 质量风险
@@ -38,6 +40,7 @@
 - `src/main.tsx` 文件很大，入口细节多；本轮抓取的是架构关键段落，非逐行审计。
 - React/Ink 部分源码存在编译器痕迹，本轮没有深入每个 UI component 的渲染状态。
 - 部分结论是静态推断，已经在 `evidence-index.md` 中标记为 INF。
+- 外部资料已补充官方产品语义，但所有源码实现结论仍限定为本地 snapshot。
 
 ## 4. 下一步深挖建议
 

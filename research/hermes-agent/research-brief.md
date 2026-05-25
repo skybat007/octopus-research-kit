@@ -10,6 +10,8 @@
 | 快照 | branch `main`, commit `cae7537359c0ba8fceedc0a6423a4d9f30972100` |
 | 包版本 | `hermes-agent` `0.14.0` |
 | 语言/运行时 | Python `>=3.11`，部分 TUI/Web/Browser 相关能力使用 Node 生态 |
+| 官方文档 | GitHub README, https://hermes-agent.nousresearch.com/docs |
+| 外部资料范围 | 官方 GitHub、官方 docs、Release 文件入口；本轮未采用独立第三方文章 |
 
 ## 2. 调研目标
 
@@ -54,6 +56,8 @@
 | 文档 | 验收点 |
 |---|---|
 | README.md | 能快速理解项目定位和主要结论 |
+| external-research.md | 记录官方资料、协作资料、外部观点和源码验证关系 |
+| research-questions.md | 将外部观点和用户目标转成源码验证问题 |
 | source-map.md | 能指导下一位阅读者按入口和模块继续深挖 |
 | architecture.md | 能说明模块边界和依赖方向 |
 | key-abstractions.md | 能解释关键类/结构的职责和生命周期 |
@@ -62,13 +66,14 @@
 | design-philosophy.md | 提炼可学习的架构思想和代价 |
 | comparison.md | 给出同类项目对照维度和初步观察 |
 | adoption-notes.md | 形成学习借鉴清单 |
-| evidence-index.md | 每个核心结论可回溯到源码/文档 |
+| evidence-index.md | 每个核心结论可回溯到官方资料、源码、测试、协作资料或社区资料 |
 | research-review.md | 标注覆盖情况、风险和下一步证据缺口 |
 
 ## 6. 方法
 
 - 先固定代码快照和入口信息。
+- 先补官方资料调研，将关键外部观点转成源码验证问题。
 - 使用 `rg`、`find`、`nl` 做静态源码扫描。
 - 对关键结论建立证据编号，避免只凭印象描述。
-- 区分事实、源码事实、文档事实和推断。
+- 区分官方事实、源码事实、仓库文档事实、协作事实、社区事实和推断。
 - 对未验证的运行行为明确标注为待确认。

@@ -47,3 +47,13 @@
 - `src/services/api/claude.ts` 中 streaming/fallback/error taxonomy 的完整细节。
 - direct-connect server-side 内部实现，因为当前快照缺少部分被入口引用的 server files。
 - 各 built-in tool 的具体权限策略和异常处理差异。
+
+## 5. 外部资料证据补充
+
+| 结论编号 | 结论 | 证据类型 | 可信度等级 | 来源 | 是否已源码验证 | 置信度 | 备注 |
+|---|---|---|---|---|---|---|---|
+| EXT-CC-001 | 官方文档将 Claude Code 定位为可在 terminal、IDE、desktop、browser 等界面使用的 agentic coding tool | 官方事实 | A | https://code.claude.com/docs/en/overview, https://code.claude.com/docs/en/how-claude-code-works | 部分 | 高 | 本地 snapshot 只验证 CLI/REPL/headless/remote/bridge/direct-connect client pieces |
+| EXT-CC-002 | 官方文档描述 agentic loop：收集上下文、采取行动、验证结果，工具结果反馈下一步决策 | 官方事实 | A | https://code.claude.com/docs/en/how-claude-code-works | 是 | 高 | 对应 `C-006`-`C-010`, `C-013` |
+| EXT-CC-003 | 官方权限文档说明 permission rules、modes、deny/ask/allow 优先级和 hooks 共同影响工具授权 | 官方事实 | A | https://code.claude.com/docs/en/permissions, https://code.claude.com/docs/en/hooks | 是 | 高 | 对应 `C-009`, `C-010` |
+| EXT-CC-004 | 官方文档将 MCP、Skills、Hooks 作为不同扩展层：外部工具连接、按需知识/流程、生命周期自动化 | 官方事实 | A | https://code.claude.com/docs/en/mcp, https://code.claude.com/docs/en/skills, https://code.claude.com/docs/en/hooks | 是 | 高 | 对应 `C-010`, `C-011`, `C-012` |
+| EXT-CC-005 | 官方文档说明 sessions 写入本地 JSONL 并用于 resume/fork/rewind 等语义 | 官方事实 | A | https://code.claude.com/docs/en/how-claude-code-works | 是 | 高 | 对应 `C-013`, `INF-004` |

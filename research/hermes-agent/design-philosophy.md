@@ -2,7 +2,7 @@
 
 ## 1. 多入口，共用内核
 
-Hermes Agent 最清晰的设计思想是：入口可以很多，但 Agent core 尽量只有一套。CLI、TUI、Gateway、ACP、cron 都会回到 `AIAgent` 和 `run_conversation`，入口层负责适配输入输出，运行时负责模型、工具、记忆、上下文和持久化。[H-003][H-004][H-013][H-015][H-016]
+Hermes Agent 最清晰的设计思想是：入口可以很多，但 Agent core 尽量只有一套。官方 README/docs 展示的 CLI、TUI、Gateway、ACP、cron 等能力，在本地源码里都会回到 `AIAgent` 和 `run_conversation`，入口层负责适配输入输出，运行时负责模型、工具、记忆、上下文和持久化。[H-003][H-004][H-013][H-015][H-016][EXT-HA-001]
 
 价值：
 
@@ -27,7 +27,7 @@ Hermes Agent 最清晰的设计思想是：入口可以很多，但 Agent core �
 
 ## 3. 注册表驱动工具，而不是散落分发
 
-工具系统以 `ToolRegistry` 为中心，built-in tools 和 plugin tools 最终都进入 registry；`model_tools` 再统一生成 schema、做 toolset 过滤和 dispatch。[H-005][H-006]
+官方 Toolsets 文档将工具能力控制描述为按平台/会话/任务选择工具 bundle；源码里这个设计落在 `ToolRegistry`、`model_tools` 和 `toolsets.py` 上，built-in tools 和 plugin tools 最终都进入 registry，再统一生成 schema、做 toolset 过滤和 dispatch。[H-005][H-006][EXT-HA-002]
 
 设计含义：
 

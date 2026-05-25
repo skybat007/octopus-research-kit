@@ -5,17 +5,19 @@ Last Updated: 2026-05-25
 
 ## 1. 审查结论
 
-本轮调研满足“第一版架构级调研”的验收标准：已固定代码快照，覆盖源码地图、架构、关键抽象、扩展点、主运行流程、设计思想、借鉴建议和证据索引；关键结论均能回溯到源码或仓库文档。
+本轮调研已按新版流程补充外部资料阶段：已固定代码快照，覆盖 OpenClaw 官方 docs、GitHub repository、本地源码和仓库文档，并将外部观点转成研究问题后用现有源码证据验证。关键结论能回溯到官方资料、源码或仓库文档。
 
 ## 2. 覆盖情况
 
 | 检查项 | 状态 | 说明 |
 |---|---|---|
 | 固定版本/commit | 通过 | `main@989e53c20d395d3c8bf47efc21fdb9d56e7227b0` |
+| 外部资料调研 | 通过 | external-research.md 已覆盖官方 docs、GitHub、本地仓库 docs |
+| 研究问题验证 | 通过 | research-questions.md 已记录 RQ-OC-001 到 RQ-OC-005 |
 | 模块关系说明 | 通过 | source-map.md 与 architecture.md 已覆盖 |
 | 至少一条运行链路 | 通过 | runtime-flows.md 覆盖 Gateway 启动、WS handshake、Agent run、Plugin load |
-| 证据索引 | 通过 | evidence-index.md 记录 C-001 到 C-017 |
-| 区分事实与推断 | 通过 | evidence-index.md 标记 source/doc fact 和 inference |
+| 证据索引 | 通过 | evidence-index.md 记录 C-001 到 C-017，并补充 EXT-OC-001 到 EXT-OC-004 |
+| 区分事实与推断 | 通过 | evidence-index.md 区分源码/仓库文档/官方资料/推断 |
 | 借鉴建议 | 通过 | adoption-notes.md |
 | 横向对比 | 未完成 | comparison.md 仅保留后续入口 |
 
@@ -27,6 +29,7 @@ Last Updated: 2026-05-25
 | 未跑测试 | 不能确认边界条件和回归保护 | 选取 plugin loader / gateway ws / agent method 相关测试运行 |
 | 未覆盖所有插件 | 对 channel/provider 一致性的结论仍需抽样验证 | 再抽 Telegram/Slack/OpenAI/Memory plugin |
 | 未做横向对比 | 难以判断 OpenClaw 设计的独特性和行业位置 | 固定一个对比对象做同规格调研 |
+| 未采用第三方实践资料 | 缺少社区踩坑和实践视角 | 后续横向对比时补充 issue、PR、用户实践文章 |
 
 ## 4. 需要补充的证据
 

@@ -2,7 +2,7 @@
 
 ## 1. 模式先行，入口归一
 
-`main()` 在 Commander 之前处理 direct-connect、deep link、assistant、SSH、headless、interactive、client type 等入口差异。[C-003] 这说明 Claude Code 倾向把运行模式差异集中在入口层消化，让后面的 query runtime 面对统一的消息、工具和 session 语义。
+官方文档把 Claude Code 描述为跨 terminal、IDE、desktop、browser 等界面的 agentic coding tool；本地 source snapshot 中，`main()` 在 Commander 之前处理 direct-connect、deep link、assistant、SSH、headless、interactive、client type 等入口差异。[C-003][EXT-CC-001] 这说明 snapshot 倾向把运行模式差异集中在入口层消化，让后面的 query runtime 面对统一的消息、工具和 session 语义。
 
 取舍：入口层会变复杂，但核心 loop 更少被 argv、TTY、远程协议污染。
 
@@ -26,7 +26,7 @@
 
 ## 5. 权限是流水线，不是单点判断
 
-tool execution 会依次经过 validation、hooks、permission decision、interactive handler、bridge/remote callback、classifier 和 telemetry。[C-010] Permission context 也有 resolve-once、防重复决策、更新规则和日志记录。[C-010]
+官方 permissions/hooks 文档描述了 rules、modes、PreToolUse、PermissionRequest 等权限控制面；源码里的 tool execution 会依次经过 validation、hooks、permission decision、interactive handler、bridge/remote callback、classifier 和 telemetry。[C-010][EXT-CC-003] Permission context 也有 resolve-once、防重复决策、更新规则和日志记录。[C-010]
 
 取舍：流程长，但可以兼容本地交互、远程会话、自动模式和 hook policy。
 

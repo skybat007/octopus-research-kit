@@ -13,6 +13,7 @@ Last Updated: 2026-05-25
 | 本地路径 | `/Users/cheng/IdeaProjects/openclaw` |
 | 版本/tag/commit | branch `main`, commit `989e53c20d395d3c8bf47efc21fdb9d56e7227b0`, package version `2026.5.19` |
 | 官方文档 | 仓库内 `README.md`, `VISION.md`, `docs/**` |
+| 外部资料范围 | OpenClaw 官方 docs.openclaw.ai、GitHub repository、本地仓库 docs；本轮未采用独立第三方文章 |
 | 调研日期 | 2026-05-25 |
 
 ## 2. 背景和动机
@@ -83,6 +84,8 @@ Last Updated: 2026-05-25
 
 | 交付物 | 文件 | 说明 |
 |---|---|---|
+| 外部资料调研 | external-research.md | 官方资料、协作资料、外部观点和源码验证关系 |
+| 研究问题 | research-questions.md | 从外部资料生成的源码验证问题 |
 | 源码地图 | source-map.md | 仓库结构、入口、阅读顺序 |
 | 技术架构 | architecture.md | 分层、模块边界、依赖方向 |
 | 核心抽象 | key-abstractions.md | Gateway、Agent、Plugin、Session 等 |
@@ -100,4 +103,5 @@ Last Updated: 2026-05-25
 |---|---|---|
 | AC-001 | 关键结论均有源码、文档或测试证据 | 检查 evidence-index.md |
 | AC-002 | 至少追踪一条主运行链路 | 检查 runtime-flows.md |
-| AC-003 | 借鉴建议区分可直接学习、需结合语境后借鉴和不建议照搬 | 检查 adoption-notes.md |
+| AC-003 | 外部资料中的关键观点已转成研究问题并记录验证状态 | 检查 external-research.md、research-questions.md |
+| AC-004 | 借鉴建议区分可直接学习、需结合语境后借鉴和不建议照搬 | 检查 adoption-notes.md |

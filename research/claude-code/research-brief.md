@@ -11,6 +11,8 @@
 | 代码规模 | `src` 下约 1902 个文件 |
 | 主要技术 | TypeScript, Bun, React + Ink, CLI, WebSocket, MCP |
 | 快照属性 | 非官方源码快照，README 声明用于安全研究和供应链分析 |
+| 官方文档 | https://code.claude.com/docs |
+| 外部资料范围 | Claude Code 官方 docs、非官方 snapshot README/GitHub；本轮未采用第三方分析文章 |
 
 ## 2. 调研目标
 
@@ -45,6 +47,8 @@
 ## 4. 交付物
 
 - `source-map.md`
+- `external-research.md`
+- `research-questions.md`
 - `architecture.md`
 - `key-abstractions.md`
 - `extension-points.md`
@@ -58,6 +62,7 @@
 ## 5. 方法
 
 - 固定本地 snapshot、branch、commit 和调研日期。
+- 补充 Claude Code 官方文档调研，并把官方观点转成源码验证问题。
 - 从 README、入口文件、核心对象、工具系统、扩展系统、session 和 remote 通道向内追踪。
 - 所有关键结论用 `evidence-index.md` 中的证据编号约束。
 - 对推断和未验证点单独标注，避免把源码阅读结论包装成运行时事实。

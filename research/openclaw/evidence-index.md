@@ -48,3 +48,12 @@
 - Plugin reload/config reload 在 live Gateway 中的实际边界。
 - Provider runtime/model fallback/auth profile rotation 的完整链路。
 - Control UI 和 companion apps 如何消费 Gateway protocol。
+
+## 5. 外部资料证据补充
+
+| 结论编号 | 结论 | 证据类型 | 可信度等级 | 来源 | 是否已源码验证 | 置信度 | 备注 |
+|---|---|---|---|---|---|---|---|
+| EXT-OC-001 | 官方资料把 Gateway 定义为长期运行控制面，管理消息面、控制客户端、节点、HTTP/WS surface | 官方事实 | A | https://docs.openclaw.ai/architecture | 是 | 高 | 对应 `C-004`, `C-005`, `C-006` |
+| EXT-OC-002 | 官方资料将 Agent runtime 分成 OpenClaw-owned layer 与 Pi agent core | 官方事实 | A | https://docs.openclaw.ai/concepts/agent | 部分 | 高 | 对应 `C-007`, `C-008`, `INF-003` |
+| EXT-OC-003 | 官方资料强调 plugin capability model 与 manifest/discovery、enablement、runtime loading、surface consumption 分层 | 官方事实 | A | https://docs.openclaw.ai/plugins/architecture | 是 | 高 | 对应 `C-010`, `C-011`, `C-012` |
+| EXT-OC-004 | 官方资料说明 session 和 multi-agent 是隔离模型，覆盖 DM/group/cron/webhook 与 agent workspace/state/auth profile | 官方事实 | A | https://docs.openclaw.ai/concepts/session, https://docs.openclaw.ai/concepts/multi-agent | 部分 | 中 | 对应 `C-008`, `C-009` |

@@ -5,7 +5,7 @@ Last Updated: 2026-05-25
 
 ## 1. 产品哲学：Gateway 是控制面，不是产品本体
 
-README 直接说明 OpenClaw 是运行在用户设备上的 personal AI assistant，Gateway 只是 control plane，产品是 assistant。[C-001] 这决定了技术架构的重心：
+README 和官方 Gateway architecture 共同说明 OpenClaw 是运行在用户设备上的 personal AI assistant，Gateway 只是 control plane，产品是 assistant。[C-001][EXT-OC-001] 这决定了技术架构的重心：
 
 - Gateway 要稳定、可观测、可配置。
 - 用户交互可以发生在已有渠道、Control UI、CLI、移动端、节点设备中。
@@ -45,7 +45,7 @@ OpenClaw 的插件系统先读 manifest，再决定是否加载 runtime。Manife
 
 ## 5. Capability ownership 优先于 Hook 万能化
 
-OpenClaw 支持丰富 hooks，但文档也明确 capability registration 是 native plugin 的 intended direction；legacy hook-only 支持是兼容基线，不是新设计首选。[C-010]
+OpenClaw 支持丰富 hooks，但本地文档和官方 Plugin internals 都明确 capability registration 是 native plugin 的 intended direction；legacy hook-only 支持是兼容基线，不是新设计首选。[C-010][EXT-OC-003]
 
 这点很重要：Hook 系统很容易变成隐式业务总线。OpenClaw 的方向是：
 

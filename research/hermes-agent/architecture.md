@@ -4,6 +4,8 @@
 
 Hermes Agent 以 `AIAgent` 为运行时核心，把 CLI、TUI、Gateway、ACP 和 cron 等入口统一成对话 turn，再通过 Provider Profile 调模型、通过 ToolRegistry 执行工具、通过 Plugin Hook 注入扩展逻辑、通过 Session Store 和 Memory Provider 保持长期上下文。[H-003][H-004][H-005][H-008][H-009]
 
+新版外部资料阶段确认官方 README/docs 也以多入口 Agent、toolsets、plugins、memory providers、messaging gateway 和 cron 为主要能力面；本地源码进一步验证这些能力最终落在 `AIAgent`、`ToolRegistry`、plugin manager、gateway session 和 cron scheduler 上。[EXT-HA-001][EXT-HA-002][EXT-HA-003][EXT-HA-004][EXT-HA-005]
+
 ## 2. 总体结构
 
 ```mermaid

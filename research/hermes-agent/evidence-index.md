@@ -48,3 +48,13 @@
 - Gateway cached AIAgent 的失效策略。
 - 不同 Memory Provider 的实际可用性与失败隔离表现。
 - Platform plugin 与 built-in adapter 在配置校验上的一致性。
+
+## 5. 外部资料证据补充
+
+| 结论编号 | 结论 | 证据类型 | 可信度等级 | 来源 | 是否已源码验证 | 置信度 | 备注 |
+|---|---|---|---|---|---|---|---|
+| EXT-HA-001 | 官方 README/docs 将 Hermes 定位为多入口 self-improving agent，覆盖 CLI/TUI/Gateway/cron/skills/memory/providers | 官方事实 | A | https://github.com/NousResearch/hermes-agent, https://hermes-agent.nousresearch.com/docs/developer-guide/architecture | 是 | 高 | 对应 `H-001`, `H-003`, `H-004`, `H-013`-`H-016` |
+| EXT-HA-002 | 官方 Toolsets 文档将 toolsets 描述为按平台/会话/任务控制工具能力的 bundle | 官方事实 | A | https://hermes-agent.nousresearch.com/docs/reference/toolsets-reference | 是 | 高 | 对应 `H-005`, `H-006`, `H-007` |
+| EXT-HA-003 | 官方 Plugins 文档说明插件可注册 tools、hooks、slash commands、platform/provider 等集成 | 官方事实 | A | https://hermes-agent.nousresearch.com/docs/user-guide/features/plugins | 是 | 高 | 对应 `H-008`, `H-010`, `H-011`, `H-012` |
+| EXT-HA-004 | 官方 Messaging Gateway 文档强调 messaging session、allowlist/pairing、安全默认值和 delivery | 官方事实 | A | https://hermes-agent.nousresearch.com/docs/user-guide/messaging | 部分 | 中 | Gateway 结构已验证，平台安全细节待抽样 |
+| EXT-HA-005 | 官方 Memory Providers 文档说明 built-in memory 始终启用，但外部 provider 一次只激活一个 | 官方事实 | A | https://hermes-agent.nousresearch.com/docs/user-guide/features/memory-providers | 是 | 高 | 对应 `H-012` |

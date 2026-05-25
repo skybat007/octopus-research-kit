@@ -4,6 +4,8 @@
 
 Claude Code 的架构不是简单的 “CLI 调模型”。它先通过 `main()` 做运行模式路由，再由 `setup()` 和交互初始化建立 trust、cwd、terminal、MCP approval、API key 等边界；交互式路径进入 React/Ink REPL，headless/SDK/remote 路径进入结构化 IO；最终都围绕 `QueryEngine`、`queryLoop`、Tool contract、permission pipeline 和 transcript storage 组织。[C-003][C-005][C-006][C-007][C-008][C-009][C-010][C-013]
 
+新版外部资料阶段补充了官方产品语义：官方文档把 Claude Code 描述为 agentic coding tool，核心由 agentic loop、tools、permissions、MCP、Skills、Hooks 和 session history 组成。本地非官方 source snapshot 可以验证这些概念中的 CLI/REPL/headless/remote/permission/MCP/session 实现片段，但不能证明官方当前所有界面行为。[EXT-CC-001][EXT-CC-002][EXT-CC-003][EXT-CC-004][EXT-CC-005]
+
 ```mermaid
 flowchart TD
   A["CLI argv / cc URL / SSH / SDK / Bridge / Direct Connect"] --> B["src/main.tsx mode router"]

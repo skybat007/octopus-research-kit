@@ -15,6 +15,8 @@ Hermes Agent 是 Nous Research 维护的本地优先 AI Agent 项目，产品形
 | 文件 | 说明 |
 |---|---|
 | research-brief.md | 调研目标、范围、问题和交付物 |
+| external-research.md | 官方资料、协作资料、外部观点和源码验证关系 |
+| research-questions.md | 从外部资料生成的源码验证问题 |
 | source-map.md | 仓库结构、入口、模块和阅读顺序 |
 | architecture.md | 技术架构、模块边界和依赖方向 |
 | key-abstractions.md | 核心抽象、接口、数据结构和生命周期 |
@@ -28,7 +30,7 @@ Hermes Agent 是 Nous Research 维护的本地优先 AI Agent 项目，产品形
 
 ## 当前结论
 
-- Hermes Agent 的主设计是“多入口，共用 Agent Core”：CLI、TUI、Gateway、ACP 和 cron 最终都围绕 `AIAgent` 与 `run_conversation` 组织。[H-003][H-004][H-013][H-014][H-015]
+- Hermes Agent 官方 README/docs 与本地源码共同确认主设计是“多入口，共用 Agent Core”：CLI、TUI、Gateway、ACP 和 cron 最终都围绕 `AIAgent` 与 `run_conversation` 组织。[H-003][H-004][H-013][H-014][H-015][EXT-HA-001]
 - 工具系统采用中央 `ToolRegistry` + toolset 过滤 + plugin 注册的组合，`model_tools.py` 负责把 Registry 转成模型可消费的 tool schema，并把模型 tool call 分发回 Registry。[H-005][H-006][H-007]
 - 插件系统不是单一 hook 列表，而是分层的扩展控制面：通用插件、Provider Profile、Memory Provider、Gateway Platform、Context Engine、CLI/Slash Command 和 Toolset 都有独立入口。[H-008][H-010][H-011][H-012]
 - Gateway 是最复杂的运行面：它把平台 Adapter、认证/配对、session key、agent 缓存、流式输出、重复投递保护和 cron delivery 统一在一个大文件和少量支撑模块中。[H-009][H-010][H-016]
@@ -38,5 +40,6 @@ Hermes Agent 是 Nous Research 维护的本地优先 AI Agent 项目，产品形
 
 - 尚未启动 Hermes Agent 本地 CLI/TUI/Gateway 验证 live behavior。
 - 尚未跑测试，只做了静态源码和仓库文档分析。
+- 已补充官方外部资料互证，但尚未采用独立第三方实践文章作为结论依据。
 - 尚未逐一审查每个 built-in tool、platform adapter、provider plugin 和 memory provider 的实现质量。
 - TUI 前端 `ui-tui` 的交互设计和渲染状态机只做入口级扫描，未深入组件层。
