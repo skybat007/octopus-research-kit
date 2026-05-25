@@ -8,6 +8,14 @@
 
 源码地图。用于说明仓库结构、核心模块、入口、测试、示例和推荐阅读顺序。
 
+## External Research
+
+外部资料调研。用于记录官方文档、Release Notes、Issue、PR、Discussion、社区文章和第三方分析，并标记可信度与待源码验证的观点。
+
+## Research Questions
+
+研究问题清单。用于把外部资料、仓库文档和用户目标中的关键说法转成可验证问题，并记录源码验证状态。
+
 ## Runtime Flow
 
 运行时链路。用于追踪一次真实调用从外部入口到核心执行的完整路径。
@@ -36,9 +44,21 @@
 
 源码事实。代码中可以直接看到的事实。
 
+## Official Fact
+
+官方事实。官网、官方 README、官方文档、官方示例或 Release Notes 中明确说明的事实。
+
 ## Doc Fact
 
-文档事实。官方文档、仓库文档或设计文档明确说明的事实。
+文档事实。仓库文档或设计文档明确说明的事实。若来源是官方公开资料，优先标记为 Official Fact。
+
+## Collaboration Fact
+
+协作事实。Issue、PR、Discussion 或 commit message 中能追溯的事实。
+
+## Community Fact
+
+社区事实。第三方文章、视频、分享或用户实践中提出的观点，不得作为核心结论的唯一证据。
 
 ## Test Fact
 

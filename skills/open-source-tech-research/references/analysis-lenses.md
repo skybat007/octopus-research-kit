@@ -56,7 +56,7 @@ Use these lenses to decide what to inspect. Choose only the lenses relevant to t
 - strategy/provider model
 - code generation
 
-## Refactor Learning
+## Learning Transfer
 
 - what complexity the design isolates
 - what boundaries are explicit
@@ -79,6 +79,4 @@ Use these lenses to decide what to inspect. Choose only the lenses relevant to t
 - directly reusable designs
 - designs requiring adaptation
 - designs to avoid copying
-- mapping to the target system
-- migration prerequisites
 - phased validation plan

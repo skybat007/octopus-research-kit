@@ -2,7 +2,7 @@
 
 本文档用于指导 Agent 在本项目中进行开源框架、基础设施、中间件、工具链或陌生代码库的技术调研。
 
-调研目标不是堆资料，而是形成一套能反复复用的理解资产：架构图、源码地图、关键流程、设计思想、证据索引和学习借鉴笔记。
+调研目标不是堆资料，而是形成一套能反复复用的理解资产：外部资料摘要、研究问题、架构图、源码地图、关键流程、设计思想、证据索引和学习借鉴笔记。
 
 ## 1. 基本原则
 
@@ -18,7 +18,18 @@
 - 状态、上下文或依赖关系如何在模块之间传递？
 - 哪些设计值得学习，哪些不能直接照搬？
 
-### 1.2 结论必须可追溯
+### 1.2 先看外部资料，再用源码验证
+
+开源技术调研不应只看源码。推荐先用官方文档和高质量外部资料建立全局认知，再把关键说法转成可验证的问题，最后进入源码验证。
+
+外部资料不能替代源码分析：
+
+- 官方资料帮助理解设计目标、推荐用法和能力边界
+- 社区资料帮助理解实践经验、常见问题和历史讨论
+- 源码、测试和配置用于验证真实实现
+- 未经源码、测试或官方资料验证的内容必须标为推断或待确认
+
+### 1.3 结论必须可追溯
 
 关键结论必须绑定证据。证据可以来自：
 
@@ -30,11 +41,44 @@
 需要区分：
 
 - 源码事实：代码直接体现的事实
-- 文档事实：官方文档明确说明的事实
+- 官方事实：官网、官方 README、官方文档、官方示例或 release note 明确说明的事实
+- 仓库文档事实：目标仓库内文档明确说明的事实
+- 协作事实：issue、PR、discussion、commit message 中能追溯的事实
+- 社区事实：第三方文章、分享、视频或用户实践中提出的观点
+- 测试事实：测试用例、示例工程或 benchmark 展示的事实
 - 推断结论：基于多个证据综合得出的判断
 - 待确认：证据不足，不能写成确定结论
 
-### 1.3 版本必须固定
+### 1.4 资料可信度分级
+
+| 等级 | 类型 | 来源 | 用途 | 使用规则 |
+|---|---|---|---|---|
+| S | 源码事实 | 核心源码、测试、配置、可运行示例 | 支撑最终架构和实现结论 | 最高优先级 |
+| A | 官方资料 | 官网、官方 README、官方文档、官方 Quickstart、官方 Architecture、Release Notes、官方博客 | 理解设计目标、推荐用法、能力边界 | 关键实现仍建议源码验证 |
+| B | 项目协作资料 | Issue、PR、Discussion、Commit message | 理解演进背景、历史取舍、用户痛点 | 需要记录上下文和时间 |
+| C | 第三方分析 | 技术博客、视频、非官方架构分析、用户实践文章 | 补充实践经验和启发 | 不得作为核心结论的唯一证据 |
+| D | AI 推断 | 模型基于上下文生成的解释、无明确证据的设计意图判断 | 帮助形成假设 | 必须标记为推断，不得写成事实 |
+
+### 1.5 什么时候需要联网搜索
+
+需要联网搜索的情况：
+
+- 用户只给项目名、框架名或远程仓库名，需要确认官方仓库、官方文档、license、最新 release/tag 或活跃分支
+- 要说明官方定位、推荐用法、稳定 API、兼容性承诺、能力边界或设计目标
+- 要分析版本差异、release note、changelog、breaking changes、废弃或新增能力
+- 要做横向对比，且对比对象没有本地已固定的调研材料
+- 要判断生态成熟度、维护状态、社区痛点、安全公告、包管理器最新版本或插件生态
+- 本地源码不完整、来源特殊，或需要判断本地快照和官方当前行为的差异
+- `research-review.md` 标记某个关键结论缺少官方、社区或版本证据
+
+通常不需要联网搜索的情况：
+
+- 生成源码地图、模块边界、调用链和核心抽象
+- 验证真实实现、配置加载、测试覆盖和运行时状态变化
+- 从源码结构提炼设计取舍
+- 用户明确要求只基于本地源码
+
+### 1.6 版本必须固定
 
 调研结论必须注明版本来源：
 
@@ -46,7 +90,7 @@
 
 如果版本未固定，结论只能标为当前快照。
 
-### 1.4 从用户场景追踪主流程
+### 1.7 从用户场景追踪主流程
 
 优先从框架对外入口出发：
 
@@ -59,7 +103,7 @@
 
 不要只按包名横向介绍模块。技术架构文档应该能解释一个真实调用如何穿过核心抽象。
 
-### 1.5 调研要服务技术理解和后续学习
+### 1.8 调研要服务技术理解和后续学习
 
 每次调研最后都要回答：
 
@@ -75,6 +119,8 @@
 research/<framework-name>/
   README.md
   research-brief.md
+  external-research.md
+  research-questions.md
   source-map.md
   architecture.md
   runtime-flows.md
@@ -91,6 +137,7 @@ research/<framework-name>/
 简单调研可以合并文档，但至少要包含：
 
 - 研究目标和范围
+- 外部资料摘要和待验证问题
 - 源码地图
 - 核心架构
 - 一个主流程追踪
@@ -119,7 +166,29 @@ research/<framework-name>/
 - 预期交付物
 - 验收标准
 
-### 3.2 Source Map
+### 3.2 External Research
+
+完成 `external-research.md`：
+
+- 官方资料：官网、官方文档、README、Quickstart、Architecture 文档、Release Notes、官方示例
+- 项目协作资料：重要 issue、PR、discussion、commit message
+- 社区资料：高质量技术文章、用户实践、视频或分享
+- 每个资料的可信度等级、主要观点和对本次调研的价值
+- 外部资料中需要源码验证的关键说法
+- 外部资料与本地源码可能不一致的地方
+
+如果用户明确要求只做本地源码调研，可以跳过联网搜索，但必须在 `research-review.md` 中说明外部资料未覆盖。
+
+### 3.3 Research Questions
+
+完成 `research-questions.md`：
+
+- 将外部资料、README、用户目标中的关键说法转成可验证问题
+- 为每个问题标注来源、重要性、需要验证的源码方向
+- 在源码分析后更新验证结果：已验证、部分验证、未验证、待确认
+- 如果外部资料和源码不一致，必须单独记录
+
+### 3.4 Source Map
 
 完成 `source-map.md`：
 
@@ -130,7 +199,7 @@ research/<framework-name>/
 - 示例和测试入口
 - 阅读顺序建议
 
-### 3.3 Architecture
+### 3.5 Architecture
 
 完成 `architecture.md`：
 
@@ -141,7 +210,7 @@ research/<framework-name>/
 - 扩展点
 - 状态和数据流
 
-### 3.4 Key Abstractions
+### 3.6 Key Abstractions
 
 完成 `key-abstractions.md`：
 
@@ -151,7 +220,7 @@ research/<framework-name>/
 - 每个抽象解决的问题
 - 每个抽象的设计限制和可借鉴点
 
-### 3.5 Runtime Flows
+### 3.7 Runtime Flows
 
 完成 `runtime-flows.md`：
 
@@ -160,7 +229,7 @@ research/<framework-name>/
 - 画出时序图或流程图
 - 标注关键函数和状态变化
 
-### 3.6 Extension Points
+### 3.8 Extension Points
 
 完成 `extension-points.md`：
 
@@ -169,7 +238,7 @@ research/<framework-name>/
 - 扩展失败如何处理
 - 哪些扩展机制适合借鉴
 
-### 3.7 Design Philosophy
+### 3.9 Design Philosophy
 
 完成 `design-philosophy.md`：
 
@@ -178,8 +247,11 @@ research/<framework-name>/
 - 牺牲了什么
 - 与常见替代设计相比有什么不同
 - 哪些设计体现了作者的核心取舍
+- 官方资料可用于解释设计目标
+- 源码证据必须用于确认真实实现
+- 社区资料只能作为实践经验或问题背景
 
-### 3.8 Comparison
+### 3.10 Comparison
 
 当用户需要比较多个框架时，完成 `comparison.md`：
 
@@ -188,7 +260,7 @@ research/<framework-name>/
 - 工程化程度和二次开发友好度
 - 对学习、选型或设计判断的启发
 
-### 3.9 Adoption Notes
+### 3.11 Adoption Notes
 
 完成 `adoption-notes.md`：
 
@@ -198,20 +270,24 @@ research/<framework-name>/
 - 适用前提、约束和验证问题
 - 学习价值和后续单独评估方向
 
-### 3.10 Evidence Index
+### 3.12 Evidence Index
 
 持续维护 `evidence-index.md`：
 
 - 每个关键结论对应证据
 - 证据类型和位置明确
+- 资料可信度等级明确
+- 标注是否已由源码、测试或官方资料验证
 - 推断结论标明推断链路
 - 低置信度结论不能进入最终建议
 
-### 3.11 Research Review
+### 3.13 Research Review
 
 完成 `research-review.md`：
 
 - 调研版本是否固定
+- 是否覆盖必要的外部资料
+- 外部观点是否转成研究问题并由源码验证
 - 结论是否有证据
 - 架构图是否由源码支撑
 - 设计思想是否过度解读
@@ -237,6 +313,8 @@ research/<framework-name>/
 |---|---|
 | 版本固定 | 明确 branch、tag、commit 或当前快照 |
 | 范围明确 | 明确本次调研范围和不做范围 |
+| 外部资料 | 已覆盖必要官方资料、协作资料或社区资料；若跳过则说明原因 |
+| 研究问题 | 已把外部关键说法转成可验证问题，并记录验证状态 |
 | 源码地图 | 已说明仓库结构、入口、模块和阅读顺序 |
 | 主链路 | 至少追踪一条从入口到核心执行的运行链路 |
 | 核心抽象 | 已识别关键接口、对象、数据结构和生命周期 |
@@ -244,7 +322,7 @@ research/<framework-name>/
 | 架构图 | 架构图由源码、文档、测试或示例支撑 |
 | 设计思想 | 来自源码结构和设计取舍，不是主观想象 |
 | 证据索引 | 关键结论已记录到 evidence-index.md |
-| 事实区分 | 区分源码事实、文档事实、测试事实、推断和待确认 |
+| 事实区分 | 区分源码事实、官方事实、仓库文档事实、协作事实、社区事实、测试事实、推断和待确认 |
 | 借鉴笔记 | 输出可学习、不建议照搬和需要继续验证的内容 |
 | 审查记录 | 复杂调研已完成 research-review.md |
 
@@ -254,12 +332,12 @@ research/<framework-name>/
 
 | 角色 | 角色目标 | 主要适用文档 |
 |---|---|---|
-| Research Lead | 把模糊调研意图转化为范围清晰、问题明确、可验收的 Research Brief | `research-brief.md`、`README.md`、`research-review.md` |
-| Source Code Analyst | 建立可信的源码入口、目录地图和调用链证据 | `source-map.md`、`runtime-flows.md`、`evidence-index.md` |
+| Research Lead | 把模糊调研意图转化为范围清晰、问题明确、可验收的 Research Brief，并组织外部资料和研究问题 | `research-brief.md`、`external-research.md`、`research-questions.md`、`README.md`、`research-review.md` |
+| Source Code Analyst | 建立可信的源码入口、目录地图和调用链证据，并验证研究问题 | `source-map.md`、`runtime-flows.md`、`research-questions.md`、`evidence-index.md` |
 | Architecture Analyst | 把源码事实抽象成架构模型和核心抽象关系 | `architecture.md`、`key-abstractions.md`、`extension-points.md` |
-| Design Philosophy Analyst | 从源码结构和架构取舍中提炼设计思想 | `design-philosophy.md`、`architecture.md`、`key-abstractions.md` |
-| Adoption Analyst | 把开源框架设计转化为学习借鉴笔记，说明适用前提和不可照搬点 | `adoption-notes.md`、`comparison.md` |
-| Research Reviewer | 审查调研产物是否可信、完整、可复用 | `research-review.md`、`evidence-index.md` |
+| Design Philosophy Analyst | 从官方目标、源码结构和架构取舍中提炼设计思想 | `design-philosophy.md`、`external-research.md`、`architecture.md`、`key-abstractions.md` |
+| Adoption Analyst | 把开源框架设计转化为学习借鉴笔记，说明适用前提和不可照搬点 | `adoption-notes.md`、`comparison.md`、`external-research.md` |
+| Research Reviewer | 审查调研产物是否可信、完整、可复用 | `research-review.md`、`evidence-index.md`、`external-research.md`、`research-questions.md` |
 
 ## 7. 不推荐的写法
 

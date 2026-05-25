@@ -30,12 +30,14 @@
 
 1. 创建 `research/<framework-name>/research-brief.md`。
 2. 固定代码版本和调研范围。
-3. 生成 `source-map.md`。
-4. 追踪一条主运行链路，生成 `runtime-flows.md`。
-5. 提炼核心抽象，生成 `key-abstractions.md`。
-6. 生成 `architecture.md` 和 `design-philosophy.md`。
-7. 记录证据到 `evidence-index.md`。
-8. 输出 `adoption-notes.md`。
+3. 收集必要外部资料，生成 `external-research.md`；如果只做本地源码调研，记录跳过原因。
+4. 将外部观点和用户目标转成源码验证问题，生成 `research-questions.md`。
+5. 生成 `source-map.md`。
+6. 追踪一条主运行链路，生成 `runtime-flows.md`。
+7. 提炼核心抽象，生成 `key-abstractions.md`。
+8. 生成 `architecture.md` 和 `design-philosophy.md`。
+9. 记录证据到 `evidence-index.md`。
+10. 输出 `adoption-notes.md`。
 
 ## 3. 完整调研流程
 
@@ -50,6 +52,18 @@
 
 ```text
 先不要泛泛总结。请先生成 research-brief.md，明确调研目标、范围、不做范围、关键问题和证据标准。
+```
+
+```text
+请先不要直接分析源码。请围绕 <框架名称> 进行外部资料调研，优先收集官方文档、README/Quickstart、Architecture/Concept 文档、Release Notes、官方 Examples、重要 Issue/PR/Discussion 和高质量第三方技术分析。请输出 external-research.md，区分官方资料、协作资料和第三方资料，标记可信度，并标记哪些观点需要源码验证。
+```
+
+```text
+请基于 external-research.md 生成 research-questions.md。要求把外部资料中的关键说法转成可验证的问题，说明为什么重要，标记需要去源码中验证的位置或方向，不要直接把外部资料观点当成最终结论。
+```
+
+```text
+请基于 research-questions.md 进入源码验证。对每个研究问题给出验证结果，标记已验证、部分验证、未验证或待确认，并给出源码路径、类、函数、配置或测试用例作为证据。
 ```
 
 ```text
@@ -70,6 +84,8 @@
 
 - 是否明确调研版本、分支或 commit
 - 是否明确调研范围和不做范围
+- 是否覆盖必要外部资料，或说明跳过原因
+- 是否把外部观点转成研究问题并记录源码验证状态
 - 是否有源码地图
 - 是否至少追踪一条主运行链路
 - 是否识别核心抽象
@@ -77,5 +93,5 @@
 - 架构图是否有源码证据
 - 设计思想是否来自源码结构和设计取舍
 - 关键结论是否进入 `evidence-index.md`
-- 是否区分事实、推断和待确认
+- 是否区分官方事实、源码事实、社区事实、推断和待确认
 - 是否输出可学习、可借鉴和不适合照搬的设计判断

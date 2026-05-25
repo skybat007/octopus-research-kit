@@ -11,6 +11,8 @@ Last Updated: YYYY-MM-DD
 | 文件 | 说明 |
 |---|---|
 | research-brief.md | 调研目标、范围、问题和交付物 |
+| external-research.md | 官方资料、协作资料、社区资料和关键外部观点 |
+| research-questions.md | 由外部资料和用户目标生成的源码验证问题 |
 | source-map.md | 仓库结构、入口、模块和阅读顺序 |
 | architecture.md | 技术架构、模块边界和依赖方向 |
 | key-abstractions.md | 核心抽象、接口、数据结构和生命周期 |

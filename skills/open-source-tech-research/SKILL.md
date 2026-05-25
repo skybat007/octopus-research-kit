@@ -1,6 +1,6 @@
 ---
 name: open-source-tech-research
-description: Analyze open-source frameworks or unfamiliar codebases and produce source-backed technical research documents, including source maps, architecture, key abstractions, extension points, runtime flows, design philosophy, comparison, and adoption notes. Use when the user asks to research, study, read, compare, or document an open-source technology or framework.
+description: Analyze open-source frameworks or unfamiliar codebases with external research plus source verification, then produce technical research documents including external research, research questions, source maps, architecture, key abstractions, extension points, runtime flows, design philosophy, comparison, and adoption notes. Use when the user asks to research, study, read, compare, or document an open-source technology or framework.
 ---
 
 # Open Source Tech Research
@@ -9,7 +9,7 @@ Use this skill when the user wants to understand an open-source framework, unfam
 
 ## Core Rule
 
-Do not produce generic introductions. Important conclusions must be backed by source, docs, tests, examples, config, or version evidence. Mark assumptions and inferences explicitly.
+Do not produce generic introductions. Important conclusions must be backed by official docs, source, tests, examples, config, version evidence, or clearly labeled community evidence. 外部资料用于建立问题和背景，源码/测试/配置用于验证真实实现。Mark assumptions and inferences explicitly.
 
 ## Workflow
 
@@ -21,41 +21,53 @@ Do not produce generic introductions. Important conclusions must be backed by so
 2. Read or create `research/<framework-name>/research-brief.md`.
    - If the research goal is unclear, ask concise clarification before broad code reading.
    - If enough context exists, create the brief from `docs/tech-research-guide/templates/research-brief-template.md`.
-3. Build a source map:
+3. Collect external research when needed:
+   - search official docs, official README, quickstart, architecture/concept docs, release notes, examples, important issues/PRs/discussions, and high-quality third-party analysis
+   - always use external research when the target/source/version is unclear, when comparing frameworks, when discussing latest behavior or release changes, when local source is incomplete, or when official design intent matters
+   - skip only when the user explicitly asks for local-source-only research or when all needed official docs are already in the local repo; record the skip reason in `research-review.md`
+   - write findings to `external-research.md`
+4. Generate research questions:
+   - convert external claims and user goals into source-verifiable questions
+   - track status as pending, verified, partially verified, or unverified
+   - write findings to `research-questions.md`
+5. Build a source map:
    - use `rg --files` to inspect structure
    - identify build files, packages, examples, docs, tests, public APIs, CLI entrypoints, server startup, and config loaders
    - write findings to `source-map.md`
-4. Trace architecture:
+6. Trace architecture:
    - identify core abstractions, module boundaries, dependency direction, state flow, extension points, and lifecycle
+   - use official evidence for design goals and source evidence for implementation behavior
    - write findings to `architecture.md`
-5. Extract key abstractions:
+7. Extract key abstractions:
    - document important interfaces, classes, functions, data structures, lifecycle objects, and their collaboration
    - write findings to `key-abstractions.md`
-6. Trace extension points when relevant:
+8. Trace extension points when relevant:
    - inspect plugin, hook, registry, provider, middleware, tool, skill, or integration mechanisms
    - document registration, discovery, loading, execution, isolation, configuration, and failure handling
    - write findings to `extension-points.md`
-7. Trace runtime flows:
+9. Trace runtime flows:
    - start from a real user-facing API, example, test, CLI, or bootstrap path
    - follow the call chain into core execution
    - capture state changes, important branching, error handling, and extension hooks
    - write findings to `runtime-flows.md`
-8. Extract design philosophy:
+10. Extract design philosophy:
    - explain why the code is organized this way
    - compare tradeoffs and likely alternatives
+   - separate official design intent, source-verified behavior, community practice, and inference
    - avoid empty labels such as "high cohesion" unless tied to concrete code structure
    - write findings to `design-philosophy.md`
-9. Compare frameworks when the user asks for comparison:
+11. Compare frameworks when the user asks for comparison:
+   - fix version/source evidence for every compared framework; use web research unless each comparison target already has local evidence
    - compare positioning, architecture style, runtime, tool abstractions, workflow, memory, plugin model, engineering maturity, and adoption cost
    - write findings to `comparison.md`
-10. Convert findings into adoption notes when useful:
+12. Convert findings into adoption notes when useful:
    - identify directly reusable designs, designs requiring adaptation, and designs not worth copying
    - explain applicability, constraints, risks, and open validation questions
    - write findings to `adoption-notes.md`
-11. Review research quality:
-   - verify version, scope, source map, main runtime flow, core abstractions, extension points, evidence, fact/inference labels, and adoption advice
+13. Review research quality:
+   - verify version, scope, external research coverage, research question validation, source map, main runtime flow, core abstractions, extension points, evidence, fact/inference labels, and adoption advice
    - write findings to `research-review.md` for complex research
-12. Maintain `evidence-index.md` throughout the work.
+14. Maintain `evidence-index.md` throughout the work.
 
 ## Output Contract
 
@@ -68,8 +80,11 @@ Read `references/analysis-lenses.md` when choosing which technical angles to ins
 For each key conclusion, include:
 
 - claim
-- evidence type: source fact, doc fact, test fact, or inference
+- evidence type: source fact, official fact, repository doc fact, collaboration fact, community fact, test fact, inference, or pending
+- evidence grade: S for source/test/config/example, A for official docs/releases, B for issue/PR/discussion/commit, C for third-party analysis, D for AI inference
 - file path and line number when local source is available
+- URL and retrieval date when web evidence is used
+- whether the claim has source verification: yes, partial, no, or not applicable
 - version, tag, commit, or snapshot date
 - confidence: high, medium, or low
 
@@ -79,6 +94,8 @@ Before finalizing complex research, check:
 
 - version, branch, tag, commit, or snapshot is explicit
 - scope and non-scope are explicit
+- external research is present or explicitly skipped with a reason
+- research questions are generated and source verification status is recorded
 - source map exists
 - at least one main runtime flow is traced
 - core abstractions are identified

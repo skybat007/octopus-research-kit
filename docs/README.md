@@ -18,6 +18,8 @@ research/
   <framework-name>/
     README.md
     research-brief.md
+    external-research.md
+    research-questions.md
     source-map.md
     architecture.md
     key-abstractions.md
@@ -43,6 +45,7 @@ research/
 适用场景：
 
 - 分析开源框架源码
+- 收集官方文档、Release Notes、Issue/PR 和高质量社区资料
 - 梳理技术架构
 - 追踪核心运行流程
 - 总结设计思想

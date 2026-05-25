@@ -15,8 +15,10 @@
 1. 为调研对象创建 `research/<framework-name>/`。
 2. 从 `templates/` 复制需要的模板。
 3. 先完成 `research-brief.md`。它也可以理解为 Research Charter。
-4. 再按源码地图、核心抽象、运行链路、架构、扩展点、设计思想、学习借鉴的顺序推进。
-5. 将关键结论同步记录到 `evidence-index.md`。
+4. 先完成 `external-research.md`，收集必要的官方资料、协作资料和社区资料；如果跳过，记录原因。
+5. 再完成 `research-questions.md`，把外部资料和用户目标转成源码验证问题。
+6. 按源码地图、核心抽象、运行链路、架构、扩展点、设计思想、学习借鉴的顺序推进。
+7. 将关键结论同步记录到 `evidence-index.md`。
 
 ## 边界
 

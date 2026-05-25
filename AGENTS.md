@@ -20,6 +20,8 @@ Use `research/<framework-name>/` for each research target. A research directory 
 
 - `README.md`
 - `research-brief.md`
+- `external-research.md`
+- `research-questions.md`
 - `source-map.md`
 - `architecture.md`
 - `key-abstractions.md`
@@ -32,4 +34,4 @@ Use `research/<framework-name>/` for each research target. A research directory 
 - `research-review.md`
 - `references/`
 
-Key rule: important research conclusions must be tied to source evidence, such as files, classes, functions, tests, config, docs, line numbers, or commit/version information. Mark assumptions and inferences explicitly.
+Key rule: important research conclusions must be tied to evidence, such as official docs, source files, classes, functions, tests, config, examples, issues, PRs, release notes, line numbers, URLs, or commit/version information. Use external research to form questions, then use source/test/config evidence to verify implementation claims. Mark assumptions and inferences explicitly.

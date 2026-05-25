@@ -21,11 +21,12 @@
 - 调研目标、范围和不做范围
 - 要回答的关键问题
 - 需要产出的技术文档
-- 关键结论需要引用的源码证据
+- 外部资料、源码验证问题和关键结论证据
 
 `Research Skill` 用来固化调研执行方法：
 
 - 如何扫描一个陌生开源仓库
+- 如何收集官方资料、社区资料并转成源码验证问题
 - 如何定位入口、核心模块、关键抽象和主流程
 - 如何从源码证据推导架构结论
 - 如何产出统一格式的技术架构、设计思想和学习借鉴文档
@@ -74,6 +75,7 @@
 1. 在 `research/<framework-name>/` 新建调研目录。
 2. 复制 `docs/tech-research-guide/templates/` 中的模板。
 3. 先完成 `research-brief.md`，明确研究目标和边界。
-4. 使用 `open-source-tech-research` skill 推进源码扫描、核心抽象、架构拆解、主流程追踪、扩展点和设计思想提炼。
-5. 将每个关键结论记录到 `evidence-index.md`，保留源码证据。
-6. 在 `adoption-notes.md` 中沉淀值得学习、需要结合语境后再借鉴和不适合照搬的设计。
+4. 生成 `external-research.md` 和 `research-questions.md`，用外部资料建立问题清单，再进入源码验证。
+5. 使用 `open-source-tech-research` skill 推进源码扫描、核心抽象、架构拆解、主流程追踪、扩展点和设计思想提炼。
+6. 将每个关键结论记录到 `evidence-index.md`，保留官方资料、源码、测试、协作资料或社区资料证据。
+7. 在 `adoption-notes.md` 中沉淀值得学习、需要结合语境后再借鉴和不适合照搬的设计。

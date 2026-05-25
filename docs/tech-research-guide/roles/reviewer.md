@@ -9,6 +9,8 @@
 - `research-review.md`
 - `evidence-index.md`
 - `research-brief.md`
+- `external-research.md`
+- `research-questions.md`
 - `architecture.md`
 - `design-philosophy.md`
 - `adoption-notes.md`
@@ -16,6 +18,8 @@
 ## 职责
 
 - 检查调研版本、范围、不做范围和研究问题是否清晰。
+- 检查必要外部资料是否覆盖，或是否明确记录跳过原因。
+- 检查外部资料中的关键观点是否已转成研究问题并记录源码验证状态。
 - 检查关键结论是否进入 `evidence-index.md`，并区分事实、推断和待确认。
 - 审查架构图、运行链路、核心抽象和扩展机制是否有源码或文档证据。
 - 识别无证据结论、过度推断、范围漂移和越界的实施建议。

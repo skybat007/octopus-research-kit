@@ -7,6 +7,8 @@ Use this contract to check whether a research output is useful enough to keep.
 For a full research pass, produce or update:
 
 - `research-brief.md`
+- `external-research.md`
+- `research-questions.md`
 - `source-map.md`
 - `architecture.md`
 - `key-abstractions.md`
@@ -26,10 +28,13 @@ A good output:
 
 - answers the user's stated research questions
 - fixes the framework version or clearly labels it as current snapshot
+- captures relevant official, collaboration, and community evidence or explains why external research was skipped
+- converts external claims into source-verifiable research questions
 - explains module relationships, not just directory names
 - traces at least one concrete runtime path for full research
 - distinguishes facts, inferences, and open questions
-- links key conclusions to source evidence
+- links key conclusions to explicit evidence
+- separates official intent, source-verified behavior, community practice, and inference
 - turns design observations into practical learning and adoption notes
 - explains which designs can be copied, adapted, avoided, or validated first
 
@@ -37,8 +42,11 @@ A good output:
 
 Use these labels:
 
-- `source fact`: directly visible in code
-- `doc fact`: stated by official docs or repository docs
+- `source fact`: directly visible in code, config, tests, or runnable examples
+- `official fact`: stated by official docs, official README, official examples, or release notes
+- `repository doc fact`: stated by docs inside the researched repository
+- `collaboration fact`: stated by issue, PR, discussion, or commit message
+- `community fact`: stated by third-party articles, videos, or user practice reports
 - `test fact`: demonstrated by tests or examples
 - `inference`: reasoned from multiple facts
 - `pending`: not enough evidence yet
@@ -49,6 +57,7 @@ When summarizing a research pass to the user, include:
 
 - what was researched
 - current version or snapshot
+- whether web/external research was used
 - main findings
 - documents created or updated
 - highest-value design and adoption insights
