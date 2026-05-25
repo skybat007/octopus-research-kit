@@ -13,6 +13,7 @@ Last Updated: YYYY-MM-DD
 | [research-brief.md](research-brief.md) | 调研目标、范围、问题和交付物 |
 | [source-map.md](source-map.md) | 仓库结构、模块边界、入口和阅读顺序 |
 | [architecture.md](architecture.md) | 技术架构、核心抽象、依赖方向和扩展机制 |
+| [visual-architecture.html](visual-architecture.html) | HTML 可视化结构图，适合表达 Markdown 图不清晰的分层关系 |
 | [key-abstractions.md](key-abstractions.md) | 核心抽象、接口、数据结构和协作关系 |
 | [extension-points.md](extension-points.md) | 插件、Hook、Registry、Provider 等扩展机制 |
 | [runtime-flows.md](runtime-flows.md) | 主流程追踪和关键状态变化 |

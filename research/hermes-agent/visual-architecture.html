@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hermes Agent 可视化架构图</title>
+<style>
+:root {
+  --bg: #f7f8fb;
+  --panel: #ffffff;
+  --text: #172033;
+  --muted: #667085;
+  --line: #a8b3c5;
+  --entry: #2563eb;
+  --core: #059669;
+  --runtime: #7c3aed;
+  --extension: #d97706;
+  --state: #db2777;
+  --infra: #0891b2;
+  --risk: #e11d48;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif; }
+button { font: inherit; }
+.topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 20; min-height: 72px; display: flex; align-items: center; gap: 18px; padding: 12px 18px; background: rgba(255,255,255,.96); border-bottom: 1px solid #e3e8f2; box-shadow: 0 4px 18px rgba(20,32,51,.05); }
+.brand { min-width: 280px; }
+.brand h1 { margin: 0 0 3px; font-size: 18px; line-height: 1.2; }
+.brand p { margin: 0; color: var(--muted); font-size: 12px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.tab { border: 1px solid transparent; background: transparent; color: var(--muted); padding: 7px 12px; border-radius: 7px; cursor: pointer; }
+.tab:hover { color: var(--text); background: #eef2f8; }
+.tab.active { color: var(--entry); background: #e8f0ff; border-color: #bfd4ff; }
+.workspace { position: fixed; top: 72px; left: 0; right: 320px; bottom: 0; overflow: hidden; cursor: grab; }
+.workspace.dragging { cursor: grabbing; }
+.stage { position: absolute; transform-origin: 0 0; }
+.side { position: fixed; top: 72px; right: 0; bottom: 0; width: 320px; padding: 16px; overflow: auto; background: rgba(255,255,255,.94); border-left: 1px solid #e3e8f2; }
+.side h2 { margin: 0 0 8px; font-size: 16px; }
+.side p { margin: 0 0 12px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.side .note { padding: 10px 12px; background: #f1f5f9; border: 1px solid #dbe3ef; border-radius: 8px; color: #334155; font-size: 12px; line-height: 1.55; }
+.legend { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; margin: 14px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; }
+.dot { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+.zoom { position: fixed; left: 16px; bottom: 16px; z-index: 15; display: flex; gap: 7px; padding: 7px; background: rgba(255,255,255,.9); border: 1px solid #e3e8f2; border-radius: 9px; box-shadow: 0 8px 22px rgba(19,33,68,.08); }
+.zoom button { width: 34px; height: 32px; border: 1px solid #d8e0ec; border-radius: 7px; background: #fff; color: var(--muted); cursor: pointer; }
+.zoom button:hover { color: var(--text); background: #eef2f8; }
+svg { display: block; }
+.node { cursor: pointer; }
+.node rect { stroke-width: 1.4; filter: drop-shadow(0 5px 10px rgba(19,33,68,.08)); }
+.node text { pointer-events: none; }
+.label { font-size: 14px; font-weight: 700; fill: var(--text); }
+.sub { font-size: 11px; fill: var(--muted); }
+.ev { font-size: 10px; fill: var(--muted); font-family: "SF Mono", Consolas, monospace; }
+.edge { fill: none; stroke: var(--line); stroke-width: 1.5; marker-end: url(#arrow); }
+.edge.flow { stroke-dasharray: 7 5; animation: dash 1.4s linear infinite; }
+.edge.weak { stroke-dasharray: 3 6; }
+.edge-label { font-size: 11px; fill: #475569; paint-order: stroke; stroke: #f7f8fb; stroke-width: 4px; }
+@keyframes dash { to { stroke-dashoffset: -24; } }
+.tip { position: fixed; z-index: 50; max-width: 360px; opacity: 0; pointer-events: none; padding: 10px 12px; background: #142033; color: #f8fafc; border-radius: 8px; font-size: 12px; line-height: 1.5; transition: opacity .12s; box-shadow: 0 12px 28px rgba(15,23,42,.22); }
+.tip.show { opacity: 1; }
+.tip strong { display: block; margin-bottom: 4px; }
+.tip code { color: #bfdbfe; }
+@media (max-width: 980px) {
+  .topbar { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .workspace { top: 122px; right: 0; bottom: 210px; }
+  .side { top: auto; left: 0; width: 100%; height: 210px; border-left: 0; border-top: 1px solid #e3e8f2; }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <h1>Hermes Agent 可视化架构图</h1>
+    <p>HTML 结构图，作为 architecture.md 和 runtime-flows.md 的视觉补充。</p>
+  </div>
+  <nav class="tabs" id="tabs"></nav>
+</header>
+
+<main class="workspace" id="workspace">
+  <div class="stage" id="stage"></div>
+</main>
+
+<aside class="side">
+  <h2 id="viewTitle"></h2>
+  <p id="viewDesc"></p>
+  <div class="legend" id="legend"></div>
+  <div class="note">节点内的证据编号对应 <code>evidence-index.md</code>。本图突出多入口归一、工具注册表、插件扩展、Gateway session 和 memory provider 的边界。</div>
+</aside>
+
+<div class="zoom">
+  <button type="button" data-zoom="1.15">+</button>
+  <button type="button" data-zoom="0.87">-</button>
+  <button type="button" id="fit">fit</button>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const colors = {
+  entry: '#2563eb',
+  core: '#059669',
+  runtime: '#7c3aed',
+  extension: '#d97706',
+  state: '#db2777',
+  infra: '#0891b2',
+  risk: '#e11d48'
+};
+
+const legend = [
+  ['entry', '入口/界面'],
+  ['core', 'Agent Core'],
+  ['runtime', '对话运行时'],
+  ['extension', '工具/插件'],
+  ['state', '状态/记忆'],
+  ['infra', '网关/平台']
+];
+
+const views = [
+  {
+    id: 'overview',
+    label: '架构总览',
+    title: '多入口统一到 AIAgent，再由工具、插件、Provider 和 Gateway 扩展',
+    desc: 'Hermes Agent 的主设计是 CLI、TUI、Gateway、ACP、cron 等入口共享 AIAgent 与 run_conversation，而不是每个入口各自实现 Agent loop。',
+    width: 1360,
+    height: 820,
+    nodes: [
+      n('interfaces', 'Interface Layer', 'CLI / TUI / ACP / Cron', 'H-003 H-013 H-014 H-015 H-016', 70, 110, 230, 88, '多个用户界面和定时任务入口最终围绕 AIAgent 组织。', 'entry'),
+      n('gateway', 'Messaging Gateway', 'gateway/run.py', 'H-009 H-010', 70, 325, 230, 88, '平台 Adapter、allowlist/pairing、SessionContext、delivery 和 agent cache。', 'infra'),
+      n('agent', 'AIAgent', 'run_agent.py', 'H-004', 430, 170, 220, 92, '核心 facade，承接入口参数、初始化上下文并进入对话运行时。', 'core'),
+      n('loop', 'run_conversation', 'conversation_loop.py', 'H-004', 770, 170, 240, 92, 'Agent turn 主循环：模型调用、tool call、结果回写和流式输出。', 'runtime'),
+      n('provider', 'Provider Profile', 'providers / profiles', 'H-011', 1085, 90, 210, 82, '模型 Provider 行为剥离到 profile，减少主循环中的 provider 差异。', 'extension'),
+      n('tools', 'ToolRegistry + Toolsets', 'registry / model_tools', 'H-005 H-006 H-007', 1085, 260, 210, 88, '中央工具注册表、toolset 过滤、模型 schema 转换和 tool call 分发。', 'extension'),
+      n('plugins', 'Plugin Manager', 'PluginContext / hooks', 'H-008 H-010 H-011 H-012', 430, 465, 230, 88, '插件可注册 tools、hooks、slash command、gateway platform、provider、memory 等。', 'extension'),
+      n('memory', 'Memory Manager', 'built-in + one provider', 'H-012 EXT-HA-005', 770, 465, 240, 88, '内置记忆始终启用，外部 memory provider 一次只激活一个，并隔离失败。', 'state'),
+      n('session', 'Session / Config / DB', 'profiles / session store / cron jobs', 'H-003 H-009 H-016', 430, 660, 580, 86, 'profile、session key、gateway store、cron jobs 和本地配置共同构成运行状态边界。', 'state')
+    ],
+    edges: [
+      e('interfaces', 'agent', '入口归一'),
+      e('gateway', 'agent', 'SessionContext'),
+      e('agent', 'loop', '启动 turn'),
+      e('loop', 'provider', '模型调用'),
+      e('loop', 'tools', 'tool schema/call', 'flow'),
+      e('plugins', 'tools', '注册能力'),
+      e('plugins', 'provider', '扩展 Provider', 'weak'),
+      e('plugins', 'memory', '扩展记忆', 'weak'),
+      e('loop', 'memory', '读写记忆'),
+      e('gateway', 'session', '会话/投递状态'),
+      e('agent', 'session', '配置/profile')
+    ]
+  },
+  {
+    id: 'flow',
+    label: '运行主链路',
+    title: '一次 Agent turn 的主执行路径',
+    desc: '该流程把 CLI/TUI/Gateway/cron 的差异收敛到同一条 turn 执行链路，再通过工具注册表、memory 和 delivery 返回结果。',
+    width: 1320,
+    height: 650,
+    nodes: [
+      n('f1', '入口事件', 'CLI / TUI / Gateway / Cron', 'H-003 H-013 H-014 H-015 H-016', 60, 260, 190, 78, '用户命令、外部消息、TUI RPC、ACP 或定时任务触发。', 'entry'),
+      n('f2', '入口适配', 'args / message / schedule', 'H-003 H-009 H-016', 310, 260, 180, 78, '把不同入口转换成 AIAgent 可消费的上下文。', 'entry'),
+      n('f3', 'AIAgent', 'init + context', 'H-004', 550, 260, 170, 78, '初始化 provider、tools、memory、插件和系统提示词。', 'core'),
+      n('f4', 'Conversation Loop', 'model turn', 'H-004', 780, 260, 190, 78, '统一执行模型 turn 和工具调用循环。', 'runtime'),
+      n('f5', 'ToolRegistry', 'toolsets / call dispatch', 'H-005 H-006 H-007', 1030, 185, 190, 78, '把可用工具暴露给模型，并执行模型返回的 tool call。', 'extension'),
+      n('f6', 'Memory Provider', 'prefetch / sync / tool schemas', 'H-012', 1030, 345, 190, 78, '记忆参与 prompt、prefetch、turn sync 和可选 tool schema。', 'state'),
+      n('f7', 'Response / Delivery', 'stdout / TUI / platform', 'H-009 H-014', 550, 460, 190, 78, '根据入口形态将结果输出到终端、TUI 或 messaging platform。', 'infra')
+    ],
+    edges: [
+      e('f1', 'f2', '输入'),
+      e('f2', 'f3', '上下文'),
+      e('f3', 'f4', '执行 turn'),
+      e('f4', 'f5', '工具调用', 'flow'),
+      e('f5', 'f4', '结果反馈', 'weak'),
+      e('f4', 'f6', '记忆读写', 'flow'),
+      e('f4', 'f7', '响应')
+    ]
+  },
+  {
+    id: 'layers',
+    label: '分层视图',
+    title: '入口、内核、能力和状态的分层边界',
+    desc: '分层图用于快速识别 Hermes Agent 中可以独立学习的结构：入口归一、Agent facade、注册表驱动工具、插件分层和状态隔离。',
+    width: 1120,
+    height: 790,
+    layers: [
+      layer('entry', '接入层', 'CLI / TUI / Gateway / ACP / Cron', 'H-003 H-013 H-014 H-015 H-016', ['CLI', 'TUI', 'Gateway', 'Cron']),
+      layer('core', 'Agent 内核层', 'AIAgent facade and initialization', 'H-004', ['system prompt', 'context', 'provider', 'memory']),
+      layer('runtime', '对话运行层', 'run_conversation / model loop / tool calls', 'H-004 H-006', ['model turn', 'tool call', 'streaming', 'errors']),
+      layer('extension', '能力扩展层', 'ToolRegistry / toolsets / plugins / providers', 'H-005 H-007 H-008 H-011', ['registry', 'toolset', 'hooks', 'profiles']),
+      layer('state', '状态与记忆层', 'SessionStore / profiles / MemoryManager', 'H-009 H-012 H-016', ['session key', 'profile', 'memory', 'cron DB']),
+      layer('infra', '平台投递层', 'Gateway adapters / pairing / delivery', 'H-009 H-010', ['adapter', 'allowlist', 'pairing', 'delivery'])
+    ]
+  }
+];
+
+const state = { view: 0, scale: 1, x: 0, y: 0, dragging: false, lastX: 0, lastY: 0 };
+const tabs = document.getElementById('tabs');
+const stage = document.getElementById('stage');
+const workspace = document.getElementById('workspace');
+const tip = document.getElementById('tip');
+
+legend.forEach(([type, text]) => {
+  const item = document.createElement('span');
+  item.innerHTML = `<i class="dot" style="background:${colors[type]}"></i>${text}`;
+  document.getElementById('legend').appendChild(item);
+});
+
+views.forEach((view, index) => {
+  const button = document.createElement('button');
+  button.className = 'tab' + (index === 0 ? ' active' : '');
+  button.textContent = view.label;
+  button.addEventListener('click', () => render(index));
+  tabs.appendChild(button);
+});
+
+document.querySelectorAll('[data-zoom]').forEach(button => {
+  button.addEventListener('click', () => zoom(Number(button.dataset.zoom)));
+});
+document.getElementById('fit').addEventListener('click', fit);
+window.addEventListener('resize', fit);
+
+workspace.addEventListener('mousedown', event => {
+  state.dragging = true;
+  state.lastX = event.clientX;
+  state.lastY = event.clientY;
+  workspace.classList.add('dragging');
+});
+window.addEventListener('mouseup', () => {
+  state.dragging = false;
+  workspace.classList.remove('dragging');
+});
+window.addEventListener('mousemove', event => {
+  if (!state.dragging) return;
+  state.x += event.clientX - state.lastX;
+  state.y += event.clientY - state.lastY;
+  state.lastX = event.clientX;
+  state.lastY = event.clientY;
+  applyTransform();
+});
+
+render(0);
+
+function n(id, title, sub, ev, x, y, w, h, tipText, type = id) {
+  return { id, type, title, sub, ev, x, y, w, h, tip: tipText };
+}
+
+function e(from, to, label, kind = '') {
+  return { from, to, label, kind };
+}
+
+function layer(type, title, sub, ev, items) {
+  return { type, title, sub, ev, items };
+}
+
+function render(index) {
+  state.view = index;
+  const view = views[index];
+  document.querySelectorAll('.tab').forEach((tab, i) => tab.classList.toggle('active', i === index));
+  document.getElementById('viewTitle').textContent = view.title;
+  document.getElementById('viewDesc').textContent = view.desc;
+  stage.innerHTML = view.layers ? renderLayers(view) : renderGraph(view);
+  stage.style.width = view.width + 'px';
+  stage.style.height = view.height + 'px';
+  bindTips();
+  fit();
+}
+
+function renderGraph(view) {
+  const nodes = Object.fromEntries(view.nodes.map(node => [node.id, node]));
+  let out = svgOpen(view);
+  view.edges.forEach(edge => {
+    const a = center(nodes[edge.from]);
+    const b = center(nodes[edge.to]);
+    const klass = ['edge', edge.kind].filter(Boolean).join(' ');
+    out += `<path class="${klass}" d="M${a.x},${a.y} L${b.x},${b.y}"/>`;
+    out += `<text class="edge-label" x="${(a.x + b.x) / 2}" y="${(a.y + b.y) / 2 - 8}" text-anchor="middle">${esc(edge.label)}</text>`;
+  });
+  view.nodes.forEach(node => out += nodeSvg(node));
+  return out + '</svg>';
+}
+
+function renderLayers(view) {
+  let out = svgOpen(view);
+  view.layers.forEach((item, index) => {
+    const y = 62 + index * 116;
+    const color = colors[item.type];
+    out += `<g class="node" data-title="${attr(item.title)}" data-desc="${attr(item.sub)}" data-ev="${attr(item.ev)}">`;
+    out += `<rect x="82" y="${y}" width="956" height="86" rx="9" fill="${color}16" stroke="${color}"/>`;
+    out += `<text class="label" x="122" y="${y + 31}">${esc(item.title)}</text>`;
+    out += `<text class="sub" x="122" y="${y + 53}">${esc(item.sub)}</text>`;
+    out += `<text class="ev" x="122" y="${y + 72}">${esc(item.ev)}</text>`;
+    item.items.forEach((label, i) => {
+      const x = 430 + i * 142;
+      out += `<rect x="${x}" y="${y + 25}" width="118" height="34" rx="7" fill="#fff" stroke="${color}66"/>`;
+      out += `<text class="sub" x="${x + 59}" y="${y + 47}" text-anchor="middle">${esc(label)}</text>`;
+    });
+    out += '</g>';
+    if (index < view.layers.length - 1) {
+      out += `<path class="edge flow" d="M560,${y + 86} L560,${y + 116}"/>`;
+    }
+  });
+  return out + '</svg>';
+}
+
+function svgOpen(view) {
+  return `<svg width="${view.width}" height="${view.height}" viewBox="0 0 ${view.width} ${view.height}" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M2 2L8 5L2 8" fill="none" stroke="#8792a2" stroke-width="1.6"/></marker></defs>
+    <rect width="${view.width}" height="${view.height}" fill="transparent"/>`;
+}
+
+function nodeSvg(item) {
+  const color = colors[item.type] || colors.core;
+  return `<g class="node" data-title="${attr(item.title)}" data-desc="${attr(item.tip)}" data-ev="${attr(item.ev)}">
+    <rect x="${item.x}" y="${item.y}" width="${item.w}" height="${item.h}" rx="9" fill="${color}16" stroke="${color}"/>
+    <text class="label" x="${item.x + item.w / 2}" y="${item.y + 29}" text-anchor="middle">${esc(item.title)}</text>
+    <text class="sub" x="${item.x + item.w / 2}" y="${item.y + 51}" text-anchor="middle">${esc(item.sub)}</text>
+    <text class="ev" x="${item.x + item.w / 2}" y="${item.y + item.h - 13}" text-anchor="middle">${esc(item.ev)}</text>
+  </g>`;
+}
+
+function center(item) {
+  return { x: item.x + item.w / 2, y: item.y + item.h / 2 };
+}
+
+function bindTips() {
+  document.querySelectorAll('.node').forEach(node => {
+    node.addEventListener('mouseenter', event => showTip(event, node));
+    node.addEventListener('mousemove', event => moveTip(event));
+    node.addEventListener('mouseleave', hideTip);
+  });
+}
+
+function showTip(event, node) {
+  tip.innerHTML = `<strong>${esc(node.dataset.title)}</strong><div>${esc(node.dataset.desc)}</div><div><code>${esc(node.dataset.ev)}</code></div>`;
+  tip.classList.add('show');
+  moveTip(event);
+}
+
+function moveTip(event) {
+  tip.style.left = Math.min(event.clientX + 14, window.innerWidth - 380) + 'px';
+  tip.style.top = Math.min(event.clientY + 14, window.innerHeight - 170) + 'px';
+}
+
+function hideTip() {
+  tip.classList.remove('show');
+}
+
+function fit() {
+  const view = views[state.view];
+  const rect = workspace.getBoundingClientRect();
+  state.scale = Math.min((rect.width - 60) / view.width, (rect.height - 60) / view.height, 1.1);
+  state.x = Math.max(24, (rect.width - view.width * state.scale) / 2);
+  state.y = Math.max(24, (rect.height - view.height * state.scale) / 2);
+  applyTransform();
+}
+
+function zoom(factor) {
+  state.scale = Math.max(.35, Math.min(2.2, state.scale * factor));
+  applyTransform();
+}
+
+function applyTransform() {
+  stage.style.transform = `translate(${state.x}px, ${state.y}px) scale(${state.scale})`;
+}
+
+function esc(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+}
+
+function attr(value) {
+  return esc(value);
+}
+</script>
+</body>
+</html>
