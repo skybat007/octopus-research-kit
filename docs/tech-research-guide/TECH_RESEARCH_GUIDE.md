@@ -276,16 +276,16 @@ research/<framework-name>/
 
 ## 6. 调研角色
 
-复杂调研可以按角色思考，不要求机械拆成多人执行：
+复杂调研可以按角色思考，不要求机械拆成多人执行。每个角色的完整目标、适用文档、职责和边界见 `roles/`。
 
-| 角色 | 职责 | 边界 |
+| 角色 | 角色目标 | 主要适用文档 |
 |---|---|---|
-| Research Lead | 定义目标、范围、研究问题和输出物 | 不直接下源码结论 |
-| Source Code Analyst | 梳理目录、入口、关键类和调用链 | 结论必须关联源码路径 |
-| Architecture Analyst | 提炼架构分层、模块职责、运行链路和扩展机制 | 不脱离证据画架构图 |
-| Design Philosophy Analyst | 提炼设计原则、取舍和背后思想 | 不把个人偏好写成框架思想 |
-| Adoption Architect | 映射到目标系统，形成借鉴和演进建议 | 不直接照搬开源设计 |
-| Research Reviewer | 审查证据、结论、架构图和落地建议 | 不扩大调研结论 |
+| Research Lead | 把模糊调研意图转化为范围清晰、问题明确、可验收的 Research Brief | `research-brief.md`、`README.md`、`research-review.md` |
+| Source Code Analyst | 建立可信的源码入口、目录地图和调用链证据 | `source-map.md`、`runtime-flows.md`、`evidence-index.md` |
+| Architecture Analyst | 把源码事实抽象成架构模型和核心抽象关系 | `architecture.md`、`key-abstractions.md`、`extension-points.md` |
+| Design Philosophy Analyst | 从源码结构和架构取舍中提炼设计思想 | `design-philosophy.md`、`architecture.md`、`key-abstractions.md` |
+| Adoption Architect | 把开源框架设计转化为目标系统的借鉴和重构机会 | `adoption-notes.md`、`refactor-opportunities.md`、`refactor-insights.md` |
+| Research Reviewer | 审查调研产物是否可信、完整、可复用 | `research-review.md`、`evidence-index.md` |
 
 ## 7. 不推荐的写法
 
