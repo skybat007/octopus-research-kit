@@ -45,8 +45,7 @@
 │   │   └── templates/
 │   ├── research/
 │   │   └── example-framework/
-│   ├── spec-coding-guide/
-│   ├── specs/
+│   ├── references/
 │   └── specs-archive/
 └── skills/
     └── open-source-tech-research/
@@ -59,23 +58,16 @@
 - [技术调研模板](docs/tech-research-guide/templates/)
 - [示例调研 Spec](docs/research/example-framework/README.md)
 - [开源技术调研 Skill](skills/open-source-tech-research/SKILL.md)
-- [开发类 Spec Coding 规范](docs/spec-coding-guide/SPEC_CODING_GUIDE.md)
 
-## 什么时候用哪个规范
+## 使用范围
 
-用 `docs/tech-research-guide/`：
+本仓库只作为技术调研工作台使用：
 
 - 调研一个开源框架
 - 阅读陌生源码
 - 产出技术架构文档
 - 提炼设计思想
 - 为后续系统重构寻找参考模式
-
-用 `docs/spec-coding-guide/`：
-
-- 要在本项目或其他项目里做复杂开发
-- 需要需求、设计、任务、验收之间可追溯
-- 需要进入 coding 前确认范围和实现方案
 
 ## 推荐流程
 

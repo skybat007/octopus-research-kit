@@ -92,5 +92,3 @@ Before finalizing complex research, check:
 ## Relationship to Project Docs
 
 Follow `docs/tech-research-guide/TECH_RESEARCH_GUIDE.md` for the project-level research process.
-
-Use `docs/spec-coding-guide/SPEC_CODING_GUIDE.md` only when the research turns into a complex implementation task.

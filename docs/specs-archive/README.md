@@ -1,12 +1,12 @@
-# Archived Specs
+# Archived Legacy Specs
 
-本目录用于归档已完成且不再作为当前契约维护的历史 spec。
+本目录用于存放从其他项目迁移来的旧业务 spec。它们不属于当前技术调研工作流，仅作为历史参考。
 
 推荐结构：
 
 ```text
 docs/specs-archive/
-  2026/
+  legacy/
     <feature-name>/
       README.md
       requirements.md
@@ -14,17 +14,8 @@ docs/specs-archive/
       tasks.md
 ```
 
-## 归档条件
+## 使用规则
 
-满足以下任一条件时，可以归档：
-
-- 已完成上线，短期不会继续改。
-- 已被新的 spec 替代。
-- 只需要保留历史依据。
-- 不再作为当前开发、联调或验收契约。
-
-## 归档要求
-
-- 原 spec 的 `README.md` 应标注 `Status: archived` 或 `Status: superseded`。
-- 如果是被替代，注明替代 spec 路径。
-- 不要归档到 `output/`；`output/` 只放运行产物。
+- 新的技术调研不要写入本目录。
+- 新的技术调研统一写入 `docs/research/<framework-name>/`。
+- legacy 内容中的旧路径、旧业务名和旧链接不再作为当前项目约定。

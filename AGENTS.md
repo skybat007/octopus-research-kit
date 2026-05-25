@@ -35,7 +35,3 @@ Use `docs/research/<framework-name>/` for each research target. A research direc
 - `references/`
 
 Key rule: important research conclusions must be tied to source evidence, such as files, classes, functions, tests, config, docs, line numbers, or commit/version information. Mark assumptions and inferences explicitly.
-
-# Spec Coding
-
-复杂开发任务进入 Coding 前，先阅读 `docs/spec-coding-guide/SPEC_CODING_GUIDE.md`。

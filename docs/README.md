@@ -1,6 +1,6 @@
 # Docs Guide
 
-本目录用于组织技术调研规范、具体调研文档、开发类 spec 规范和历史材料。
+本目录用于组织技术调研规范、具体调研文档、参考材料和历史归档。
 
 ## 目录说明
 
@@ -28,8 +28,7 @@ docs/
       evidence-index.md
       research-review.md
       references/
-  spec-coding-guide/
-  specs/
+  references/
   specs-archive/
 ```
 
@@ -50,22 +49,12 @@ docs/
 - 总结设计思想
 - 沉淀对其他系统重构有帮助的模式
 
-## 开发类 Spec 文档
+## 参考与归档
 
-开发类复杂任务继续使用：
+- `docs/references/`：存放外部建议、历史讨论稿、Skill 参考说明等非主线材料。
+- `docs/specs-archive/legacy/`：存放迁移残留的旧业务 spec，仅作历史参考。
 
-- [spec-coding-guide/SPEC_CODING_GUIDE.md](./spec-coding-guide/SPEC_CODING_GUIDE.md)
-- [spec-coding-guide/templates/](./spec-coding-guide/templates/)
-- [specs/](./specs/)
-
-`spec-coding-guide` 适合进入 coding 前确认需求、设计、任务和验收关系。它和技术调研规范不是替代关系：
-
-- `tech-research-guide` 解决“如何理解一个技术”
-- `spec-coding-guide` 解决“如何把一个需求可靠实现”
-
-## 旧材料说明
-
-当前仓库中部分 `docs/specs/` 内容来自其他项目迁移，可作为参考材料保留。新的开源技术调研不要继续写入旧业务 spec 目录，统一放到：
+新的开源技术调研统一放到：
 
 ```text
 docs/research/<framework-name>/
