@@ -18,7 +18,7 @@ Do not produce generic introductions. Important conclusions must be backed by so
    - branch, tag, commit, or current snapshot
    - user's learning or refactor goal
    - modules and scenarios in scope
-2. Read or create `docs/research/<framework-name>/research-brief.md`.
+2. Read or create `research/<framework-name>/research-brief.md`.
    - If the research goal is unclear, ask concise clarification before broad code reading.
    - If enough context exists, create the brief from `docs/tech-research-guide/templates/research-brief-template.md`.
 3. Build a source map:

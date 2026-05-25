@@ -12,7 +12,7 @@
 
 ## 使用方式
 
-1. 为调研对象创建 `docs/research/<framework-name>/`。
+1. 为调研对象创建 `research/<framework-name>/`。
 2. 从 `templates/` 复制需要的模板。
 3. 先完成 `research-brief.md`。它也可以理解为 Research Charter。
 4. 再按源码地图、核心抽象、运行链路、架构、扩展点、设计思想、落地建议的顺序推进。

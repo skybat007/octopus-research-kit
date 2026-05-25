@@ -43,10 +43,10 @@
 │   │   ├── README.md
 │   │   ├── TECH_RESEARCH_GUIDE.md
 │   │   └── templates/
-│   ├── research/
-│   │   └── example-framework/
 │   ├── references/
 │   └── specs-archive/
+├── research/
+│   └── example-framework/
 └── skills/
     └── open-source-tech-research/
 ```
@@ -56,7 +56,7 @@
 - [技术调研规范](docs/tech-research-guide/TECH_RESEARCH_GUIDE.md)
 - [技术调研快速开始](docs/tech-research-guide/AI_TECH_RESEARCH_QUICKSTART.md)
 - [技术调研模板](docs/tech-research-guide/templates/)
-- [示例调研 Spec](docs/research/example-framework/README.md)
+- [示例调研 Spec](research/example-framework/README.md)
 - [开源技术调研 Skill](skills/open-source-tech-research/SKILL.md)
 
 ## 使用范围
@@ -71,7 +71,7 @@
 
 ## 推荐流程
 
-1. 在 `docs/research/<framework-name>/` 新建调研目录。
+1. 在 `research/<framework-name>/` 新建调研目录。
 2. 复制 `docs/tech-research-guide/templates/` 中的模板。
 3. 先完成 `research-brief.md`，明确研究目标和边界。
 4. 使用 `open-source-tech-research` skill 推进源码扫描、核心抽象、架构拆解、主流程追踪、扩展点和设计思想提炼。

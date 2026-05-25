@@ -16,7 +16,7 @@ A skill is a set of local instructions stored in a `SKILL.md` file.
 
 When the task is about technical research rather than implementation, follow `docs/tech-research-guide/TECH_RESEARCH_GUIDE.md`.
 
-Use `docs/research/<framework-name>/` for each research target. A research directory should normally contain:
+Use `research/<framework-name>/` for each research target. A research directory should normally contain:
 
 - `README.md`
 - `research-brief.md`

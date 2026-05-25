@@ -21,10 +21,10 @@
 
 ## 2. 创建调研目录
 
-在 `docs/research/` 下为每个框架建立独立目录：
+在根目录 `research/` 下为每个框架建立独立目录：
 
 ```text
-docs/research/<framework-name>/
+research/<framework-name>/
 ```
 
 建议至少包含：
@@ -75,7 +75,7 @@ open-source-tech-research
 示例：
 
 ```text
-使用 open-source-tech-research，帮我分析 /path/to/langgraph 的状态图执行模型，并生成 docs/research/langgraph/ 下的调研文档。
+使用 open-source-tech-research，帮我分析 /path/to/langgraph 的状态图执行模型，并生成 research/langgraph/ 下的调研文档。
 ```
 
 ## 5. 固定证据
@@ -114,5 +114,5 @@ refactor-insights.md
 - [技术调研规范](docs/tech-research-guide/TECH_RESEARCH_GUIDE.md)
 - [技术调研快速开始](docs/tech-research-guide/AI_TECH_RESEARCH_QUICKSTART.md)
 - [模板目录](docs/tech-research-guide/templates/)
-- [示例调研目录](docs/research/example-framework/README.md)
+- [示例调研目录](research/example-framework/README.md)
 - [调研 Skill](skills/open-source-tech-research/SKILL.md)

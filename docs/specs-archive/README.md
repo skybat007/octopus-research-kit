@@ -17,5 +17,5 @@ docs/specs-archive/
 ## 使用规则
 
 - 新的技术调研不要写入本目录。
-- 新的技术调研统一写入 `docs/research/<framework-name>/`。
+- 新的技术调研统一写入 `research/<framework-name>/`。
 - legacy 内容中的旧路径、旧业务名和旧链接不再作为当前项目约定。

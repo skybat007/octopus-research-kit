@@ -28,7 +28,7 @@
 
 ## 2. 最小调研流程
 
-1. 创建 `docs/research/<framework-name>/research-brief.md`。
+1. 创建 `research/<framework-name>/research-brief.md`。
 2. 固定代码版本和调研范围。
 3. 生成 `source-map.md`。
 4. 追踪一条主运行链路，生成 `runtime-flows.md`。

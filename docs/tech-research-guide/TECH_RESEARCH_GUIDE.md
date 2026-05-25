@@ -72,7 +72,7 @@
 ## 2. 推荐目录结构
 
 ```text
-docs/research/<framework-name>/
+research/<framework-name>/
   README.md
   research-brief.md
   source-map.md

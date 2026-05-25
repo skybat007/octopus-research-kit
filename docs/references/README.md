@@ -9,5 +9,5 @@
 ## 使用边界
 
 - 新的技术调研规范以 `docs/tech-research-guide/` 为准。
-- 新的调研产物写入 `docs/research/<framework-name>/`。
+- 新的调研产物写入 `research/<framework-name>/`。
 - 本目录内容不自动代表当前项目约定。
