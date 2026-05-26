@@ -39,9 +39,21 @@ Do not produce generic introductions. Important conclusions must be backed by of
    - use official evidence for design goals and source evidence for implementation behavior
    - write findings to `architecture.md`
 7. Add visual architecture when Markdown diagrams are not enough:
-   - create `visual-architecture.html` for complex layered diagrams, multi-flow diagrams, or diagrams with many nodes
-   - keep `architecture.md` as the canonical explanation and evidence surface
-   - include evidence IDs in node labels, tooltips, or a source panel
+   - prefer `visual/architecture.html` plus `visual/architecture.visual.js` for complex layered diagrams, multi-flow diagrams, or diagrams with many nodes
+   - keep Markdown as the knowledge source: `architecture.md`, `runtime-flows.md`, `source-map.md`, and `evidence-index.md`
+   - keep `visual/architecture.html` as a renderer only; put graph data in `visual/architecture.visual.js`
+   - generate `visual/evidence.html` plus `visual/evidence.visual.js` so node source links open a UTF-8 evidence explanation page with graph context and source/doc snippets instead of raw Markdown
+   - do not add conclusions to the visual data that are absent from the Markdown research documents
+   - before generating HTML, write a short diagram design note: views, each view's question, node list, edge semantics, and evidence mapping
+   - use one tab/view per question; do not pack all research conclusions into one overview
+   - keep each view to 8-10 main nodes; split the view if it grows larger
+   - use nodes only for architecture objects: modules, components, runtime objects, state objects, extension points, external dependencies, policies, permissions, or adapters
+   - do not turn ordinary functions, fields, design principles, evidence IDs, or conclusion sentences into nodes
+   - use typed edges for request flow, sync call, async event, dependency, registration/discovery, permission check, context build, state read/write, model stream, and result return
+   - each node must include id, type, role, title, sub, ev, doc, and tip
+   - each key edge must include from, to, label, kind, ev, and doc
+   - keep evidence IDs as metadata or in the design note; do not render evidence IDs on the diagram surface unless the user explicitly asks
+   - use `doc` fields to point back to Markdown evidence or architecture sections, but do not navigate directly to raw Markdown from the renderer
    - use only offline HTML/CSS/SVG/JS; do not depend on remote assets or CDNs
 8. Extract key abstractions:
    - document important interfaces, classes, functions, data structures, lifecycle objects, and their collaboration
@@ -107,6 +119,8 @@ Before finalizing complex research, check:
 - extension points are identified when relevant
 - architecture diagrams are evidence-backed
 - visual architecture is present for complex diagrams or explicitly skipped
+- visual architecture separates Markdown knowledge source, `architecture.visual.js` graph data, `evidence.visual.js` evidence data, and HTML rendering
+- visual architecture uses one view per question, architecture-object nodes, typed edges, and hidden-on-surface evidence metadata
 - design philosophy is grounded in code structure and tradeoffs
 - key conclusions are in `evidence-index.md`
 - facts, inferences, and pending questions are separated

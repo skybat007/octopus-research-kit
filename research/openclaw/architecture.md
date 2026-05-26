@@ -9,6 +9,8 @@ OpenClaw 的核心架构是“本地长期运行 Gateway + 嵌入式 Agent runti
 
 新版外部资料阶段确认了这个判断不是单纯源码归纳：官方 Gateway architecture、Agent runtime、Session、Multi-agent 和 Plugin docs 均把 Gateway control plane、OpenClaw-owned Agent layer、capability-first plugin model 和 session/multi-agent isolation 作为核心概念；本地源码证据分别验证在 `C-004` 到 `C-012` 中。[EXT-OC-001][EXT-OC-002][EXT-OC-003][EXT-OC-004]
 
+可视化补充：[visual/architecture.html](./visual/architecture.html)，图数据见 [visual/architecture.visual.js](./visual/architecture.visual.js)。证据解释页：[visual/evidence.html](./visual/evidence.html)，数据见 [visual/evidence.visual.js](./visual/evidence.visual.js)。该 HTML 图只展示本文和证据索引中已经沉淀的结构关系。
+
 ```mermaid
 flowchart TD
   User["User / External message"] --> Channel["Channel plugin runtime"]

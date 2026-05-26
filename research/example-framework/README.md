@@ -13,7 +13,10 @@ Last Updated: YYYY-MM-DD
 | [research-brief.md](research-brief.md) | 调研目标、范围、问题和交付物 |
 | [source-map.md](source-map.md) | 仓库结构、模块边界、入口和阅读顺序 |
 | [architecture.md](architecture.md) | 技术架构、核心抽象、依赖方向和扩展机制 |
-| [visual-architecture.html](visual-architecture.html) | HTML 可视化结构图，适合表达 Markdown 图不清晰的分层关系 |
+| [visual/architecture.html](visual/architecture.html) | HTML 可视化结构图，适合表达 Markdown 图不清晰的分层关系 |
+| [visual/architecture.visual.js](visual/architecture.visual.js) | 可视化图数据，承接 Markdown 结论和证据链接 |
+| [visual/evidence.html](visual/evidence.html) | 可点击证据解释页，展示架构语境和源码/文档片段 |
+| [visual/evidence.visual.js](visual/evidence.visual.js) | 从 evidence-index.md 和 architecture.visual.js 抽取的证据解释数据 |
 | [key-abstractions.md](key-abstractions.md) | 核心抽象、接口、数据结构和协作关系 |
 | [extension-points.md](extension-points.md) | 插件、Hook、Registry、Provider 等扩展机制 |
 | [runtime-flows.md](runtime-flows.md) | 主流程追踪和关键状态变化 |

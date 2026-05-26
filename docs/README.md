@@ -22,7 +22,9 @@ research/
     research-questions.md
     source-map.md
     architecture.md
-    visual-architecture.html
+    visual/
+      architecture.html
+      architecture.visual.js
     key-abstractions.md
     extension-points.md
     runtime-flows.md

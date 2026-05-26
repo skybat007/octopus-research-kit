@@ -6,6 +6,8 @@ Claude Code 的架构不是简单的 “CLI 调模型”。它先通过 `main()`
 
 新版外部资料阶段补充了官方产品语义：官方文档把 Claude Code 描述为 agentic coding tool，核心由 agentic loop、tools、permissions、MCP、Skills、Hooks 和 session history 组成。本地非官方 source snapshot 可以验证这些概念中的 CLI/REPL/headless/remote/permission/MCP/session 实现片段，但不能证明官方当前所有界面行为。[EXT-CC-001][EXT-CC-002][EXT-CC-003][EXT-CC-004][EXT-CC-005]
 
+可视化补充：[visual/architecture.html](./visual/architecture.html)，图数据见 [visual/architecture.visual.js](./visual/architecture.visual.js)。证据解释页：[visual/evidence.html](./visual/evidence.html)，数据见 [visual/evidence.visual.js](./visual/evidence.visual.js)。该 HTML 图只展示本文和证据索引中已经沉淀的结构关系。
+
 ```mermaid
 flowchart TD
   A["CLI argv / cc URL / SSH / SDK / Bridge / Direct Connect"] --> B["src/main.tsx mode router"]

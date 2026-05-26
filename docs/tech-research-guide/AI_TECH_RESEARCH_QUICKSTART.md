@@ -35,7 +35,7 @@
 5. 生成 `source-map.md`。
 6. 追踪一条主运行链路，生成 `runtime-flows.md`。
 7. 提炼核心抽象，生成 `key-abstractions.md`。
-8. 生成 `architecture.md`；如果架构图在 Markdown 中不直观，补充 `visual-architecture.html`。
+8. 生成 `architecture.md`；如果架构图在 Markdown 中不直观，补充 `visual/architecture.html`、`visual/architecture.visual.js`、`visual/evidence.html` 和 `visual/evidence.visual.js`。
 9. 生成 `design-philosophy.md`。
 10. 记录证据到 `evidence-index.md`。
 11. 输出 `adoption-notes.md`。
@@ -72,7 +72,38 @@
 ```
 
 ```text
-请基于 architecture.md、runtime-flows.md 和 evidence-index.md 生成 visual-architecture.html。要求输出离线可打开的 HTML，可包含多个 tab/view，例如架构总览、运行流程、分层视图、扩展点；图中节点和连线必须标注或能追溯到证据编号，不要新增未经验证的能力或数量。
+请基于 architecture.md、runtime-flows.md、source-map.md 和 evidence-index.md 生成可视化架构图。
+
+主从关系：
+- Markdown 是知识源，HTML 只是可视化呈现层。
+- 不允许在 HTML 图或 architecture.visual.js 中新增 architecture.md / evidence-index.md 中没有的结论。
+- 图数据放在 visual/architecture.visual.js。
+- HTML 渲染器放在 visual/architecture.html，并从 visual-architecture-template.html 复制生成。
+- 证据解释页放在 visual/evidence.html，证据解释数据放在 visual/evidence.visual.js，内容应包含架构语境、证据结论和源码/文档片段。
+
+生成前先输出图设计说明：
+1. 本次有哪些视图
+2. 每个视图回答什么问题
+3. 每个视图的节点清单
+4. 每条边的语义类型
+5. 节点和关键边如何回到 evidence-index.md 或对应 Markdown 章节
+
+生成要求：
+- 生成或更新 visual/architecture.visual.js、visual/architecture.html、visual/evidence.visual.js 和 visual/evidence.html
+- 不要直接大改 HTML 模板；HTML 模板只负责渲染，图数据放到 architecture.visual.js
+- 主要修改 ARCHITECTURE_META、ARCHITECTURE_VIEWS、nodes、edges、layers
+- 不要把所有调研结论堆到一张图里，一个 tab/view 只回答一个核心问题
+- 至少考虑这些视图：架构总览、入口与初始化、单轮运行主链路、工具与扩展机制、状态与上下文
+- 每个视图最多 8 到 10 个主节点，超过则拆分
+- 节点必须是架构对象，例如模块、组件、运行时对象、状态对象、扩展点、外部依赖、策略/权限组件
+- 不要把普通函数、字段、设计原则、证据编号或一句调研结论直接画成节点
+- 每条边必须有清晰语义，例如请求流、同步调用、异步事件、依赖、注册/发现、权限检查、上下文构造、读写状态、模型流、结果返回
+- 每个节点必须包含 id、type、role、title、sub、ev、doc、tip
+- 每条关键边必须包含 from、to、label、kind、ev、doc
+- ev 必须能在 evidence-index.md 中找到；doc 必须链接到对应 Markdown 锚点或章节
+- 图面不要展示证据编号；证据编号只保留在图设计说明、architecture.visual.js 或 evidence-index.md 中
+- 节点详情可展示 doc 来源路径；点击来源时打开 visual/evidence.html#<证据编号>，不要直接跳转到原始 Markdown 文件，避免浏览器按错误编码打开 .md
+- 不要新增未经验证的能力、数量或设计结论
 ```
 
 ```text
@@ -94,6 +125,10 @@
 - 是否有源码地图
 - 是否至少追踪一条主运行链路
 - 复杂架构是否补充 HTML 可视化图，或说明无需补充
+- 可视化架构图是否一个 tab 只回答一个核心问题
+- 可视化架构图是否隐藏图面证据编号，同时保留证据可追溯性
+- 可视化架构图是否采用 Markdown 知识源、visual data、HTML 呈现层分离
+- visual/architecture.visual.js 中的 ev/doc 是否能通过 visual/evidence.html 回到证据项
 - 是否识别核心抽象
 - 是否识别扩展点
 - 架构图是否有源码证据

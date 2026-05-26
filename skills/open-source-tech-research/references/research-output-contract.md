@@ -11,7 +11,7 @@ For a full research pass, produce or update:
 - `research-questions.md`
 - `source-map.md`
 - `architecture.md`
-- `visual-architecture.html` when Markdown diagrams are too dense or the framework has multiple major views
+- `visual/architecture.html` and `visual/architecture.visual.js` when Markdown diagrams are too dense or the framework has multiple major views
 - `key-abstractions.md`
 - `extension-points.md`
 - `runtime-flows.md`
@@ -33,7 +33,12 @@ A good output:
 - converts external claims into source-verifiable research questions
 - explains module relationships, not just directory names
 - traces at least one concrete runtime path for full research
-- uses `visual-architecture.html` for complex layered diagrams that are hard to read in Markdown
+- uses `visual/architecture.html` plus `visual/architecture.visual.js` for complex layered diagrams that are hard to read in Markdown
+- uses `visual/evidence.html` plus `visual/evidence.visual.js` when graph nodes need clickable evidence explanation with graph context and source/doc snippets without opening raw Markdown
+- treats Markdown research documents as the knowledge source, visual JS as graph/evidence data, and HTML as rendering only
+- keeps visual architecture views focused: one tab answers one question
+- uses architecture-object nodes and typed edges instead of a single concept map
+- keeps evidence IDs traceable through `evidence-index.md`, `doc` links, `visual/evidence.html`, or visual JS metadata, but does not display evidence IDs on the diagram surface by default
 - distinguishes facts, inferences, and open questions
 - links key conclusions to explicit evidence
 - separates official intent, source-verified behavior, community practice, and inference

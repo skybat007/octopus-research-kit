@@ -10,7 +10,7 @@
 
 ## 可视化架构图
 
-可视化架构图。通常是 `visual-architecture.html`，用于承载 Markdown/Mermaid 不易表达的复杂分层图、多视图架构图、流程图和扩展点图。它是 `architecture.md` 的视觉补充，不能替代证据索引和源码验证。
+可视化架构图。推荐由 `visual/architecture.html`、`visual/architecture.visual.js`、`visual/evidence.html` 和 `visual/evidence.visual.js` 组成，用于承载 Markdown/Mermaid 不易表达的复杂分层图、多视图架构图、流程图和扩展点图。它是 `architecture.md` 的视觉补充，不能替代证据索引和源码验证。图面默认不展示证据编号，证据映射应保留在生成前设计说明、`architecture.visual.js`、`evidence.visual.js` 或 `evidence-index.md` 中。
 
 ## External Research
 

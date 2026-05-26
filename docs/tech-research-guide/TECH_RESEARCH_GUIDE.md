@@ -123,7 +123,11 @@ research/<framework-name>/
   research-questions.md
   source-map.md
   architecture.md
-  visual-architecture.html
+  visual/
+    architecture.html
+    architecture.visual.js
+    evidence.html
+    evidence.visual.js
   runtime-flows.md
   key-abstractions.md
   extension-points.md
@@ -214,7 +218,32 @@ research/<framework-name>/
 
 ### 3.6 可视化架构图
 
-当 Markdown/Mermaid 图无法清晰表达多层架构、多入口、多流程或大量扩展点时，补充 `visual-architecture.html`。
+当 Markdown/Mermaid 图无法清晰表达多层架构、多入口、多流程或大量扩展点时，补充可视化架构图。
+
+推荐采用联动结构：
+
+```text
+research/<framework-name>/
+  architecture.md
+  runtime-flows.md
+  source-map.md
+  evidence-index.md
+  visual/
+    architecture.html
+    architecture.visual.js
+    evidence.html
+    evidence.visual.js
+```
+
+主从关系必须明确：
+
+- Markdown 是知识源，负责沉淀架构结论、源码地图、运行链路和证据
+- `architecture.visual.js` 是图数据层，只存 views、nodes、edges、layers、ev、doc、tip 等结构化数据
+- `architecture.html` 是可视化呈现层，只负责渲染和交互
+- `evidence.visual.js` 是证据解释页的数据层，从 `evidence-index.md` 和 `architecture.visual.js` 抽取证据编号、结论、架构语境、源码/文档片段和备注
+- `evidence.html` 是证据解释页，供架构图节点点击后打开，避免浏览器直接打开 Markdown 原文时出现编码问题
+- 不允许在 HTML 或 visual data 中新增 Markdown 里没有的架构结论
+- 旧版单文件 `visual-architecture.html` 可以保留用于兼容或临时输出，但新产物优先使用 `visual/architecture.html` + `visual/architecture.visual.js` + `visual/evidence.html` + `visual/evidence.visual.js`
 
 适合生成 HTML 可视化图的情况：
 
@@ -226,11 +255,50 @@ research/<framework-name>/
 HTML 可视化图要求：
 
 - 必须是 Markdown 架构文档的视觉补充，不替代 `architecture.md`
-- 节点、连线和说明必须能回溯到 `evidence-index.md` 中的证据编号
-- 推荐拆成多个 tab/view，例如“架构总览”“运行流程”“分层视图”“扩展点”
+- 先输出图设计说明，再生成数据文件：说明有哪些视图、每个视图回答什么问题、节点清单、边语义、证据映射
+- 先阅读 `architecture.md`、`runtime-flows.md`、`source-map.md`、`evidence-index.md`，必要时再读 `design-philosophy.md`
+- 不要把所有调研结论堆进一张大图；一个 tab/view 只回答一个核心问题
+- 每个 view 最多 8 到 10 个主节点；超过 10 个节点必须拆成新的 view
+- 节点必须是架构对象，例如模块、组件、运行时对象、状态对象、扩展点、外部依赖、策略或权限组件
+- 不要把普通函数、字段、设计原则、证据编号或一句调研结论直接画成节点
+- 每条边必须有清晰语义，例如请求流、同步调用、异步事件、依赖、注册/发现、权限检查、上下文构造、读写状态、模型流、结果返回
+- 不要用同一种箭头表达所有关系；主流程、依赖、注册、权限、状态读写和结果返回应在视觉上可区分
+- 推荐拆成多个 tab/view，例如“架构总览”“入口与初始化”“单轮运行主链路”“工具与扩展机制”“状态与上下文”
+- 节点、关键连线和说明必须能回溯到 `evidence-index.md` 中的证据编号
+- 每个节点必须包含 `id`、`type`、`role`、`title`、`sub`、`ev`、`doc`、`tip`
+- 每条关键边必须包含 `from`、`to`、`label`、`kind`、`ev`、`doc`
+- `ev` 必须能在 `evidence-index.md` 中找到；`doc` 必须链接到对应 Markdown 锚点或章节
+- 图面默认不显示证据编号；证据编号保留在生成前设计说明、`architecture.visual.js` 或 `evidence-index.md` 中
 - 大图应支持缩放、拖拽、图例、tooltip 或说明面板
 - 必须离线可打开，不依赖外部 CDN、远程图片或运行服务
 - 不要在图中新增未经验证的能力、数量或设计结论
+
+HTML 模板使用规则：
+
+- 除非明确要求，不修改 CSS、缩放、拖拽、tooltip、legend、fit 等模板主体逻辑
+- 主要修改 `visual/architecture.visual.js`
+- `visual/architecture.html` 由 `visual-architecture-template.html` 复制而来，只负责读取 `./architecture.visual.js` 并渲染
+- `view.purpose` 必须回答“这个视图解决什么阅读问题”
+- `node.role` 用于区分 `module`、`runtime-object`、`state`、`external-dependency`、`extension-point`、`policy`、`adapter`
+- `edge.kind` 使用固定关系类型，避免“所有线都是调用”
+- `node.ev` 和 `edge.ev` 只作为证据元数据；除非用户明确要求，不渲染到图面
+- 节点详情可以展示 `doc` 来源路径；点击来源时应打开 `visual/evidence.html#<证据编号>`，不要直接跳转到原始 Markdown 文件，避免浏览器按错误编码打开 `.md`
+
+生成后自检：
+
+- 每个 tab 是否只回答一个核心问题
+- 是否存在一张图塞入过多调研结论
+- 每个节点是否都是架构对象
+- 是否有普通概念被误画成模块
+- 每条边是否有明确语义
+- 主流程、依赖、注册、权限、状态读写是否区分清楚
+- 节点和关键边是否能回到 `evidence-index.md`
+- `architecture.visual.js` 中的 `ev` 是否都能在 `evidence-index.md` 找到
+- `architecture.visual.js` 中的 `doc` 是否能通过 `visual/evidence.html` 回到证据项
+- 是否存在 HTML/visual data 中有但 Markdown 中没有的结论
+- 是否存在没有证据支撑的结论
+- 是否区分了源码事实、设计推断和待验证内容
+- 是否有线条严重交叉或节点布局拥挤
 
 ### 3.7 Key Abstractions
 
@@ -342,7 +410,7 @@ HTML 可视化图要求：
 | 核心抽象 | 已识别关键接口、对象、数据结构和生命周期 |
 | 扩展点 | 已识别注册、加载、执行、隔离和失败处理方式 |
 | 架构图 | 架构图由源码、文档、测试或示例支撑 |
-| 可视化架构图 | 复杂架构已补充 `visual-architecture.html`，或说明为什么不需要 |
+| 可视化架构图 | 复杂架构已补充 `visual/architecture.html` 和 `visual/architecture.visual.js`，或说明为什么不需要 |
 | 设计思想 | 来自源码结构和设计取舍，不是主观想象 |
 | 证据索引 | 关键结论已记录到 evidence-index.md |
 | 事实区分 | 区分源码事实、官方事实、仓库文档事实、协作事实、社区事实、测试事实、推断和待确认 |

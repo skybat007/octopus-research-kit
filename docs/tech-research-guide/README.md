@@ -19,6 +19,7 @@
 5. 再完成 `research-questions.md`，把外部资料和用户目标转成源码验证问题。
 6. 按源码地图、核心抽象、运行链路、架构、扩展点、设计思想、学习借鉴的顺序推进。
 7. 将关键结论同步记录到 `evidence-index.md`。
+8. 如果需要 HTML 可视化图，优先复制 `visual-architecture-template.html` 为 `visual/architecture.html`，并用 `architecture.visual.js` 维护图数据；同时复制 `evidence-viewer-template.html` 为 `visual/evidence.html`，用 `evidence.visual.js` 维护证据解释数据。
 
 ## 边界
 

@@ -21,7 +21,10 @@ Last Updated: 2026-05-25
 | research-questions.md | 从官方资料生成的源码验证问题 |
 | source-map.md | 仓库结构、入口、核心模块和阅读顺序 |
 | architecture.md | 技术架构、模块边界、依赖方向和核心链路 |
-| visual-architecture.html | HTML 可视化结构图，展示入口路由、Conversation Runtime、Tool、权限流水线和扩展面 |
+| visual/architecture.html | HTML 可视化结构图，展示入口路由、Conversation Runtime、Tool、权限流水线和扩展面 |
+| visual/architecture.visual.js | 可视化图数据，承接 Markdown 结论和证据链接 |
+| visual/evidence.html | 可点击证据解释页，展示架构语境和源码/文档片段 |
+| visual/evidence.visual.js | 从 evidence-index.md 和 architecture.visual.js 抽取的证据解释数据 |
 | key-abstractions.md | 核心抽象、接口、数据结构和生命周期对象 |
 | extension-points.md | Skills、Plugins、MCP、Hook、Command 等扩展机制 |
 | runtime-flows.md | 入口启动、REPL turn、工具执行、MCP、session、remote 流程 |

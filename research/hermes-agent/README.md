@@ -19,7 +19,10 @@ Hermes Agent 是 Nous Research 维护的本地优先 AI Agent 项目，产品形
 | research-questions.md | 从外部资料生成的源码验证问题 |
 | source-map.md | 仓库结构、入口、模块和阅读顺序 |
 | architecture.md | 技术架构、模块边界和依赖方向 |
-| visual-architecture.html | HTML 可视化结构图，展示多入口、Agent Core、工具、插件、Gateway 和状态边界 |
+| visual/architecture.html | HTML 可视化结构图，展示多入口、Agent Core、工具、插件、Gateway 和状态边界 |
+| visual/architecture.visual.js | 可视化图数据，承接 Markdown 结论和证据链接 |
+| visual/evidence.html | 可点击证据解释页，展示架构语境和源码/文档片段 |
+| visual/evidence.visual.js | 从 evidence-index.md 和 architecture.visual.js 抽取的证据解释数据 |
 | key-abstractions.md | 核心抽象、接口、数据结构和生命周期 |
 | extension-points.md | 插件、Hook、Registry、Provider 等扩展机制 |
 | runtime-flows.md | 主流程追踪和关键状态变化 |

@@ -10,6 +10,7 @@
 | 研究问题 | 已覆盖 | research-questions.md 已记录 RQ-CC-001 到 RQ-CC-005，并区分官方当前行为和本地 snapshot。 |
 | Source map | 已覆盖 | 已整理入口、核心模块、扩展模块、状态和远程通道。 |
 | 主运行流 | 已覆盖 | CLI 启动、REPL turn、QueryEngine、queryLoop、tool execution、MCP、session、remote flows 已追踪。 |
+| 可视化架构图 | 已覆盖 | visual/architecture.html 负责渲染，visual/architecture.visual.js 承接图数据与证据链接；visual/evidence.html 提供可点击证据查看。 |
 | 核心抽象 | 已覆盖 | QueryEngine、queryLoop、Tool、ToolUseContext、PermissionContext、Command、Skill、Plugin、MCP、Session。 |
 | 扩展点 | 已覆盖 | Commands、Skills、Plugins、MCP、Hooks、Model/API providers、Remote/Bridge。 |
 | 设计思想 | 已覆盖 | 模式归一、trust 前置、Tool 协议、权限流水线、扩展分层、prompt-cache 稳定性。 |

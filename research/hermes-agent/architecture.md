@@ -6,6 +6,8 @@ Hermes Agent 以 `AIAgent` 为运行时核心，把 CLI、TUI、Gateway、ACP �
 
 新版外部资料阶段确认官方 README/docs 也以多入口 Agent、toolsets、plugins、memory providers、messaging gateway 和 cron 为主要能力面；本地源码进一步验证这些能力最终落在 `AIAgent`、`ToolRegistry`、plugin manager、gateway session 和 cron scheduler 上。[EXT-HA-001][EXT-HA-002][EXT-HA-003][EXT-HA-004][EXT-HA-005]
 
+可视化补充：[visual/architecture.html](./visual/architecture.html)，图数据见 [visual/architecture.visual.js](./visual/architecture.visual.js)。证据解释页：[visual/evidence.html](./visual/evidence.html)，数据见 [visual/evidence.visual.js](./visual/evidence.visual.js)。该 HTML 图只展示本文和证据索引中已经沉淀的结构关系。
+
 ## 2. 总体结构
 
 ```mermaid

@@ -24,7 +24,8 @@ Use `research/<framework-name>/` for each research target. A research directory 
 - `research-questions.md`
 - `source-map.md`
 - `architecture.md`
-- `visual-architecture.html`
+- `visual/architecture.html`
+- `visual/architecture.visual.js`
 - `key-abstractions.md`
 - `extension-points.md`
 - `runtime-flows.md`

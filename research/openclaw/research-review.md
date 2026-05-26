@@ -16,6 +16,7 @@ Last Updated: 2026-05-25
 | 研究问题验证 | 通过 | research-questions.md 已记录 RQ-OC-001 到 RQ-OC-005 |
 | 模块关系说明 | 通过 | source-map.md 与 architecture.md 已覆盖 |
 | 至少一条运行链路 | 通过 | runtime-flows.md 覆盖 Gateway 启动、WS handshake、Agent run、Plugin load |
+| 可视化架构图 | 通过 | visual/architecture.html 负责渲染，visual/architecture.visual.js 承接图数据与证据链接；visual/evidence.html 提供可点击证据查看 |
 | 证据索引 | 通过 | evidence-index.md 记录 C-001 到 C-017，并补充 EXT-OC-001 到 EXT-OC-004 |
 | 区分事实与推断 | 通过 | evidence-index.md 区分源码/仓库文档/官方资料/推断 |
 | 借鉴建议 | 通过 | adoption-notes.md |
