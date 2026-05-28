@@ -3,21 +3,27 @@
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
+const { sanitizePersonalPaths } = require('./privacy-utils');
 
 const root = process.cwd();
-const args = process.argv.slice(2).filter(arg => arg !== '--help');
+const { args, sourceRoot } = parseArgs(process.argv.slice(2).filter(arg => arg !== '--help'));
 
 if (process.argv.includes('--help')) {
-  console.log('Usage: node docs/tech-research-guide/scripts/build-source-inventory.js [research/<name> ...]');
+  console.log('Usage: node docs/tech-research-guide/scripts/build-source-inventory.js [research/<name> ...] [--source-root /absolute/path]');
   process.exit(0);
 }
 
 const targetDirs = args.length ? args : discoverResearchDirs();
 let failures = 0;
 
+if (sourceRoot && targetDirs.length !== 1) {
+  console.error('--source-root can only be used with one research directory.');
+  process.exit(1);
+}
+
 for (const dir of targetDirs) {
   try {
-    buildForDir(path.resolve(root, dir));
+    buildForDir(path.resolve(root, dir), { sourceRoot });
   } catch (error) {
     failures += 1;
     console.error(`${dir}: ${error.message}`);
@@ -25,6 +31,25 @@ for (const dir of targetDirs) {
 }
 
 if (failures) process.exitCode = 1;
+
+function parseArgs(rawArgs) {
+  const args = [];
+  let sourceRoot = '';
+  for (let i = 0; i < rawArgs.length; i += 1) {
+    const arg = rawArgs[i];
+    if (arg.startsWith('--source-root=')) {
+      sourceRoot = arg.slice('--source-root='.length);
+      continue;
+    }
+    if (arg === '--source-root') {
+      sourceRoot = rawArgs[i + 1] || '';
+      i += 1;
+      continue;
+    }
+    args.push(arg);
+  }
+  return { args, sourceRoot };
+}
 
 function discoverResearchDirs() {
   const researchRoot = path.join(root, 'research');
@@ -34,10 +59,10 @@ function discoverResearchDirs() {
     .filter(dir => fs.existsSync(path.join(root, dir, 'evidence-index.md')));
 }
 
-function buildForDir(researchDir) {
+function buildForDir(researchDir, options = {}) {
   const evidencePath = path.join(researchDir, 'evidence-index.md');
   const md = fs.existsSync(evidencePath) ? fs.readFileSync(evidencePath, 'utf8') : '';
-  const projectRoot = readTableValue(md, '本地路径');
+  const projectRoot = options.sourceRoot || readTableValue(md, '本地源码路径') || readTableValue(md, '本地路径');
   const remoteHint = readTableValue(md, '代码来源') || readTableValue(md, 'remote');
   const versionHint = readTableValue(md, 'branch/tag/commit');
   const researchName = path.basename(researchDir);
@@ -52,7 +77,7 @@ function buildForDir(researchDir) {
       researchName,
       researchDir: rel(researchDir),
       status: 'missing-project-root',
-      projectRoot: projectRoot || '',
+      projectRoot: sanitizePersonalPaths(projectRoot || ''),
       remote: remoteHint || '',
       versionHint: versionHint || '',
       message: 'No readable local project root was found in evidence-index.md.'
@@ -71,7 +96,7 @@ function buildForDir(researchDir) {
     researchName,
     researchDir: rel(researchDir),
     status: 'ok',
-    projectRoot: gitRoot,
+    projectRoot: sanitizePersonalPaths(gitRoot),
     remote: git(gitRoot, ['remote', 'get-url', 'origin']) || remoteHint || '',
     branch: git(gitRoot, ['branch', '--show-current']) || '',
     commit: git(gitRoot, ['rev-parse', 'HEAD']) || '',

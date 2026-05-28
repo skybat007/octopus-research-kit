@@ -4,7 +4,7 @@
   "researchName": "<framework-name>",
   "researchDir": "research/<framework-name>",
   "status": "ok",
-  "projectRoot": "/absolute/path/to/source",
+  "projectRoot": "<project-name>",
   "remote": "https://github.com/example/project.git",
   "branch": "main",
   "commit": "<commit-sha>",

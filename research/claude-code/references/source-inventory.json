@@ -4,7 +4,7 @@
   "researchName": "claude-code",
   "researchDir": "research/claude-code",
   "status": "ok",
-  "projectRoot": "/Users/cheng/IdeaProjects/claude-code",
+  "projectRoot": "claude-code",
   "remote": "https://github.com/jarmuine/claude-code.git",
   "branch": "main",
   "commit": "4b9d30f7953273e567a18eb819f4eddd45fcc877",

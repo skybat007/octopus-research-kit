@@ -7,7 +7,7 @@
 | 项 | 内容 |
 |---|---|
 | 代码来源 | `https://github.com/Lum1104/Understand-Anything.git` |
-| 本地路径 | `/Users/cheng/IdeaProjects/Understand-Anything` |
+| 项目标识 | `Understand-Anything` |
 | branch/tag/commit | branch `main`, commit `26edf61856fa476e466bda1814819a266a293c47` |
 | 调研日期 | 2026-05-28 |
 

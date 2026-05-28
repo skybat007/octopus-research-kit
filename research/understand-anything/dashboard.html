@@ -144,36 +144,35 @@
 <a class="nav-link" data-nav-file="research-questions.md" href="./docs.html?doc=research-questions.md" title="待验证问题和验证状态">研究问题</a>
       </div>
 <div class="nav-group">
-        <div class="nav-group-title">源码与架构</div>
-        <a class="nav-link" data-nav-file="source-map.md" href="./docs.html?doc=source-map.md" title="仓库结构、入口和阅读顺序">源码地图</a>
-<a class="nav-link" data-nav-file="architecture.md" href="./docs.html?doc=architecture.md" title="模块职责、边界和依赖方向">架构文档</a>
-<a class="nav-link" data-nav-file="visual/architecture.html" href="./visual/architecture.html" title="专门的交互式架构图查看器">可视化架构图</a>
+        <div class="nav-group-title">架构解析</div>
+        <a class="nav-link" data-nav-file="architecture.md" href="./docs.html?doc=architecture.md" title="模块职责、边界和依赖方向">架构文档</a>
+<a class="nav-link" data-nav-file="visual/architecture.html" href="./docs.html?view=visual%2Farchitecture.html" title="专门的交互式架构图查看器">可视化架构图</a>
 <a class="nav-link" data-nav-file="runtime-flows.md" href="./docs.html?doc=runtime-flows.md" title="主链路和关键状态变化">运行流程</a>
 <a class="nav-link" data-nav-file="key-abstractions.md" href="./docs.html?doc=key-abstractions.md" title="接口、对象和生命周期">核心抽象</a>
 <a class="nav-link" data-nav-file="extension-points.md" href="./docs.html?doc=extension-points.md" title="插件、Hook、Provider 和 Registry">扩展点</a>
-      </div>
-<div class="nav-group">
-        <div class="nav-group-title">设计沉淀</div>
-        <a class="nav-link" data-nav-file="design-philosophy.md" href="./docs.html?doc=design-philosophy.md" title="设计取舍和可学习模式">设计思想</a>
+<a class="nav-link" data-nav-file="design-philosophy.md" href="./docs.html?doc=design-philosophy.md" title="设计取舍和可学习模式">设计思想</a>
 <a class="nav-link" data-nav-file="comparison.md" href="./docs.html?doc=comparison.md" title="相邻框架或同类方案对照">横向对比</a>
 <a class="nav-link" data-nav-file="adoption-notes.md" href="./docs.html?doc=adoption-notes.md" title="可学习、需适配和不建议照搬的设计">学习借鉴</a>
       </div>
 <div class="nav-group">
+        <div class="nav-group-title">源码解析</div>
+        <a class="nav-link" data-nav-file="source-map.md" href="./docs.html?doc=source-map.md" title="仓库结构、入口和阅读顺序">源码地图</a>
+      </div>
+<div class="nav-group">
         <div class="nav-group-title">证据</div>
-        <a class="nav-link" data-nav-file="visual/evidence.html" href="./visual/evidence.html" title="从架构图回到证据解释">证据查看器</a>
+        <a class="nav-link" data-nav-file="visual/evidence.html" href="./docs.html?view=visual%2Fevidence.html" title="从架构图回到证据解释">证据查看器</a>
 <a class="nav-link" data-nav-file="evidence-index.md" href="./docs.html?doc=evidence-index.md" title="关键结论和证据锚点">证据索引</a>
       </div>
 <div class="nav-group">
         <div class="nav-group-title">辅助材料</div>
         <a class="nav-link" data-nav-file="research-review.md" href="./docs.html?doc=research-review.md" title="质量门禁、风险和开放问题">调研审查</a>
-<a class="nav-link" data-nav-file="references/source-inventory.json" href="./docs.html?doc=references%2Fsource-inventory.json" title="机器生成的过程性源码索引">源码清单</a>
       </div>
     </aside>
   <main>
     <section class="hero">
       <div class="eyebrow">Tech Research Dashboard · understand-anything</div>
       <h1>Understand Anything 技术调研</h1>
-      <div class="summary">Understand Anything 是一个面向代码库、知识库和文档的理解工具。它把项目扫描、静态结构抽取、LLM 语义分析、知识图谱持久化和 React Dashboard 展示组合成一条可复用的“代码理解流水线”。本轮调研重点不是评价图谱效果，而是理解它如何把“读源码”变成结构化资产：knowledge-graph.json 是核心契约，/understand 负责生产，Dashboard 和 /understand-chat、/understand-diff、/understand-explain 等技能负责消费。UA-001[UA-013] 本轮调研固定在本地快照 /Users/cheng/IdeaProjects/Understand-Anything，branch main，commit 26edf61856fa476e466bda1814819a266a293c47。远程 tag 查询显示截至 2026-05-28 可见最新 tag 为 v2.7.3，但本地插件包和平台 manifest 标记为 2.7.5，因此本文以本地快照为准。UA-002</div>
+      <div class="summary">Understand Anything 是一个面向代码库、知识库和文档的理解工具。它把项目扫描、静态结构抽取、LLM 语义分析、知识图谱持久化和 React Dashboard 展示组合成一条可复用的“代码理解流水线”。本轮调研重点不是评价图谱效果，而是理解它如何把“读源码”变成结构化资产：knowledge-graph.json 是核心契约，/understand 负责生产，Dashboard 和 /understand-chat、/understand-diff、/understand-explain 等技能负责消费。UA-001[UA-013] 本轮调研固定在本地快照 Understand-Anything，branch main，commit 26edf61856fa476e466bda1814819a266a293c47。远程 tag 查询显示截至 2026-05-28 可见最新 tag 为 v2.7.3，但本地插件包和平台 manifest 标记为 2.7.5，因此本文以本地快照为准。UA-002</div>
       <div class="meta">
         <div class="metric"><div class="label">状态</div><div class="value">draft</div></div>
         <div class="metric"><div class="label">更新日期</div><div class="value">2026-05-28</div></div>
@@ -188,11 +187,13 @@
         <li><a href="./docs.html?doc=research-brief.md">调研简报<span>目标、范围、问题和验收标准</span></a></li>
 <li><a href="./docs.html?doc=external-research.md">外部资料<span>官方、协作和社区资料</span></a></li>
 <li><a href="./docs.html?doc=research-questions.md">研究问题<span>待验证问题和验证状态</span></a></li>
-<li><a href="./docs.html?doc=source-map.md">源码地图<span>仓库结构、入口和阅读顺序</span></a></li>
 <li><a href="./docs.html?doc=architecture.md">架构文档<span>模块职责、边界和依赖方向</span></a></li>
-<li><a href="./visual/architecture.html">可视化架构图<span>专门的交互式架构图查看器</span></a></li>
+<li><a href="./docs.html?view=visual%2Farchitecture.html">可视化架构图<span>专门的交互式架构图查看器</span></a></li>
 <li><a href="./docs.html?doc=runtime-flows.md">运行流程<span>主链路和关键状态变化</span></a></li>
+<li><a href="./docs.html?doc=key-abstractions.md">核心抽象<span>接口、对象和生命周期</span></a></li>
+<li><a href="./docs.html?doc=extension-points.md">扩展点<span>插件、Hook、Provider 和 Registry</span></a></li>
 <li><a href="./docs.html?doc=design-philosophy.md">设计思想<span>设计取舍和可学习模式</span></a></li>
+<li><a href="./docs.html?doc=source-map.md">源码地图<span>仓库结构、入口和阅读顺序</span></a></li>
 <li><a href="./docs.html?doc=evidence-index.md">证据索引<span>关键结论和证据锚点</span></a></li>
       </ol>
     </section>
@@ -209,7 +210,7 @@
       </div>
     </section>
 
-    <div class="footer">Dashboard 只做阅读导航。Markdown 是知识源，visual/architecture.html 是“源码与架构”下的专门架构图查看器，references/ 放机器生成或过程性材料。</div>
+    <div class="footer">Dashboard 只做阅读导航。Markdown 是知识源，visual/architecture.html 是“架构解析”下的专门架构图查看器，source-map.md 是“源码解析”入口，references/ 保留机器生成或过程性材料但不作为阅读入口。</div>
   </main>
   </div>
 </body>

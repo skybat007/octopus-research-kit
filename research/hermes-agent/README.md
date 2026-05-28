@@ -8,7 +8,7 @@ Last Updated: 2026-05-25
 
 Hermes Agent 是 Nous Research 维护的本地优先 AI Agent 项目，产品形态覆盖 CLI、TUI、消息网关、ACP、cron、工具系统、插件系统、模型 Provider 和记忆 Provider。它的架构核心不是单一聊天入口，而是把多个用户界面和消息渠道统一接到同一个 `AIAgent` 运行时，再通过工具注册表、Provider Profile、Plugin Hook、Session Store 和 Gateway Adapter 管理差异。[H-001][H-002][H-004][H-009]
 
-本轮调研固定在本地快照 `/Users/cheng/IdeaProjects/hermes-agent`，branch `main`，commit `cae7537359c0ba8fceedc0a6423a4d9f30972100`。这是第一版架构级调研，重点覆盖入口、Agent 主循环、工具系统、插件系统、Provider、Memory、Gateway、TUI、cron 与可学习的设计思想；暂不覆盖每个具体平台 Adapter、所有工具实现、UI 细节和性能压测。
+本轮调研固定在本地快照 `hermes-agent`，branch `main`，commit `cae7537359c0ba8fceedc0a6423a4d9f30972100`。这是第一版架构级调研，重点覆盖入口、Agent 主循环、工具系统、插件系统、Provider、Memory、Gateway、TUI、cron 与可学习的设计思想；暂不覆盖每个具体平台 Adapter、所有工具实现、UI 细节和性能压测。
 
 ## 文件导航
 
@@ -20,7 +20,6 @@ Hermes Agent 是 Nous Research 维护的本地优先 AI Agent 项目，产品形
 | source-map.md | 仓库结构、入口、模块和阅读顺序 |
 | dashboard.html | 浏览器阅读入口，导航 Markdown、可视化图和辅助材料 |
 | docs.html | UTF-8 文档阅读器，避免浏览器直接打开 Markdown 乱码 |
-| references/source-inventory.json | 确定性源码扫描索引，辅助定位入口、测试、示例、构建和配置 |
 | architecture.md | 技术架构、模块边界和依赖方向 |
 | visual/architecture.html | HTML 可视化结构图，展示多入口、Agent Core、工具、插件、Gateway 和状态边界 |
 | visual/architecture.visual.js | 可视化图数据，承接 Markdown 结论和证据链接 |

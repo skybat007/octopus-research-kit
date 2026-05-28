@@ -4,7 +4,7 @@
 
 | 项 | 内容 |
 |---|---|
-| 本地路径 | `/Users/cheng/IdeaProjects/hermes-agent` |
+| 项目标识 | `hermes-agent` |
 | branch | `main` |
 | commit | `cae7537359c0ba8fceedc0a6423a4d9f30972100` |
 | remote | `https://github.com/NousResearch/hermes-agent.git` |
@@ -15,16 +15,16 @@
 
 | 入口 | 文件 | 说明 |
 |---|---|---|
-| `hermes` wrapper | `/Users/cheng/IdeaProjects/hermes-agent/hermes` | 本地脚本，导入 `hermes_cli.main.main` 执行 CLI |
-| Python console script | `/Users/cheng/IdeaProjects/hermes-agent/pyproject.toml` | `hermes`, `hermes-agent`, `hermes-acp` 三个入口 |
-| CLI main | `/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/main.py` | argparse 命令树、profile override、startup discovery、chat/gateway/acp/setup 等命令 |
-| Chat CLI | `/Users/cheng/IdeaProjects/hermes-agent/cli.py` | 传统交互 CLI，`cmd_chat` 最终导入并调用它 |
-| Agent runtime | `/Users/cheng/IdeaProjects/hermes-agent/run_agent.py` | `AIAgent` 门面类，委托到 `agent/*` |
-| Conversation loop | `/Users/cheng/IdeaProjects/hermes-agent/agent/conversation_loop.py` | 核心模型调用、工具调用、上下文压缩、hook、持久化循环 |
-| Gateway | `/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py` | 多平台消息入口和 delivery runtime |
-| TUI gateway | `/Users/cheng/IdeaProjects/hermes-agent/tui_gateway/entry.py`, `/Users/cheng/IdeaProjects/hermes-agent/tui_gateway/server.py` | TUI 前端和 Python agent core 之间的 JSON-RPC bridge |
-| ACP adapter | `/Users/cheng/IdeaProjects/hermes-agent/acp_adapter/entry.py` | ACP stdio server 入口 |
-| Cron | `/Users/cheng/IdeaProjects/hermes-agent/cron/jobs.py`, `/Users/cheng/IdeaProjects/hermes-agent/cron/scheduler.py` | 定时任务存储、解析和执行 |
+| `hermes` wrapper | `hermes` | 本地脚本，导入 `hermes_cli.main.main` 执行 CLI |
+| Python console script | `pyproject.toml` | `hermes`, `hermes-agent`, `hermes-acp` 三个入口 |
+| CLI main | `hermes_cli/main.py` | argparse 命令树、profile override、startup discovery、chat/gateway/acp/setup 等命令 |
+| Chat CLI | `cli.py` | 传统交互 CLI，`cmd_chat` 最终导入并调用它 |
+| Agent runtime | `run_agent.py` | `AIAgent` 门面类，委托到 `agent/*` |
+| Conversation loop | `agent/conversation_loop.py` | 核心模型调用、工具调用、上下文压缩、hook、持久化循环 |
+| Gateway | `gateway/run.py` | 多平台消息入口和 delivery runtime |
+| TUI gateway | `tui_gateway/entry.py`, `tui_gateway/server.py` | TUI 前端和 Python agent core 之间的 JSON-RPC bridge |
+| ACP adapter | `acp_adapter/entry.py` | ACP stdio server 入口 |
+| Cron | `cron/jobs.py`, `cron/scheduler.py` | 定时任务存储、解析和执行 |
 
 ## 3. 主要目录
 

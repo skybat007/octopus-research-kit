@@ -2,7 +2,7 @@ window.EVIDENCE_META = {
   "title": "Hermes Agent 证据解释",
   "description": "从架构图回到证据解释：展示架构语境、证据结论、源码/文档片段和原始索引位置。",
   "source": "../evidence-index.md",
-  "projectRoot": "/Users/cheng/IdeaProjects/hermes-agent"
+  "projectRoot": "hermes-agent"
 };
 
 window.EVIDENCE_ITEMS = [
@@ -10,7 +10,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-001",
     "conclusion": "Hermes Agent 定位为 self-improving AI agent，能力包括 TUI、Messaging Gateway、learning loop、cron、delegation、多 backend、research batch 等",
     "type": "doc fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/README.md:15`, `README.md:19-27`, `README.md:66-78`, `README.md:103-119`, `README.md:123-143`",
+    "location": "`README.md:15`, `README.md:19-27`, `README.md:66-78`, `README.md:103-119`, `README.md:123-143`",
     "confidence": "高",
     "verified": "",
     "note": "README 产品定位和入口",
@@ -19,9 +19,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/README.md:15",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/README.md",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/README.md",
+        "display": "README.md:15",
+        "path": "README.md",
+        "relativePath": "README.md",
         "start": 15,
         "end": 15,
         "snippet": "   15  **The self-improving AI agent built by [Nous Research](https://nousresearch.com).** It's the only agent with a built-in learning loop — it creates skills from experience, improves them during use, nudges itself to persist knowledge, searches its own past conversations, and builds a deepening model of who you are across sessions. Run it on a $5 VPS, a GPU cluster, or serverless infrastructure that costs nearly nothing when idle. It's not tied to your laptop — talk to it from Telegram while it works on a cloud VM.",
@@ -30,7 +30,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:19-27",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 19,
         "end": 27,
@@ -40,7 +40,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:66-78",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 66,
         "end": 78,
@@ -50,7 +50,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:103-119",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 103,
         "end": 119,
@@ -60,7 +60,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:123-143",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 123,
         "end": 143,
@@ -74,7 +74,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-002",
     "conclusion": "package 为 `hermes-agent` `0.14.0`，Python `>=3.11`，console scripts 包含 `hermes`, `hermes-agent`, `hermes-acp`，依赖采用 exact-pin/optional extras 策略",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/pyproject.toml:5-12`, `pyproject.toml:13-33`, `pyproject.toml:69-207`, `pyproject.toml:209-212`, `pyproject.toml:226-227`",
+    "location": "`pyproject.toml:5-12`, `pyproject.toml:13-33`, `pyproject.toml:69-207`, `pyproject.toml:209-212`, `pyproject.toml:226-227`",
     "confidence": "高",
     "verified": "",
     "note": "包和依赖策略",
@@ -83,9 +83,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/pyproject.toml:5-12",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/pyproject.toml",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/pyproject.toml",
+        "display": "pyproject.toml:5-12",
+        "path": "pyproject.toml",
+        "relativePath": "pyproject.toml",
         "start": 5,
         "end": 12,
         "snippet": "    5  [project]\n    6  name = \"hermes-agent\"\n    7  version = \"0.14.0\"\n    8  description = \"The self-improving AI agent — creates skills from experience, improves them during use, and runs anywhere\"\n    9  readme = \"README.md\"\n   10  requires-python = \">=3.11\"\n   11  authors = [{ name = \"Nous Research\" }]\n   12  license = { text = \"MIT\" }",
@@ -94,7 +94,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "pyproject.toml:13-33",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/pyproject.toml",
+        "path": "pyproject.toml",
         "relativePath": "pyproject.toml",
         "start": 13,
         "end": 33,
@@ -104,7 +104,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "pyproject.toml:69-207",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/pyproject.toml",
+        "path": "pyproject.toml",
         "relativePath": "pyproject.toml",
         "start": 69,
         "end": 207,
@@ -114,7 +114,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "pyproject.toml:209-212",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/pyproject.toml",
+        "path": "pyproject.toml",
         "relativePath": "pyproject.toml",
         "start": 209,
         "end": 212,
@@ -124,7 +124,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "pyproject.toml:226-227",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/pyproject.toml",
+        "path": "pyproject.toml",
         "relativePath": "pyproject.toml",
         "start": 226,
         "end": 227,
@@ -138,7 +138,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-003",
     "conclusion": "CLI wrapper 进入 `hermes_cli.main.main`，main 支持 profile override、startup discovery、默认 chat command",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/hermes:1-11`, `hermes_cli/main.py:183-235`, `hermes_cli/main.py:10758-10799`, `hermes_cli/main.py:10928-10953`",
+    "location": "`hermes:1-11`, `hermes_cli/main.py:183-235`, `hermes_cli/main.py:10758-10799`, `hermes_cli/main.py:10928-10953`",
     "confidence": "高",
     "verified": "",
     "note": "CLI 入口",
@@ -244,9 +244,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/hermes:1-11",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/hermes",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/hermes",
+        "display": "hermes:1-11",
+        "path": "hermes",
+        "relativePath": "hermes",
         "start": 1,
         "end": 11,
         "snippet": "    1  #!/usr/bin/env python3\n    2  \"\"\"\n    3  Hermes Agent CLI launcher.\n    4  \n    5  This wrapper should behave like the installed `hermes` command, including\n    6  subcommands such as `gateway`, `cron`, and `doctor`.\n    7  \"\"\"\n    8  \n    9  if __name__ == \"__main__\":\n   10      from hermes_cli.main import main\n   11      main()",
@@ -255,7 +255,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "hermes_cli/main.py:183-235",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/main.py",
+        "path": "hermes_cli/main.py",
         "relativePath": "hermes_cli/main.py",
         "start": 183,
         "end": 235,
@@ -265,7 +265,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "hermes_cli/main.py:10758-10799",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/main.py",
+        "path": "hermes_cli/main.py",
         "relativePath": "hermes_cli/main.py",
         "start": 10758,
         "end": 10799,
@@ -275,7 +275,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "hermes_cli/main.py:10928-10953",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/main.py",
+        "path": "hermes_cli/main.py",
         "relativePath": "hermes_cli/main.py",
         "start": 10928,
         "end": 10953,
@@ -289,7 +289,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-004",
     "conclusion": "`AIAgent` 是 Agent 门面，初始化委托 `agent_init`，主循环委托 `conversation_loop`；loop 覆盖 prompt caching、context compression、streaming、tool call、session/memory/skill 收尾",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/run_agent.py:326-331`, `run_agent.py:349-470`, `run_agent.py:4053-4078`, `agent/agent_init.py:907-927`, `agent/agent_init.py:966-1179`, `agent/agent_init.py:1414-1505`, `agent/conversation_loop.py:1-15`, `agent/conversation_loop.py:232-317`, `agent/conversation_loop.py:451-570`, `agent/conversation_loop.py:760-878`, `agent/conversation_loop.py:1097-1145`, `agent/conversation_loop.py:3195-3428`, `agent/conversation_loop.py:3889-4165`",
+    "location": "`run_agent.py:326-331`, `run_agent.py:349-470`, `run_agent.py:4053-4078`, `agent/agent_init.py:907-927`, `agent/agent_init.py:966-1179`, `agent/agent_init.py:1414-1505`, `agent/conversation_loop.py:1-15`, `agent/conversation_loop.py:232-317`, `agent/conversation_loop.py:451-570`, `agent/conversation_loop.py:760-878`, `agent/conversation_loop.py:1097-1145`, `agent/conversation_loop.py:3195-3428`, `agent/conversation_loop.py:3889-4165`",
     "confidence": "高",
     "verified": "",
     "note": "Agent core",
@@ -443,9 +443,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/run_agent.py:326-331",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/run_agent.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/run_agent.py",
+        "display": "run_agent.py:326-331",
+        "path": "run_agent.py",
+        "relativePath": "run_agent.py",
         "start": 326,
         "end": 331,
         "snippet": "  326  class AIAgent:\n  327      \"\"\"\n  328      AI Agent with tool calling capabilities.\n  329  \n  330      This class manages the conversation flow, tool execution, and response handling\n  331      for AI models that support function calling.",
@@ -454,7 +454,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "run_agent.py:349-470",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/run_agent.py",
+        "path": "run_agent.py",
         "relativePath": "run_agent.py",
         "start": 349,
         "end": 470,
@@ -464,7 +464,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "run_agent.py:4053-4078",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/run_agent.py",
+        "path": "run_agent.py",
         "relativePath": "run_agent.py",
         "start": 4053,
         "end": 4078,
@@ -474,7 +474,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "agent/agent_init.py:907-927",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/agent/agent_init.py",
+        "path": "agent/agent_init.py",
         "relativePath": "agent/agent_init.py",
         "start": 907,
         "end": 927,
@@ -484,7 +484,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "agent/agent_init.py:966-1179",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/agent/agent_init.py",
+        "path": "agent/agent_init.py",
         "relativePath": "agent/agent_init.py",
         "start": 966,
         "end": 1179,
@@ -494,7 +494,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "agent/agent_init.py:1414-1505",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/agent/agent_init.py",
+        "path": "agent/agent_init.py",
         "relativePath": "agent/agent_init.py",
         "start": 1414,
         "end": 1505,
@@ -504,7 +504,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "agent/conversation_loop.py:1-15",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/agent/conversation_loop.py",
+        "path": "agent/conversation_loop.py",
         "relativePath": "agent/conversation_loop.py",
         "start": 1,
         "end": 15,
@@ -514,7 +514,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "agent/conversation_loop.py:232-317",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/agent/conversation_loop.py",
+        "path": "agent/conversation_loop.py",
         "relativePath": "agent/conversation_loop.py",
         "start": 232,
         "end": 317,
@@ -528,7 +528,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-005",
     "conclusion": "`ToolRegistry` 是工具注册和 dispatch 中心，built-in tools 通过 import 自注册，registry 有 generation counter、availability check、override 和 async dispatch",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/tools/registry.py:1-15`, `tools/registry.py:57-74`, `tools/registry.py:151-168`, `tools/registry.py:234-306`, `tools/registry.py:337-416`",
+    "location": "`tools/registry.py:1-15`, `tools/registry.py:57-74`, `tools/registry.py:151-168`, `tools/registry.py:234-306`, `tools/registry.py:337-416`",
     "confidence": "高",
     "verified": "",
     "note": "工具注册",
@@ -610,9 +610,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/tools/registry.py:1-15",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/tools/registry.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/tools/registry.py",
+        "display": "tools/registry.py:1-15",
+        "path": "tools/registry.py",
+        "relativePath": "tools/registry.py",
         "start": 1,
         "end": 15,
         "snippet": "    1  \"\"\"Central registry for all hermes-agent tools.\n    2  \n    3  Each tool file calls ``registry.register()`` at module level to declare its\n    4  schema, handler, toolset membership, and availability check.  ``model_tools.py``\n    5  queries the registry instead of maintaining its own parallel data structures.\n    6  \n    7  Import chain (circular-import safe):\n    8      tools/registry.py  (no imports from model_tools or tool files)\n    9             ^\n   10      tools/*.py  (import from tools.registry at module level)\n   11             ^\n   12      model_tools.py  (imports tools.registry + all tool modules)\n   13             ^\n   14      run_agent.py, cli.py, batch_runner.py, etc.\n   15  \"\"\"",
@@ -621,7 +621,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "tools/registry.py:57-74",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/tools/registry.py",
+        "path": "tools/registry.py",
         "relativePath": "tools/registry.py",
         "start": 57,
         "end": 74,
@@ -631,7 +631,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "tools/registry.py:151-168",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/tools/registry.py",
+        "path": "tools/registry.py",
         "relativePath": "tools/registry.py",
         "start": 151,
         "end": 168,
@@ -641,7 +641,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "tools/registry.py:234-306",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/tools/registry.py",
+        "path": "tools/registry.py",
         "relativePath": "tools/registry.py",
         "start": 234,
         "end": 306,
@@ -651,7 +651,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "tools/registry.py:337-416",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/tools/registry.py",
+        "path": "tools/registry.py",
         "relativePath": "tools/registry.py",
         "start": 337,
         "end": 416,
@@ -665,7 +665,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-006",
     "conclusion": "`model_tools.py` 将 registry 转为模型 tool schema，按 toolset/disabled toolset 过滤，并在 `handle_function_call` 中处理 hooks、审批、dispatch 和错误包装",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/model_tools.py:1-21`, `model_tools.py:243-326`, `model_tools.py:329-390`, `model_tools.py:741-899`",
+    "location": "`model_tools.py:1-21`, `model_tools.py:243-326`, `model_tools.py:329-390`, `model_tools.py:741-899`",
     "confidence": "高",
     "verified": "",
     "note": "工具编排",
@@ -747,9 +747,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/model_tools.py:1-21",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/model_tools.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/model_tools.py",
+        "display": "model_tools.py:1-21",
+        "path": "model_tools.py",
+        "relativePath": "model_tools.py",
         "start": 1,
         "end": 21,
         "snippet": "    1  #!/usr/bin/env python3\n    2  \"\"\"\n    3  Model Tools Module\n    4  \n    5  Thin orchestration layer over the tool registry. Each tool file in tools/\n    6  self-registers its schema, handler, and metadata via tools.registry.register().\n    7  This module triggers discovery (by importing all tool modules), then provides\n    8  the public API that run_agent.py, cli.py, batch_runner.py, and the RL\n    9  environments consume.\n   10  \n   11  Public API (signatures preserved from the original 2,400-line version):\n   12      get_tool_definitions(enabled_toolsets, disabled_toolsets, quiet_mode) -> list\n   13      handle_function_call(function_name, function_args, task_id, user_task) -> str\n   14      TOOL_TO_TOOLSET_MAP: dict          (for batch_runner.py)\n   15      TOOLSET_REQUIREMENTS: dict         (for cli.py, doctor.py)\n   16      get_all_tool_names() -> list\n   17      get_toolset_for_tool(name) -> str\n   18      get_available_toolsets() -> dict",
@@ -758,7 +758,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "model_tools.py:243-326",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/model_tools.py",
+        "path": "model_tools.py",
         "relativePath": "model_tools.py",
         "start": 243,
         "end": 326,
@@ -768,7 +768,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "model_tools.py:329-390",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/model_tools.py",
+        "path": "model_tools.py",
         "relativePath": "model_tools.py",
         "start": 329,
         "end": 390,
@@ -778,7 +778,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "model_tools.py:741-899",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/model_tools.py",
+        "path": "model_tools.py",
         "relativePath": "model_tools.py",
         "start": 741,
         "end": 899,
@@ -792,7 +792,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-007",
     "conclusion": "`toolsets.py` 定义核心工具集合和 toolset，命令 registry 通过 `CommandDef` 支撑 CLI/Gateway/Slack/plugin command",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/toolsets.py:29-73`, `toolsets.py:78-240`, `toolsets.py:767-825`, `hermes_cli/commands.py:1-8`, `hermes_cli/commands.py:45-130`, `hermes_cli/commands.py:228-326`, `hermes_cli/commands.py:1030-1089`",
+    "location": "`toolsets.py:29-73`, `toolsets.py:78-240`, `toolsets.py:767-825`, `hermes_cli/commands.py:1-8`, `hermes_cli/commands.py:45-130`, `hermes_cli/commands.py:228-326`, `hermes_cli/commands.py:1030-1089`",
     "confidence": "高",
     "verified": "",
     "note": "toolset 与命令",
@@ -874,9 +874,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/toolsets.py:29-73",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/toolsets.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/toolsets.py",
+        "display": "toolsets.py:29-73",
+        "path": "toolsets.py",
+        "relativePath": "toolsets.py",
         "start": 29,
         "end": 73,
         "snippet": "   29  # Shared tool list for CLI and all messaging platform toolsets.\n   30  # Edit this once to update all platforms simultaneously.\n   31  _HERMES_CORE_TOOLS = [\n   32      # Web\n   33      \"web_search\", \"web_extract\",\n   34      # Terminal + process management\n   35      \"terminal\", \"process\",\n   36      # File manipulation\n   37      \"read_file\", \"write_file\", \"patch\", \"search_files\",\n   38      # Vision + image generation\n   39      \"vision_analyze\", \"image_generate\",\n   40      # Skills\n   41      \"skills_list\", \"skill_view\", \"skill_manage\",\n   42      # Browser automation\n   43      \"browser_navigate\", \"browser_snapshot\", \"browser_click\",\n   44      \"browser_type\", \"browser_scroll\", \"browser_back\",\n   45      \"browser_press\", \"browser_get_images\",\n   46      \"browser_vision\", \"browser_console\", \"browser_cdp\", \"browser_dialog\",",
@@ -885,7 +885,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "toolsets.py:78-240",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/toolsets.py",
+        "path": "toolsets.py",
         "relativePath": "toolsets.py",
         "start": 78,
         "end": 240,
@@ -895,7 +895,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "toolsets.py:767-825",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/toolsets.py",
+        "path": "toolsets.py",
         "relativePath": "toolsets.py",
         "start": 767,
         "end": 825,
@@ -905,7 +905,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "hermes_cli/commands.py:1-8",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/commands.py",
+        "path": "hermes_cli/commands.py",
         "relativePath": "hermes_cli/commands.py",
         "start": 1,
         "end": 8,
@@ -915,7 +915,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "hermes_cli/commands.py:45-130",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/commands.py",
+        "path": "hermes_cli/commands.py",
         "relativePath": "hermes_cli/commands.py",
         "start": 45,
         "end": 130,
@@ -925,7 +925,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "hermes_cli/commands.py:228-326",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/commands.py",
+        "path": "hermes_cli/commands.py",
         "relativePath": "hermes_cli/commands.py",
         "start": 228,
         "end": 326,
@@ -935,7 +935,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "hermes_cli/commands.py:1030-1089",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/commands.py",
+        "path": "hermes_cli/commands.py",
         "relativePath": "hermes_cli/commands.py",
         "start": 1030,
         "end": 1089,
@@ -949,7 +949,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-008",
     "conclusion": "通用插件系统支持 bundled/user/project/entrypoint 来源，`PluginContext` 可注册工具、CLI/slash command、hook、context engine、provider-like 能力、gateway platform、只读 skill；hook 执行 fail-open",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/plugins.py:1-31`, `plugins.py:128-168`, `plugins.py:180-267`, `plugins.py:287-528`, `plugins.py:531-760`, `plugins.py:820-948`, `plugins.py:1170-1234`, `plugins.py:1296-1409`, `plugins.py:1428-1588`",
+    "location": "`hermes_cli/plugins.py:1-31`, `plugins.py:128-168`, `plugins.py:180-267`, `plugins.py:287-528`, `plugins.py:531-760`, `plugins.py:820-948`, `plugins.py:1170-1234`, `plugins.py:1296-1409`, `plugins.py:1428-1588`",
     "confidence": "高",
     "verified": "",
     "note": "插件控制面",
@@ -983,9 +983,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/plugins.py:1-31",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/plugins.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/plugins.py",
+        "display": "hermes_cli/plugins.py:1-31",
+        "path": "hermes_cli/plugins.py",
+        "relativePath": "hermes_cli/plugins.py",
         "start": 1,
         "end": 31,
         "snippet": "    1  \"\"\"\n    2  Hermes Plugin System\n    3  ====================\n    4  \n    5  Discovers, loads, and manages plugins from four sources:\n    6  \n    7  1. **Bundled plugins** – ``<repo>/plugins/<name>/`` (shipped with hermes-agent;\n    8     ``memory/`` and ``context_engine/`` subdirs are excluded — they have their\n    9     own discovery paths)\n   10  2. **User plugins**   – ``~/.hermes/plugins/<name>/``\n   11  3. **Project plugins** – ``./.hermes/plugins/<name>/`` (opt-in via\n   12     ``HERMES_ENABLE_PROJECT_PLUGINS``)\n   13  4. **Pip plugins**     – packages that expose the ``hermes_agent.plugins``\n   14     entry-point group.\n   15  \n   16  Later sources override earlier ones on name collision, so a user or project\n   17  plugin with the same name as a bundled plugin replaces it.\n   18  ",
@@ -994,7 +994,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "plugins.py:128-168",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/plugins.py",
+        "path": "plugins.py",
         "relativePath": "plugins.py",
         "start": 128,
         "end": 168
@@ -1002,7 +1002,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "plugins.py:180-267",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/plugins.py",
+        "path": "plugins.py",
         "relativePath": "plugins.py",
         "start": 180,
         "end": 267
@@ -1010,7 +1010,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "plugins.py:287-528",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/plugins.py",
+        "path": "plugins.py",
         "relativePath": "plugins.py",
         "start": 287,
         "end": 528
@@ -1018,7 +1018,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "plugins.py:531-760",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/plugins.py",
+        "path": "plugins.py",
         "relativePath": "plugins.py",
         "start": 531,
         "end": 760
@@ -1026,7 +1026,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "plugins.py:820-948",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/plugins.py",
+        "path": "plugins.py",
         "relativePath": "plugins.py",
         "start": 820,
         "end": 948
@@ -1034,7 +1034,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "plugins.py:1170-1234",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/plugins.py",
+        "path": "plugins.py",
         "relativePath": "plugins.py",
         "start": 1170,
         "end": 1234
@@ -1042,7 +1042,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "plugins.py:1296-1409",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/plugins.py",
+        "path": "plugins.py",
         "relativePath": "plugins.py",
         "start": 1296,
         "end": 1409
@@ -1054,7 +1054,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-009",
     "conclusion": "Gateway 通过 `GatewayRunner`、`MessageEvent`、`BasePlatformAdapter`、`SessionSource`、`SessionContext` 处理多平台消息、session key、cached/fresh AIAgent 和 delivery 去重",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py:1542-1590`, `gateway/run.py:3652-3725`, `gateway/run.py:6504-6605`, `gateway/run.py:7574-7615`, `gateway/run.py:7630-7668`, `gateway/run.py:7991-8007`, `gateway/run.py:15490-15538`, `gateway/run.py:16337-16403`, `gateway/run.py:16801-16808`, `gateway/run.py:17634-17668`, `gateway/platforms/base.py:999-1103`, `gateway/platforms/base.py:1141-1156`, `gateway/platforms/base.py:1370-1485`, `gateway/session.py:71-179`, `gateway/session.py:579-691`, `gateway/session.py:1313-1348`",
+    "location": "`gateway/run.py:1542-1590`, `gateway/run.py:3652-3725`, `gateway/run.py:6504-6605`, `gateway/run.py:7574-7615`, `gateway/run.py:7630-7668`, `gateway/run.py:7991-8007`, `gateway/run.py:15490-15538`, `gateway/run.py:16337-16403`, `gateway/run.py:16801-16808`, `gateway/run.py:17634-17668`, `gateway/platforms/base.py:999-1103`, `gateway/platforms/base.py:1141-1156`, `gateway/platforms/base.py:1370-1485`, `gateway/session.py:71-179`, `gateway/session.py:579-691`, `gateway/session.py:1313-1348`",
     "confidence": "高",
     "verified": "",
     "note": "Gateway 运行面",
@@ -1184,9 +1184,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py:1542-1590",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py",
+        "display": "gateway/run.py:1542-1590",
+        "path": "gateway/run.py",
+        "relativePath": "gateway/run.py",
         "start": 1542,
         "end": 1590,
         "snippet": " 1542  class GatewayRunner:\n 1543      \"\"\"\n 1544      Main gateway controller.\n 1545  \n 1546      Manages the lifecycle of all platform adapters and routes\n 1547      messages to/from the agent.\n 1548      \"\"\"\n 1549  \n 1550      # Class-level defaults so partial construction in tests doesn't\n 1551      # blow up on attribute access.\n 1552      _running_agents_ts: Dict[str, float] = {}\n 1553      _busy_input_mode: str = \"interrupt\"\n 1554      _restart_drain_timeout: float = DEFAULT_GATEWAY_RESTART_DRAIN_TIMEOUT\n 1555      _exit_code: Optional[int] = None\n 1556      _draining: bool = False\n 1557      _restart_requested: bool = False\n 1558      _restart_task_started: bool = False\n 1559      _restart_detached: bool = False",
@@ -1195,7 +1195,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "gateway/run.py:3652-3725",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py",
+        "path": "gateway/run.py",
         "relativePath": "gateway/run.py",
         "start": 3652,
         "end": 3725,
@@ -1205,7 +1205,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "gateway/run.py:6504-6605",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py",
+        "path": "gateway/run.py",
         "relativePath": "gateway/run.py",
         "start": 6504,
         "end": 6605,
@@ -1215,7 +1215,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "gateway/run.py:7574-7615",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py",
+        "path": "gateway/run.py",
         "relativePath": "gateway/run.py",
         "start": 7574,
         "end": 7615,
@@ -1225,7 +1225,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "gateway/run.py:7630-7668",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py",
+        "path": "gateway/run.py",
         "relativePath": "gateway/run.py",
         "start": 7630,
         "end": 7668,
@@ -1235,7 +1235,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "gateway/run.py:7991-8007",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py",
+        "path": "gateway/run.py",
         "relativePath": "gateway/run.py",
         "start": 7991,
         "end": 8007,
@@ -1245,7 +1245,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "gateway/run.py:15490-15538",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py",
+        "path": "gateway/run.py",
         "relativePath": "gateway/run.py",
         "start": 15490,
         "end": 15538,
@@ -1255,7 +1255,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "gateway/run.py:16337-16403",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py",
+        "path": "gateway/run.py",
         "relativePath": "gateway/run.py",
         "start": 16337,
         "end": 16403,
@@ -1269,7 +1269,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-010",
     "conclusion": "Gateway platform registry 允许插件平台优先于内置 if/elif 创建 Adapter；ADDING_A_PLATFORM 推荐 plugin path",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/gateway/platform_registry.py:1-10`, `platform_registry.py:38-187`, `platform_registry.py:208-240`, `gateway/run.py:5960-6125`, `gateway/platforms/ADDING_A_PLATFORM.md:1-15`, `ADDING_A_PLATFORM.md:17-43`, `ADDING_A_PLATFORM.md:71-115`",
+    "location": "`gateway/platform_registry.py:1-10`, `platform_registry.py:38-187`, `platform_registry.py:208-240`, `gateway/run.py:5960-6125`, `gateway/platforms/ADDING_A_PLATFORM.md:1-15`, `ADDING_A_PLATFORM.md:17-43`, `ADDING_A_PLATFORM.md:71-115`",
     "confidence": "高",
     "verified": "",
     "note": "平台扩展",
@@ -1315,9 +1315,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/gateway/platform_registry.py:1-10",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/gateway/platform_registry.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/gateway/platform_registry.py",
+        "display": "gateway/platform_registry.py:1-10",
+        "path": "gateway/platform_registry.py",
+        "relativePath": "gateway/platform_registry.py",
         "start": 1,
         "end": 10,
         "snippet": "    1  \"\"\"\n    2  Platform Adapter Registry\n    3  \n    4  Allows platform adapters (built-in and plugin) to self-register so the gateway\n    5  can discover and instantiate them without hardcoded if/elif chains.\n    6  \n    7  Built-in adapters continue to use the existing if/elif in _create_adapter()\n    8  for now.  Plugin adapters register here via PluginContext.register_platform()\n    9  and are looked up first -- if nothing is found the gateway falls through to\n   10  the legacy code path.",
@@ -1326,7 +1326,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "platform_registry.py:38-187",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/platform_registry.py",
+        "path": "platform_registry.py",
         "relativePath": "platform_registry.py",
         "start": 38,
         "end": 187
@@ -1334,7 +1334,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "platform_registry.py:208-240",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/platform_registry.py",
+        "path": "platform_registry.py",
         "relativePath": "platform_registry.py",
         "start": 208,
         "end": 240
@@ -1342,7 +1342,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "gateway/run.py:5960-6125",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/gateway/run.py",
+        "path": "gateway/run.py",
         "relativePath": "gateway/run.py",
         "start": 5960,
         "end": 6125,
@@ -1352,7 +1352,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "gateway/platforms/ADDING_A_PLATFORM.md:1-15",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/gateway/platforms/ADDING_A_PLATFORM.md",
+        "path": "gateway/platforms/ADDING_A_PLATFORM.md",
         "relativePath": "gateway/platforms/ADDING_A_PLATFORM.md",
         "start": 1,
         "end": 15,
@@ -1362,7 +1362,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "ADDING_A_PLATFORM.md:17-43",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/ADDING_A_PLATFORM.md",
+        "path": "ADDING_A_PLATFORM.md",
         "relativePath": "ADDING_A_PLATFORM.md",
         "start": 17,
         "end": 43
@@ -1370,7 +1370,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "ADDING_A_PLATFORM.md:71-115",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/ADDING_A_PLATFORM.md",
+        "path": "ADDING_A_PLATFORM.md",
         "relativePath": "ADDING_A_PLATFORM.md",
         "start": 71,
         "end": 115
@@ -1382,7 +1382,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-011",
     "conclusion": "Provider Profile 描述 provider 行为，providers lazy discovery 支持 bundled/user/legacy 与 user override bundled，下游接到 auth/models/doctor/config/runtime/transport/run_agent",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/providers/base.py:1-9`, `providers/base.py:38-129`, `providers/__init__.py:1-29`, `providers/__init__.py:53-88`, `providers/__init__.py:140-190`, `providers/README.md:29-53`",
+    "location": "`providers/base.py:1-9`, `providers/base.py:38-129`, `providers/__init__.py:1-29`, `providers/__init__.py:53-88`, `providers/__init__.py:140-190`, `providers/README.md:29-53`",
     "confidence": "高",
     "verified": "",
     "note": "模型 Provider",
@@ -1452,9 +1452,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/providers/base.py:1-9",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/providers/base.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/providers/base.py",
+        "display": "providers/base.py:1-9",
+        "path": "providers/base.py",
+        "relativePath": "providers/base.py",
         "start": 1,
         "end": 9,
         "snippet": "    1  \"\"\"Provider profile base class.\n    2  \n    3  A ProviderProfile declares everything about an inference provider in one place:\n    4  auth, endpoints, client quirks, request-time quirks. The transport reads this\n    5  instead of receiving 20+ boolean flags.\n    6  \n    7  Provider profiles are DECLARATIVE — they describe the provider's behavior.\n    8  They do NOT own client construction, credential rotation, or streaming.\n    9  Those stay on AIAgent.",
@@ -1463,7 +1463,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "providers/base.py:38-129",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/providers/base.py",
+        "path": "providers/base.py",
         "relativePath": "providers/base.py",
         "start": 38,
         "end": 129,
@@ -1473,7 +1473,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "providers/__init__.py:1-29",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/providers/__init__.py",
+        "path": "providers/__init__.py",
         "relativePath": "providers/__init__.py",
         "start": 1,
         "end": 29,
@@ -1483,7 +1483,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "providers/__init__.py:53-88",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/providers/__init__.py",
+        "path": "providers/__init__.py",
         "relativePath": "providers/__init__.py",
         "start": 53,
         "end": 88,
@@ -1493,7 +1493,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "providers/__init__.py:140-190",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/providers/__init__.py",
+        "path": "providers/__init__.py",
         "relativePath": "providers/__init__.py",
         "start": 140,
         "end": 190,
@@ -1503,7 +1503,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "providers/README.md:29-53",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/providers/README.md",
+        "path": "providers/README.md",
         "relativePath": "providers/README.md",
         "start": 29,
         "end": 53,
@@ -1517,7 +1517,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-012",
     "conclusion": "Memory Provider 有 system prompt、prefetch、sync_turn、tool schemas、tool call 等接口；MemoryManager 只允许一个外部 Provider 并隔离失败",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/agent/memory_provider.py:1-31`, `memory_provider.py:42-137`, `agent/memory_manager.py:244-340`, `plugins/memory/__init__.py:1-20`, `plugins/memory/__init__.py:67-181`",
+    "location": "`agent/memory_provider.py:1-31`, `memory_provider.py:42-137`, `agent/memory_manager.py:244-340`, `plugins/memory/__init__.py:1-20`, `plugins/memory/__init__.py:67-181`",
     "confidence": "高",
     "verified": "",
     "note": "记忆系统",
@@ -1611,9 +1611,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/agent/memory_provider.py:1-31",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/agent/memory_provider.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/agent/memory_provider.py",
+        "display": "agent/memory_provider.py:1-31",
+        "path": "agent/memory_provider.py",
+        "relativePath": "agent/memory_provider.py",
         "start": 1,
         "end": 31,
         "snippet": "    1  \"\"\"Abstract base class for pluggable memory providers.\n    2  \n    3  Memory providers give the agent persistent recall across sessions.\n    4  The MemoryManager enforces a one-external-provider limit to prevent\n    5  tool schema bloat and conflicting memory backends.\n    6  \n    7  External providers (Honcho, Hindsight, Mem0, etc.) are registered\n    8  and managed via MemoryManager. Only one external provider runs at a\n    9  time.\n   10  \n   11  Registration:\n   12    Plugins ship in plugins/memory/<name>/ and are activated via\n   13    the memory.provider config key.\n   14  \n   15  Lifecycle (called by MemoryManager, wired in run_agent.py):\n   16    initialize()          — connect, create resources, warm up\n   17    system_prompt_block()  — static text for the system prompt\n   18    prefetch(query)        — background recall before each turn",
@@ -1622,7 +1622,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "memory_provider.py:42-137",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/memory_provider.py",
+        "path": "memory_provider.py",
         "relativePath": "memory_provider.py",
         "start": 42,
         "end": 137
@@ -1630,7 +1630,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "agent/memory_manager.py:244-340",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/agent/memory_manager.py",
+        "path": "agent/memory_manager.py",
         "relativePath": "agent/memory_manager.py",
         "start": 244,
         "end": 340,
@@ -1640,7 +1640,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "plugins/memory/__init__.py:1-20",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/plugins/memory/__init__.py",
+        "path": "plugins/memory/__init__.py",
         "relativePath": "plugins/memory/__init__.py",
         "start": 1,
         "end": 20,
@@ -1650,7 +1650,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "plugins/memory/__init__.py:67-181",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/plugins/memory/__init__.py",
+        "path": "plugins/memory/__init__.py",
         "relativePath": "plugins/memory/__init__.py",
         "start": 67,
         "end": 181,
@@ -1664,7 +1664,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-013",
     "conclusion": "TUI gateway 通过 stdio JSON-RPC 连接 Node/Ink TUI 和 Python Agent，stdout 专用于协议，慢 handler 线程池处理，方法 registry 覆盖 session/prompt/approval/slash/tools/cron/skills/shell/browser",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/tui_gateway/entry.py:1-23`, `entry.py:187-240`, `tui_gateway/server.py:37-75`, `server.py:137-180`, `server.py:364-464`, `server.py:2000`, `server.py:2233-2856`, `server.py:3140-3388`, `server.py:3869-3894`, `server.py:5658-6738`",
+    "location": "`tui_gateway/entry.py:1-23`, `entry.py:187-240`, `tui_gateway/server.py:37-75`, `server.py:137-180`, `server.py:364-464`, `server.py:2000`, `server.py:2233-2856`, `server.py:3140-3388`, `server.py:3869-3894`, `server.py:5658-6738`",
     "confidence": "高",
     "verified": "",
     "note": "TUI bridge",
@@ -1710,9 +1710,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/tui_gateway/entry.py:1-23",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/tui_gateway/entry.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/tui_gateway/entry.py",
+        "display": "tui_gateway/entry.py:1-23",
+        "path": "tui_gateway/entry.py",
+        "relativePath": "tui_gateway/entry.py",
         "start": 1,
         "end": 23,
         "snippet": "    1  import os\n    2  import sys\n    3  \n    4  # Guard against a local utils/ (or other package) in CWD shadowing installed\n    5  # hermes modules.  hermes_cli sets HERMES_PYTHON_SRC_ROOT before spawning this\n    6  # subprocess; inserting it first ensures the installed packages win.\n    7  _src_root = os.environ.get(\"HERMES_PYTHON_SRC_ROOT\", \"\")\n    8  if _src_root and _src_root not in sys.path:\n    9      sys.path.insert(0, _src_root)\n   10  # Strip '' and '.' — both resolve to CWD at import time and can let a local\n   11  # directory shadow installed packages.\n   12  sys.path = [p for p in sys.path if p not in {\"\", \".\"}]\n   13  \n   14  import json\n   15  import signal\n   16  import time\n   17  import traceback\n   18  ",
@@ -1721,7 +1721,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "entry.py:187-240",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/entry.py",
+        "path": "entry.py",
         "relativePath": "entry.py",
         "start": 187,
         "end": 240
@@ -1729,7 +1729,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "tui_gateway/server.py:37-75",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/tui_gateway/server.py",
+        "path": "tui_gateway/server.py",
         "relativePath": "tui_gateway/server.py",
         "start": 37,
         "end": 75,
@@ -1739,7 +1739,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "server.py:137-180",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/server.py",
+        "path": "server.py",
         "relativePath": "server.py",
         "start": 137,
         "end": 180
@@ -1747,7 +1747,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "server.py:364-464",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/server.py",
+        "path": "server.py",
         "relativePath": "server.py",
         "start": 364,
         "end": 464
@@ -1755,7 +1755,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "server.py:2000",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/server.py",
+        "path": "server.py",
         "relativePath": "server.py",
         "start": 2000,
         "end": 2000
@@ -1763,7 +1763,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "server.py:2233-2856",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/server.py",
+        "path": "server.py",
         "relativePath": "server.py",
         "start": 2233,
         "end": 2856
@@ -1771,7 +1771,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "server.py:3140-3388",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/server.py",
+        "path": "server.py",
         "relativePath": "server.py",
         "start": 3140,
         "end": 3388
@@ -1783,7 +1783,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-014",
     "conclusion": "`cmd_chat` 处理 resume/continue、first-run setup、TUI 分支、startup env flags，并最终调用 `cli.main(**kwargs)`",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/main.py:1624-1807`",
+    "location": "`hermes_cli/main.py:1624-1807`",
     "confidence": "高",
     "verified": "",
     "note": "CLI chat",
@@ -1853,9 +1853,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/main.py:1624-1807",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/main.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/main.py",
+        "display": "hermes_cli/main.py:1624-1807",
+        "path": "hermes_cli/main.py",
+        "relativePath": "hermes_cli/main.py",
         "start": 1624,
         "end": 1807,
         "snippet": " 1624  def cmd_chat(args):\n 1625      \"\"\"Run interactive chat CLI.\"\"\"\n 1626      use_tui = getattr(args, \"tui\", False) or os.environ.get(\"HERMES_TUI\") == \"1\"\n 1627  \n 1628      # Resolve --continue into --resume with the latest session or by name\n 1629      continue_val = getattr(args, \"continue_last\", None)\n 1630      if continue_val and not getattr(args, \"resume\", None):\n 1631          if isinstance(continue_val, str):\n 1632              # -c \"session name\" — resolve by title or ID\n 1633              resolved = _resolve_session_by_name_or_id(continue_val)\n 1634              if resolved:\n 1635                  args.resume = resolved\n 1636              else:\n 1637                  print(f\"No session found matching '{continue_val}'.\")\n 1638                  print(\"Use 'hermes sessions list' to see available sessions.\")\n 1639                  sys.exit(1)\n 1640          else:\n 1641              # -c with no argument — continue the most recent session",
@@ -1868,7 +1868,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-015",
     "conclusion": "ACP adapter 保留 stdout 给 JSON-RPC，加载 env，支持 check/setup/setup-browser，启动时 discover MCP tools 并运行 `HermesACPAgent`",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/acp_adapter/entry.py:1-14`, `entry.py:75-109`, `entry.py:111-181`, `entry.py:184-260`",
+    "location": "`acp_adapter/entry.py:1-14`, `entry.py:75-109`, `entry.py:111-181`, `entry.py:184-260`",
     "confidence": "高",
     "verified": "",
     "note": "ACP 入口",
@@ -1914,9 +1914,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/acp_adapter/entry.py:1-14",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/acp_adapter/entry.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/acp_adapter/entry.py",
+        "display": "acp_adapter/entry.py:1-14",
+        "path": "acp_adapter/entry.py",
+        "relativePath": "acp_adapter/entry.py",
         "start": 1,
         "end": 14,
         "snippet": "    1  \"\"\"CLI entry point for the hermes-agent ACP adapter.\n    2  \n    3  Loads environment variables from ``~/.hermes/.env``, configures logging\n    4  to write to stderr (so stdout is reserved for ACP JSON-RPC transport),\n    5  and starts the ACP agent server.\n    6  \n    7  Usage::\n    8  \n    9      python -m acp_adapter.entry\n   10      # or\n   11      hermes acp\n   12      # or\n   13      hermes-acp\n   14  \"\"\"",
@@ -1925,7 +1925,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "entry.py:75-109",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/entry.py",
+        "path": "entry.py",
         "relativePath": "entry.py",
         "start": 75,
         "end": 109
@@ -1933,7 +1933,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "entry.py:111-181",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/entry.py",
+        "path": "entry.py",
         "relativePath": "entry.py",
         "start": 111,
         "end": 181
@@ -1941,7 +1941,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "entry.py:184-260",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/entry.py",
+        "path": "entry.py",
         "relativePath": "entry.py",
         "start": 184,
         "end": 260
@@ -1953,7 +1953,7 @@ window.EVIDENCE_ITEMS = [
     "id": "H-016",
     "conclusion": "Cron jobs 存在 Hermes home 下，scheduler 每 60 秒由 gateway 后台调用，使用文件锁、profile context、toolset resolution、prompt injection scan 和 output/delivery 机制",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/hermes-agent/cron/jobs.py:1-6`, `cron/jobs.py:37-47`, `cron/jobs.py:137-159`, `cron/jobs.py:187-240`, `cron/scheduler.py:1-9`, `scheduler.py:47-88`, `scheduler.py:90-132`, `scheduler.py:150-240`",
+    "location": "`cron/jobs.py:1-6`, `cron/jobs.py:37-47`, `cron/jobs.py:137-159`, `cron/jobs.py:187-240`, `cron/scheduler.py:1-9`, `scheduler.py:47-88`, `scheduler.py:90-132`, `scheduler.py:150-240`",
     "confidence": "高",
     "verified": "",
     "note": "cron",
@@ -2071,9 +2071,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/hermes-agent/cron/jobs.py:1-6",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/cron/jobs.py",
-        "relativePath": "/Users/cheng/IdeaProjects/hermes-agent/cron/jobs.py",
+        "display": "cron/jobs.py:1-6",
+        "path": "cron/jobs.py",
+        "relativePath": "cron/jobs.py",
         "start": 1,
         "end": 6,
         "snippet": "    1  \"\"\"\n    2  Cron job storage and management.\n    3  \n    4  Jobs are stored in ~/.hermes/cron/jobs.json\n    5  Output is saved to ~/.hermes/cron/output/{job_id}/{timestamp}.md\n    6  \"\"\"",
@@ -2082,7 +2082,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "cron/jobs.py:37-47",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/cron/jobs.py",
+        "path": "cron/jobs.py",
         "relativePath": "cron/jobs.py",
         "start": 37,
         "end": 47,
@@ -2092,7 +2092,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "cron/jobs.py:137-159",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/cron/jobs.py",
+        "path": "cron/jobs.py",
         "relativePath": "cron/jobs.py",
         "start": 137,
         "end": 159,
@@ -2102,7 +2102,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "cron/jobs.py:187-240",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/cron/jobs.py",
+        "path": "cron/jobs.py",
         "relativePath": "cron/jobs.py",
         "start": 187,
         "end": 240,
@@ -2112,7 +2112,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "cron/scheduler.py:1-9",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/cron/scheduler.py",
+        "path": "cron/scheduler.py",
         "relativePath": "cron/scheduler.py",
         "start": 1,
         "end": 9,
@@ -2122,7 +2122,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "scheduler.py:47-88",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/scheduler.py",
+        "path": "scheduler.py",
         "relativePath": "scheduler.py",
         "start": 47,
         "end": 88
@@ -2130,7 +2130,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "scheduler.py:90-132",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/scheduler.py",
+        "path": "scheduler.py",
         "relativePath": "scheduler.py",
         "start": 90,
         "end": 132
@@ -2138,7 +2138,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "scheduler.py:150-240",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/scheduler.py",
+        "path": "scheduler.py",
         "relativePath": "scheduler.py",
         "start": 150,
         "end": 240
@@ -2160,7 +2160,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-003",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-003",
+        "path": "H-003",
         "relativePath": "H-003",
         "start": null,
         "end": null
@@ -2168,7 +2168,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-004",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-004",
+        "path": "H-004",
         "relativePath": "H-004",
         "start": null,
         "end": null
@@ -2176,7 +2176,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-013",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-013",
+        "path": "H-013",
         "relativePath": "H-013",
         "start": null,
         "end": null
@@ -2184,7 +2184,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-015",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-015",
+        "path": "H-015",
         "relativePath": "H-015",
         "start": null,
         "end": null
@@ -2192,7 +2192,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-016",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-016",
+        "path": "H-016",
         "relativePath": "H-016",
         "start": null,
         "end": null
@@ -2214,7 +2214,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-005",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-005",
+        "path": "H-005",
         "relativePath": "H-005",
         "start": null,
         "end": null
@@ -2222,7 +2222,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-006",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-006",
+        "path": "H-006",
         "relativePath": "H-006",
         "start": null,
         "end": null
@@ -2230,7 +2230,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-007",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-007",
+        "path": "H-007",
         "relativePath": "H-007",
         "start": null,
         "end": null
@@ -2238,7 +2238,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-008",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-008",
+        "path": "H-008",
         "relativePath": "H-008",
         "start": null,
         "end": null
@@ -2260,7 +2260,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-008",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-008",
+        "path": "H-008",
         "relativePath": "H-008",
         "start": null,
         "end": null
@@ -2268,7 +2268,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-010",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-010",
+        "path": "H-010",
         "relativePath": "H-010",
         "start": null,
         "end": null
@@ -2276,7 +2276,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-011",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-011",
+        "path": "H-011",
         "relativePath": "H-011",
         "start": null,
         "end": null
@@ -2284,7 +2284,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-012",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-012",
+        "path": "H-012",
         "relativePath": "H-012",
         "start": null,
         "end": null
@@ -2306,7 +2306,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-009",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-009",
+        "path": "H-009",
         "relativePath": "H-009",
         "start": null,
         "end": null
@@ -2314,7 +2314,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "H-016",
-        "path": "/Users/cheng/IdeaProjects/hermes-agent/H-016",
+        "path": "H-016",
         "relativePath": "H-016",
         "start": null,
         "end": null

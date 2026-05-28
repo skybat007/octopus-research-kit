@@ -8,7 +8,7 @@
 
 | 项 | 内容 |
 |---|---|
-| 路径 | `/Users/cheng/IdeaProjects/claude-code` |
+| 路径 | `claude-code` |
 | branch | `main` |
 | commit | `4b9d30f7953273e567a18eb819f4eddd45fcc877` |
 | remote | `https://github.com/jarmuine/claude-code.git` |

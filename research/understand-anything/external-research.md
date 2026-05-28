@@ -5,7 +5,7 @@
 | 资料 | 链接 / 路径 | 主要内容 | 价值 | 可信度 |
 |---|---|---|---|---|
 | GitHub 仓库 | https://github.com/Lum1104/Understand-Anything | 项目 README、安装方式、命令、特性、Under the Hood | 确认官方定位、命令面和设计目标 | A |
-| README 本地快照 | `/Users/cheng/IdeaProjects/Understand-Anything/README.md` | 多平台支持、`/understand`、Dashboard、Tree-sitter + LLM hybrid、multi-agent pipeline | 形成初始研究问题，并和源码互证 | A |
+| README 本地快照 | `README.md` | 多平台支持、`/understand`、Dashboard、Tree-sitter + LLM hybrid、multi-agent pipeline | 形成初始研究问题，并和源码互证 | A |
 | 官方主页 | https://understand-anything.com | 产品主页与 Demo 入口 | 辅助理解产品展示目标 | A |
 | Live Demo | https://understand-anything.com/demo/ | 可交互 Dashboard 展示 | 辅助理解 Dashboard 作为阅读界面的定位 | A |
 | Claude Code Plugin 文档 | https://code.claude.com/docs/en/plugins-reference | Claude Code 插件机制参考 | 验证 README 中“Claude Code Plugin”语境 | A |

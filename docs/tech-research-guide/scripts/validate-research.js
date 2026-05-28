@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { hasPersonalPath } = require('./privacy-utils');
 
 const root = process.cwd();
 const args = process.argv.slice(2);
@@ -51,6 +52,7 @@ function validateDir(researchDir) {
 
   validateRequiredDocs(researchDir, result);
   validateInventory(researchDir, result);
+  validateNoPersonalPaths(researchDir, result);
 
   const evidencePath = path.join(researchDir, 'evidence-index.md');
   const evidenceIds = fs.existsSync(evidencePath)
@@ -136,6 +138,28 @@ function validateInventory(researchDir, result) {
       result.warnings.push('references/source-inventory.json has no language summary');
     }
   }
+}
+
+function validateNoPersonalPaths(researchDir, result) {
+  const extensions = new Set(['.md', '.html', '.js', '.json']);
+  for (const file of listResearchFiles(researchDir, extensions)) {
+    const content = fs.readFileSync(file, 'utf8');
+    if (hasPersonalPath(content)) {
+      result.errors.push(`${rel(file)} contains a personal local path; use project name or repository-relative paths instead`);
+    }
+  }
+}
+
+function listResearchFiles(dir, extensions, out = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      listResearchFiles(fullPath, extensions, out);
+      continue;
+    }
+    if (entry.isFile() && extensions.has(path.extname(entry.name))) out.push(fullPath);
+  }
+  return out;
 }
 
 function validateVisualHtml(file, result) {

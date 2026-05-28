@@ -15,7 +15,7 @@
 
 | 资料 | 链接或路径 | 主要观点 | 时间/版本 | 可信度等级 | 是否需要源码验证 |
 |---|---|---|---|---|---|
-| 本地 source snapshot README | `/Users/cheng/IdeaProjects/claude-code/README.md` | 声明该仓库不是官方 Anthropic repo，而是 security research source snapshot | 本地快照，2026-05-25 | S/A | 已验证 |
+| 本地 source snapshot README | `README.md` | 声明该仓库不是官方 Anthropic repo，而是 security research source snapshot | 本地快照，2026-05-25 | S/A | 已验证 |
 | Snapshot GitHub 仓库 | https://github.com/jarmuine/claude-code | 公开镜像/快照来源，不等同官方当前源码 | 2026-05-25 查询 | C | 是 |
 
 ## 3. 社区与第三方资料

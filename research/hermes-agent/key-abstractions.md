@@ -2,7 +2,7 @@
 
 ## 1. `AIAgent`
 
-位置：`/Users/cheng/IdeaProjects/hermes-agent/run_agent.py`
+位置：`run_agent.py`
 
 `AIAgent` 是 Hermes 的 Agent runtime 门面。它的 docstring 明确说明负责 conversation、tool execution 和 response handling；构造参数覆盖 provider/model/toolsets/callbacks/platform/session 等多个入口都需要的上下文。[H-004]
 
@@ -20,7 +20,7 @@
 
 ## 2. `run_conversation`
 
-位置：`/Users/cheng/IdeaProjects/hermes-agent/agent/conversation_loop.py`
+位置：`agent/conversation_loop.py`
 
 `run_conversation` 是主循环抽象，文件头说明它覆盖模型调用、工具分发、重试、fallback、压缩、hook、memory/skill nudges 等逻辑。[H-004]
 
@@ -39,7 +39,7 @@
 
 ## 3. `ToolRegistry`
 
-位置：`/Users/cheng/IdeaProjects/hermes-agent/tools/registry.py`
+位置：`tools/registry.py`
 
 `ToolRegistry` 是工具注册和 dispatch 的中央抽象。built-in tools 通过模块 import 自注册；plugin tools 也通过 `PluginContext.register_tool` 进入同一个 registry。[H-005][H-008]
 
@@ -58,7 +58,7 @@
 
 ## 4. Toolset
 
-位置：`/Users/cheng/IdeaProjects/hermes-agent/toolsets.py`
+位置：`toolsets.py`
 
 Toolset 是“工具能力包”抽象，定义哪些工具默认启用、哪些按平台/场景启用。`model_tools.get_tool_definitions` 会结合 toolsets、disabled toolsets 和 registry generation 生成最终模型 tool schema。[H-006][H-007]
 
@@ -71,7 +71,7 @@ Toolset 是“工具能力包”抽象，定义哪些工具默认启用、哪些
 
 ## 5. `CommandDef`
 
-位置：`/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/commands.py`
+位置：`hermes_cli/commands.py`
 
 `CommandDef` 是 slash/native command 的统一注册结构。CLI、Gateway、Slack native command 和 plugin command 都从中央 registry 派生行为。[H-007][H-008]
 
@@ -82,7 +82,7 @@ Toolset 是“工具能力包”抽象，定义哪些工具默认启用、哪些
 
 ## 6. `PluginManager` / `PluginContext`
 
-位置：`/Users/cheng/IdeaProjects/hermes-agent/hermes_cli/plugins.py`
+位置：`hermes_cli/plugins.py`
 
 通用插件系统负责发现、加载和执行插件。`PluginContext` 是插件注册能力的入口，支持工具、hook、CLI subcommand、slash command、context engine、gateway platform、provider-like 能力和只读 skill。[H-008]
 
@@ -95,7 +95,7 @@ Toolset 是“工具能力包”抽象，定义哪些工具默认启用、哪些
 
 ## 7. `ProviderProfile`
 
-位置：`/Users/cheng/IdeaProjects/hermes-agent/providers/base.py`
+位置：`providers/base.py`
 
 `ProviderProfile` 描述模型 Provider 行为，`AIAgent` 仍负责 client construction 和 streaming。它把 Provider 差异集中到消息准备、extra body、API kwargs 等可覆盖方法上。[H-011]
 
@@ -106,7 +106,7 @@ Toolset 是“工具能力包”抽象，定义哪些工具默认启用、哪些
 
 ## 8. `MemoryProvider` / `MemoryManager`
 
-位置：`/Users/cheng/IdeaProjects/hermes-agent/agent/memory_provider.py`, `/Users/cheng/IdeaProjects/hermes-agent/agent/memory_manager.py`
+位置：`agent/memory_provider.py`, `agent/memory_manager.py`
 
 `MemoryProvider` 是外部长期记忆 Provider 的抽象，包含 availability、initialize、system prompt、prefetch、sync turn、tool schemas 和 tool call 等接口。[H-012]
 
@@ -119,7 +119,7 @@ Toolset 是“工具能力包”抽象，定义哪些工具默认启用、哪些
 
 ## 9. `MessageEvent` / `BasePlatformAdapter`
 
-位置：`/Users/cheng/IdeaProjects/hermes-agent/gateway/platforms/base.py`
+位置：`gateway/platforms/base.py`
 
 Gateway 平台 Adapter 把 Telegram/Slack/Discord/Email/SMS 等差异标准化为 `MessageEvent`，并通过 `BasePlatformAdapter` 提供发送、streaming draft、active session、pending message、TTS 等基础能力。[H-009]
 
@@ -130,7 +130,7 @@ Gateway 平台 Adapter 把 Telegram/Slack/Discord/Email/SMS 等差异标准化�
 
 ## 10. `SessionSource` / `SessionContext` / `SessionStore`
 
-位置：`/Users/cheng/IdeaProjects/hermes-agent/gateway/session.py`
+位置：`gateway/session.py`
 
 `SessionSource` 表示平台、chat、thread、user、shared multi-user 等来源事实；`SessionContext` 是 gateway 构建出的 Agent 会话上下文；`SessionStore` 默认使用 SQLite，经 fallback JSONL 保存会话映射。[H-009]
 

@@ -5,7 +5,7 @@
 | 项 | 内容 |
 |---|---|
 | 项目 | Hermes Agent |
-| 本地路径 | `/Users/cheng/IdeaProjects/hermes-agent` |
+| 项目标识 | `hermes-agent` |
 | 代码来源 | `https://github.com/NousResearch/hermes-agent.git` |
 | 快照 | branch `main`, commit `cae7537359c0ba8fceedc0a6423a4d9f30972100` |
 | 包版本 | `hermes-agent` `0.14.0` |

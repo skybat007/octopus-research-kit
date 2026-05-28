@@ -2,7 +2,7 @@ window.EVIDENCE_META = {
   "title": "OpenClaw 证据解释",
   "description": "从架构图回到证据解释：展示架构语境、证据结论、源码/文档片段和原始索引位置。",
   "source": "../evidence-index.md",
-  "projectRoot": "/Users/cheng/IdeaProjects/openclaw"
+  "projectRoot": "openclaw"
 };
 
 window.EVIDENCE_ITEMS = [
@@ -10,7 +10,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-001",
     "conclusion": "OpenClaw 定位为 personal AI assistant，Gateway 是 control plane，支持多渠道",
     "type": "doc fact",
-    "location": "`/Users/cheng/IdeaProjects/openclaw/README.md:21-27`, `README.md:146-155`",
+    "location": "`README.md:21-27`, `README.md:146-155`",
     "confidence": "高",
     "verified": "",
     "note": "产品定位和 highlights",
@@ -32,9 +32,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/openclaw/README.md:21-27",
-        "path": "/Users/cheng/IdeaProjects/openclaw/README.md",
-        "relativePath": "/Users/cheng/IdeaProjects/openclaw/README.md",
+        "display": "README.md:21-27",
+        "path": "README.md",
+        "relativePath": "README.md",
         "start": 21,
         "end": 27,
         "snippet": "   21  **OpenClaw** is a _personal AI assistant_ you run on your own devices.\n   22  It answers you on the channels you already use. It can speak and listen on macOS/iOS/Android, and can render a live Canvas you control. The Gateway is just the control plane — the product is the assistant.\n   23  \n   24  If you want a personal, single-user assistant that feels local, fast, and always-on, this is it.\n   25  \n   26  Supported channels include: WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, IRC, Microsoft Teams, Matrix, Feishu, LINE, Mattermost, Nextcloud Talk, Nostr, Synology Chat, Tlon, Twitch, Zalo, Zalo Personal, WeChat, QQ, WebChat.\n   27  ",
@@ -43,7 +43,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:146-155",
-        "path": "/Users/cheng/IdeaProjects/openclaw/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 146,
         "end": 155,
@@ -67,7 +67,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "package.json:2-18",
-        "path": "/Users/cheng/IdeaProjects/openclaw/package.json",
+        "path": "package.json",
         "relativePath": "package.json",
         "start": 2,
         "end": 18,
@@ -77,7 +77,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "pnpm-workspace.yaml:1-5",
-        "path": "/Users/cheng/IdeaProjects/openclaw/pnpm-workspace.yaml",
+        "path": "pnpm-workspace.yaml",
         "relativePath": "pnpm-workspace.yaml",
         "start": 1,
         "end": 5,
@@ -114,7 +114,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "AGENTS.md:26-45",
-        "path": "/Users/cheng/IdeaProjects/openclaw/AGENTS.md",
+        "path": "AGENTS.md",
         "relativePath": "AGENTS.md",
         "start": 26,
         "end": 45,
@@ -259,7 +259,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/architecture.md:8-31",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/architecture.md",
+        "path": "docs/concepts/architecture.md",
         "relativePath": "docs/concepts/architecture.md",
         "start": 8,
         "end": 31,
@@ -269,7 +269,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/architecture.md:55-96",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/architecture.md",
+        "path": "docs/concepts/architecture.md",
         "relativePath": "docs/concepts/architecture.md",
         "start": 55,
         "end": 96,
@@ -279,7 +279,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/architecture.md:97-148",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/architecture.md",
+        "path": "docs/concepts/architecture.md",
         "relativePath": "docs/concepts/architecture.md",
         "start": 97,
         "end": 148,
@@ -340,7 +340,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "openclaw.mjs:11-46",
-        "path": "/Users/cheng/IdeaProjects/openclaw/openclaw.mjs",
+        "path": "openclaw.mjs",
         "relativePath": "openclaw.mjs",
         "start": 11,
         "end": 46,
@@ -350,7 +350,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "openclaw.mjs:183-225",
-        "path": "/Users/cheng/IdeaProjects/openclaw/openclaw.mjs",
+        "path": "openclaw.mjs",
         "relativePath": "openclaw.mjs",
         "start": 183,
         "end": 225,
@@ -360,7 +360,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/entry.ts:71-153",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/entry.ts",
+        "path": "src/entry.ts",
         "relativePath": "src/entry.ts",
         "start": 71,
         "end": 153,
@@ -370,7 +370,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/cli/gateway-cli/run.ts:503-817",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/cli/gateway-cli/run.ts",
+        "path": "src/cli/gateway-cli/run.ts",
         "relativePath": "src/cli/gateway-cli/run.ts",
         "start": 503,
         "end": 817,
@@ -380,7 +380,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/gateway/server.ts:13-29",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/gateway/server.ts",
+        "path": "src/gateway/server.ts",
         "relativePath": "src/gateway/server.ts",
         "start": 13,
         "end": 29,
@@ -390,7 +390,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/gateway/server.impl.ts:531-740",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/gateway/server.impl.ts",
+        "path": "src/gateway/server.impl.ts",
         "relativePath": "src/gateway/server.impl.ts",
         "start": 531,
         "end": 740,
@@ -487,7 +487,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/gateway/server-runtime-state.ts:223-268",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/gateway/server-runtime-state.ts",
+        "path": "src/gateway/server-runtime-state.ts",
         "relativePath": "src/gateway/server-runtime-state.ts",
         "start": 223,
         "end": 268,
@@ -497,7 +497,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/gateway/server-runtime-state.ts:275-358",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/gateway/server-runtime-state.ts",
+        "path": "src/gateway/server-runtime-state.ts",
         "relativePath": "src/gateway/server-runtime-state.ts",
         "start": 275,
         "end": 358,
@@ -507,7 +507,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/gateway/server/ws-connection.ts:202-318",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/gateway/server/ws-connection.ts",
+        "path": "src/gateway/server/ws-connection.ts",
         "relativePath": "src/gateway/server/ws-connection.ts",
         "start": 202,
         "end": 318,
@@ -517,7 +517,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/gateway/server/ws-connection.ts:433-508",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/gateway/server/ws-connection.ts",
+        "path": "src/gateway/server/ws-connection.ts",
         "relativePath": "src/gateway/server/ws-connection.ts",
         "start": 433,
         "end": 508,
@@ -527,7 +527,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/gateway/server/ws-connection/message-handler.ts:488-560",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/gateway/server/ws-connection/message-handler.ts",
+        "path": "src/gateway/server/ws-connection/message-handler.ts",
         "relativePath": "src/gateway/server/ws-connection/message-handler.ts",
         "start": 488,
         "end": 560,
@@ -537,7 +537,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/gateway/server/ws-connection/message-handler.ts:1696-1756",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/gateway/server/ws-connection/message-handler.ts",
+        "path": "src/gateway/server/ws-connection/message-handler.ts",
         "relativePath": "src/gateway/server/ws-connection/message-handler.ts",
         "start": 1696,
         "end": 1756,
@@ -682,7 +682,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/agent.md:8-16",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/agent.md",
+        "path": "docs/concepts/agent.md",
         "relativePath": "docs/concepts/agent.md",
         "start": 8,
         "end": 16,
@@ -692,7 +692,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/agent.md:25-75",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/agent.md",
+        "path": "docs/concepts/agent.md",
         "relativePath": "docs/concepts/agent.md",
         "start": 25,
         "end": 75,
@@ -702,7 +702,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/agent-loop.md:9-44",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/agent-loop.md",
+        "path": "docs/concepts/agent-loop.md",
         "relativePath": "docs/concepts/agent-loop.md",
         "start": 9,
         "end": 44,
@@ -712,7 +712,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/agent-loop.md:59-115",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/agent-loop.md",
+        "path": "docs/concepts/agent-loop.md",
         "relativePath": "docs/concepts/agent-loop.md",
         "start": 59,
         "end": 115,
@@ -881,7 +881,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/gateway/server-methods/agent.ts:475-583",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/gateway/server-methods/agent.ts",
+        "path": "src/gateway/server-methods/agent.ts",
         "relativePath": "src/gateway/server-methods/agent.ts",
         "start": 475,
         "end": 583,
@@ -891,7 +891,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/gateway/server-methods/agent.ts:1440-1507",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/gateway/server-methods/agent.ts",
+        "path": "src/gateway/server-methods/agent.ts",
         "relativePath": "src/gateway/server-methods/agent.ts",
         "start": 1440,
         "end": 1507,
@@ -901,7 +901,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/gateway/server-methods/agent.ts:1592-1666",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/gateway/server-methods/agent.ts",
+        "path": "src/gateway/server-methods/agent.ts",
         "relativePath": "src/gateway/server-methods/agent.ts",
         "start": 1592,
         "end": 1666,
@@ -911,7 +911,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/agents/agent-command.ts:1593-1643",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/agents/agent-command.ts",
+        "path": "src/agents/agent-command.ts",
         "relativePath": "src/agents/agent-command.ts",
         "start": 1593,
         "end": 1643,
@@ -921,7 +921,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/agents/command/attempt-execution.ts:630-691",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/agents/command/attempt-execution.ts",
+        "path": "src/agents/command/attempt-execution.ts",
         "relativePath": "src/agents/command/attempt-execution.ts",
         "start": 630,
         "end": 691,
@@ -1078,7 +1078,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/session.md:10-22",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/session.md",
+        "path": "docs/concepts/session.md",
         "relativePath": "docs/concepts/session.md",
         "start": 10,
         "end": 22,
@@ -1088,7 +1088,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/session.md:23-54",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/session.md",
+        "path": "docs/concepts/session.md",
         "relativePath": "docs/concepts/session.md",
         "start": 23,
         "end": 54,
@@ -1098,7 +1098,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/session.md:90-97",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/session.md",
+        "path": "docs/concepts/session.md",
         "relativePath": "docs/concepts/session.md",
         "start": 90,
         "end": 97,
@@ -1108,7 +1108,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/multi-agent.md:9-19",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/multi-agent.md",
+        "path": "docs/concepts/multi-agent.md",
         "relativePath": "docs/concepts/multi-agent.md",
         "start": 9,
         "end": 19,
@@ -1118,7 +1118,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/multi-agent.md:42-63",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/multi-agent.md",
+        "path": "docs/concepts/multi-agent.md",
         "relativePath": "docs/concepts/multi-agent.md",
         "start": 42,
         "end": 63,
@@ -1128,7 +1128,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/multi-agent.md:121-129",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/multi-agent.md",
+        "path": "docs/concepts/multi-agent.md",
         "relativePath": "docs/concepts/multi-agent.md",
         "start": 121,
         "end": 129,
@@ -1189,7 +1189,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/plugins/architecture.md:32-51",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/plugins/architecture.md",
+        "path": "docs/plugins/architecture.md",
         "relativePath": "docs/plugins/architecture.md",
         "start": 32,
         "end": 51,
@@ -1199,7 +1199,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/plugins/architecture.md:114-146",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/plugins/architecture.md",
+        "path": "docs/plugins/architecture.md",
         "relativePath": "docs/plugins/architecture.md",
         "start": 114,
         "end": 146,
@@ -1209,7 +1209,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/plugins/architecture.md:148-168",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/plugins/architecture.md",
+        "path": "docs/plugins/architecture.md",
         "relativePath": "docs/plugins/architecture.md",
         "start": 148,
         "end": 168,
@@ -1219,7 +1219,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/plugins/manifest.md:28-54",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/plugins/manifest.md",
+        "path": "docs/plugins/manifest.md",
         "relativePath": "docs/plugins/manifest.md",
         "start": 28,
         "end": 54,
@@ -1229,7 +1229,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/plugins/manifest.md:146-170",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/plugins/manifest.md",
+        "path": "docs/plugins/manifest.md",
         "relativePath": "docs/plugins/manifest.md",
         "start": 146,
         "end": 170,
@@ -1290,7 +1290,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/plugins/loader.ts:1509-1588",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/plugins/loader.ts",
+        "path": "src/plugins/loader.ts",
         "relativePath": "src/plugins/loader.ts",
         "start": 1509,
         "end": 1588,
@@ -1300,7 +1300,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/plugins/loader.ts:1672-1715",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/plugins/loader.ts",
+        "path": "src/plugins/loader.ts",
         "relativePath": "src/plugins/loader.ts",
         "start": 1672,
         "end": 1715,
@@ -1310,7 +1310,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/plugins/loader.ts:1760-1904",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/plugins/loader.ts",
+        "path": "src/plugins/loader.ts",
         "relativePath": "src/plugins/loader.ts",
         "start": 1760,
         "end": 1904,
@@ -1320,7 +1320,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/plugins/loader.ts:2314-2471",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/plugins/loader.ts",
+        "path": "src/plugins/loader.ts",
         "relativePath": "src/plugins/loader.ts",
         "start": 2314,
         "end": 2471,
@@ -1330,7 +1330,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/plugins/loader.ts:2499-2533",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/plugins/loader.ts",
+        "path": "src/plugins/loader.ts",
         "relativePath": "src/plugins/loader.ts",
         "start": 2499,
         "end": 2533,
@@ -1391,7 +1391,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/plugins/api-builder.ts:19-85",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/plugins/api-builder.ts",
+        "path": "src/plugins/api-builder.ts",
         "relativePath": "src/plugins/api-builder.ts",
         "start": 19,
         "end": 85,
@@ -1401,7 +1401,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/plugins/api-builder.ts:177-260",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/plugins/api-builder.ts",
+        "path": "src/plugins/api-builder.ts",
         "relativePath": "src/plugins/api-builder.ts",
         "start": 177,
         "end": 260,
@@ -1498,7 +1498,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "extensions/anthropic/openclaw.plugin.json:1-112",
-        "path": "/Users/cheng/IdeaProjects/openclaw/extensions/anthropic/openclaw.plugin.json",
+        "path": "extensions/anthropic/openclaw.plugin.json",
         "relativePath": "extensions/anthropic/openclaw.plugin.json",
         "start": 1,
         "end": 112,
@@ -1508,7 +1508,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "extensions/anthropic/index.ts:1-10",
-        "path": "/Users/cheng/IdeaProjects/openclaw/extensions/anthropic/index.ts",
+        "path": "extensions/anthropic/index.ts",
         "relativePath": "extensions/anthropic/index.ts",
         "start": 1,
         "end": 10,
@@ -1518,7 +1518,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "extensions/anthropic/register.runtime.ts:665-667",
-        "path": "/Users/cheng/IdeaProjects/openclaw/extensions/anthropic/register.runtime.ts",
+        "path": "extensions/anthropic/register.runtime.ts",
         "relativePath": "extensions/anthropic/register.runtime.ts",
         "start": 665,
         "end": 667,
@@ -1579,7 +1579,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "extensions/irc/openclaw.plugin.json:1-26",
-        "path": "/Users/cheng/IdeaProjects/openclaw/extensions/irc/openclaw.plugin.json",
+        "path": "extensions/irc/openclaw.plugin.json",
         "relativePath": "extensions/irc/openclaw.plugin.json",
         "start": 1,
         "end": 26,
@@ -1589,7 +1589,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "extensions/irc/index.ts:1-20",
-        "path": "/Users/cheng/IdeaProjects/openclaw/extensions/irc/index.ts",
+        "path": "extensions/irc/index.ts",
         "relativePath": "extensions/irc/index.ts",
         "start": 1,
         "end": 20,
@@ -1599,7 +1599,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "extensions/irc/src/channel.ts:170-235",
-        "path": "/Users/cheng/IdeaProjects/openclaw/extensions/irc/src/channel.ts",
+        "path": "extensions/irc/src/channel.ts",
         "relativePath": "extensions/irc/src/channel.ts",
         "start": 170,
         "end": 235,
@@ -1609,7 +1609,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "extensions/irc/src/channel.ts:236-366",
-        "path": "/Users/cheng/IdeaProjects/openclaw/extensions/irc/src/channel.ts",
+        "path": "extensions/irc/src/channel.ts",
         "relativePath": "extensions/irc/src/channel.ts",
         "start": 236,
         "end": 366,
@@ -1633,7 +1633,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "VISION.md:15-31",
-        "path": "/Users/cheng/IdeaProjects/openclaw/VISION.md",
+        "path": "VISION.md",
         "relativePath": "VISION.md",
         "start": 15,
         "end": 31,
@@ -1643,7 +1643,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "VISION.md:41-57",
-        "path": "/Users/cheng/IdeaProjects/openclaw/VISION.md",
+        "path": "VISION.md",
         "relativePath": "VISION.md",
         "start": 41,
         "end": 57,
@@ -1653,7 +1653,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "VISION.md:59-76",
-        "path": "/Users/cheng/IdeaProjects/openclaw/VISION.md",
+        "path": "VISION.md",
         "relativePath": "VISION.md",
         "start": 59,
         "end": 76,
@@ -1663,7 +1663,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "VISION.md:92-105",
-        "path": "/Users/cheng/IdeaProjects/openclaw/VISION.md",
+        "path": "VISION.md",
         "relativePath": "VISION.md",
         "start": 92,
         "end": 105,
@@ -1687,7 +1687,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:132-144",
-        "path": "/Users/cheng/IdeaProjects/openclaw/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 132,
         "end": 144,
@@ -1697,7 +1697,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:157-162",
-        "path": "/Users/cheng/IdeaProjects/openclaw/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 157,
         "end": 162,
@@ -1721,7 +1721,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/plugins/hook-types.ts:68-106",
-        "path": "/Users/cheng/IdeaProjects/openclaw/src/plugins/hook-types.ts",
+        "path": "src/plugins/hook-types.ts",
         "relativePath": "src/plugins/hook-types.ts",
         "start": 68,
         "end": 106,
@@ -1731,7 +1731,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "docs/concepts/agent-loop.md:89-115",
-        "path": "/Users/cheng/IdeaProjects/openclaw/docs/concepts/agent-loop.md",
+        "path": "docs/concepts/agent-loop.md",
         "relativePath": "docs/concepts/agent-loop.md",
         "start": 89,
         "end": 115,
@@ -1755,7 +1755,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-003",
-        "path": "/Users/cheng/IdeaProjects/openclaw/C-003",
+        "path": "C-003",
         "relativePath": "C-003",
         "start": null,
         "end": null
@@ -1763,7 +1763,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-010",
-        "path": "/Users/cheng/IdeaProjects/openclaw/C-010",
+        "path": "C-010",
         "relativePath": "C-010",
         "start": null,
         "end": null
@@ -1771,7 +1771,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-011",
-        "path": "/Users/cheng/IdeaProjects/openclaw/C-011",
+        "path": "C-011",
         "relativePath": "C-011",
         "start": null,
         "end": null
@@ -1779,7 +1779,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-012",
-        "path": "/Users/cheng/IdeaProjects/openclaw/C-012",
+        "path": "C-012",
         "relativePath": "C-012",
         "start": null,
         "end": null
@@ -1801,7 +1801,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-004",
-        "path": "/Users/cheng/IdeaProjects/openclaw/C-004",
+        "path": "C-004",
         "relativePath": "C-004",
         "start": null,
         "end": null
@@ -1809,7 +1809,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-006",
-        "path": "/Users/cheng/IdeaProjects/openclaw/C-006",
+        "path": "C-006",
         "relativePath": "C-006",
         "start": null,
         "end": null
@@ -1817,7 +1817,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-008",
-        "path": "/Users/cheng/IdeaProjects/openclaw/C-008",
+        "path": "C-008",
         "relativePath": "C-008",
         "start": null,
         "end": null
@@ -1839,7 +1839,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-007",
-        "path": "/Users/cheng/IdeaProjects/openclaw/C-007",
+        "path": "C-007",
         "relativePath": "C-007",
         "start": null,
         "end": null
@@ -1847,7 +1847,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-008",
-        "path": "/Users/cheng/IdeaProjects/openclaw/C-008",
+        "path": "C-008",
         "relativePath": "C-008",
         "start": null,
         "end": null
@@ -1855,7 +1855,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-009",
-        "path": "/Users/cheng/IdeaProjects/openclaw/C-009",
+        "path": "C-009",
         "relativePath": "C-009",
         "start": null,
         "end": null
@@ -1877,7 +1877,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-014",
-        "path": "/Users/cheng/IdeaProjects/openclaw/C-014",
+        "path": "C-014",
         "relativePath": "C-014",
         "start": null,
         "end": null

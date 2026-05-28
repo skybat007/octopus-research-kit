@@ -4,7 +4,7 @@
   "researchName": "hermes-agent",
   "researchDir": "research/hermes-agent",
   "status": "ok",
-  "projectRoot": "/Users/cheng/IdeaProjects/hermes-agent",
+  "projectRoot": "hermes-agent",
   "remote": "https://github.com/NousResearch/hermes-agent.git",
   "branch": "main",
   "commit": "cae7537359c0ba8fceedc0a6423a4d9f30972100",

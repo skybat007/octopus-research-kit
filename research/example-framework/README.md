@@ -16,7 +16,6 @@ Last Updated: YYYY-MM-DD
 | [source-map.md](source-map.md) | 仓库结构、模块边界、入口和阅读顺序 |
 | [dashboard.html](dashboard.html) | 浏览器阅读入口，导航 Markdown、可视化图和辅助材料 |
 | [docs.html](docs.html) | UTF-8 文档阅读器，避免浏览器直接打开 Markdown 乱码 |
-| [references/source-inventory.json](references/source-inventory.json) | 确定性源码扫描索引，有本地源码时生成 |
 | [architecture.md](architecture.md) | 技术架构、核心抽象、依赖方向和扩展机制 |
 | [visual/architecture.html](visual/architecture.html) | HTML 可视化结构图，适合表达 Markdown 图不清晰的分层关系 |
 | [visual/architecture.visual.js](visual/architecture.visual.js) | 可视化图数据，承接 Markdown 结论和证据链接 |

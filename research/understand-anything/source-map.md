@@ -2,7 +2,7 @@
 
 ## 0. 结构化源码清单
 
-本轮已生成 `references/source-inventory.json`，覆盖 `/Users/cheng/IdeaProjects/Understand-Anything` 当前快照的 411 个文件。该文件用于辅助定位入口、测试、示例、构建和配置，不替代下文的模块职责判断。
+本轮已生成 `references/source-inventory.json`，覆盖 `Understand-Anything` 当前快照的 411 个文件。该文件用于辅助定位入口、测试、示例、构建和配置，不替代下文的模块职责判断。
 
 ## 1. 顶层结构
 

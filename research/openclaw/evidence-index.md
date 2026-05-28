@@ -7,7 +7,7 @@
 | 项 | 内容 |
 |---|---|
 | 代码来源 | `https://github.com/openclaw/openclaw.git` |
-| 本地路径 | `/Users/cheng/IdeaProjects/openclaw` |
+| 项目标识 | `openclaw` |
 | branch/tag/commit | branch `main`, commit `989e53c20d395d3c8bf47efc21fdb9d56e7227b0` |
 | 调研日期 | 2026-05-25 |
 
@@ -15,7 +15,7 @@
 
 | 结论编号 | 结论 | 证据类型 | 位置 | 置信度 | 备注 |
 |---|---|---|---|---|---|
-| <a id="C-001"></a>C-001 | OpenClaw 定位为 personal AI assistant，Gateway 是 control plane，支持多渠道 | doc fact | `/Users/cheng/IdeaProjects/openclaw/README.md:21-27`, `README.md:146-155` | 高 | 产品定位和 highlights |
+| <a id="C-001"></a>C-001 | OpenClaw 定位为 personal AI assistant，Gateway 是 control plane，支持多渠道 | doc fact | `README.md:21-27`, `README.md:146-155` | 高 | 产品定位和 highlights |
 | <a id="C-002"></a>C-002 | package version 为 `2026.5.19`，bin 是 `openclaw.mjs`，workspace 包含 `ui`, `packages/*`, `extensions/*` | source fact | `package.json:2-18`, `pnpm-workspace.yaml:1-5` | 高 | 固定调研快照 |
 | <a id="C-003"></a>C-003 | Core 应保持 plugin-agnostic，插件只能通过 SDK/manifest/runtime helpers/documented barrels 等接入 | source fact | `AGENTS.md:26-45` | 高 | 仓库架构硬约束 |
 | <a id="C-004"></a>C-004 | Gateway 是单一长期运行控制面，控制 WS API、events、nodes、protocol、pairing、安全等 | doc fact | `docs/concepts/architecture.md:8-31`, `docs/concepts/architecture.md:55-96`, `docs/concepts/architecture.md:97-148` | 高 | 仓库概念文档 |

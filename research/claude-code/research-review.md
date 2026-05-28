@@ -4,7 +4,7 @@
 
 | 项 | 状态 | 说明 |
 |---|---|---|
-| 版本信息 | 已覆盖 | 本地路径、remote、branch、commit 和调研日期已记录。[C-002] |
+| 版本信息 | 已覆盖 | 项目标识、remote、branch、commit 和调研日期已记录。[C-002] |
 | 快照属性 | 已覆盖 | README 明确这是非官方 security research snapshot。[C-001] |
 | 外部资料 | 已覆盖 | external-research.md 已覆盖 Claude Code 官方 overview/how-it-works/permissions/MCP/skills/hooks 文档。 |
 | 研究问题 | 已覆盖 | research-questions.md 已记录 RQ-CC-001 到 RQ-CC-005，并区分官方当前行为和本地 snapshot。 |

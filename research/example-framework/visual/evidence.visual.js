@@ -2,7 +2,7 @@ window.EVIDENCE_META = {
   "title": "Example Framework 证据解释",
   "description": "从架构图回到证据解释：展示架构语境、证据结论、源码/文档片段和原始索引位置。",
   "source": "../evidence-index.md",
-  "projectRoot": "/Users/cheng/IdeaProjects/octopus-tec/research/example-framework"
+  "projectRoot": "research/example-framework"
 };
 
 window.EVIDENCE_ITEMS = [
@@ -33,7 +33,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "research-brief.md",
-        "path": "/Users/cheng/IdeaProjects/octopus-tec/research/example-framework/research-brief.md",
+        "path": "research/example-framework/research-brief.md",
         "relativePath": "research-brief.md",
         "start": null,
         "end": null
@@ -80,7 +80,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "external-research.md",
-        "path": "/Users/cheng/IdeaProjects/octopus-tec/research/example-framework/external-research.md",
+        "path": "research/example-framework/external-research.md",
         "relativePath": "external-research.md",
         "start": null,
         "end": null
@@ -127,7 +127,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "research-questions.md",
-        "path": "/Users/cheng/IdeaProjects/octopus-tec/research/example-framework/research-questions.md",
+        "path": "research/example-framework/research-questions.md",
         "relativePath": "research-questions.md",
         "start": null,
         "end": null
@@ -174,7 +174,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "source-map.md",
-        "path": "/Users/cheng/IdeaProjects/octopus-tec/research/example-framework/source-map.md",
+        "path": "research/example-framework/source-map.md",
         "relativePath": "source-map.md",
         "start": null,
         "end": null
@@ -182,7 +182,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "references/source-inventory.json",
-        "path": "/Users/cheng/IdeaProjects/octopus-tec/research/example-framework/references/source-inventory.json",
+        "path": "research/example-framework/references/source-inventory.json",
         "relativePath": "references/source-inventory.json",
         "start": null,
         "end": null
@@ -229,7 +229,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "architecture.md",
-        "path": "/Users/cheng/IdeaProjects/octopus-tec/research/example-framework/architecture.md",
+        "path": "research/example-framework/architecture.md",
         "relativePath": "architecture.md",
         "start": null,
         "end": null
@@ -237,7 +237,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "runtime-flows.md",
-        "path": "/Users/cheng/IdeaProjects/octopus-tec/research/example-framework/runtime-flows.md",
+        "path": "research/example-framework/runtime-flows.md",
         "relativePath": "runtime-flows.md",
         "start": null,
         "end": null
@@ -284,7 +284,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "key-abstractions.md",
-        "path": "/Users/cheng/IdeaProjects/octopus-tec/research/example-framework/key-abstractions.md",
+        "path": "research/example-framework/key-abstractions.md",
         "relativePath": "key-abstractions.md",
         "start": null,
         "end": null
@@ -292,7 +292,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "extension-points.md",
-        "path": "/Users/cheng/IdeaProjects/octopus-tec/research/example-framework/extension-points.md",
+        "path": "research/example-framework/extension-points.md",
         "relativePath": "extension-points.md",
         "start": null,
         "end": null
@@ -351,7 +351,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "evidence-index.md",
-        "path": "/Users/cheng/IdeaProjects/octopus-tec/research/example-framework/evidence-index.md",
+        "path": "research/example-framework/evidence-index.md",
         "relativePath": "evidence-index.md",
         "start": null,
         "end": null
@@ -359,7 +359,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "research-review.md",
-        "path": "/Users/cheng/IdeaProjects/octopus-tec/research/example-framework/research-review.md",
+        "path": "research/example-framework/research-review.md",
         "relativePath": "research-review.md",
         "start": null,
         "end": null

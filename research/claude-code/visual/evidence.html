@@ -58,6 +58,11 @@ pre { margin: 0; max-height: 280px; overflow: auto; padding: 10px 12px; border-r
 </style>
 </head>
 <body>
+<script>
+if (window.top === window.self && !new URLSearchParams(window.location.search).has('standalone')) {
+  window.location.replace('../docs.html?view=visual/evidence.html' + window.location.hash);
+}
+</script>
 <header class="header">
   <h1 id="title">证据解释</h1>
   <p id="description">从架构图回到证据解释：展示架构语境、证据结论、源码/文档片段和原始索引位置。</p>

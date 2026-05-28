@@ -10,7 +10,7 @@ Last Updated: YYYY-MM-DD
 |---|---|
 | 名称 |  |
 | 代码来源 |  |
-| 本地路径 |  |
+| 项目标识 |  |
 | 版本/tag/commit |  |
 | 官方文档 |  |
 | 外部资料范围 | 官网/官方文档/Release Notes/Issue/PR/第三方文章/跳过原因 |
@@ -80,5 +80,5 @@ Last Updated: YYYY-MM-DD
 | AC-003 | 外部资料中的关键观点已转成研究问题并记录验证状态 | 检查 external-research.md、research-questions.md |
 | AC-004 | 复杂架构已补充可视化图，或说明无需生成 | 检查 visual/architecture.html、visual/architecture.visual.js、research-review.md |
 | AC-005 | 借鉴建议区分可直接学习、需结合语境后借鉴和不建议照搬 | 检查 adoption-notes.md |
-| AC-006 | 本地源码已生成结构化清单，或说明无法生成原因 | 检查 references/source-inventory.json、research-review.md |
+| AC-006 | 源码已生成结构化清单，或说明无法生成原因 | 检查 references/source-inventory.json、research-review.md |
 | AC-007 | 已生成统一阅读入口 | 检查 dashboard.html、docs.html |

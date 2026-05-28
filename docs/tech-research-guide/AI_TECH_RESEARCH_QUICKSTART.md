@@ -10,7 +10,7 @@
 请使用 open-source-tech-research 调研 <框架名>。
 
 代码位置：
-- 本地路径：
+- 本机源码位置（只作为本次读取输入，不写入调研产物）：
 - GitHub 地址：
 - branch/tag/commit：
 
@@ -70,18 +70,21 @@
 ```
 
 ```text
-请在分析源码前生成 references/source-inventory.json。要求从 evidence-index.md 读取本地源码路径，使用确定性扫描记录文件数量、主要语言、顶层目录、构建文件、包文件、入口候选、测试、示例、文档和配置。references/source-inventory.json 是过程性阅读索引，不要把它当作架构结论，也不要作为一级阅读入口。
+请在分析源码前生成 references/source-inventory.json。要求通过 `--source-root` 传入本机源码位置，使用确定性扫描记录文件数量、主要语言、顶层目录、构建文件、包文件、入口候选、测试、示例、文档和配置。references/source-inventory.json 是过程性阅读索引，不要把它当作架构结论，也不要作为一级阅读入口；输出和 Markdown 中不得写入个人本机绝对路径。
 ```
 
 ```text
 请生成 dashboard.html 和 docs.html 作为本次调研的统一阅读入口与 UTF-8 文档阅读器。要求：
-- Dashboard 只导航已有 Markdown、visual/architecture.html、visual/evidence.html 和 references/ 辅助材料
+- Dashboard 只导航已有 Markdown、visual/architecture.html 和 visual/evidence.html
 - Markdown 文档链接必须进入 docs.html?doc=<file>，不要直接打开 .md
 - 不在 Dashboard 中新增 Markdown 没有的架构结论
 - Dashboard 和 docs.html 使用同一套左侧导航
 - docs.html 支持渲染 Markdown 中的 Mermaid 代码块；脚本不可用时保留原始代码块降级展示
-- visual/architecture.html 仍作为专门的架构图查看器保留，并归入“源码与架构”
+- visual/architecture.html 仍作为专门的架构图查看器保留，并归入“架构解析”
+- design-philosophy.md、comparison.md、adoption-notes.md 归入“架构解析”
+- source-map.md 单独归入“源码解析”，并放在“架构解析”之后
 - visual/evidence.html 归入“证据”
+- references/source-inventory.json 保留给脚本、Dashboard 元信息和 source-map.md 使用，不作为阅读入口展示
 - 根目录的 visual-architecture.html 如存在，只作为旧链接兼容跳转页
 - research/index.html 只保留各框架 Dashboard 入口
 ```
@@ -142,6 +145,7 @@
 - 是否覆盖必要外部资料，或说明跳过原因
 - 是否把外部观点转成研究问题并记录源码验证状态
 - 是否生成 `references/source-inventory.json`，或说明没有本地源码可生成
+- 是否确认 Markdown、Dashboard、visual 数据和 references 中没有个人本机绝对路径
 - 是否生成 `dashboard.html` 和 `docs.html` 作为阅读入口
 - 是否有源码地图
 - 是否至少追踪一条主运行链路

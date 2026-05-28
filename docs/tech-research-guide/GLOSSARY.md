@@ -14,7 +14,7 @@
 
 ## Research Dashboard
 
-调研阅读入口。通常由 `dashboard.html` 和 `docs.html` 组成：`dashboard.html` 用于把 README、Markdown 调研文档、可视化架构图、证据查看器和 `references/` 辅助材料组织成一个浏览入口；`docs.html` 用于以 UTF-8 渲染 Markdown/JSON，避免直接打开 `.md` 出现编码问题。Dashboard 不替代 Markdown，也不新增架构结论。
+调研阅读入口。通常由 `dashboard.html` 和 `docs.html` 组成：`dashboard.html` 用于把 README、Markdown 调研文档、可视化架构图和证据查看器组织成一个浏览入口；`docs.html` 用于以 UTF-8 渲染 Markdown/JSON，避免直接打开 `.md` 出现编码问题。Dashboard 不替代 Markdown，也不新增架构结论；`references/source-inventory.json` 这类过程性材料默认不作为阅读入口展示。
 
 ## 可视化架构图
 

@@ -8,7 +8,7 @@ Last Updated: 2026-05-25
 
 OpenClaw 是一个本地优先的个人 AI Assistant / Gateway 项目。它把多渠道消息、设备节点、Agent 运行时、工具、模型 Provider、插件和会话管理统一到一个长期运行的 Gateway 控制平面中；真正的产品定位不是 Gateway 本身，而是“能在用户设备和渠道里做事的个人助手”。[C-001][C-004]
 
-本轮调研固定在本地快照 `/Users/cheng/IdeaProjects/openclaw`，branch `main`，commit `989e53c20d395d3c8bf47efc21fdb9d56e7227b0`。这是第一版架构级调研，重点覆盖 Gateway、Agent runtime、Plugin/capability model、Channel、Session/Multi-agent 和可借鉴设计，不覆盖每个具体渠道、移动端 App、完整 Provider 实现细节。
+本轮调研固定在本地快照 `openclaw`，branch `main`，commit `989e53c20d395d3c8bf47efc21fdb9d56e7227b0`。这是第一版架构级调研，重点覆盖 Gateway、Agent runtime、Plugin/capability model、Channel、Session/Multi-agent 和可借鉴设计，不覆盖每个具体渠道、移动端 App、完整 Provider 实现细节。
 
 ## 文件导航
 
@@ -20,7 +20,6 @@ OpenClaw 是一个本地优先的个人 AI Assistant / Gateway 项目。它把�
 | source-map.md | 仓库结构、入口、模块和阅读顺序 |
 | dashboard.html | 浏览器阅读入口，导航 Markdown、可视化图和辅助材料 |
 | docs.html | UTF-8 文档阅读器，避免浏览器直接打开 Markdown 乱码 |
-| references/source-inventory.json | 确定性源码扫描索引，辅助定位入口、测试、示例、构建和配置 |
 | architecture.md | 技术架构、模块边界和依赖方向 |
 | visual/architecture.html | HTML 可视化结构图，展示 Gateway、Agent Runtime、Plugin Capability 和状态边界 |
 | visual/architecture.visual.js | 可视化图数据，承接 Markdown 结论和证据链接 |

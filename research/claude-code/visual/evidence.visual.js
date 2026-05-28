@@ -2,7 +2,7 @@ window.EVIDENCE_META = {
   "title": "Claude Code 证据解释",
   "description": "从架构图回到证据解释：展示架构语境、证据结论、源码/文档片段和原始索引位置。",
   "source": "../evidence-index.md",
-  "projectRoot": "/Users/cheng/IdeaProjects/claude-code"
+  "projectRoot": "claude-code"
 };
 
 window.EVIDENCE_ITEMS = [
@@ -10,7 +10,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-001",
     "conclusion": "仓库 README 声明这是 Claude Code source snapshot for security research，不是 Anthropic 官方 repo；快照来自 npm distribution 中公开可访问的 source map；README 描述 CLI 用途、公开日期、技术栈和大致规模",
     "type": "doc fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/README.md:1-3`, `README.md:23-35`, `README.md:41-49`, `README.md:55-94`",
+    "location": "`README.md:1-3`, `README.md:23-35`, `README.md:41-49`, `README.md:55-94`",
     "confidence": "高",
     "verified": "",
     "note": "快照定位",
@@ -19,9 +19,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/README.md:1-3",
-        "path": "/Users/cheng/IdeaProjects/claude-code/README.md",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/README.md",
+        "display": "README.md:1-3",
+        "path": "README.md",
+        "relativePath": "README.md",
         "start": 1,
         "end": 3,
         "snippet": "    1  # Claude Code Source Snapshot for Security Research\n    2  \n    3  > This repository mirrors a **publicly exposed Claude Code source snapshot** that became accessible on **March 31, 2026** through a source map exposure in the npm distribution. It is maintained for **educational, defensive security research, and software supply-chain analysis**.",
@@ -30,7 +30,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:23-35",
-        "path": "/Users/cheng/IdeaProjects/claude-code/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 23,
         "end": 35,
@@ -40,7 +40,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:41-49",
-        "path": "/Users/cheng/IdeaProjects/claude-code/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 41,
         "end": 49,
@@ -50,7 +50,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:55-94",
-        "path": "/Users/cheng/IdeaProjects/claude-code/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 55,
         "end": 94,
@@ -64,7 +64,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-002",
     "conclusion": "本地快照为 branch `main`、commit `4b9d30f7953273e567a18eb819f4eddd45fcc877`、remote `https://github.com/jarmuine/claude-code.git`，`src` 约 1902 个文件",
     "type": "source fact",
-    "location": "`git -C /Users/cheng/IdeaProjects/claude-code rev-parse HEAD`, `git -C /Users/cheng/IdeaProjects/claude-code remote get-url origin`, `rg --files /Users/cheng/IdeaProjects/claude-code/src | wc -l`",
+    "location": "`git -C claude-code rev-parse HEAD`, `git -C claude-code remote get-url origin`, `rg --files src | wc -l`",
     "confidence": "高",
     "verified": "",
     "note": "命令证据",
@@ -73,15 +73,15 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "command",
-        "display": "git -C /Users/cheng/IdeaProjects/claude-code rev-parse HEAD"
+        "display": "git -C claude-code rev-parse HEAD"
       },
       {
         "kind": "command",
-        "display": "git -C /Users/cheng/IdeaProjects/claude-code remote get-url origin"
+        "display": "git -C claude-code remote get-url origin"
       },
       {
         "kind": "command",
-        "display": "rg --files /Users/cheng/IdeaProjects/claude-code/src | wc -l"
+        "display": "rg --files src | wc -l"
       }
     ],
     "sourceLimitNote": ""
@@ -90,7 +90,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-003",
     "conclusion": "`main()` 在 Commander 前处理 Windows 安全环境、warning/SIGINT、direct-connect URL、deep link、assistant command、SSH command、headless 判定、interactive flag、client type 和 eager settings",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/main.tsx:585-856`",
+    "location": "`src/main.tsx:585-856`",
     "confidence": "高",
     "verified": "",
     "note": "入口模式路由",
@@ -124,9 +124,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/main.tsx:585-856",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/main.tsx",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/main.tsx",
+        "display": "src/main.tsx:585-856",
+        "path": "src/main.tsx",
+        "relativePath": "src/main.tsx",
         "start": 585,
         "end": 856,
         "snippet": "  585  export async function main() {\n  586    profileCheckpoint('main_function_start');\n  587  \n  588    // SECURITY: Prevent Windows from executing commands from current directory\n  589    // This must be set before ANY command execution to prevent PATH hijacking attacks\n  590    // See: https://docs.microsoft.com/en-us/windows/win32/api/processenv/nf-processenv-searchpathw\n  591    process.env.NoDefaultCurrentDirectoryInExePath = '1';\n  592  \n  593    // Initialize warning handler early to catch warnings\n  594    initializeWarningHandler();\n  595    process.on('exit', () => {\n  596      resetCursor();\n  597    });\n  598    process.on('SIGINT', () => {\n  599      // In print mode, print.ts registers its own SIGINT handler that aborts\n  600      // the in-flight query and calls gracefulShutdown; skip here to avoid\n  601      // preempting it with a synchronous process.exit().\n  602      if (process.argv.includes('-p') || process.argv.includes('--print')) {",
@@ -139,7 +139,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-004",
     "conclusion": "`run()` 创建 Commander program 和 `preAction` init，注册默认命令 options；后续注册 MCP、server、ssh、open、auth、plugin、agents、auto-mode、doctor 等子命令",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/main.tsx:884-1018`, `src/main.tsx:3894-4355`",
+    "location": "`src/main.tsx:884-1018`, `src/main.tsx:3894-4355`",
     "confidence": "高",
     "verified": "",
     "note": "命令 surface",
@@ -173,9 +173,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/main.tsx:884-1018",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/main.tsx",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/main.tsx",
+        "display": "src/main.tsx:884-1018",
+        "path": "src/main.tsx",
+        "relativePath": "src/main.tsx",
         "start": 884,
         "end": 1018,
         "snippet": "  884  async function run(): Promise<CommanderCommand> {\n  885    profileCheckpoint('run_function_start');\n  886  \n  887    // Create help config that sorts options by long option name.\n  888    // Commander supports compareOptions at runtime but @commander-js/extra-typings\n  889    // doesn't include it in the type definitions, so we use Object.assign to add it.\n  890    function createSortedHelpConfig(): {\n  891      sortSubcommands: true;\n  892      sortOptions: true;\n  893    } {\n  894      const getOptionSortKey = (opt: Option): string => opt.long?.replace(/^--/, '') ?? opt.short?.replace(/^-/, '') ?? '';\n  895      return Object.assign({\n  896        sortSubcommands: true,\n  897        sortOptions: true\n  898      } as const, {\n  899        compareOptions: (a: Option, b: Option) => getOptionSortKey(a).localeCompare(getOptionSortKey(b))\n  900      });\n  901    }",
@@ -184,7 +184,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/main.tsx:3894-4355",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/main.tsx",
+        "path": "src/main.tsx",
         "relativePath": "src/main.tsx",
         "start": 3894,
         "end": 4355,
@@ -198,7 +198,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-005",
     "conclusion": "`setup()` 处理 Node 版本、custom session、UDS messaging、terminal restore、cwd、worktree；`renderAndRun` 周边处理 onboarding、trust、GrowthBook、system context prefetch、MCP approvals、external CLAUDE.md warning、telemetry、API key、bypass dialog 和 auto-mode opt-in",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/setup.ts:56-190`, `src/interactiveHelpers.tsx:98-235`",
+    "location": "`src/setup.ts:56-190`, `src/interactiveHelpers.tsx:98-235`",
     "confidence": "高",
     "verified": "",
     "note": "运行前边界",
@@ -244,9 +244,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/setup.ts:56-190",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/setup.ts",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/setup.ts",
+        "display": "src/setup.ts:56-190",
+        "path": "src/setup.ts",
+        "relativePath": "src/setup.ts",
         "start": 56,
         "end": 190,
         "snippet": "   56  export async function setup(\n   57    cwd: string,\n   58    permissionMode: PermissionMode,\n   59    allowDangerouslySkipPermissions: boolean,\n   60    worktreeEnabled: boolean,\n   61    worktreeName: string | undefined,\n   62    tmuxEnabled: boolean,\n   63    customSessionId?: string | null,\n   64    worktreePRNumber?: number,\n   65    messagingSocketPath?: string,\n   66  ): Promise<void> {\n   67    logForDiagnosticsNoPII('info', 'setup_started')\n   68  \n   69    // Check for Node.js version < 18\n   70    const nodeVersion = process.version.match(/^v(\\d+)\\./)?.[1]\n   71    if (!nodeVersion || parseInt(nodeVersion) < 18) {\n   72      // biome-ignore lint/suspicious/noConsole:: intentional console output\n   73      console.error(",
@@ -255,7 +255,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/interactiveHelpers.tsx:98-235",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/interactiveHelpers.tsx",
+        "path": "src/interactiveHelpers.tsx",
         "relativePath": "src/interactiveHelpers.tsx",
         "start": 98,
         "end": 235,
@@ -269,7 +269,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-006",
     "conclusion": "`replLauncher` 动态加载 `App`/`REPL`；`REPL` 保存交互状态，发起 query 前组装 tool pool、agent tools、system prompt、user/system context，并消费 `query(...)` events",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/replLauncher.tsx:12-22`, `src/screens/REPL.tsx:572-630`, `src/screens/REPL.tsx:2382-2420`, `src/screens/REPL.tsx:2768-2820`",
+    "location": "`src/replLauncher.tsx:12-22`, `src/screens/REPL.tsx:572-630`, `src/screens/REPL.tsx:2382-2420`, `src/screens/REPL.tsx:2768-2820`",
     "confidence": "高",
     "verified": "",
     "note": "REPL 流程",
@@ -351,9 +351,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/replLauncher.tsx:12-22",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/replLauncher.tsx",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/replLauncher.tsx",
+        "display": "src/replLauncher.tsx:12-22",
+        "path": "src/replLauncher.tsx",
+        "relativePath": "src/replLauncher.tsx",
         "start": 12,
         "end": 22,
         "snippet": "   12  export async function launchRepl(root: Root, appProps: AppWrapperProps, replProps: REPLProps, renderAndRun: (root: Root, element: React.ReactNode) => Promise<void>): Promise<void> {\n   13    const {\n   14      App\n   15    } = await import('./components/App.js');\n   16    const {\n   17      REPL\n   18    } = await import('./screens/REPL.js');\n   19    await renderAndRun(root, <App {...appProps}>\n   20        <REPL {...replProps} />\n   21      </App>);\n   22  }",
@@ -362,7 +362,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/screens/REPL.tsx:572-630",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/screens/REPL.tsx",
+        "path": "src/screens/REPL.tsx",
         "relativePath": "src/screens/REPL.tsx",
         "start": 572,
         "end": 630,
@@ -372,7 +372,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/screens/REPL.tsx:2382-2420",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/screens/REPL.tsx",
+        "path": "src/screens/REPL.tsx",
         "relativePath": "src/screens/REPL.tsx",
         "start": 2382,
         "end": 2420,
@@ -382,7 +382,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/screens/REPL.tsx:2768-2820",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/screens/REPL.tsx",
+        "path": "src/screens/REPL.tsx",
         "relativePath": "src/screens/REPL.tsx",
         "start": 2768,
         "end": 2820,
@@ -396,7 +396,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-007",
     "conclusion": "`QueryEngine` 配置覆盖 cwd/tools/commands/MCP/agents/permission/AppState/messages/cache/prompts/model/budget/schema/SDK/abort；`submitMessage` 设置 cwd、persist session、包装 permission callback，并调用 `query(...)`；最终结果包含 API error、duration、turns、stop reason、cost、usage、permission denials 等",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/QueryEngine.ts:130-260`, `src/QueryEngine.ts:657-751`, `src/QueryEngine.ts:1120-1155`, `src/QueryEngine.ts:1179-1295`",
+    "location": "`src/QueryEngine.ts:130-260`, `src/QueryEngine.ts:657-751`, `src/QueryEngine.ts:1120-1155`, `src/QueryEngine.ts:1179-1295`",
     "confidence": "高",
     "verified": "",
     "note": "会话级状态",
@@ -478,9 +478,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/QueryEngine.ts:130-260",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/QueryEngine.ts",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/QueryEngine.ts",
+        "display": "src/QueryEngine.ts:130-260",
+        "path": "src/QueryEngine.ts",
+        "relativePath": "src/QueryEngine.ts",
         "start": 130,
         "end": 260,
         "snippet": "  130  export type QueryEngineConfig = {\n  131    cwd: string\n  132    tools: Tools\n  133    commands: Command[]\n  134    mcpClients: MCPServerConnection[]\n  135    agents: AgentDefinition[]\n  136    canUseTool: CanUseToolFn\n  137    getAppState: () => AppState\n  138    setAppState: (f: (prev: AppState) => AppState) => void\n  139    initialMessages?: Message[]\n  140    readFileCache: FileStateCache\n  141    customSystemPrompt?: string\n  142    appendSystemPrompt?: string\n  143    userSpecifiedModel?: string\n  144    fallbackModel?: string\n  145    thinkingConfig?: ThinkingConfig\n  146    maxTurns?: number\n  147    maxBudgetUsd?: number",
@@ -489,7 +489,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/QueryEngine.ts:657-751",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/QueryEngine.ts",
+        "path": "src/QueryEngine.ts",
         "relativePath": "src/QueryEngine.ts",
         "start": 657,
         "end": 751,
@@ -499,7 +499,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/QueryEngine.ts:1120-1155",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/QueryEngine.ts",
+        "path": "src/QueryEngine.ts",
         "relativePath": "src/QueryEngine.ts",
         "start": 1120,
         "end": 1155,
@@ -509,7 +509,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/QueryEngine.ts:1179-1295",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/QueryEngine.ts",
+        "path": "src/QueryEngine.ts",
         "relativePath": "src/QueryEngine.ts",
         "start": 1179,
         "end": 1295,
@@ -523,7 +523,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-008",
     "conclusion": "`query()` 委托 `queryLoop`；`queryLoop` 管理 memory prefetch、skill discovery、system context、auto-compact、模型 streaming、tool execution、fallback/retry/error、tool summary、queued commands、tools refresh",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/query.ts:219-337`, `src/query.ts:449-708`, `src/query.ts:847-997`, `src/query.ts:1363-1671`",
+    "location": "`src/query.ts:219-337`, `src/query.ts:449-708`, `src/query.ts:847-997`, `src/query.ts:1363-1671`",
     "confidence": "高",
     "verified": "",
     "note": "turn 内编排",
@@ -617,9 +617,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/query.ts:219-337",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/query.ts",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/query.ts",
+        "display": "src/query.ts:219-337",
+        "path": "src/query.ts",
+        "relativePath": "src/query.ts",
         "start": 219,
         "end": 337,
         "snippet": "  219  export async function* query(\n  220    params: QueryParams,\n  221  ): AsyncGenerator<\n  222    | StreamEvent\n  223    | RequestStartEvent\n  224    | Message\n  225    | TombstoneMessage\n  226    | ToolUseSummaryMessage,\n  227    Terminal\n  228  > {\n  229    const consumedCommandUuids: string[] = []\n  230    const terminal = yield* queryLoop(params, consumedCommandUuids)\n  231    // Only reached if queryLoop returned normally. Skipped on throw (error\n  232    // propagates through yield*) and on .return() (Return completion closes\n  233    // both generators). This gives the same asymmetric started-without-completed\n  234    // signal as print.ts's drainCommandQueue when the turn fails.\n  235    for (const uuid of consumedCommandUuids) {\n  236      notifyCommandLifecycle(uuid, 'completed')",
@@ -628,7 +628,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/query.ts:449-708",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/query.ts",
+        "path": "src/query.ts",
         "relativePath": "src/query.ts",
         "start": 449,
         "end": 708,
@@ -638,7 +638,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/query.ts:847-997",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/query.ts",
+        "path": "src/query.ts",
         "relativePath": "src/query.ts",
         "start": 847,
         "end": 997,
@@ -648,7 +648,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/query.ts:1363-1671",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/query.ts",
+        "path": "src/query.ts",
         "relativePath": "src/query.ts",
         "start": 1363,
         "end": 1671,
@@ -662,7 +662,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-009",
     "conclusion": "`ToolPermissionContext`、`ToolUseContext` 和 `Tool` contract 定义工具、权限、上下文、schema、并发、只读、破坏性、渲染、MCP/LSP、strict 等语义；`tools.ts` 组装 built-in/MCP tool pool，做 feature/env gate、deny filter、simple mode、去重和稳定排序",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/Tool.ts:123-260`, `src/Tool.ts:321-540`, `src/Tool.ts:701-792`, `src/tools.ts:158-389`",
+    "location": "`src/Tool.ts:123-260`, `src/Tool.ts:321-540`, `src/Tool.ts:701-792`, `src/tools.ts:158-389`",
     "confidence": "高",
     "verified": "",
     "note": "Tool 协议",
@@ -840,9 +840,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/Tool.ts:123-260",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/Tool.ts",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/Tool.ts",
+        "display": "src/Tool.ts:123-260",
+        "path": "src/Tool.ts",
+        "relativePath": "src/Tool.ts",
         "start": 123,
         "end": 260,
         "snippet": "  123  export type ToolPermissionContext = DeepImmutable<{\n  124    mode: PermissionMode\n  125    additionalWorkingDirectories: Map<string, AdditionalWorkingDirectory>\n  126    alwaysAllowRules: ToolPermissionRulesBySource\n  127    alwaysDenyRules: ToolPermissionRulesBySource\n  128    alwaysAskRules: ToolPermissionRulesBySource\n  129    isBypassPermissionsModeAvailable: boolean\n  130    isAutoModeAvailable?: boolean\n  131    strippedDangerousRules?: ToolPermissionRulesBySource\n  132    /** When true, permission prompts are auto-denied (e.g., background agents that can't show UI) */\n  133    shouldAvoidPermissionPrompts?: boolean\n  134    /** When true, automated checks (classifier, hooks) are awaited before showing the permission dialog (coordinator workers) */\n  135    awaitAutomatedChecksBeforeDialog?: boolean\n  136    /** Stores the permission mode before model-initiated plan mode entry, so it can be restored on exit */\n  137    prePlanMode?: PermissionMode\n  138  }>\n  139  \n  140  export const getEmptyToolPermissionContext: () => ToolPermissionContext =",
@@ -851,7 +851,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/Tool.ts:321-540",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/Tool.ts",
+        "path": "src/Tool.ts",
         "relativePath": "src/Tool.ts",
         "start": 321,
         "end": 540,
@@ -861,7 +861,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/Tool.ts:701-792",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/Tool.ts",
+        "path": "src/Tool.ts",
         "relativePath": "src/Tool.ts",
         "start": 701,
         "end": 792,
@@ -871,7 +871,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/tools.ts:158-389",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/tools.ts",
+        "path": "src/tools.ts",
         "relativePath": "src/tools.ts",
         "start": 158,
         "end": 389,
@@ -885,7 +885,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-010",
     "conclusion": "tool execution 支持并发安全分组、输入校验、PreToolUse hooks、permission decision、deny/allow path、telemetry、interactive permission、bridge callback、resolve-once 和 persistence",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/services/tools/toolOrchestration.ts:1-188`, `src/services/tools/toolExecution.ts:337-456`, `src/services/tools/toolExecution.ts:599-752`, `src/services/tools/toolExecution.ts:795-1225`, `src/hooks/useCanUseTool.tsx:27-182`, `src/hooks/toolPermission/PermissionContext.ts:55-147`, `src/hooks/toolPermission/PermissionContext.ts:216-336`, `src/hooks/toolPermission/handlers/interactiveHandler.ts:43-260`",
+    "location": "`src/services/tools/toolOrchestration.ts:1-188`, `src/services/tools/toolExecution.ts:337-456`, `src/services/tools/toolExecution.ts:599-752`, `src/services/tools/toolExecution.ts:795-1225`, `src/hooks/useCanUseTool.tsx:27-182`, `src/hooks/toolPermission/PermissionContext.ts:55-147`, `src/hooks/toolPermission/PermissionContext.ts:216-336`, `src/hooks/toolPermission/handlers/interactiveHandler.ts:43-260`",
     "confidence": "高",
     "verified": "",
     "note": "权限和执行",
@@ -1063,9 +1063,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/services/tools/toolOrchestration.ts:1-188",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/services/tools/toolOrchestration.ts",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/services/tools/toolOrchestration.ts",
+        "display": "src/services/tools/toolOrchestration.ts:1-188",
+        "path": "src/services/tools/toolOrchestration.ts",
+        "relativePath": "src/services/tools/toolOrchestration.ts",
         "start": 1,
         "end": 188,
         "snippet": "    1  import type { ToolUseBlock } from '@anthropic-ai/sdk/resources/index.mjs'\n    2  import type { CanUseToolFn } from '../../hooks/useCanUseTool.js'\n    3  import { findToolByName, type ToolUseContext } from '../../Tool.js'\n    4  import type { AssistantMessage, Message } from '../../types/message.js'\n    5  import { all } from '../../utils/generators.js'\n    6  import { type MessageUpdateLazy, runToolUse } from './toolExecution.js'\n    7  \n    8  function getMaxToolUseConcurrency(): number {\n    9    return (\n   10      parseInt(process.env.CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY || '', 10) || 10\n   11    )\n   12  }\n   13  \n   14  export type MessageUpdate = {\n   15    message?: Message\n   16    newContext: ToolUseContext\n   17  }\n   18  ",
@@ -1074,7 +1074,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/services/tools/toolExecution.ts:337-456",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/services/tools/toolExecution.ts",
+        "path": "src/services/tools/toolExecution.ts",
         "relativePath": "src/services/tools/toolExecution.ts",
         "start": 337,
         "end": 456,
@@ -1084,7 +1084,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/services/tools/toolExecution.ts:599-752",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/services/tools/toolExecution.ts",
+        "path": "src/services/tools/toolExecution.ts",
         "relativePath": "src/services/tools/toolExecution.ts",
         "start": 599,
         "end": 752,
@@ -1094,7 +1094,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/services/tools/toolExecution.ts:795-1225",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/services/tools/toolExecution.ts",
+        "path": "src/services/tools/toolExecution.ts",
         "relativePath": "src/services/tools/toolExecution.ts",
         "start": 795,
         "end": 1225,
@@ -1104,7 +1104,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/hooks/useCanUseTool.tsx:27-182",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/hooks/useCanUseTool.tsx",
+        "path": "src/hooks/useCanUseTool.tsx",
         "relativePath": "src/hooks/useCanUseTool.tsx",
         "start": 27,
         "end": 182,
@@ -1114,7 +1114,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/hooks/toolPermission/PermissionContext.ts:55-147",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/hooks/toolPermission/PermissionContext.ts",
+        "path": "src/hooks/toolPermission/PermissionContext.ts",
         "relativePath": "src/hooks/toolPermission/PermissionContext.ts",
         "start": 55,
         "end": 147,
@@ -1124,7 +1124,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/hooks/toolPermission/PermissionContext.ts:216-336",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/hooks/toolPermission/PermissionContext.ts",
+        "path": "src/hooks/toolPermission/PermissionContext.ts",
         "relativePath": "src/hooks/toolPermission/PermissionContext.ts",
         "start": 216,
         "end": 336,
@@ -1134,7 +1134,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/hooks/toolPermission/handlers/interactiveHandler.ts:43-260",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/hooks/toolPermission/handlers/interactiveHandler.ts",
+        "path": "src/hooks/toolPermission/handlers/interactiveHandler.ts",
         "relativePath": "src/hooks/toolPermission/handlers/interactiveHandler.ts",
         "start": 43,
         "end": 260,
@@ -1148,7 +1148,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-011",
     "conclusion": "Commands/Skills/Plugins 支持内置命令、Skill command、remote/bridge safe command、plugin manifest、plugin command frontmatter、plugin variables、shell command、skill dirs、marketplace name security",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/commands.ts:220-600`, `src/commands.ts:626-754`, `src/utils/plugins/pluginLoader.ts:1-33`, `src/utils/plugins/schemas.ts:1-160`, `src/utils/plugins/loadPluginCommands.ts:37-140`, `src/utils/plugins/loadPluginCommands.ts:260-520`, `src/skills/loadSkillsDir.ts:626-820`",
+    "location": "`src/commands.ts:220-600`, `src/commands.ts:626-754`, `src/utils/plugins/pluginLoader.ts:1-33`, `src/utils/plugins/schemas.ts:1-160`, `src/utils/plugins/loadPluginCommands.ts:37-140`, `src/utils/plugins/loadPluginCommands.ts:260-520`, `src/skills/loadSkillsDir.ts:626-820`",
     "confidence": "高",
     "verified": "",
     "note": "命令和扩展",
@@ -1206,9 +1206,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/commands.ts:220-600",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/commands.ts",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/commands.ts",
+        "display": "src/commands.ts:220-600",
+        "path": "src/commands.ts",
+        "relativePath": "src/commands.ts",
         "start": 220,
         "end": 600,
         "snippet": "  220    ResumeEntrypoint,\n  221  } from './types/command.js'\n  222  export { getCommandName, isCommandEnabled } from './types/command.js'\n  223  \n  224  // Commands that get eliminated from the external build\n  225  export const INTERNAL_ONLY_COMMANDS = [\n  226    backfillSessions,\n  227    breakCache,\n  228    bughunter,\n  229    commit,\n  230    commitPushPr,\n  231    ctx_viz,\n  232    goodClaude,\n  233    issue,\n  234    initVerifiers,\n  235    ...(forceSnip ? [forceSnip] : []),\n  236    mockLimits,\n  237    bridgeKick,",
@@ -1217,7 +1217,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/commands.ts:626-754",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/commands.ts",
+        "path": "src/commands.ts",
         "relativePath": "src/commands.ts",
         "start": 626,
         "end": 754,
@@ -1227,7 +1227,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/utils/plugins/pluginLoader.ts:1-33",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/utils/plugins/pluginLoader.ts",
+        "path": "src/utils/plugins/pluginLoader.ts",
         "relativePath": "src/utils/plugins/pluginLoader.ts",
         "start": 1,
         "end": 33,
@@ -1237,7 +1237,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/utils/plugins/schemas.ts:1-160",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/utils/plugins/schemas.ts",
+        "path": "src/utils/plugins/schemas.ts",
         "relativePath": "src/utils/plugins/schemas.ts",
         "start": 1,
         "end": 160,
@@ -1247,7 +1247,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/utils/plugins/loadPluginCommands.ts:37-140",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/utils/plugins/loadPluginCommands.ts",
+        "path": "src/utils/plugins/loadPluginCommands.ts",
         "relativePath": "src/utils/plugins/loadPluginCommands.ts",
         "start": 37,
         "end": 140,
@@ -1257,7 +1257,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/utils/plugins/loadPluginCommands.ts:260-520",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/utils/plugins/loadPluginCommands.ts",
+        "path": "src/utils/plugins/loadPluginCommands.ts",
         "relativePath": "src/utils/plugins/loadPluginCommands.ts",
         "start": 260,
         "end": 520,
@@ -1267,7 +1267,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/skills/loadSkillsDir.ts:626-820",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/skills/loadSkillsDir.ts",
+        "path": "src/skills/loadSkillsDir.ts",
         "relativePath": "src/skills/loadSkillsDir.ts",
         "start": 626,
         "end": 820,
@@ -1281,7 +1281,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-012",
     "conclusion": "MCP client 支持 reconnect、工具抓取、工具包装、资源工具、auth needs、local/remote 并发、progress、timeout 和 elicitation retry",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/services/mcp/client.ts:1660-1722`, `src/services/mcp/client.ts:1728-1895`, `src/services/mcp/client.ts:2226-2408`, `src/services/mcp/client.ts:3029-3115`",
+    "location": "`src/services/mcp/client.ts:1660-1722`, `src/services/mcp/client.ts:1728-1895`, `src/services/mcp/client.ts:2226-2408`, `src/services/mcp/client.ts:3029-3115`",
     "confidence": "高",
     "verified": "",
     "note": "MCP",
@@ -1339,9 +1339,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/services/mcp/client.ts:1660-1722",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/services/mcp/client.ts",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/services/mcp/client.ts",
+        "display": "src/services/mcp/client.ts:1660-1722",
+        "path": "src/services/mcp/client.ts",
+        "relativePath": "src/services/mcp/client.ts",
         "start": 1660,
         "end": 1722,
         "snippet": " 1660    } catch {\n 1661      // Ignore errors - server might have failed to connect\n 1662    }\n 1663  \n 1664    // Clear from cache (both connection and fetch caches so reconnect\n 1665    // fetches fresh tools/resources/commands instead of stale ones)\n 1666    connectToServer.cache.delete(key)\n 1667    fetchToolsForClient.cache.delete(name)\n 1668    fetchResourcesForClient.cache.delete(name)\n 1669    fetchCommandsForClient.cache.delete(name)\n 1670    if (feature('MCP_SKILLS')) {\n 1671      fetchMcpSkillsForClient!.cache.delete(name)\n 1672    }\n 1673  }\n 1674  \n 1675  /**\n 1676   * Ensures a valid connected client for an MCP server.\n 1677   * For most server types, uses the memoization cache if available, or reconnects",
@@ -1350,7 +1350,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/services/mcp/client.ts:1728-1895",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/services/mcp/client.ts",
+        "path": "src/services/mcp/client.ts",
         "relativePath": "src/services/mcp/client.ts",
         "start": 1728,
         "end": 1895,
@@ -1360,7 +1360,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/services/mcp/client.ts:2226-2408",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/services/mcp/client.ts",
+        "path": "src/services/mcp/client.ts",
         "relativePath": "src/services/mcp/client.ts",
         "start": 2226,
         "end": 2408,
@@ -1370,7 +1370,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/services/mcp/client.ts:3029-3115",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/services/mcp/client.ts",
+        "path": "src/services/mcp/client.ts",
         "relativePath": "src/services/mcp/client.ts",
         "start": 3029,
         "end": 3115,
@@ -1384,7 +1384,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-013",
     "conclusion": "session state 管理 session id、parent、project dir/root；transcript 存储支持路径解析、50MB raw cap、append buffering、metadata、sidechain、UUID dedup、remote persistence",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/bootstrap/state.ts:431-531`, `src/utils/sessionStorage.ts:198-230`, `src/utils/sessionStorage.ts:1128-1338`, `src/utils/sessionStorage.ts:1408-1475`",
+    "location": "`src/bootstrap/state.ts:431-531`, `src/utils/sessionStorage.ts:198-230`, `src/utils/sessionStorage.ts:1128-1338`, `src/utils/sessionStorage.ts:1408-1475`",
     "confidence": "高",
     "verified": "",
     "note": "session 和 transcript",
@@ -1478,9 +1478,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/bootstrap/state.ts:431-531",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/bootstrap/state.ts",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/bootstrap/state.ts",
+        "display": "src/bootstrap/state.ts:431-531",
+        "path": "src/bootstrap/state.ts",
+        "relativePath": "src/bootstrap/state.ts",
         "start": 431,
         "end": 531,
         "snippet": "  431  export function getSessionId(): SessionId {\n  432    return STATE.sessionId\n  433  }\n  434  \n  435  export function regenerateSessionId(\n  436    options: { setCurrentAsParent?: boolean } = {},\n  437  ): SessionId {\n  438    if (options.setCurrentAsParent) {\n  439      STATE.parentSessionId = STATE.sessionId\n  440    }\n  441    // Drop the outgoing session's plan-slug entry so the Map doesn't\n  442    // accumulate stale keys. Callers that need to carry the slug across\n  443    // (REPL.tsx clearContext) read it before calling clearConversation.\n  444    STATE.planSlugCache.delete(STATE.sessionId)\n  445    // Regenerated sessions live in the current project: reset projectDir to\n  446    // null so getTranscriptPath() derives from originalCwd.\n  447    STATE.sessionId = randomUUID() as SessionId\n  448    STATE.sessionProjectDir = null",
@@ -1489,7 +1489,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/utils/sessionStorage.ts:198-230",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/utils/sessionStorage.ts",
+        "path": "src/utils/sessionStorage.ts",
         "relativePath": "src/utils/sessionStorage.ts",
         "start": 198,
         "end": 230,
@@ -1499,7 +1499,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/utils/sessionStorage.ts:1128-1338",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/utils/sessionStorage.ts",
+        "path": "src/utils/sessionStorage.ts",
         "relativePath": "src/utils/sessionStorage.ts",
         "start": 1128,
         "end": 1338,
@@ -1509,7 +1509,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/utils/sessionStorage.ts:1408-1475",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/utils/sessionStorage.ts",
+        "path": "src/utils/sessionStorage.ts",
         "relativePath": "src/utils/sessionStorage.ts",
         "start": 1408,
         "end": 1475,
@@ -1523,7 +1523,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-014",
     "conclusion": "context 层 memoized 生成 git/user/system context；API client 支持 Direct API、Bedrock、Foundry、Vertex 等环境路径和默认 headers；query deps 注入模型调用和 compact 依赖",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/context.ts:35-189`, `src/services/api/client.ts:1-180`, `src/query/deps.ts:1-40`",
+    "location": "`src/context.ts:35-189`, `src/services/api/client.ts:1-180`, `src/query/deps.ts:1-40`",
     "confidence": "高",
     "verified": "",
     "note": "上下文和模型依赖",
@@ -1641,9 +1641,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/context.ts:35-189",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/context.ts",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/context.ts",
+        "display": "src/context.ts:35-189",
+        "path": "src/context.ts",
+        "relativePath": "src/context.ts",
         "start": 35,
         "end": 189,
         "snippet": "   35  \n   36  export const getGitStatus = memoize(async (): Promise<string | null> => {\n   37    if (process.env.NODE_ENV === 'test') {\n   38      // Avoid cycles in tests\n   39      return null\n   40    }\n   41  \n   42    const startTime = Date.now()\n   43    logForDiagnosticsNoPII('info', 'git_status_started')\n   44  \n   45    const isGitStart = Date.now()\n   46    const isGit = await getIsGit()\n   47    logForDiagnosticsNoPII('info', 'git_is_git_check_completed', {\n   48      duration_ms: Date.now() - isGitStart,\n   49      is_git: isGit,\n   50    })\n   51  \n   52    if (!isGit) {",
@@ -1652,7 +1652,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/services/api/client.ts:1-180",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/services/api/client.ts",
+        "path": "src/services/api/client.ts",
         "relativePath": "src/services/api/client.ts",
         "start": 1,
         "end": 180,
@@ -1662,7 +1662,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/query/deps.ts:1-40",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/query/deps.ts",
+        "path": "src/query/deps.ts",
         "relativePath": "src/query/deps.ts",
         "start": 1,
         "end": 40,
@@ -1676,7 +1676,7 @@ window.EVIDENCE_ITEMS = [
     "id": "C-015",
     "conclusion": "bridge loop 管理 active sessions、heartbeat、status、cleanup；session spawner 以 headless stream-json 启动 child CLI 并解析 NDJSON；direct-connect 和 remote session 通过 WebSocket/HTTP 传递 SDK messages 与 permission control request",
     "type": "source fact",
-    "location": "`/Users/cheng/IdeaProjects/claude-code/src/bridge/bridgeMain.ts:141-220`, `src/bridge/bridgeMain.ts:334-620`, `src/bridge/sessionRunner.ts:248-560`, `src/server/createDirectConnectSession.ts:19-90`, `src/server/directConnectManager.ts:40-135`, `src/remote/RemoteSessionManager.ts:88-335`",
+    "location": "`src/bridge/bridgeMain.ts:141-220`, `src/bridge/bridgeMain.ts:334-620`, `src/bridge/sessionRunner.ts:248-560`, `src/server/createDirectConnectSession.ts:19-90`, `src/server/directConnectManager.ts:40-135`, `src/remote/RemoteSessionManager.ts:88-335`",
     "confidence": "高",
     "verified": "",
     "note": "远程会话通道",
@@ -1770,9 +1770,9 @@ window.EVIDENCE_ITEMS = [
     "sourceRefs": [
       {
         "kind": "file",
-        "display": "/Users/cheng/IdeaProjects/claude-code/src/bridge/bridgeMain.ts:141-220",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/bridge/bridgeMain.ts",
-        "relativePath": "/Users/cheng/IdeaProjects/claude-code/src/bridge/bridgeMain.ts",
+        "display": "src/bridge/bridgeMain.ts:141-220",
+        "path": "src/bridge/bridgeMain.ts",
+        "relativePath": "src/bridge/bridgeMain.ts",
         "start": 141,
         "end": 220,
         "snippet": "  141  export async function runBridgeLoop(\n  142    config: BridgeConfig,\n  143    environmentId: string,\n  144    environmentSecret: string,\n  145    api: BridgeApiClient,\n  146    spawner: SessionSpawner,\n  147    logger: BridgeLogger,\n  148    signal: AbortSignal,\n  149    backoffConfig: BackoffConfig = DEFAULT_BACKOFF,\n  150    initialSessionId?: string,\n  151    getAccessToken?: () => string | undefined | Promise<string | undefined>,\n  152  ): Promise<void> {\n  153    // Local abort controller so that onSessionDone can stop the poll loop.\n  154    // Linked to the incoming signal so external aborts also work.\n  155    const controller = new AbortController()\n  156    if (signal.aborted) {\n  157      controller.abort()\n  158    } else {",
@@ -1781,7 +1781,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/bridge/bridgeMain.ts:334-620",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/bridge/bridgeMain.ts",
+        "path": "src/bridge/bridgeMain.ts",
         "relativePath": "src/bridge/bridgeMain.ts",
         "start": 334,
         "end": 620,
@@ -1791,7 +1791,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/bridge/sessionRunner.ts:248-560",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/bridge/sessionRunner.ts",
+        "path": "src/bridge/sessionRunner.ts",
         "relativePath": "src/bridge/sessionRunner.ts",
         "start": 248,
         "end": 560,
@@ -1801,7 +1801,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/server/createDirectConnectSession.ts:19-90",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/server/createDirectConnectSession.ts",
+        "path": "src/server/createDirectConnectSession.ts",
         "relativePath": "src/server/createDirectConnectSession.ts",
         "start": 19,
         "end": 90,
@@ -1811,7 +1811,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/server/directConnectManager.ts:40-135",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/server/directConnectManager.ts",
+        "path": "src/server/directConnectManager.ts",
         "relativePath": "src/server/directConnectManager.ts",
         "start": 40,
         "end": 135,
@@ -1821,7 +1821,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "src/remote/RemoteSessionManager.ts:88-335",
-        "path": "/Users/cheng/IdeaProjects/claude-code/src/remote/RemoteSessionManager.ts",
+        "path": "src/remote/RemoteSessionManager.ts",
         "relativePath": "src/remote/RemoteSessionManager.ts",
         "start": 88,
         "end": 335,
@@ -1882,7 +1882,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-003",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-003",
+        "path": "C-003",
         "relativePath": "C-003",
         "start": null,
         "end": null
@@ -1890,7 +1890,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-004",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-004",
+        "path": "C-004",
         "relativePath": "C-004",
         "start": null,
         "end": null
@@ -1898,7 +1898,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-006",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-006",
+        "path": "C-006",
         "relativePath": "C-006",
         "start": null,
         "end": null
@@ -1906,7 +1906,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-007",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-007",
+        "path": "C-007",
         "relativePath": "C-007",
         "start": null,
         "end": null
@@ -1914,7 +1914,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-008",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-008",
+        "path": "C-008",
         "relativePath": "C-008",
         "start": null,
         "end": null
@@ -1936,7 +1936,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-009",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-009",
+        "path": "C-009",
         "relativePath": "C-009",
         "start": null,
         "end": null
@@ -1944,7 +1944,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-010",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-010",
+        "path": "C-010",
         "relativePath": "C-010",
         "start": null,
         "end": null
@@ -1952,7 +1952,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-012",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-012",
+        "path": "C-012",
         "relativePath": "C-012",
         "start": null,
         "end": null
@@ -2023,7 +2023,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-011",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-011",
+        "path": "C-011",
         "relativePath": "C-011",
         "start": null,
         "end": null
@@ -2031,7 +2031,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-012",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-012",
+        "path": "C-012",
         "relativePath": "C-012",
         "start": null,
         "end": null
@@ -2039,7 +2039,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-015",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-015",
+        "path": "C-015",
         "relativePath": "C-015",
         "start": null,
         "end": null
@@ -2061,7 +2061,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-013",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-013",
+        "path": "C-013",
         "relativePath": "C-013",
         "start": null,
         "end": null
@@ -2069,7 +2069,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "C-015",
-        "path": "/Users/cheng/IdeaProjects/claude-code/C-015",
+        "path": "C-015",
         "relativePath": "C-015",
         "start": null,
         "end": null

@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { sanitizePersonalPaths } = require('./privacy-utils');
 
 const root = process.cwd();
 const args = process.argv.slice(2).filter(arg => arg !== '--help');
@@ -17,8 +18,8 @@ const generated = [];
 const NAV_GROUPS = [
   { id: 'overview', label: '总览' },
   { id: 'prep', label: '调研准备' },
-  { id: 'source-architecture', label: '源码与架构' },
-  { id: 'design', label: '设计沉淀' },
+  { id: 'architecture-analysis', label: '架构解析' },
+  { id: 'source-analysis', label: '源码解析' },
   { id: 'evidence', label: '证据' },
   { id: 'support', label: '辅助材料' }
 ];
@@ -42,7 +43,7 @@ function discoverResearchDirs() {
 function buildDashboard(researchDir) {
   const name = path.basename(researchDir);
   const readmePath = path.join(researchDir, 'README.md');
-  const readme = fs.existsSync(readmePath) ? fs.readFileSync(readmePath, 'utf8') : '';
+  const readme = sanitizePersonalPaths(fs.existsSync(readmePath) ? fs.readFileSync(readmePath, 'utf8') : '');
   const title = firstHeading(readme) || titleCase(name);
   const status = readField(readme, 'Status') || 'draft';
   const updated = readField(readme, 'Last Updated') || '';
@@ -52,9 +53,9 @@ function buildDashboard(researchDir) {
   const inventory = readInventory(path.join(researchDir, 'references', 'source-inventory.json'));
   const docs = documentList(researchDir);
   const outPath = path.join(researchDir, 'dashboard.html');
-  const html = renderDashboard({ name, title, status, updated, summary, conclusions, todos, inventory, docs });
+  const html = sanitizePersonalPaths(renderDashboard({ name, title, status, updated, summary, conclusions, todos, inventory, docs }));
   fs.writeFileSync(outPath, html);
-  fs.writeFileSync(path.join(researchDir, 'docs.html'), renderDocsViewer({ name, title, docs, researchDir }));
+  fs.writeFileSync(path.join(researchDir, 'docs.html'), sanitizePersonalPaths(renderDocsViewer({ name, title, docs, researchDir })));
   console.log(`${rel(researchDir)}: wrote dashboard.html`);
   return { name, title, status, updated, summary: shortText(summary, 180), path: rel(outPath), inventory };
 }
@@ -72,19 +73,18 @@ function documentList(researchDir) {
     ['research-brief.md', '调研简报', '目标、范围、问题和验收标准', 'prep'],
     ['external-research.md', '外部资料', '官方、协作和社区资料', 'prep'],
     ['research-questions.md', '研究问题', '待验证问题和验证状态', 'prep'],
-    ['source-map.md', '源码地图', '仓库结构、入口和阅读顺序', 'source-architecture'],
-    ['architecture.md', '架构文档', '模块职责、边界和依赖方向', 'source-architecture'],
-    ['visual/architecture.html', '可视化架构图', '专门的交互式架构图查看器', 'source-architecture'],
-    ['runtime-flows.md', '运行流程', '主链路和关键状态变化', 'source-architecture'],
-    ['key-abstractions.md', '核心抽象', '接口、对象和生命周期', 'source-architecture'],
-    ['extension-points.md', '扩展点', '插件、Hook、Provider 和 Registry', 'source-architecture'],
-    ['design-philosophy.md', '设计思想', '设计取舍和可学习模式', 'design'],
-    ['comparison.md', '横向对比', '相邻框架或同类方案对照', 'design'],
-    ['adoption-notes.md', '学习借鉴', '可学习、需适配和不建议照搬的设计', 'design'],
+    ['architecture.md', '架构文档', '模块职责、边界和依赖方向', 'architecture-analysis'],
+    ['visual/architecture.html', '可视化架构图', '专门的交互式架构图查看器', 'architecture-analysis'],
+    ['runtime-flows.md', '运行流程', '主链路和关键状态变化', 'architecture-analysis'],
+    ['key-abstractions.md', '核心抽象', '接口、对象和生命周期', 'architecture-analysis'],
+    ['extension-points.md', '扩展点', '插件、Hook、Provider 和 Registry', 'architecture-analysis'],
+    ['design-philosophy.md', '设计思想', '设计取舍和可学习模式', 'architecture-analysis'],
+    ['comparison.md', '横向对比', '相邻框架或同类方案对照', 'architecture-analysis'],
+    ['adoption-notes.md', '学习借鉴', '可学习、需适配和不建议照搬的设计', 'architecture-analysis'],
+    ['source-map.md', '源码地图', '仓库结构、入口和阅读顺序', 'source-analysis'],
     ['visual/evidence.html', '证据查看器', '从架构图回到证据解释', 'evidence'],
     ['evidence-index.md', '证据索引', '关键结论和证据锚点', 'evidence'],
-    ['research-review.md', '调研审查', '质量门禁、风险和开放问题', 'support'],
-    ['references/source-inventory.json', '源码清单', '机器生成的过程性源码索引', 'support']
+    ['research-review.md', '调研审查', '质量门禁、风险和开放问题', 'support']
   ];
   return specs.map(([file, label, desc, group]) => ({
     file,
@@ -100,11 +100,13 @@ function renderDashboard(data) {
     'research-brief.md',
     'external-research.md',
     'research-questions.md',
-    'source-map.md',
     'architecture.md',
     'visual/architecture.html',
     'runtime-flows.md',
+    'key-abstractions.md',
+    'extension-points.md',
     'design-philosophy.md',
+    'source-map.md',
     'evidence-index.md'
   ]
     .map(file => data.docs.find(doc => doc.file === file && doc.exists))
@@ -274,7 +276,7 @@ function renderDashboard(data) {
       </div>
     </section>
 
-    <div class="footer">Dashboard 只做阅读导航。Markdown 是知识源，visual/architecture.html 是“源码与架构”下的专门架构图查看器，references/ 放机器生成或过程性材料。</div>
+    <div class="footer">Dashboard 只做阅读导航。Markdown 是知识源，visual/architecture.html 是“架构解析”下的专门架构图查看器，source-map.md 是“源码解析”入口，references/ 保留机器生成或过程性材料但不作为阅读入口。</div>
   </main>
   </div>
 </body>
@@ -309,7 +311,7 @@ function renderIndex(items) {
 <body>
   <main>
     <h1>Tech Research Dashboard</h1>
-    <div class="intro">这里是 research 目录的统一入口。每个框架的 Dashboard 负责导航 Markdown 调研文档、可视化架构图、证据查看器和 references 辅助材料。</div>
+    <div class="intro">这里是 research 目录的统一入口。每个框架的 Dashboard 负责导航 Markdown 调研文档、可视化架构图和证据查看器；references 下的过程性材料保留给脚本和源码解析使用。</div>
     <section class="grid">
       ${items.map(renderIndexCard).join('\n')}
     </section>
@@ -364,6 +366,9 @@ function docHref(file) {
   if (file.endsWith('.md') || file.endsWith('.json')) {
     return `./docs.html?doc=${encodeURIComponent(file)}`;
   }
+  if (file.startsWith('visual/') && file.endsWith('.html')) {
+    return `./docs.html?view=${encodeURIComponent(file)}`;
+  }
   return `./${file}`;
 }
 
@@ -388,7 +393,14 @@ function renderDocsViewer(data) {
     .filter(doc => doc.exists && (doc.file.endsWith('.md') || doc.file.endsWith('.json')))
     .map(doc => ({
       ...doc,
-      content: fs.readFileSync(path.join(data.researchDir, doc.file), 'utf8')
+      content: sanitizePersonalPaths(fs.readFileSync(path.join(data.researchDir, doc.file), 'utf8'))
+    }));
+  const visualDocs = data.docs
+    .filter(doc => doc.exists && doc.file.startsWith('visual/') && doc.file.endsWith('.html'))
+    .map(doc => ({
+      file: doc.file,
+      label: doc.label,
+      desc: doc.desc
     }));
   return `<!doctype html>
 <html lang="zh-CN">
@@ -537,11 +549,44 @@ function renderDocsViewer(data) {
       color: #47556e;
     }
     .missing { color: var(--muted); }
+    .visual-doc {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 12px;
+      height: calc(100vh - 56px);
+      max-width: none;
+    }
+    .visual-head {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-shadow: 0 8px 22px rgba(23, 32, 51, 0.04);
+    }
+    .visual-head h1 {
+      margin: 0 0 4px;
+      font-size: 18px;
+    }
+    .visual-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .visual-frame {
+      width: 100%;
+      height: 100%;
+      min-height: 560px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; }
       aside { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
       main { padding: 18px 14px 36px; }
       .doc { padding: 18px; }
+      .visual-doc { height: auto; }
+      .visual-frame { height: 72vh; min-height: 420px; }
     }
   </style>
 </head>
@@ -558,16 +603,23 @@ function renderDocsViewer(data) {
       label: doc.label,
       content: doc.content
     })))};
+    window.RESEARCH_VISUALS = ${safeScriptJson(visualDocs)};
     const docs = new Map(window.RESEARCH_DOCS.map(doc => [doc.file, doc]));
+    const visuals = new Map(window.RESEARCH_VISUALS.map(doc => [doc.file, doc]));
     const params = new URLSearchParams(window.location.search);
-    const requested = params.get('doc') || 'README.md';
-    const current = docs.get(requested) || window.RESEARCH_DOCS[0];
+    const requestedVisual = params.get('view') || '';
+    const requested = params.get('doc') || (requestedVisual ? '' : 'README.md');
+    const current = requestedVisual
+      ? visuals.get(requestedVisual)
+      : (docs.get(requested) || window.RESEARCH_DOCS[0]);
     const container = document.getElementById('doc');
     document.querySelectorAll('[data-nav-file]').forEach(link => {
       if (current && link.dataset.navFile === current.file) link.classList.add('active');
     });
     if (!current) {
       container.innerHTML = '<p class="missing">没有可展示的文档。</p>';
+    } else if (requestedVisual) {
+      container.outerHTML = renderVisual(current);
     } else {
       container.innerHTML = renderDocument(current);
       renderMermaidBlocks();
@@ -575,6 +627,11 @@ function renderDocsViewer(data) {
         const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
         if (target) target.scrollIntoView();
       }
+    }
+
+    function renderVisual(doc) {
+      const hash = window.location.hash || '';
+      return '<section class="visual-doc"><div class="visual-head"><h1>' + escapeHtml(doc.label) + '</h1><p>' + escapeHtml(doc.desc || '') + '</p></div><iframe class="visual-frame" src="./' + escapeAttr(doc.file + hash) + '" title="' + escapeAttr(doc.label) + '"></iframe></section>';
     }
 
     function renderDocument(doc) {

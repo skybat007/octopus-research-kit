@@ -10,7 +10,7 @@ Last Updated: 2026-05-25
 |---|---|
 | 名称 | OpenClaw |
 | 代码来源 | `https://github.com/openclaw/openclaw.git` |
-| 本地路径 | `/Users/cheng/IdeaProjects/openclaw` |
+| 项目标识 | `openclaw` |
 | 版本/tag/commit | branch `main`, commit `989e53c20d395d3c8bf47efc21fdb9d56e7227b0`, package version `2026.5.19` |
 | 官方文档 | 仓库内 `README.md`, `VISION.md`, `docs/**` |
 | 外部资料范围 | OpenClaw 官方 docs.openclaw.ai、GitHub repository、本地仓库 docs；本轮未采用独立第三方文章 |

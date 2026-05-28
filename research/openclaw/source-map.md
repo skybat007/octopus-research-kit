@@ -7,7 +7,7 @@ Last Updated: 2026-05-25
 
 | 项 | 内容 |
 |---|---|
-| 本地路径 | `/Users/cheng/IdeaProjects/openclaw` |
+| 项目标识 | `openclaw` |
 | branch | `main` |
 | commit | `989e53c20d395d3c8bf47efc21fdb9d56e7227b0` |
 | package version | `2026.5.19` |

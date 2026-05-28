@@ -6,7 +6,7 @@ Last Updated: 2026-05-25
 
 ## 调研摘要
 
-本轮调研对象是 `/Users/cheng/IdeaProjects/claude-code`，它不是 Anthropic 官方仓库，而是一个面向安全研究的 Claude Code source snapshot。仓库 README 说明该快照来自 npm distribution 中公开可访问的 source map，并声明用途是 educational、defensive security 和 software supply-chain analysis。[C-001]
+本轮调研对象是 `claude-code`，它不是 Anthropic 官方仓库，而是一个面向安全研究的 Claude Code source snapshot。仓库 README 说明该快照来自 npm distribution 中公开可访问的 source map，并声明用途是 educational、defensive security 和 software supply-chain analysis。[C-001]
 
 从源码看，Claude Code 的架构核心可以概括为：多入口命令路由 + 统一 setup/trust 边界 + React/Ink REPL + stateful `QueryEngine` + `queryLoop` 编排 + `Tool` contract + 权限流水线 + Skills/Plugins/MCP 扩展面 + session transcript 持久化。它不是一个只围绕单次 prompt 的 CLI，而是把本地交互、headless SDK、remote session、bridge 和 direct-connect 都接入同一套消息、工具和权限语义。[C-003][C-004][C-006][C-007][C-008][C-009][C-010][C-015]
 
@@ -22,7 +22,6 @@ Last Updated: 2026-05-25
 | source-map.md | 仓库结构、入口、核心模块和阅读顺序 |
 | dashboard.html | 浏览器阅读入口，导航 Markdown、可视化图和辅助材料 |
 | docs.html | UTF-8 文档阅读器，避免浏览器直接打开 Markdown 乱码 |
-| references/source-inventory.json | 确定性源码扫描索引，辅助定位入口、测试、示例、构建和配置 |
 | architecture.md | 技术架构、模块边界、依赖方向和核心链路 |
 | visual/architecture.html | HTML 可视化结构图，展示入口路由、Conversation Runtime、Tool、权限流水线和扩展面 |
 | visual/architecture.visual.js | 可视化图数据，承接 Markdown 结论和证据链接 |

@@ -2,13 +2,38 @@
 
 const fs = require('fs');
 const path = require('path');
+const { sanitizePersonalPaths } = require('./privacy-utils');
 
 const root = process.cwd();
-const dirs = process.argv.slice(2);
+const { dirs, sourceRoot } = parseArgs(process.argv.slice(2));
 const targetDirs = dirs.length ? dirs : discoverResearchDirs();
 
+if (sourceRoot && targetDirs.length !== 1) {
+  console.error('--source-root can only be used with one research directory.');
+  process.exit(1);
+}
+
 for (const dir of targetDirs) {
-  buildForDir(path.resolve(root, dir));
+  buildForDir(path.resolve(root, dir), { sourceRoot });
+}
+
+function parseArgs(rawArgs) {
+  const dirs = [];
+  let sourceRoot = '';
+  for (let i = 0; i < rawArgs.length; i += 1) {
+    const arg = rawArgs[i];
+    if (arg.startsWith('--source-root=')) {
+      sourceRoot = arg.slice('--source-root='.length);
+      continue;
+    }
+    if (arg === '--source-root') {
+      sourceRoot = rawArgs[i + 1] || '';
+      i += 1;
+      continue;
+    }
+    dirs.push(arg);
+  }
+  return { dirs, sourceRoot };
 }
 
 function discoverResearchDirs() {
@@ -19,7 +44,7 @@ function discoverResearchDirs() {
     .filter(dir => fs.existsSync(path.join(root, dir, 'evidence-index.md')));
 }
 
-function buildForDir(researchDir) {
+function buildForDir(researchDir, options = {}) {
   const evidencePath = path.join(researchDir, 'evidence-index.md');
   const visualDir = path.join(researchDir, 'visual');
   const archPath = path.join(visualDir, 'architecture.visual.js');
@@ -33,7 +58,7 @@ function buildForDir(researchDir) {
   }
 
   const md = fs.existsSync(evidencePath) ? fs.readFileSync(evidencePath, 'utf8') : '';
-  const projectRoot = readProjectRoot(md) || researchDir;
+  const projectRoot = options.sourceRoot || readProjectRoot(md) || researchDir;
   const evidenceItems = parseEvidenceMarkdown(md);
   const graphRefs = fs.existsSync(archPath) ? collectGraphRefs(archPath) : new Map();
   const sourceMeta = buildSourceMeta(evidenceItems, projectRoot);
@@ -55,10 +80,10 @@ function buildForDir(researchDir) {
     title: `${name} 证据解释`,
     description: '从架构图回到证据解释：展示架构语境、证据结论、源码/文档片段和原始索引位置。',
     source: '../evidence-index.md',
-    projectRoot
+    projectRoot: sanitizePersonalPaths(projectRoot)
   };
   const out = `window.EVIDENCE_META = ${JSON.stringify(meta, null, 2)};\n\nwindow.EVIDENCE_ITEMS = ${JSON.stringify(enriched, null, 2)};\n`;
-  fs.writeFileSync(dataOut, out);
+  fs.writeFileSync(dataOut, sanitizePersonalPaths(out));
   console.log(`${path.relative(root, researchDir)}: ${enriched.length} evidence items`);
 }
 

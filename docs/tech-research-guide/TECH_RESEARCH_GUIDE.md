@@ -82,7 +82,7 @@
 
 调研结论必须注明版本来源：
 
-- 本地路径
+- 项目标识
 - git remote
 - branch、tag 或 commit
 - 依赖版本
@@ -216,12 +216,12 @@ research/<framework-name>/
 生成或更新 `references/source-inventory.json`：
 
 ```bash
-node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name>
+node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name> --source-root /absolute/path/to/source
 ```
 
-`references/source-inventory.json` 是从本地源码仓库确定性扫描出来的结构化索引，用于辅助阅读和后续校验。它属于过程性/机器生成材料，默认放在 `references/`，不作为一级阅读入口。它可以记录：
+`references/source-inventory.json` 是从本地源码仓库确定性扫描出来的结构化索引，用于辅助阅读和后续校验。它属于过程性/机器生成材料，默认放在 `references/`，不作为一级阅读入口。生成时可以通过 `--source-root` 传入本机源码路径，但输出文件和 Markdown 文档只保留项目名、仓库内相对路径和版本信息，不写入个人本机绝对路径。它可以记录：
 
-- 本地源码路径、remote、branch、commit、调研版本提示
+- 项目标识、remote、branch、commit、调研版本提示
 - 文件数量、主要语言、顶层目录摘要
 - 构建文件、包文件、入口候选、测试、示例、文档、配置和大文件
 - 对 `source-map.md`、`runtime-flows.md` 和 `evidence-index.md` 有帮助的候选入口
@@ -252,7 +252,7 @@ node docs/tech-research-guide/scripts/build-source-inventory.js research/<framew
 node docs/tech-research-guide/scripts/build-research-dashboard.js research/<framework-name>
 ```
 
-Dashboard 是阅读入口，不是新的知识源。它负责把 README、Markdown 文档、可视化架构图、证据查看器和 `references/` 辅助材料组织成一个可浏览的入口页。`docs.html` 是 Dashboard 使用的 UTF-8 文档阅读器，用来避免浏览器直接打开 `.md` 时出现编码问题。
+Dashboard 是阅读入口，不是新的知识源。它负责把 README、Markdown 文档、可视化架构图和证据查看器组织成一个可浏览的入口页。`docs.html` 是 Dashboard 使用的 UTF-8 文档阅读器，用来避免浏览器直接打开 `.md` 时出现编码问题。`references/source-inventory.json` 这类过程性材料保留给脚本、Dashboard 元信息和 `source-map.md` 使用，不作为用户阅读入口。
 
 使用规则：
 
@@ -260,8 +260,11 @@ Dashboard 是阅读入口，不是新的知识源。它负责把 README、Markdo
 - Dashboard 中的 Markdown 文档链接必须指向 `docs.html?doc=<file>`，不要直接打开 `.md`
 - Dashboard 和 `docs.html` 使用同一套左侧导航，避免入口数量和分组不一致
 - `docs.html` 应渲染 Markdown 中的 Mermaid 代码块；当 Mermaid 脚本不可用时保留原始代码块作为降级展示
-- `visual/architecture.html` 仍然作为专门的架构图查看器保留，并归入“源码与架构”
+- `visual/architecture.html` 仍然作为专门的架构图查看器保留，并归入“架构解析”
+- `design-philosophy.md`、`comparison.md`、`adoption-notes.md` 归入“架构解析”，不再单独作为“设计沉淀”一级菜单
+- `source-map.md` 单独归入“源码解析”，并放在“架构解析”之后
 - `visual/evidence.html` 归入“证据”
+- `references/source-inventory.json` 保留在 `references/`，但不要放进 Dashboard 左侧导航或 README 文件导航
 - 旧版 `visual-architecture.html` 可作为兼容跳转页保留，不再作为新规范主入口
 - `research/index.html` 可以作为全部框架调研的总入口，但只保留各框架 `dashboard.html` 入口
 ### 3.8 可视化架构图

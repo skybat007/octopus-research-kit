@@ -145,11 +145,44 @@
       color: #47556e;
     }
     .missing { color: var(--muted); }
+    .visual-doc {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 12px;
+      height: calc(100vh - 56px);
+      max-width: none;
+    }
+    .visual-head {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-shadow: 0 8px 22px rgba(23, 32, 51, 0.04);
+    }
+    .visual-head h1 {
+      margin: 0 0 4px;
+      font-size: 18px;
+    }
+    .visual-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .visual-frame {
+      width: 100%;
+      height: 100%;
+      min-height: 560px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; }
       aside { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
       main { padding: 18px 14px 36px; }
       .doc { padding: 18px; }
+      .visual-doc { height: auto; }
+      .visual-frame { height: 72vh; min-height: 420px; }
     }
   </style>
 </head>
@@ -170,29 +203,28 @@
 <a class="nav-link" data-nav-file="research-questions.md" href="./docs.html?doc=research-questions.md" title="待验证问题和验证状态">研究问题</a>
       </div>
 <div class="nav-group">
-        <div class="nav-group-title">源码与架构</div>
-        <a class="nav-link" data-nav-file="source-map.md" href="./docs.html?doc=source-map.md" title="仓库结构、入口和阅读顺序">源码地图</a>
-<a class="nav-link" data-nav-file="architecture.md" href="./docs.html?doc=architecture.md" title="模块职责、边界和依赖方向">架构文档</a>
-<a class="nav-link" data-nav-file="visual/architecture.html" href="./visual/architecture.html" title="专门的交互式架构图查看器">可视化架构图</a>
+        <div class="nav-group-title">架构解析</div>
+        <a class="nav-link" data-nav-file="architecture.md" href="./docs.html?doc=architecture.md" title="模块职责、边界和依赖方向">架构文档</a>
+<a class="nav-link" data-nav-file="visual/architecture.html" href="./docs.html?view=visual%2Farchitecture.html" title="专门的交互式架构图查看器">可视化架构图</a>
 <a class="nav-link" data-nav-file="runtime-flows.md" href="./docs.html?doc=runtime-flows.md" title="主链路和关键状态变化">运行流程</a>
 <a class="nav-link" data-nav-file="key-abstractions.md" href="./docs.html?doc=key-abstractions.md" title="接口、对象和生命周期">核心抽象</a>
 <a class="nav-link" data-nav-file="extension-points.md" href="./docs.html?doc=extension-points.md" title="插件、Hook、Provider 和 Registry">扩展点</a>
-      </div>
-<div class="nav-group">
-        <div class="nav-group-title">设计沉淀</div>
-        <a class="nav-link" data-nav-file="design-philosophy.md" href="./docs.html?doc=design-philosophy.md" title="设计取舍和可学习模式">设计思想</a>
+<a class="nav-link" data-nav-file="design-philosophy.md" href="./docs.html?doc=design-philosophy.md" title="设计取舍和可学习模式">设计思想</a>
 <a class="nav-link" data-nav-file="comparison.md" href="./docs.html?doc=comparison.md" title="相邻框架或同类方案对照">横向对比</a>
 <a class="nav-link" data-nav-file="adoption-notes.md" href="./docs.html?doc=adoption-notes.md" title="可学习、需适配和不建议照搬的设计">学习借鉴</a>
       </div>
 <div class="nav-group">
+        <div class="nav-group-title">源码解析</div>
+        <a class="nav-link" data-nav-file="source-map.md" href="./docs.html?doc=source-map.md" title="仓库结构、入口和阅读顺序">源码地图</a>
+      </div>
+<div class="nav-group">
         <div class="nav-group-title">证据</div>
-        <a class="nav-link" data-nav-file="visual/evidence.html" href="./visual/evidence.html" title="从架构图回到证据解释">证据查看器</a>
+        <a class="nav-link" data-nav-file="visual/evidence.html" href="./docs.html?view=visual%2Fevidence.html" title="从架构图回到证据解释">证据查看器</a>
 <a class="nav-link" data-nav-file="evidence-index.md" href="./docs.html?doc=evidence-index.md" title="关键结论和证据锚点">证据索引</a>
       </div>
 <div class="nav-group">
         <div class="nav-group-title">辅助材料</div>
         <a class="nav-link" data-nav-file="research-review.md" href="./docs.html?doc=research-review.md" title="质量门禁、风险和开放问题">调研审查</a>
-<a class="nav-link" data-nav-file="references/source-inventory.json" href="./docs.html?doc=references%2Fsource-inventory.json" title="机器生成的过程性源码索引">源码清单</a>
       </div>
     </aside>
     <main>
@@ -200,17 +232,24 @@
     </main>
   </div>
   <script>
-    window.RESEARCH_DOCS = [{"file":"README.md","label":"总览文档","content":"# 示例框架技术调研\n\nStatus: example\nOwner:\nLast Updated: YYYY-MM-DD\n\n本目录是一次开源框架技术调研的示例结构。开始真实调研时，可以复制本目录或直接使用 `docs/tech-research-guide/templates/` 下的模板。\n\n## 文件导航\n\n| 文件 | 说明 |\n|---|---|\n| [research-brief.md](research-brief.md) | 调研目标、范围、问题和交付物 |\n| [external-research.md](external-research.md) | 官方资料、协作资料、社区资料和待验证观点 |\n| [research-questions.md](research-questions.md) | 由外部资料和用户目标生成的源码验证问题 |\n| [source-map.md](source-map.md) | 仓库结构、模块边界、入口和阅读顺序 |\n| [dashboard.html](dashboard.html) | 浏览器阅读入口，导航 Markdown、可视化图和辅助材料 |\n| [docs.html](docs.html) | UTF-8 文档阅读器，避免浏览器直接打开 Markdown 乱码 |\n| [references/source-inventory.json](references/source-inventory.json) | 确定性源码扫描索引，有本地源码时生成 |\n| [architecture.md](architecture.md) | 技术架构、核心抽象、依赖方向和扩展机制 |\n| [visual/architecture.html](visual/architecture.html) | HTML 可视化结构图，适合表达 Markdown 图不清晰的分层关系 |\n| [visual/architecture.visual.js](visual/architecture.visual.js) | 可视化图数据，承接 Markdown 结论和证据链接 |\n| [visual/evidence.html](visual/evidence.html) | 可点击证据解释页，展示架构语境和源码/文档片段 |\n| [visual/evidence.visual.js](visual/evidence.visual.js) | 从 evidence-index.md 和 architecture.visual.js 抽取的证据解释数据 |\n| [key-abstractions.md](key-abstractions.md) | 核心抽象、接口、数据结构和协作关系 |\n| [extension-points.md](extension-points.md) | 插件、Hook、Registry、Provider 等扩展机制 |\n| [runtime-flows.md](runtime-flows.md) | 主流程追踪和关键状态变化 |\n| [design-philosophy.md](design-philosophy.md) | 设计思想、取舍和非显而易见的设计 |\n| [comparison.md](comparison.md) | 与同类框架或历史版本的横向对比 |\n| [adoption-notes.md](adoption-notes.md) | 学习借鉴、适用前提和误读风险说明 |\n| [evidence-index.md](evidence-index.md) | 关键结论的证据索引 |\n| [research-review.md](research-review.md) | 调研质量门禁和审查记录 |\n\n## 使用建议\n\n1. 将 `example-framework` 改成真实框架名。\n2. 先补全 `research-brief.md`。\n3. 有本地源码时先生成 `references/source-inventory.json`。\n4. 再从源码地图开始推进。\n5. 所有关键结论同步写入 `evidence-index.md`。\n"},{"file":"research-brief.md","label":"调研简报","content":"# 调研简报\n\nStatus: draft\nOwner:\nLast Updated: YYYY-MM-DD\n\n## 1. 研究对象\n\n| 项 | 内容 |\n|---|---|\n| 名称 | Example Framework |\n| 代码来源 | 待填写 |\n| 本地路径 | 待填写 |\n| 版本/tag/commit | 待填写 |\n| 官方文档 | 待填写 |\n| 调研日期 | 待填写 |\n\n## 2. 背景和动机\n\n待填写：为什么研究这个框架，它与你当前学习目标、架构理解或技术选型判断有什么关系。\n\n## 3. 研究目标\n\n- OBJ-001：理解该框架的核心架构和模块边界。\n- OBJ-002：追踪一条关键运行流程，并定位核心抽象如何协作。\n- OBJ-003：提炼值得学习、借鉴和不宜照搬的设计模式。\n\n## 4. 核心研究问题\n\n| 编号 | 问题 | 优先级 | 预期输出 |\n|---|---|---|---|\n| Q-001 | 这个框架的核心抽象是什么？ | P0 | architecture.md |\n| Q-002 | 一个典型用户调用如何进入核心执行流程？ | P0 | runtime-flows.md |\n| Q-003 | 它的扩展机制如何设计？ | P1 | architecture.md |\n| Q-004 | 哪些设计值得学习、借鉴或不宜照搬？ | P1 | adoption-notes.md |\n\n## 5. 范围\n\n### 5.1 本次研究范围\n\n- 待填写\n\n### 5.2 不做范围\n\n- 待填写\n\n### 5.3 待确认\n\n- 待填写\n\n## 6. 适用场景\n\n- 待填写：学习架构、横向对比、技术选型或定位某条运行链路。\n\n## 7. 后续如何用于学习借鉴\n\n- 待填写：说明本次调研能帮助你理解哪些设计问题、判断哪些适用前提、避免哪些误读。\n\n## 8. 预期交付物\n\n| 交付物 | 文件 | 说明 |\n|---|---|---|\n| 源码地图 | source-map.md | 仓库结构、入口、核心模块和阅读顺序 |\n| 技术架构 | architecture.md | 模块边界、核心抽象、依赖方向和扩展点 |\n| 核心抽象 | key-abstractions.md | 关键接口、数据结构、生命周期对象和协作关系 |\n| 扩展点 | extension-points.md | 插件、Hook、Registry、Provider 等扩展机制 |\n| 主流程追踪 | runtime-flows.md | 从入口到核心执行的源码链路 |\n| 设计思想 | design-philosophy.md | 设计原则、取舍和非显而易见的设计 |\n| 学习借鉴 | adoption-notes.md | 可直接学习、需结合语境后借鉴、不建议照搬 |\n| 证据索引 | evidence-index.md | 关键结论和源码证据 |\n| 调研审查 | research-review.md | 质量门禁、证据完整性和开放问题 |\n\n## 9. 验收标准\n\n| 编号 | 标准 | 验收方式 |\n|---|---|---|\n| AC-001 | 关键结论均有源码、文档或测试证据 | 检查 evidence-index.md |\n| AC-002 | 至少完成一条主流程追踪 | 检查 runtime-flows.md |\n| AC-003 | 学习借鉴能说明适用前提、约束和误读风险 | 检查 adoption-notes.md |\n"},{"file":"external-research.md","label":"外部资料","content":"# 外部资料调研\n\n本文件是示例占位。真实调研时请记录官方文档、README、Release Notes、Issue、PR、Discussion、社区文章和第三方分析，并标记可信度与需要源码验证的观点。\n\n| 资料 | 来源 | 主要观点 | 可信度 | 是否需要源码验证 |\n|---|---|---|---|---|\n| 示例官方文档 |  |  | A | 是 |\n"},{"file":"research-questions.md","label":"研究问题","content":"# 研究问题\n\n本文件是示例占位。真实调研时请把外部资料、仓库文档和用户目标中的关键说法转成可验证问题。\n\n| 编号 | 问题 | 来源 | 重要性 | 验证状态 |\n|---|---|---|---|---|\n| RQ-TPL-001 | 这个框架的核心入口、运行主链路和扩展点分别是什么？ | 调研目标 | 高 | 待验证 |\n"},{"file":"source-map.md","label":"源码地图","content":"# 源码地图\n\n待调研后填写。参考模板：\n\n- [source-map-template.md](../../docs/tech-research-guide/templates/source-map-template.md)\n"},{"file":"architecture.md","label":"架构文档","content":"# 技术架构\n\n待调研后填写。参考模板：\n\n- [architecture-template.md](../../docs/tech-research-guide/templates/architecture-template.md)\n- [visual/architecture.html](./visual/architecture.html)\n- [visual/architecture.visual.js](./visual/architecture.visual.js)\n- [visual/evidence.html](./visual/evidence.html)\n- [visual/evidence.visual.js](./visual/evidence.visual.js)\n"},{"file":"runtime-flows.md","label":"运行流程","content":"# 运行流程\n\n待调研后填写。参考模板：\n\n- [runtime-flow-template.md](../../docs/tech-research-guide/templates/runtime-flow-template.md)\n"},{"file":"key-abstractions.md","label":"核心抽象","content":"# 核心抽象\n\n待调研后填写。参考模板：\n\n- [key-abstractions-template.md](../../docs/tech-research-guide/templates/key-abstractions-template.md)\n"},{"file":"extension-points.md","label":"扩展点","content":"# 扩展点\n\n待调研后填写。参考模板：\n\n- [extension-points-template.md](../../docs/tech-research-guide/templates/extension-points-template.md)\n"},{"file":"design-philosophy.md","label":"设计思想","content":"# 设计思想\n\n待调研后填写。参考模板：\n\n- [design-philosophy-template.md](../../docs/tech-research-guide/templates/design-philosophy-template.md)\n"},{"file":"comparison.md","label":"横向对比","content":"# 横向对比\n\n待调研后填写。参考模板：\n\n- [comparison-template.md](../../docs/tech-research-guide/templates/comparison-template.md)\n"},{"file":"adoption-notes.md","label":"学习借鉴","content":"# 学习借鉴笔记\n\n待调研后填写。参考模板：\n\n- [adoption-notes-template.md](../../docs/tech-research-guide/templates/adoption-notes-template.md)\n"},{"file":"evidence-index.md","label":"证据索引","content":"# 证据索引\n\n本文件是示例结构，用于说明可视化图中的 `TPL-*` 证据编号应该能回到证据索引。真实调研时请替换为目标框架的官方资料、源码、测试、配置、示例或推断链路。\n\n## 1. 模板证据\n\n| 结论编号 | 结论 | 证据类型 | 位置 | 置信度 | 备注 |\n|---|---|---|---|---|---|\n| \u003ca id=\"TPL-001\"\u003e\u003c/a\u003eTPL-001 | 调研应先定义目标、范围、问题和交付物 | repository doc fact | `research-brief.md` | 高 | 模板约束 |\n| \u003ca id=\"TPL-002\"\u003e\u003c/a\u003eTPL-002 | 外部资料调研应区分官方资料、协作资料和社区资料 | repository doc fact | `external-research.md` | 高 | 模板约束 |\n| \u003ca id=\"TPL-003\"\u003e\u003c/a\u003eTPL-003 | 外部观点和用户目标应转成可源码验证的问题 | repository doc fact | `research-questions.md` | 高 | 模板约束 |\n| \u003ca id=\"TPL-004\"\u003e\u003c/a\u003eTPL-004 | 源码地图用于定位入口、模块边界和阅读顺序 | repository doc fact | `source-map.md`, `references/source-inventory.json` | 高 | 模板约束 |\n| \u003ca id=\"TPL-005\"\u003e\u003c/a\u003eTPL-005 | 架构和运行流程应沉淀模块关系、依赖方向和主链路 | repository doc fact | `architecture.md`, `runtime-flows.md` | 高 | 模板约束 |\n| \u003ca id=\"TPL-006\"\u003e\u003c/a\u003eTPL-006 | 核心抽象和扩展点应单独记录 | repository doc fact | `key-abstractions.md`, `extension-points.md` | 高 | 模板约束 |\n| \u003ca id=\"TPL-007\"\u003e\u003c/a\u003eTPL-007 | 关键结论应通过证据索引和调研审查保持可追溯 | repository doc fact | `evidence-index.md`, `research-review.md` | 高 | 模板约束 |\n"},{"file":"research-review.md","label":"调研审查","content":"# 调研审查\n\n待调研后填写。参考模板：\n\n- [research-review-template.md](../../docs/tech-research-guide/templates/research-review-template.md)\n- [dashboard.html](./dashboard.html)\n- [visual/architecture.html](./visual/architecture.html)\n- [visual/architecture.visual.js](./visual/architecture.visual.js)\n- [visual/evidence.html](./visual/evidence.html)\n- [visual/evidence.visual.js](./visual/evidence.visual.js)\n"},{"file":"references/source-inventory.json","label":"源码清单","content":"{\n  \"schemaVersion\": 1,\n  \"generatedAt\": \"2026-05-28T08:08:40.064Z\",\n  \"researchName\": \"example-framework\",\n  \"researchDir\": \"research/example-framework\",\n  \"status\": \"missing-project-root\",\n  \"projectRoot\": \"\",\n  \"remote\": \"\",\n  \"versionHint\": \"\",\n  \"message\": \"No readable local project root was found in evidence-index.md.\"\n}\n"}];
+    window.RESEARCH_DOCS = [{"file":"README.md","label":"总览文档","content":"# 示例框架技术调研\n\nStatus: example\nOwner:\nLast Updated: YYYY-MM-DD\n\n本目录是一次开源框架技术调研的示例结构。开始真实调研时，可以复制本目录或直接使用 `docs/tech-research-guide/templates/` 下的模板。\n\n## 文件导航\n\n| 文件 | 说明 |\n|---|---|\n| [research-brief.md](research-brief.md) | 调研目标、范围、问题和交付物 |\n| [external-research.md](external-research.md) | 官方资料、协作资料、社区资料和待验证观点 |\n| [research-questions.md](research-questions.md) | 由外部资料和用户目标生成的源码验证问题 |\n| [source-map.md](source-map.md) | 仓库结构、模块边界、入口和阅读顺序 |\n| [dashboard.html](dashboard.html) | 浏览器阅读入口，导航 Markdown、可视化图和辅助材料 |\n| [docs.html](docs.html) | UTF-8 文档阅读器，避免浏览器直接打开 Markdown 乱码 |\n| [architecture.md](architecture.md) | 技术架构、核心抽象、依赖方向和扩展机制 |\n| [visual/architecture.html](visual/architecture.html) | HTML 可视化结构图，适合表达 Markdown 图不清晰的分层关系 |\n| [visual/architecture.visual.js](visual/architecture.visual.js) | 可视化图数据，承接 Markdown 结论和证据链接 |\n| [visual/evidence.html](visual/evidence.html) | 可点击证据解释页，展示架构语境和源码/文档片段 |\n| [visual/evidence.visual.js](visual/evidence.visual.js) | 从 evidence-index.md 和 architecture.visual.js 抽取的证据解释数据 |\n| [key-abstractions.md](key-abstractions.md) | 核心抽象、接口、数据结构和协作关系 |\n| [extension-points.md](extension-points.md) | 插件、Hook、Registry、Provider 等扩展机制 |\n| [runtime-flows.md](runtime-flows.md) | 主流程追踪和关键状态变化 |\n| [design-philosophy.md](design-philosophy.md) | 设计思想、取舍和非显而易见的设计 |\n| [comparison.md](comparison.md) | 与同类框架或历史版本的横向对比 |\n| [adoption-notes.md](adoption-notes.md) | 学习借鉴、适用前提和误读风险说明 |\n| [evidence-index.md](evidence-index.md) | 关键结论的证据索引 |\n| [research-review.md](research-review.md) | 调研质量门禁和审查记录 |\n\n## 使用建议\n\n1. 将 `example-framework` 改成真实框架名。\n2. 先补全 `research-brief.md`。\n3. 有本地源码时先生成 `references/source-inventory.json`。\n4. 再从源码地图开始推进。\n5. 所有关键结论同步写入 `evidence-index.md`。\n"},{"file":"research-brief.md","label":"调研简报","content":"# 调研简报\n\nStatus: draft\nOwner:\nLast Updated: YYYY-MM-DD\n\n## 1. 研究对象\n\n| 项 | 内容 |\n|---|---|\n| 名称 | Example Framework |\n| 代码来源 | 待填写 |\n| 项目标识 | 待填写 |\n| 版本/tag/commit | 待填写 |\n| 官方文档 | 待填写 |\n| 调研日期 | 待填写 |\n\n## 2. 背景和动机\n\n待填写：为什么研究这个框架，它与你当前学习目标、架构理解或技术选型判断有什么关系。\n\n## 3. 研究目标\n\n- OBJ-001：理解该框架的核心架构和模块边界。\n- OBJ-002：追踪一条关键运行流程，并定位核心抽象如何协作。\n- OBJ-003：提炼值得学习、借鉴和不宜照搬的设计模式。\n\n## 4. 核心研究问题\n\n| 编号 | 问题 | 优先级 | 预期输出 |\n|---|---|---|---|\n| Q-001 | 这个框架的核心抽象是什么？ | P0 | architecture.md |\n| Q-002 | 一个典型用户调用如何进入核心执行流程？ | P0 | runtime-flows.md |\n| Q-003 | 它的扩展机制如何设计？ | P1 | architecture.md |\n| Q-004 | 哪些设计值得学习、借鉴或不宜照搬？ | P1 | adoption-notes.md |\n\n## 5. 范围\n\n### 5.1 本次研究范围\n\n- 待填写\n\n### 5.2 不做范围\n\n- 待填写\n\n### 5.3 待确认\n\n- 待填写\n\n## 6. 适用场景\n\n- 待填写：学习架构、横向对比、技术选型或定位某条运行链路。\n\n## 7. 后续如何用于学习借鉴\n\n- 待填写：说明本次调研能帮助你理解哪些设计问题、判断哪些适用前提、避免哪些误读。\n\n## 8. 预期交付物\n\n| 交付物 | 文件 | 说明 |\n|---|---|---|\n| 源码地图 | source-map.md | 仓库结构、入口、核心模块和阅读顺序 |\n| 技术架构 | architecture.md | 模块边界、核心抽象、依赖方向和扩展点 |\n| 核心抽象 | key-abstractions.md | 关键接口、数据结构、生命周期对象和协作关系 |\n| 扩展点 | extension-points.md | 插件、Hook、Registry、Provider 等扩展机制 |\n| 主流程追踪 | runtime-flows.md | 从入口到核心执行的源码链路 |\n| 设计思想 | design-philosophy.md | 设计原则、取舍和非显而易见的设计 |\n| 学习借鉴 | adoption-notes.md | 可直接学习、需结合语境后借鉴、不建议照搬 |\n| 证据索引 | evidence-index.md | 关键结论和源码证据 |\n| 调研审查 | research-review.md | 质量门禁、证据完整性和开放问题 |\n\n## 9. 验收标准\n\n| 编号 | 标准 | 验收方式 |\n|---|---|---|\n| AC-001 | 关键结论均有源码、文档或测试证据 | 检查 evidence-index.md |\n| AC-002 | 至少完成一条主流程追踪 | 检查 runtime-flows.md |\n| AC-003 | 学习借鉴能说明适用前提、约束和误读风险 | 检查 adoption-notes.md |\n"},{"file":"external-research.md","label":"外部资料","content":"# 外部资料调研\n\n本文件是示例占位。真实调研时请记录官方文档、README、Release Notes、Issue、PR、Discussion、社区文章和第三方分析，并标记可信度与需要源码验证的观点。\n\n| 资料 | 来源 | 主要观点 | 可信度 | 是否需要源码验证 |\n|---|---|---|---|---|\n| 示例官方文档 |  |  | A | 是 |\n"},{"file":"research-questions.md","label":"研究问题","content":"# 研究问题\n\n本文件是示例占位。真实调研时请把外部资料、仓库文档和用户目标中的关键说法转成可验证问题。\n\n| 编号 | 问题 | 来源 | 重要性 | 验证状态 |\n|---|---|---|---|---|\n| RQ-TPL-001 | 这个框架的核心入口、运行主链路和扩展点分别是什么？ | 调研目标 | 高 | 待验证 |\n"},{"file":"architecture.md","label":"架构文档","content":"# 技术架构\n\n待调研后填写。参考模板：\n\n- [architecture-template.md](../../docs/tech-research-guide/templates/architecture-template.md)\n- [visual/architecture.html](./visual/architecture.html)\n- [visual/architecture.visual.js](./visual/architecture.visual.js)\n- [visual/evidence.html](./visual/evidence.html)\n- [visual/evidence.visual.js](./visual/evidence.visual.js)\n"},{"file":"runtime-flows.md","label":"运行流程","content":"# 运行流程\n\n待调研后填写。参考模板：\n\n- [runtime-flow-template.md](../../docs/tech-research-guide/templates/runtime-flow-template.md)\n"},{"file":"key-abstractions.md","label":"核心抽象","content":"# 核心抽象\n\n待调研后填写。参考模板：\n\n- [key-abstractions-template.md](../../docs/tech-research-guide/templates/key-abstractions-template.md)\n"},{"file":"extension-points.md","label":"扩展点","content":"# 扩展点\n\n待调研后填写。参考模板：\n\n- [extension-points-template.md](../../docs/tech-research-guide/templates/extension-points-template.md)\n"},{"file":"design-philosophy.md","label":"设计思想","content":"# 设计思想\n\n待调研后填写。参考模板：\n\n- [design-philosophy-template.md](../../docs/tech-research-guide/templates/design-philosophy-template.md)\n"},{"file":"comparison.md","label":"横向对比","content":"# 横向对比\n\n待调研后填写。参考模板：\n\n- [comparison-template.md](../../docs/tech-research-guide/templates/comparison-template.md)\n"},{"file":"adoption-notes.md","label":"学习借鉴","content":"# 学习借鉴笔记\n\n待调研后填写。参考模板：\n\n- [adoption-notes-template.md](../../docs/tech-research-guide/templates/adoption-notes-template.md)\n"},{"file":"source-map.md","label":"源码地图","content":"# 源码地图\n\n待调研后填写。参考模板：\n\n- [source-map-template.md](../../docs/tech-research-guide/templates/source-map-template.md)\n"},{"file":"evidence-index.md","label":"证据索引","content":"# 证据索引\n\n本文件是示例结构，用于说明可视化图中的 `TPL-*` 证据编号应该能回到证据索引。真实调研时请替换为目标框架的官方资料、源码、测试、配置、示例或推断链路。\n\n## 1. 模板证据\n\n| 结论编号 | 结论 | 证据类型 | 位置 | 置信度 | 备注 |\n|---|---|---|---|---|---|\n| \u003ca id=\"TPL-001\"\u003e\u003c/a\u003eTPL-001 | 调研应先定义目标、范围、问题和交付物 | repository doc fact | `research-brief.md` | 高 | 模板约束 |\n| \u003ca id=\"TPL-002\"\u003e\u003c/a\u003eTPL-002 | 外部资料调研应区分官方资料、协作资料和社区资料 | repository doc fact | `external-research.md` | 高 | 模板约束 |\n| \u003ca id=\"TPL-003\"\u003e\u003c/a\u003eTPL-003 | 外部观点和用户目标应转成可源码验证的问题 | repository doc fact | `research-questions.md` | 高 | 模板约束 |\n| \u003ca id=\"TPL-004\"\u003e\u003c/a\u003eTPL-004 | 源码地图用于定位入口、模块边界和阅读顺序 | repository doc fact | `source-map.md`, `references/source-inventory.json` | 高 | 模板约束 |\n| \u003ca id=\"TPL-005\"\u003e\u003c/a\u003eTPL-005 | 架构和运行流程应沉淀模块关系、依赖方向和主链路 | repository doc fact | `architecture.md`, `runtime-flows.md` | 高 | 模板约束 |\n| \u003ca id=\"TPL-006\"\u003e\u003c/a\u003eTPL-006 | 核心抽象和扩展点应单独记录 | repository doc fact | `key-abstractions.md`, `extension-points.md` | 高 | 模板约束 |\n| \u003ca id=\"TPL-007\"\u003e\u003c/a\u003eTPL-007 | 关键结论应通过证据索引和调研审查保持可追溯 | repository doc fact | `evidence-index.md`, `research-review.md` | 高 | 模板约束 |\n"},{"file":"research-review.md","label":"调研审查","content":"# 调研审查\n\n待调研后填写。参考模板：\n\n- [research-review-template.md](../../docs/tech-research-guide/templates/research-review-template.md)\n- [dashboard.html](./dashboard.html)\n- [visual/architecture.html](./visual/architecture.html)\n- [visual/architecture.visual.js](./visual/architecture.visual.js)\n- [visual/evidence.html](./visual/evidence.html)\n- [visual/evidence.visual.js](./visual/evidence.visual.js)\n"}];
+    window.RESEARCH_VISUALS = [{"file":"visual/architecture.html","label":"可视化架构图","desc":"专门的交互式架构图查看器"},{"file":"visual/evidence.html","label":"证据查看器","desc":"从架构图回到证据解释"}];
     const docs = new Map(window.RESEARCH_DOCS.map(doc => [doc.file, doc]));
+    const visuals = new Map(window.RESEARCH_VISUALS.map(doc => [doc.file, doc]));
     const params = new URLSearchParams(window.location.search);
-    const requested = params.get('doc') || 'README.md';
-    const current = docs.get(requested) || window.RESEARCH_DOCS[0];
+    const requestedVisual = params.get('view') || '';
+    const requested = params.get('doc') || (requestedVisual ? '' : 'README.md');
+    const current = requestedVisual
+      ? visuals.get(requestedVisual)
+      : (docs.get(requested) || window.RESEARCH_DOCS[0]);
     const container = document.getElementById('doc');
     document.querySelectorAll('[data-nav-file]').forEach(link => {
       if (current && link.dataset.navFile === current.file) link.classList.add('active');
     });
     if (!current) {
       container.innerHTML = '<p class="missing">没有可展示的文档。</p>';
+    } else if (requestedVisual) {
+      container.outerHTML = renderVisual(current);
     } else {
       container.innerHTML = renderDocument(current);
       renderMermaidBlocks();
@@ -218,6 +257,11 @@
         const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
         if (target) target.scrollIntoView();
       }
+    }
+
+    function renderVisual(doc) {
+      const hash = window.location.hash || '';
+      return '<section class="visual-doc"><div class="visual-head"><h1>' + escapeHtml(doc.label) + '</h1><p>' + escapeHtml(doc.desc || '') + '</p></div><iframe class="visual-frame" src="./' + escapeAttr(doc.file + hash) + '" title="' + escapeAttr(doc.label) + '"></iframe></section>';
     }
 
     function renderDocument(doc) {

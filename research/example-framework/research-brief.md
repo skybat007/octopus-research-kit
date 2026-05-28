@@ -10,7 +10,7 @@ Last Updated: YYYY-MM-DD
 |---|---|
 | 名称 | Example Framework |
 | 代码来源 | 待填写 |
-| 本地路径 | 待填写 |
+| 项目标识 | 待填写 |
 | 版本/tag/commit | 待填写 |
 | 官方文档 | 待填写 |
 | 调研日期 | 待填写 |

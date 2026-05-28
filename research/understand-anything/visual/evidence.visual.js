@@ -2,7 +2,7 @@ window.EVIDENCE_META = {
   "title": "Understand Anything 证据解释",
   "description": "从架构图回到证据解释：展示架构语境、证据结论、源码/文档片段和原始索引位置。",
   "source": "../evidence-index.md",
-  "projectRoot": "/Users/cheng/IdeaProjects/Understand-Anything"
+  "projectRoot": "Understand-Anything"
 };
 
 window.EVIDENCE_ITEMS = [
@@ -33,7 +33,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:4-6",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 4,
         "end": 6,
@@ -43,7 +43,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:46-48",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 46,
         "end": 48,
@@ -53,7 +53,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:119-168",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 119,
         "end": 168,
@@ -63,7 +63,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "README.md:274-297",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/README.md",
+        "path": "README.md",
         "relativePath": "README.md",
         "start": 274,
         "end": 297,
@@ -117,7 +117,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "CLAUDE.md:10-18",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/CLAUDE.md",
+        "path": "CLAUDE.md",
         "relativePath": "CLAUDE.md",
         "start": 10,
         "end": 18,
@@ -127,7 +127,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "CLAUDE.md:19-31",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/CLAUDE.md",
+        "path": "CLAUDE.md",
         "relativePath": "CLAUDE.md",
         "start": 19,
         "end": 31,
@@ -137,7 +137,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "CLAUDE.md:50-52",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/CLAUDE.md",
+        "path": "CLAUDE.md",
         "relativePath": "CLAUDE.md",
         "start": 50,
         "end": 52,
@@ -186,7 +186,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "package.json:2-12",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/package.json",
+        "path": "package.json",
         "relativePath": "package.json",
         "start": 2,
         "end": 12,
@@ -196,7 +196,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "pnpm-workspace.yaml:1-4",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/pnpm-workspace.yaml",
+        "path": "pnpm-workspace.yaml",
         "relativePath": "pnpm-workspace.yaml",
         "start": 1,
         "end": 4,
@@ -206,7 +206,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/package.json:2-15",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/package.json",
+        "path": "understand-anything-plugin/package.json",
         "relativePath": "understand-anything-plugin/package.json",
         "start": 2,
         "end": 15,
@@ -216,7 +216,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/package.json:2-28",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/package.json",
+        "path": "understand-anything-plugin/packages/core/package.json",
         "relativePath": "understand-anything-plugin/packages/core/package.json",
         "start": 2,
         "end": 28,
@@ -226,7 +226,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/dashboard/package.json:2-30",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/dashboard/package.json",
+        "path": "understand-anything-plugin/packages/dashboard/package.json",
         "relativePath": "understand-anything-plugin/packages/dashboard/package.json",
         "start": 2,
         "end": 30,
@@ -431,7 +431,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/SKILL.md:1-18",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/SKILL.md",
+        "path": "understand-anything-plugin/skills/understand/SKILL.md",
         "relativePath": "understand-anything-plugin/skills/understand/SKILL.md",
         "start": 1,
         "end": 18,
@@ -441,7 +441,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/SKILL.md:42-172",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/SKILL.md",
+        "path": "understand-anything-plugin/skills/understand/SKILL.md",
         "relativePath": "understand-anything-plugin/skills/understand/SKILL.md",
         "start": 42,
         "end": 172,
@@ -451,7 +451,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/SKILL.md:278-357",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/SKILL.md",
+        "path": "understand-anything-plugin/skills/understand/SKILL.md",
         "relativePath": "understand-anything-plugin/skills/understand/SKILL.md",
         "start": 278,
         "end": 357,
@@ -461,7 +461,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/SKILL.md:734-790",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/SKILL.md",
+        "path": "understand-anything-plugin/skills/understand/SKILL.md",
         "relativePath": "understand-anything-plugin/skills/understand/SKILL.md",
         "start": 734,
         "end": 790,
@@ -522,7 +522,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/scan-project.mjs:455-559",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/scan-project.mjs",
+        "path": "understand-anything-plugin/skills/understand/scan-project.mjs",
         "relativePath": "understand-anything-plugin/skills/understand/scan-project.mjs",
         "start": 455,
         "end": 559,
@@ -532,7 +532,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/scan-project.mjs:668-764",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/scan-project.mjs",
+        "path": "understand-anything-plugin/skills/understand/scan-project.mjs",
         "relativePath": "understand-anything-plugin/skills/understand/scan-project.mjs",
         "start": 668,
         "end": 764,
@@ -593,7 +593,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/extract-import-map.mjs:1397-1427",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/extract-import-map.mjs",
+        "path": "understand-anything-plugin/skills/understand/extract-import-map.mjs",
         "relativePath": "understand-anything-plugin/skills/understand/extract-import-map.mjs",
         "start": 1397,
         "end": 1427,
@@ -603,7 +603,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/extract-import-map.mjs:1431-1527",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/extract-import-map.mjs",
+        "path": "understand-anything-plugin/skills/understand/extract-import-map.mjs",
         "relativePath": "understand-anything-plugin/skills/understand/extract-import-map.mjs",
         "start": 1431,
         "end": 1527,
@@ -676,7 +676,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/compute-batches.mjs:1-13",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/compute-batches.mjs",
+        "path": "understand-anything-plugin/skills/understand/compute-batches.mjs",
         "relativePath": "understand-anything-plugin/skills/understand/compute-batches.mjs",
         "start": 1,
         "end": 13,
@@ -686,7 +686,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/compute-batches.mjs:90-130",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/compute-batches.mjs",
+        "path": "understand-anything-plugin/skills/understand/compute-batches.mjs",
         "relativePath": "understand-anything-plugin/skills/understand/compute-batches.mjs",
         "start": 90,
         "end": 130,
@@ -696,7 +696,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/compute-batches.mjs:197-229",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/compute-batches.mjs",
+        "path": "understand-anything-plugin/skills/understand/compute-batches.mjs",
         "relativePath": "understand-anything-plugin/skills/understand/compute-batches.mjs",
         "start": 197,
         "end": 229,
@@ -706,7 +706,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/compute-batches.mjs:301-525",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/compute-batches.mjs",
+        "path": "understand-anything-plugin/skills/understand/compute-batches.mjs",
         "relativePath": "understand-anything-plugin/skills/understand/compute-batches.mjs",
         "start": 301,
         "end": 525,
@@ -803,7 +803,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/src/plugins/tree-sitter-plugin.ts:19-30",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/src/plugins/tree-sitter-plugin.ts",
+        "path": "understand-anything-plugin/packages/core/src/plugins/tree-sitter-plugin.ts",
         "relativePath": "understand-anything-plugin/packages/core/src/plugins/tree-sitter-plugin.ts",
         "start": 19,
         "end": 30,
@@ -813,7 +813,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/src/plugins/tree-sitter-plugin.ts:120-197",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/src/plugins/tree-sitter-plugin.ts",
+        "path": "understand-anything-plugin/packages/core/src/plugins/tree-sitter-plugin.ts",
         "relativePath": "understand-anything-plugin/packages/core/src/plugins/tree-sitter-plugin.ts",
         "start": 120,
         "end": 197,
@@ -823,7 +823,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/src/plugins/tree-sitter-plugin.ts:221-298",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/src/plugins/tree-sitter-plugin.ts",
+        "path": "understand-anything-plugin/packages/core/src/plugins/tree-sitter-plugin.ts",
         "relativePath": "understand-anything-plugin/packages/core/src/plugins/tree-sitter-plugin.ts",
         "start": 221,
         "end": 298,
@@ -833,7 +833,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/src/plugins/registry.ts:4-80",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/src/plugins/registry.ts",
+        "path": "understand-anything-plugin/packages/core/src/plugins/registry.ts",
         "relativePath": "understand-anything-plugin/packages/core/src/plugins/registry.ts",
         "start": 4,
         "end": 80,
@@ -843,7 +843,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/extract-structure.mjs:65-135",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/extract-structure.mjs",
+        "path": "understand-anything-plugin/skills/understand/extract-structure.mjs",
         "relativePath": "understand-anything-plugin/skills/understand/extract-structure.mjs",
         "start": 65,
         "end": 135,
@@ -853,7 +853,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/extract-structure.mjs:146-280",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/extract-structure.mjs",
+        "path": "understand-anything-plugin/skills/understand/extract-structure.mjs",
         "relativePath": "understand-anything-plugin/skills/understand/extract-structure.mjs",
         "start": 146,
         "end": 280,
@@ -1022,7 +1022,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/src/types.ts:1-99",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/src/types.ts",
+        "path": "understand-anything-plugin/packages/core/src/types.ts",
         "relativePath": "understand-anything-plugin/packages/core/src/types.ts",
         "start": 1,
         "end": 99,
@@ -1032,7 +1032,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/src/schema.ts:3-148",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/src/schema.ts",
+        "path": "understand-anything-plugin/packages/core/src/schema.ts",
         "relativePath": "understand-anything-plugin/packages/core/src/schema.ts",
         "start": 3,
         "end": 148,
@@ -1042,7 +1042,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/src/schema.ts:196-230",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/src/schema.ts",
+        "path": "understand-anything-plugin/packages/core/src/schema.ts",
         "relativePath": "understand-anything-plugin/packages/core/src/schema.ts",
         "start": 196,
         "end": 230,
@@ -1052,7 +1052,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/src/schema.ts:499-515",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/src/schema.ts",
+        "path": "understand-anything-plugin/packages/core/src/schema.ts",
         "relativePath": "understand-anything-plugin/packages/core/src/schema.ts",
         "start": 499,
         "end": 515,
@@ -1062,7 +1062,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/src/analyzer/graph-builder.ts:60-336",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/src/analyzer/graph-builder.ts",
+        "path": "understand-anything-plugin/packages/core/src/analyzer/graph-builder.ts",
         "relativePath": "understand-anything-plugin/packages/core/src/analyzer/graph-builder.ts",
         "start": 60,
         "end": 336,
@@ -1195,7 +1195,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/agents/project-scanner.md:17-19",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/agents/project-scanner.md",
+        "path": "understand-anything-plugin/agents/project-scanner.md",
         "relativePath": "understand-anything-plugin/agents/project-scanner.md",
         "start": 17,
         "end": 19,
@@ -1205,7 +1205,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/agents/file-analyzer.md:292-317",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/agents/file-analyzer.md",
+        "path": "understand-anything-plugin/agents/file-analyzer.md",
         "relativePath": "understand-anything-plugin/agents/file-analyzer.md",
         "start": 292,
         "end": 317,
@@ -1215,7 +1215,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/agents/architecture-analyzer.md:413-468",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/agents/architecture-analyzer.md",
+        "path": "understand-anything-plugin/agents/architecture-analyzer.md",
         "relativePath": "understand-anything-plugin/agents/architecture-analyzer.md",
         "start": 413,
         "end": 468,
@@ -1225,7 +1225,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/agents/tour-builder.md:265-277",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/agents/tour-builder.md",
+        "path": "understand-anything-plugin/agents/tour-builder.md",
         "relativePath": "understand-anything-plugin/agents/tour-builder.md",
         "start": 265,
         "end": 277,
@@ -1235,7 +1235,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/agents/graph-reviewer.md:227-227",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/agents/graph-reviewer.md",
+        "path": "understand-anything-plugin/agents/graph-reviewer.md",
         "relativePath": "understand-anything-plugin/agents/graph-reviewer.md",
         "start": 227,
         "end": 227,
@@ -1245,7 +1245,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand/SKILL.md:299-337",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand/SKILL.md",
+        "path": "understand-anything-plugin/skills/understand/SKILL.md",
         "relativePath": "understand-anything-plugin/skills/understand/SKILL.md",
         "start": 299,
         "end": 337,
@@ -1342,7 +1342,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/src/staleness.ts:13-90",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/src/staleness.ts",
+        "path": "understand-anything-plugin/packages/core/src/staleness.ts",
         "relativePath": "understand-anything-plugin/packages/core/src/staleness.ts",
         "start": 13,
         "end": 90,
@@ -1352,7 +1352,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/src/fingerprint.ts:67-150",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/src/fingerprint.ts",
+        "path": "understand-anything-plugin/packages/core/src/fingerprint.ts",
         "relativePath": "understand-anything-plugin/packages/core/src/fingerprint.ts",
         "start": 67,
         "end": 150,
@@ -1362,7 +1362,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/core/src/fingerprint.ts:230-350",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/core/src/fingerprint.ts",
+        "path": "understand-anything-plugin/packages/core/src/fingerprint.ts",
         "relativePath": "understand-anything-plugin/packages/core/src/fingerprint.ts",
         "start": 230,
         "end": 350,
@@ -1372,7 +1372,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/hooks/auto-update-prompt.md:1-30",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/hooks/auto-update-prompt.md",
+        "path": "understand-anything-plugin/hooks/auto-update-prompt.md",
         "relativePath": "understand-anything-plugin/hooks/auto-update-prompt.md",
         "start": 1,
         "end": 30,
@@ -1382,7 +1382,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/hooks/auto-update-prompt.md:94-149",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/hooks/auto-update-prompt.md",
+        "path": "understand-anything-plugin/hooks/auto-update-prompt.md",
         "relativePath": "understand-anything-plugin/hooks/auto-update-prompt.md",
         "start": 94,
         "end": 149,
@@ -1515,7 +1515,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/dashboard/src/App.tsx:49-105",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/dashboard/src/App.tsx",
+        "path": "understand-anything-plugin/packages/dashboard/src/App.tsx",
         "relativePath": "understand-anything-plugin/packages/dashboard/src/App.tsx",
         "start": 49,
         "end": 105,
@@ -1525,7 +1525,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/dashboard/src/App.tsx:117-205",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/dashboard/src/App.tsx",
+        "path": "understand-anything-plugin/packages/dashboard/src/App.tsx",
         "relativePath": "understand-anything-plugin/packages/dashboard/src/App.tsx",
         "start": 117,
         "end": 205,
@@ -1535,7 +1535,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/dashboard/src/store.ts:100-150",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/dashboard/src/store.ts",
+        "path": "understand-anything-plugin/packages/dashboard/src/store.ts",
         "relativePath": "understand-anything-plugin/packages/dashboard/src/store.ts",
         "start": 100,
         "end": 150,
@@ -1545,7 +1545,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/dashboard/src/store.ts:365-394",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/dashboard/src/store.ts",
+        "path": "understand-anything-plugin/packages/dashboard/src/store.ts",
         "relativePath": "understand-anything-plugin/packages/dashboard/src/store.ts",
         "start": 365,
         "end": 394,
@@ -1726,7 +1726,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/dashboard/vite.config.ts:9-23",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/dashboard/vite.config.ts",
+        "path": "understand-anything-plugin/packages/dashboard/vite.config.ts",
         "relativePath": "understand-anything-plugin/packages/dashboard/vite.config.ts",
         "start": 9,
         "end": 23,
@@ -1736,7 +1736,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/dashboard/vite.config.ts:114-177",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/dashboard/vite.config.ts",
+        "path": "understand-anything-plugin/packages/dashboard/vite.config.ts",
         "relativePath": "understand-anything-plugin/packages/dashboard/vite.config.ts",
         "start": 114,
         "end": 177,
@@ -1746,7 +1746,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/packages/dashboard/vite.config.ts:240-360",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/packages/dashboard/vite.config.ts",
+        "path": "understand-anything-plugin/packages/dashboard/vite.config.ts",
         "relativePath": "understand-anything-plugin/packages/dashboard/vite.config.ts",
         "start": 240,
         "end": 360,
@@ -1867,7 +1867,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/src/context-builder.ts:20-80",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/src/context-builder.ts",
+        "path": "understand-anything-plugin/src/context-builder.ts",
         "relativePath": "understand-anything-plugin/src/context-builder.ts",
         "start": 20,
         "end": 80,
@@ -1877,7 +1877,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/src/context-builder.ts:85-140",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/src/context-builder.ts",
+        "path": "understand-anything-plugin/src/context-builder.ts",
         "relativePath": "understand-anything-plugin/src/context-builder.ts",
         "start": 85,
         "end": 140,
@@ -1887,7 +1887,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/src/explain-builder.ts:18-103",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/src/explain-builder.ts",
+        "path": "understand-anything-plugin/src/explain-builder.ts",
         "relativePath": "understand-anything-plugin/src/explain-builder.ts",
         "start": 18,
         "end": 103,
@@ -1897,7 +1897,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/src/explain-builder.ts:122-190",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/src/explain-builder.ts",
+        "path": "understand-anything-plugin/src/explain-builder.ts",
         "relativePath": "understand-anything-plugin/src/explain-builder.ts",
         "start": 122,
         "end": 190,
@@ -1907,7 +1907,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/src/onboard-builder.ts:1-124",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/src/onboard-builder.ts",
+        "path": "understand-anything-plugin/src/onboard-builder.ts",
         "relativePath": "understand-anything-plugin/src/onboard-builder.ts",
         "start": 1,
         "end": 124,
@@ -2004,7 +2004,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand-domain/SKILL.md:1-15",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand-domain/SKILL.md",
+        "path": "understand-anything-plugin/skills/understand-domain/SKILL.md",
         "relativePath": "understand-anything-plugin/skills/understand-domain/SKILL.md",
         "start": 1,
         "end": 15,
@@ -2014,7 +2014,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand-domain/SKILL.md:89-140",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand-domain/SKILL.md",
+        "path": "understand-anything-plugin/skills/understand-domain/SKILL.md",
         "relativePath": "understand-anything-plugin/skills/understand-domain/SKILL.md",
         "start": 89,
         "end": 140,
@@ -2024,7 +2024,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand-knowledge/SKILL.md:1-20",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand-knowledge/SKILL.md",
+        "path": "understand-anything-plugin/skills/understand-knowledge/SKILL.md",
         "relativePath": "understand-anything-plugin/skills/understand-knowledge/SKILL.md",
         "start": 1,
         "end": 20,
@@ -2034,7 +2034,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand-knowledge/SKILL.md:41-131",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand-knowledge/SKILL.md",
+        "path": "understand-anything-plugin/skills/understand-knowledge/SKILL.md",
         "relativePath": "understand-anything-plugin/skills/understand-knowledge/SKILL.md",
         "start": 41,
         "end": 131,
@@ -2044,7 +2044,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand-knowledge/parse-knowledge-base.py:35-115",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand-knowledge/parse-knowledge-base.py",
+        "path": "understand-anything-plugin/skills/understand-knowledge/parse-knowledge-base.py",
         "relativePath": "understand-anything-plugin/skills/understand-knowledge/parse-knowledge-base.py",
         "start": 35,
         "end": 115,
@@ -2054,7 +2054,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/skills/understand-knowledge/merge-knowledge-graph.py:334-370",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/skills/understand-knowledge/merge-knowledge-graph.py",
+        "path": "understand-anything-plugin/skills/understand-knowledge/merge-knowledge-graph.py",
         "relativePath": "understand-anything-plugin/skills/understand-knowledge/merge-knowledge-graph.py",
         "start": 334,
         "end": 370,
@@ -2151,7 +2151,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "install.sh:20-44",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/install.sh",
+        "path": "install.sh",
         "relativePath": "install.sh",
         "start": 20,
         "end": 44,
@@ -2161,7 +2161,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "install.sh:91-198",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/install.sh",
+        "path": "install.sh",
         "relativePath": "install.sh",
         "start": 91,
         "end": 198,
@@ -2171,7 +2171,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": ".claude-plugin/plugin.json:2-6",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/.claude-plugin/plugin.json",
+        "path": ".claude-plugin/plugin.json",
         "relativePath": ".claude-plugin/plugin.json",
         "start": 2,
         "end": 6,
@@ -2181,7 +2181,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": ".copilot-plugin/plugin.json:2-13",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/.copilot-plugin/plugin.json",
+        "path": ".copilot-plugin/plugin.json",
         "relativePath": ".copilot-plugin/plugin.json",
         "start": 2,
         "end": 13,
@@ -2191,7 +2191,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": ".cursor-plugin/plugin.json:2-14",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/.cursor-plugin/plugin.json",
+        "path": ".cursor-plugin/plugin.json",
         "relativePath": ".cursor-plugin/plugin.json",
         "start": 2,
         "end": 14,
@@ -2201,7 +2201,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": ".claude-plugin/marketplace.json:9-12",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/.claude-plugin/marketplace.json",
+        "path": ".claude-plugin/marketplace.json",
         "relativePath": ".claude-plugin/marketplace.json",
         "start": 9,
         "end": 12,
@@ -2225,7 +2225,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-001",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-001",
+        "path": "UA-001",
         "relativePath": "UA-001",
         "start": null,
         "end": null
@@ -2233,7 +2233,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-006",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-006",
+        "path": "UA-006",
         "relativePath": "UA-006",
         "start": null,
         "end": null
@@ -2241,7 +2241,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-007",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-007",
+        "path": "UA-007",
         "relativePath": "UA-007",
         "start": null,
         "end": null
@@ -2249,7 +2249,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-008",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-008",
+        "path": "UA-008",
         "relativePath": "UA-008",
         "start": null,
         "end": null
@@ -2257,7 +2257,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-009",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-009",
+        "path": "UA-009",
         "relativePath": "UA-009",
         "start": null,
         "end": null
@@ -2265,7 +2265,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-011",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-011",
+        "path": "UA-011",
         "relativePath": "UA-011",
         "start": null,
         "end": null
@@ -2324,7 +2324,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-010",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-010",
+        "path": "UA-010",
         "relativePath": "UA-010",
         "start": null,
         "end": null
@@ -2332,7 +2332,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-013",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-013",
+        "path": "UA-013",
         "relativePath": "UA-013",
         "start": null,
         "end": null
@@ -2340,7 +2340,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-015",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-015",
+        "path": "UA-015",
         "relativePath": "UA-015",
         "start": null,
         "end": null
@@ -2348,7 +2348,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-016",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-016",
+        "path": "UA-016",
         "relativePath": "UA-016",
         "start": null,
         "end": null
@@ -2383,7 +2383,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-001",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-001",
+        "path": "UA-001",
         "relativePath": "UA-001",
         "start": null,
         "end": null
@@ -2391,7 +2391,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-012",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-012",
+        "path": "UA-012",
         "relativePath": "UA-012",
         "start": null,
         "end": null
@@ -2399,7 +2399,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-015",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-015",
+        "path": "UA-015",
         "relativePath": "UA-015",
         "start": null,
         "end": null
@@ -2421,7 +2421,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-005",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-005",
+        "path": "UA-005",
         "relativePath": "UA-005",
         "start": null,
         "end": null
@@ -2429,7 +2429,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-008",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-008",
+        "path": "UA-008",
         "relativePath": "UA-008",
         "start": null,
         "end": null
@@ -2437,7 +2437,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-011",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-011",
+        "path": "UA-011",
         "relativePath": "UA-011",
         "start": null,
         "end": null
@@ -2472,7 +2472,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "UA-017",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/UA-017",
+        "path": "UA-017",
         "relativePath": "UA-017",
         "start": null,
         "end": null
@@ -2541,7 +2541,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "file",
         "display": "understand-anything-plugin/package.json:2-3",
-        "path": "/Users/cheng/IdeaProjects/Understand-Anything/understand-anything-plugin/package.json",
+        "path": "understand-anything-plugin/package.json",
         "relativePath": "understand-anything-plugin/package.json",
         "start": 2,
         "end": 3,

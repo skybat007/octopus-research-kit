@@ -5,7 +5,7 @@
 | 项 | 内容 |
 |---|---|
 | 项目 | Claude Code source snapshot |
-| 本地路径 | `/Users/cheng/IdeaProjects/claude-code` |
+| 项目标识 | `claude-code` |
 | 远程来源 | `https://github.com/jarmuine/claude-code.git` |
 | branch/commit | `main`, `4b9d30f7953273e567a18eb819f4eddd45fcc877` |
 | 代码规模 | `src` 下约 1902 个文件 |

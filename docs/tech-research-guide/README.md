@@ -18,7 +18,7 @@
 3. 先完成 `research-brief.md`。它也可以理解为 Research Charter。
 4. 先完成 `external-research.md`，收集必要的官方资料、协作资料和社区资料；如果跳过，记录原因。
 5. 再完成 `research-questions.md`，把外部资料和用户目标转成源码验证问题。
-6. 如果有本地源码，先生成结构化清单：`node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name>`。
+6. 如果有本地源码，先生成结构化清单：`node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name> --source-root /absolute/path/to/source`。本机路径只作为运行时输入，不写入调研产物。
 7. 按源码地图、核心抽象、运行链路、架构、扩展点、设计思想、学习借鉴的顺序推进。
 8. 将关键结论同步记录到 `evidence-index.md`。
 9. 如果需要 HTML 可视化图，优先复制 `visual-architecture-template.html` 为 `visual/architecture.html`，并用 `architecture.visual.js` 维护图数据；同时复制 `evidence-viewer-template.html` 为 `visual/evidence.html`，用 `evidence.visual.js` 维护证据解释数据。
@@ -29,8 +29,8 @@
 ## 脚本
 
 ```bash
-# 从 evidence-index.md 中的本地路径扫描源码，生成 references/source-inventory.json
-node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name>
+# 通过运行时参数扫描源码，生成 references/source-inventory.json
+node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name> --source-root /absolute/path/to/source
 
 # 从 evidence-index.md 和 visual/architecture.visual.js 生成可点击证据解释页数据
 node docs/tech-research-guide/scripts/build-evidence-visual.js research/<framework-name>

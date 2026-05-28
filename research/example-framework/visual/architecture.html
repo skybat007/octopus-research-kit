@@ -79,6 +79,11 @@ svg { display: block; }
 </style>
 </head>
 <body>
+<script>
+if (window.top === window.self && !new URLSearchParams(window.location.search).has('standalone')) {
+  window.location.replace('../docs.html?view=visual/architecture.html' + window.location.hash);
+}
+</script>
 <div class="tabs" id="tabs"></div>
 <div class="zoom">
   <button onclick="zoom(1.15)">+</button>
@@ -238,7 +243,7 @@ function nodeTooltipHtml(el) {
   return `<strong>${escapeHtml(el.dataset.title)}</strong><div>${escapeHtml(el.dataset.tip || '')}</div><div class="muted">点击查看完整来源</div>`;
 }
 function nodeDetailHtml(el) {
-  const source = el.dataset.doc ? `<div>来源路径：<a href="${attr(sourceHref(el.dataset.doc))}" target="_blank" rel="noreferrer">${escapeHtml(el.dataset.doc)}</a></div><div class="hint">点击打开证据解释页，避免浏览器直接打开 Markdown 原文。</div>` : '';
+  const source = el.dataset.doc ? `<div>来源路径：<a href="${attr(sourceHref(el.dataset.doc))}" target="_top">${escapeHtml(el.dataset.doc)}</a></div><div class="hint">点击打开证据解释页，避免浏览器直接打开 Markdown 原文。</div>` : '';
   return `<h2>${escapeHtml(el.dataset.title)}</h2>
     <p>${escapeHtml(el.dataset.tip || '')}</p>
     <div class="meta">
@@ -250,7 +255,7 @@ function nodeDetailHtml(el) {
 function sourceHref(doc) {
   const value = String(doc || '');
   const hash = value.includes('#') ? value.slice(value.indexOf('#') + 1) : '';
-  return hash ? `./evidence.html#${encodeURIComponent(hash)}` : './evidence.html';
+  return hash ? `../docs.html?view=visual/evidence.html#${encodeURIComponent(hash)}` : '../docs.html?view=visual/evidence.html';
 }
 function renderLegend() {
   const legend = document.getElementById('legend');

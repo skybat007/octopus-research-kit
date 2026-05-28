@@ -5,7 +5,7 @@
 | 项 | 内容 |
 |---|---|
 | 项目 | Understand Anything |
-| 本地路径 | `/Users/cheng/IdeaProjects/Understand-Anything` |
+| 项目标识 | `Understand-Anything` |
 | 远程仓库 | `https://github.com/Lum1104/Understand-Anything.git` |
 | branch/tag/commit | branch `main`, commit `26edf61856fa476e466bda1814819a266a293c47` |
 | 本地插件版本 | `@understand-anything/skill` version `2.7.5` |

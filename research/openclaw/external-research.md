@@ -9,7 +9,7 @@
 | Session management | https://docs.openclaw.ai/concepts/session | 按 DM、group、room、cron、webhook 路由 session，强调 DM isolation 和 Gateway-owned state | 验证会话隔离、session store、transcript 设计 | A |
 | Multi-agent routing | https://docs.openclaw.ai/concepts/multi-agent | 多 isolated agents，分别拥有 workspace、agentDir、auth profiles、session history | 验证多 Agent 是否是一等模型而非简单 persona | A |
 | Plugin internals | https://docs.openclaw.ai/plugins/architecture | capability model、manifest/discovery、enablement/validation、runtime loading、surface consumption | 验证 plugin capability ownership 和 loader 分层 | A |
-| 本地仓库 README/VISION/docs | `/Users/cheng/IdeaProjects/openclaw/README.md`, `VISION.md`, `docs/**` | 产品定位、安全边界、插件优先、Gateway/Agent/Session/Plugin 概念文档 | 已在第一版源码调研中作为仓库文档证据 | S/A |
+| 本地仓库 README/VISION/docs | `README.md`, `VISION.md`, `docs/**` | 产品定位、安全边界、插件优先、Gateway/Agent/Session/Plugin 概念文档 | 已在第一版源码调研中作为仓库文档证据 | S/A |
 
 ## 2. 项目协作资料
 

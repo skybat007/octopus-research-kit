@@ -4,7 +4,7 @@
   "researchName": "understand-anything",
   "researchDir": "research/understand-anything",
   "status": "ok",
-  "projectRoot": "/Users/cheng/IdeaProjects/Understand-Anything",
+  "projectRoot": "Understand-Anything",
   "remote": "https://github.com/Lum1104/Understand-Anything.git",
   "branch": "main",
   "commit": "26edf61856fa476e466bda1814819a266a293c47",

@@ -8,7 +8,7 @@ Last Updated: 2026-05-28
 
 Understand Anything 是一个面向代码库、知识库和文档的理解工具。它把项目扫描、静态结构抽取、LLM 语义分析、知识图谱持久化和 React Dashboard 展示组合成一条可复用的“代码理解流水线”。本轮调研重点不是评价图谱效果，而是理解它如何把“读源码”变成结构化资产：`knowledge-graph.json` 是核心契约，`/understand` 负责生产，Dashboard 和 `/understand-chat`、`/understand-diff`、`/understand-explain` 等技能负责消费。[UA-001][UA-005][UA-013]
 
-本轮调研固定在本地快照 `/Users/cheng/IdeaProjects/Understand-Anything`，branch `main`，commit `26edf61856fa476e466bda1814819a266a293c47`。远程 tag 查询显示截至 2026-05-28 可见最新 tag 为 `v2.7.3`，但本地插件包和平台 manifest 标记为 `2.7.5`，因此本文以本地快照为准。[UA-002][EXT-UA-003]
+本轮调研固定在本地快照 `Understand-Anything`，branch `main`，commit `26edf61856fa476e466bda1814819a266a293c47`。远程 tag 查询显示截至 2026-05-28 可见最新 tag 为 `v2.7.3`，但本地插件包和平台 manifest 标记为 `2.7.5`，因此本文以本地快照为准。[UA-002][EXT-UA-003]
 
 ## 文件导航
 
@@ -20,7 +20,6 @@ Understand Anything 是一个面向代码库、知识库和文档的理解工具
 | source-map.md | 仓库结构、入口、模块和阅读顺序 |
 | dashboard.html | 浏览器阅读入口，导航 Markdown、可视化图和辅助材料 |
 | docs.html | UTF-8 文档阅读器，避免浏览器直接打开 Markdown 乱码 |
-| references/source-inventory.json | 确定性源码扫描索引，辅助定位入口、测试、示例、构建和配置 |
 | architecture.md | 总体架构、模块职责和依赖方向 |
 | visual/architecture.html | HTML 可视化架构图 |
 | visual/architecture.visual.js | 可视化图数据，承接 Markdown 结论和证据链接 |

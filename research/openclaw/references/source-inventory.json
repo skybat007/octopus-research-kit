@@ -4,7 +4,7 @@
   "researchName": "openclaw",
   "researchDir": "research/openclaw",
   "status": "ok",
-  "projectRoot": "/Users/cheng/IdeaProjects/openclaw",
+  "projectRoot": "openclaw",
   "remote": "https://github.com/openclaw/openclaw.git",
   "branch": "main",
   "commit": "989e53c20d395d3c8bf47efc21fdb9d56e7227b0",
