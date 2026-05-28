@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hermes Agent Technical Research Dashboard</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #627089;
+      --line: #d9e1ee;
+      --accent: #2563eb;
+      --accent-soft: #e8f0ff;
+      --ok: #0f766e;
+      --warn: #a16207;
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 100vh; }
+    aside {
+      border-right: 1px solid var(--line);
+      background: #fff;
+      padding: 18px 14px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+    }
+    main { padding: 28px 30px 56px; }
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 16px;
+      color: #475569;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .home-link:hover { color: var(--accent); text-decoration: none; }
+    .brand { font-weight: 800; margin-bottom: 4px; }
+    .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+    .nav-group { margin: 15px 0 4px; }
+    .nav-group-title {
+      color: #7a879c;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin: 0 0 5px;
+    }
+    .nav-link {
+      display: block;
+      padding: 8px 9px;
+      border-radius: 6px;
+      color: #33415c;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .nav-link.active { background: #e8f0ff; color: #1d4ed8; font-weight: 700; }
+    .nav-link.disabled { color: #a0aabc; pointer-events: none; background: #f8fafc; }
+    .hero {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 14px 36px rgba(23, 32, 51, 0.06);
+    }
+    .eyebrow { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+    h1 { margin: 0 0 10px; font-size: 30px; line-height: 1.2; letter-spacing: 0; }
+    h2 { margin: 28px 0 14px; font-size: 18px; letter-spacing: 0; }
+    .summary { max-width: 920px; color: #33415c; white-space: pre-wrap; }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfdff;
+      padding: 12px;
+      min-height: 76px;
+    }
+    .metric .label { color: var(--muted); font-size: 12px; }
+    .metric .value { margin-top: 4px; font-size: 18px; font-weight: 700; overflow-wrap: anywhere; }
+    .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: 16px;
+    }
+    .reading-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .reading-list a {
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 9px 10px;
+      background: #fbfdff;
+      font-weight: 700;
+    }
+    .reading-list span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+      margin-top: 3px;
+    }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 8px 0; color: #33415c; }
+    .footer { margin-top: 28px; color: var(--muted); font-size: 13px; }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+      main { padding: 18px 14px 36px; }
+      .meta, .columns, .reading-list { grid-template-columns: 1fr; }
+      h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <a class="home-link" href="../index.html" title="Back to Tech Research home"><span aria-hidden="true">&larr;</span> Research Home</a>
+      <div class="brand">Hermes Agent Technical Research</div>
+      <div class="sub">Research Navigation</div>
+      <div class="nav-group">
+        <div class="nav-group-title">Overview</div>
+        <a class="nav-link active" data-nav-file="dashboard.html" href="./dashboard.html" title="Research summary and reading entry">Dashboard</a>
+<a class="nav-link" data-nav-file="README.md" href="./docs.html?doc=README.md" title="Research summary, current conclusions, and file navigation">Overview</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">Research Prep</div>
+        <a class="nav-link" data-nav-file="research-brief.md" href="./docs.html?doc=research-brief.md" title="Goals, scope, questions, and acceptance criteria">Research Brief</a>
+<a class="nav-link" data-nav-file="external-research.md" href="./docs.html?doc=external-research.md" title="Official, collaboration, and community references">External Research</a>
+<a class="nav-link" data-nav-file="research-questions.md" href="./docs.html?doc=research-questions.md" title="Questions to verify and verification status">Research Questions</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">Architecture Analysis</div>
+        <a class="nav-link" data-nav-file="architecture.md" href="./docs.html?doc=architecture.md" title="Module responsibilities, boundaries, and dependency direction">Architecture</a>
+<a class="nav-link" data-nav-file="visual/architecture.html" href="./docs.html?view=visual%2Farchitecture.html" title="Dedicated interactive architecture viewer">Visual Architecture</a>
+<a class="nav-link" data-nav-file="runtime-flows.md" href="./docs.html?doc=runtime-flows.md" title="Main runtime paths and key state changes">Runtime Flows</a>
+<a class="nav-link" data-nav-file="key-abstractions.md" href="./docs.html?doc=key-abstractions.md" title="Interfaces, objects, and lifecycles">Key Abstractions</a>
+<a class="nav-link" data-nav-file="extension-points.md" href="./docs.html?doc=extension-points.md" title="Plugins, hooks, providers, registries, and other extension mechanisms">Extension Points</a>
+<a class="nav-link" data-nav-file="design-philosophy.md" href="./docs.html?doc=design-philosophy.md" title="Design tradeoffs and reusable patterns">Design Philosophy</a>
+<a class="nav-link" data-nav-file="comparison.md" href="./docs.html?doc=comparison.md" title="Comparison with neighboring frameworks or similar solutions">Comparison</a>
+<a class="nav-link" data-nav-file="adoption-notes.md" href="./docs.html?doc=adoption-notes.md" title="Learn/adapt/avoid design guidance">Adoption Notes</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">Source Analysis</div>
+        <a class="nav-link" data-nav-file="source-map.md" href="./docs.html?doc=source-map.md" title="Repository structure, entries, and reading order">Source Map</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">Evidence</div>
+        <a class="nav-link" data-nav-file="visual/evidence.html" href="./docs.html?view=visual%2Fevidence.html" title="Trace from diagrams back to evidence explanations">Evidence Viewer</a>
+<a class="nav-link" data-nav-file="evidence-index.md" href="./docs.html?doc=evidence-index.md" title="Key conclusions and evidence anchors">Evidence Index</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">Supporting Materials</div>
+        <a class="nav-link" data-nav-file="research-review.md" href="./docs.html?doc=research-review.md" title="Quality gate, risks, and open questions">Research Review</a>
+      </div>
+    </aside>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Tech Research Dashboard · hermes-agent</div>
+      <h1>Hermes Agent Technical Research</h1>
+      <div class="summary">Hermes Agent is a local-first AI Agent project maintained by Nous Research. Its product surface includes CLI, TUI, Messaging Gateway, ACP, cron, tools, plugins, model providers, and memory providers. Its architecture core is not a single chat entry; instead, it connects multiple user interfaces and message channels to the same AIAgent runtime, then manages differences through a tool registry, Provider Profile, plugin hooks, session store, and Gateway adapters. H-001H-004 This research is pinned to local snapshot hermes-agent, branch main, commit cae7537359c0ba8fceedc0a6423a4d9f30972100. It is a first architecture-level pass covering entries, the agent loop, tools, plugins, providers, memory...</div>
+      <div class="meta">
+        <div class="metric"><div class="label">Status</div><div class="value">draft</div></div>
+        <div class="metric"><div class="label">Updated</div><div class="value">2026-05-25</div></div>
+        <div class="metric"><div class="label">Source Files</div><div class="value">3636</div></div>
+        <div class="metric"><div class="label">Primary Language</div><div class="value">Python</div></div>
+      </div>
+    </section>
+
+    <h2>Suggested Reading Order</h2>
+    <section class="panel">
+      <ol class="reading-list">
+        <li><a href="./docs.html?doc=research-brief.md">Research Brief<span>Goals, scope, questions, and acceptance criteria</span></a></li>
+<li><a href="./docs.html?doc=external-research.md">External Research<span>Official, collaboration, and community references</span></a></li>
+<li><a href="./docs.html?doc=research-questions.md">Research Questions<span>Questions to verify and verification status</span></a></li>
+<li><a href="./docs.html?doc=architecture.md">Architecture<span>Module responsibilities, boundaries, and dependency direction</span></a></li>
+<li><a href="./docs.html?view=visual%2Farchitecture.html">Visual Architecture<span>Dedicated interactive architecture viewer</span></a></li>
+<li><a href="./docs.html?doc=runtime-flows.md">Runtime Flows<span>Main runtime paths and key state changes</span></a></li>
+<li><a href="./docs.html?doc=key-abstractions.md">Key Abstractions<span>Interfaces, objects, and lifecycles</span></a></li>
+<li><a href="./docs.html?doc=extension-points.md">Extension Points<span>Plugins, hooks, providers, registries, and other extension mechanisms</span></a></li>
+<li><a href="./docs.html?doc=design-philosophy.md">Design Philosophy<span>Design tradeoffs and reusable patterns</span></a></li>
+<li><a href="./docs.html?doc=source-map.md">Source Map<span>Repository structure, entries, and reading order</span></a></li>
+<li><a href="./docs.html?doc=evidence-index.md">Evidence Index<span>Key conclusions and evidence anchors</span></a></li>
+      </ol>
+    </section>
+
+    <h2>Current Conclusions and Pending Questions</h2>
+    <section class="columns">
+      <div class="panel">
+        <h2 style="margin-top:0">Current Conclusions</h2>
+        <ul><li>Hermes Agent&#39;s official README/docs and local source confirm a &quot;many entries, shared Agent Core&quot; design: CLI, TUI, Gateway, ACP, and cron all organize around AIAgent and run_conversation. H-003H-013H-015</li><li>The tool system combines central ToolRegistry, toolset filtering, and plugin registration. model_tools.py converts Registry definitions into model-consumable tool schemas and dispatches model tool calls back to the Registry. H-005[H-007]</li><li>The plugin system is not a single hook list. It is a layered extension control plane with separate entries for general plugins, Provider Profile, Memory Provider, Gateway Platform, Context Engine, CLI/Slash Command, and Toolset. H-008H-011</li><li>Gateway is the most complex runtime surface. It unifies platform adapters, auth/pairing, session keys, agent cache, streaming output, duplicate-delivery protection, and cron delivery in one large file plus a small set of support modules. H-009[H-016]</li><li>The most reusable ideas are stable system prompt, entry convergence, registry-driven tools, provider behavior extraction, profile isolation, explicit session keys, and plugin hooks that fail open without taking down the main flow. H-004H-008</li></ul>
+      </div>
+      <div class="panel">
+        <h2 style="margin-top:0">Pending Questions</h2>
+        <ul><li>Hermes Agent local CLI/TUI/Gateway live behavior has not been run.</li><li>Tests have not been run; this pass uses static source and repository-doc analysis.</li><li>Official external references have been cross-checked, but independent third-party practice articles are not used as conclusion evidence.</li><li>Each built-in tool, platform adapter, provider plugin, and memory provider has not been reviewed individually.</li><li>TUI frontend ui-tui interaction design and render state machine were only scanned at entry level, not component level.</li></ul>
+      </div>
+    </section>
+
+    <div class="footer">The dashboard is only a reading navigator. Markdown remains the knowledge source, visual/architecture.html is the dedicated architecture viewer, source-map.md is the source-analysis entry, and references/ is reserved for generated or process material rather than first-level reading.</div>
+  </main>
+  </div>
+</body>
+</html>
