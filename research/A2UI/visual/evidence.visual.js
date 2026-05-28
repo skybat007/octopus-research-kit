@@ -172,6 +172,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "A2UI v0.9 Messages",
         "sub": "createSurface, updateComponents, updateDataModel, deleteSurface",
@@ -180,7 +181,7 @@ window.EVIDENCE_ITEMS = [
         "relation": ""
       }
     ],
-    "explanation": "这条证据在架构图中支撑 overview / 节点「A2UI v0.9 Messages」。证据结论是：v0.9 server-to-client 协议包含 `createSurface`、`updateComponents`、`updateDataModel`、`deleteSurface`。。图中的具体解释是：The v0.9 protocol has four core server-to-client message kinds.",
+    "explanation": "这条证据在架构图中支撑 System Overview / 节点「A2UI v0.9 Messages」。证据结论是：v0.9 server-to-client 协议包含 `createSurface`、`updateComponents`、`updateDataModel`、`deleteSurface`。。图中的具体解释是：The v0.9 protocol has four core server-to-client message kinds.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -279,6 +280,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "Input Component",
         "sub": "TextField, CheckBox, ChoicePicker",
@@ -289,6 +291,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "Input Component -> DataModel",
         "sub": "writes via setter",
@@ -298,7 +301,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "Input Component 到 DataModel"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 actions-state / 节点「Input Component」、actions-state / 连线「Input Component -> DataModel」。证据结论是：Data binding 基于 JSON Pointer，支持 UI structure 与 state 分离、动态值和双向输入。。图中的具体解释是：Bound inputs can write back to the data model.；关系语义：writes via setter。",
+    "explanation": "这条证据在架构图中支撑 Actions and Data State / 节点「Input Component」、Actions and Data State / 连线「Input Component -> DataModel」。证据结论是：Data binding 基于 JSON Pointer，支持 UI structure 与 state 分离、动态值和双向输入。。图中的具体解释是：Bound inputs can write back to the data model.；关系语义：writes via setter。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -335,6 +338,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "Agent",
         "sub": "Receives event context",
@@ -343,7 +347,7 @@ window.EVIDENCE_ITEMS = [
         "relation": ""
       }
     ],
-    "explanation": "这条证据在架构图中支撑 actions-state / 节点「Agent」。证据结论是：action 分为 local Function 与发给 agent 的 Event，checks 主要用于 UX 禁用而非数据完整性。。图中的具体解释是：Events send selected context back to the agent.",
+    "explanation": "这条证据在架构图中支撑 Actions and Data State / 节点「Agent」。证据结论是：action 分为 local Function 与发给 agent 的 Event，checks 主要用于 UX 禁用而非数据完整性。。图中的具体解释是：Events send selected context back to the agent.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -414,6 +418,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "Native UI",
         "sub": "React/Lit/Angular/Flutter components",
@@ -422,7 +427,7 @@ window.EVIDENCE_ITEMS = [
         "relation": ""
       }
     ],
-    "explanation": "这条证据在架构图中支撑 overview / 节点「Native UI」。证据结论是：Renderer 负责解析 adjacency list、映射 widgets、data binding/lifecycle、增量消息和用户 action。。图中的具体解释是：Renderer maps A2UI components to native widgets and handles user interaction.",
+    "explanation": "这条证据在架构图中支撑 System Overview / 节点「Native UI」。证据结论是：Renderer 负责解析 adjacency list、映射 widgets、data binding/lifecycle、增量消息和用户 action。。图中的具体解释是：Renderer maps A2UI components to native widgets and handles user interaction.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -459,6 +464,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "A2uiSurface",
         "sub": "Root and deferred child rendering",
@@ -469,6 +475,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "GenericBinder -> A2uiSurface",
         "sub": "renders props",
@@ -478,7 +485,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "GenericBinder 到 A2uiSurface"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 renderer-runtime / 节点「A2uiSurface」、renderer-runtime / 连线「GenericBinder -> A2uiSurface」。证据结论是：React renderer 导出 `A2uiSurface`、adapter 和 Basic Catalog。。图中的具体解释是：A2uiSurface renders root and child components through catalog implementations.；关系语义：renders props。",
+    "explanation": "这条证据在架构图中支撑 Renderer Runtime / 节点「A2uiSurface」、Renderer Runtime / 连线「GenericBinder -> A2uiSurface」。证据结论是：React renderer 导出 `A2uiSurface`、adapter 和 Basic Catalog。。图中的具体解释是：A2uiSurface renders root and child components through catalog implementations.；关系语义：renders props。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -529,6 +536,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "MessageProcessor",
         "sub": "Creates surfaces and applies updates",
@@ -539,6 +547,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "MessageProcessor -> SurfaceModel",
         "sub": "mutates",
@@ -550,6 +559,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "MessageProcessor",
         "sub": "Dispatches v0.9 message types",
@@ -560,6 +570,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "SurfaceGroupModel",
         "sub": "Manages active surfaces",
@@ -570,6 +581,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "ComponentModel",
         "sub": "ID, type, properties",
@@ -580,6 +592,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "MessageProcessor -> SurfaceGroupModel",
         "sub": "owns",
@@ -591,6 +604,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "SurfaceModel -> ComponentModel",
         "sub": "stores",
@@ -600,7 +614,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "SurfaceModel 到 ComponentModel"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 overview / 节点「MessageProcessor」、overview / 连线「MessageProcessor -> SurfaceModel」、renderer-runtime / 节点「MessageProcessor」、renderer-runtime / 节点「SurfaceGroupModel」。证据结论是：`MessageProcessor` 持有 `SurfaceGroupModel`，处理 create/update/delete/data model 消息并暴露 capabilities。。图中的具体解释是：MessageProcessor is the main client-side state mutation entrypoint.；关系语义：mutates。",
+    "explanation": "这条证据在架构图中支撑 System Overview / 节点「MessageProcessor」、System Overview / 连线「MessageProcessor -> SurfaceModel」、Renderer Runtime / 节点「MessageProcessor」、Renderer Runtime / 节点「SurfaceGroupModel」。证据结论是：`MessageProcessor` 持有 `SurfaceGroupModel`，处理 create/update/delete/data model 消息并暴露 capabilities。。图中的具体解释是：MessageProcessor is the main client-side state mutation entrypoint.；关系语义：mutates。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -637,6 +651,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "SurfaceModel",
         "sub": "DataModel, components, catalog, theme, actions",
@@ -647,6 +662,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "SurfaceModel -> Catalog",
         "sub": "uses",
@@ -658,6 +674,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "SurfaceModel",
         "sub": "Surface-local state",
@@ -668,6 +685,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "SurfaceGroupModel -> SurfaceModel",
         "sub": "contains",
@@ -679,6 +697,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "SurfaceModel",
         "sub": "dispatchAction",
@@ -689,6 +708,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "SurfaceModel -> Action Handler",
         "sub": "onAction",
@@ -698,7 +718,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "SurfaceModel 到 Action Handler"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 overview / 节点「SurfaceModel」、overview / 连线「SurfaceModel -> Catalog」、renderer-runtime / 节点「SurfaceModel」、renderer-runtime / 连线「SurfaceGroupModel -> SurfaceModel」。证据结论是：`SurfaceModel` 聚合 data model、components、catalog、theme、sendDataModel，并统一 dispatch action/error。。图中的具体解释是：SurfaceModel holds the runtime state of one A2UI surface.；关系语义：uses。",
+    "explanation": "这条证据在架构图中支撑 System Overview / 节点「SurfaceModel」、System Overview / 连线「SurfaceModel -> Catalog」、Renderer Runtime / 节点「SurfaceModel」、Renderer Runtime / 连线「SurfaceGroupModel -> SurfaceModel」。证据结论是：`SurfaceModel` 聚合 data model、components、catalog、theme、sendDataModel，并统一 dispatch action/error。。图中的具体解释是：SurfaceModel holds the runtime state of one A2UI surface.；关系语义：uses。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -725,6 +745,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "DataModel",
         "sub": "JSON Pointer observable store",
@@ -735,6 +756,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "SurfaceModel -> DataModel",
         "sub": "stores",
@@ -746,6 +768,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "DataModel",
         "sub": "Shared JSON state",
@@ -754,7 +777,7 @@ window.EVIDENCE_ITEMS = [
         "relation": ""
       }
     ],
-    "explanation": "这条证据在架构图中支撑 renderer-runtime / 节点「DataModel」、renderer-runtime / 连线「SurfaceModel -> DataModel」、actions-state / 节点「DataModel」。证据结论是：`DataModel` 是 JSON Pointer 可寻址、可订阅的 observable data store，支持 root replace、嵌套创建、删除和路径通知。。图中的具体解释是：DataModel provides path get/set and subscriptions.；关系语义：stores。",
+    "explanation": "这条证据在架构图中支撑 Renderer Runtime / 节点「DataModel」、Renderer Runtime / 连线「SurfaceModel -> DataModel」、Actions and Data State / 节点「DataModel」。证据结论是：`DataModel` 是 JSON Pointer 可寻址、可订阅的 observable data store，支持 root replace、嵌套创建、删除和路径通知。。图中的具体解释是：DataModel provides path get/set and subscriptions.；关系语义：stores。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -801,6 +824,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "SurfaceModel -> GenericBinder",
         "sub": "provides context",
@@ -812,6 +836,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "Component/Data Context",
         "sub": "Scoped access for rendering",
@@ -822,6 +847,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "ComponentModel -> Component/Data Context",
         "sub": "loads",
@@ -833,6 +859,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "DataModel -> Component/Data Context",
         "sub": "scopes",
@@ -844,6 +871,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "DataContext",
         "sub": "Relative path and dynamic value resolution",
@@ -854,6 +882,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "DataModel -> DataContext",
         "sub": "read and subscribe",
@@ -863,7 +892,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "DataModel 到 DataContext"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 overview / 连线「SurfaceModel -> GenericBinder」、renderer-runtime / 节点「Component/Data Context」、renderer-runtime / 连线「ComponentModel -> Component/Data Context」、renderer-runtime / 连线「DataModel -> Component/Data Context」。证据结论是：`DataContext` 解析相对/绝对路径、dynamic values、function expressions 和 action context。。图中的具体解释是：关系语义：provides context。；DataContext resolves relative paths, dynamic values, and action context.",
+    "explanation": "这条证据在架构图中支撑 System Overview / 连线「SurfaceModel -> GenericBinder」、Renderer Runtime / 节点「Component/Data Context」、Renderer Runtime / 连线「ComponentModel -> Component/Data Context」、Renderer Runtime / 连线「DataModel -> Component/Data Context」。证据结论是：`DataContext` 解析相对/绝对路径、dynamic values、function expressions 和 action context。。图中的具体解释是：关系语义：provides context。；DataContext resolves relative paths, dynamic values, and action context.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -910,6 +939,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "GenericBinder",
         "sub": "Dynamic values, actions, children, validation",
@@ -920,6 +950,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "GenericBinder -> Native UI",
         "sub": "produces props",
@@ -931,6 +962,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "GenericBinder",
         "sub": "Schema-aware prop generation",
@@ -941,6 +973,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "Component/Data Context -> GenericBinder",
         "sub": "feeds",
@@ -952,6 +985,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "GenericBinder",
         "sub": "Setters, checks, action closures",
@@ -962,6 +996,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "DataContext -> GenericBinder",
         "sub": "resolve",
@@ -971,7 +1006,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "DataContext 到 GenericBinder"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 overview / 节点「GenericBinder」、overview / 连线「GenericBinder -> Native UI」、renderer-runtime / 节点「GenericBinder」、renderer-runtime / 连线「Component/Data Context -> GenericBinder」。证据结论是：`GenericBinder` 根据 schema 识别 dynamic/action/structural/checkable/static/object/array，并生成 renderer props。。图中的具体解释是：GenericBinder turns component schema and state into renderer props.；关系语义：produces props。",
+    "explanation": "这条证据在架构图中支撑 System Overview / 节点「GenericBinder」、System Overview / 连线「GenericBinder -> Native UI」、Renderer Runtime / 节点「GenericBinder」、Renderer Runtime / 连线「Component/Data Context -> GenericBinder」。证据结论是：`GenericBinder` 根据 schema 识别 dynamic/action/structural/checkable/static/object/array，并生成 renderer props。。图中的具体解释是：GenericBinder turns component schema and state into renderer props.；关系语义：produces props。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1008,6 +1043,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "Button -> SurfaceModel",
         "sub": "dispatch",
@@ -1017,7 +1053,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "Button 到 SurfaceModel"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 actions-state / 连线「Button -> SurfaceModel」。证据结论是：action 字段在 binder 中变成闭包，触发时解析 context 并 dispatch。。图中的具体解释是：关系语义：dispatch。",
+    "explanation": "这条证据在架构图中支撑 Actions and Data State / 连线「Button -> SurfaceModel」。证据结论是：action 字段在 binder 中变成闭包，触发时解析 context 并 dispatch。。图中的具体解释是：关系语义：dispatch。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1044,6 +1080,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "Button",
         "sub": "Calls bound action and honors isValid",
@@ -1054,6 +1091,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "GenericBinder -> Button",
         "sub": "action props",
@@ -1063,7 +1101,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "GenericBinder 到 Button"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 actions-state / 节点「Button」、actions-state / 连线「GenericBinder -> Button」。证据结论是：React Button 实现只接收 bound props，点击调用 `props.action`，`isValid === false` 时 disabled。。图中的具体解释是：React Button dispatches action and is disabled when validation fails.；关系语义：action props。",
+    "explanation": "这条证据在架构图中支撑 Actions and Data State / 节点「Button」、Actions and Data State / 连线「GenericBinder -> Button」。证据结论是：React Button 实现只接收 bound props，点击调用 `props.action`，`isValid === false` 时 disabled。。图中的具体解释是：React Button dispatches action and is disabled when validation fails.；关系语义：action props。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1090,6 +1128,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "Catalog",
         "sub": "Components, functions, theme schema",
@@ -1100,6 +1139,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "Catalog -> GenericBinder",
         "sub": "describes fields",
@@ -1111,6 +1151,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "Catalog Assembler -> Renderer Catalog",
         "sub": "same contract",
@@ -1120,7 +1161,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "Catalog Assembler 到 Renderer Catalog"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 overview / 节点「Catalog」、overview / 连线「Catalog -> GenericBinder」、sdk-catalog / 连线「Catalog Assembler -> Renderer Catalog」。证据结论是：`Catalog` 运行时包含组件、函数、theme schema，并用 Zod 校验函数参数后执行。。图中的具体解释是：Catalog is both schema contract and runtime implementation registry.；关系语义：describes fields。",
+    "explanation": "这条证据在架构图中支撑 System Overview / 节点「Catalog」、System Overview / 连线「Catalog -> GenericBinder」、SDK and Catalog Pipeline / 连线「Catalog Assembler -> Renderer Catalog」。证据结论是：`Catalog` 运行时包含组件、函数、theme schema，并用 Zod 校验函数参数后执行。。图中的具体解释是：Catalog is both schema contract and runtime implementation registry.；关系语义：describes fields。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1157,6 +1198,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "Renderer Catalog",
         "sub": "Runtime implementations",
@@ -1165,7 +1207,7 @@ window.EVIDENCE_ITEMS = [
         "relation": ""
       }
     ],
-    "explanation": "这条证据在架构图中支撑 sdk-catalog / 节点「Renderer Catalog」。证据结论是：React Basic Catalog 将 Basic component implementations 与 `BASIC_FUNCTIONS` 注册为 catalog。。图中的具体解释是：React Basic Catalog registers component implementations and functions.",
+    "explanation": "这条证据在架构图中支撑 SDK and Catalog Pipeline / 节点「Renderer Catalog」。证据结论是：React Basic Catalog 将 Basic component implementations 与 `BASIC_FUNCTIONS` 注册为 catalog。。图中的具体解释是：React Basic Catalog registers component implementations and functions.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1192,6 +1234,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "Client Capabilities",
         "sub": "supportedCatalogIds and inlineCatalogs",
@@ -1202,6 +1245,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "Client Capabilities -> A2uiSchemaManager",
         "sub": "selects catalog",
@@ -1211,7 +1255,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "Client Capabilities 到 A2uiSchemaManager"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 sdk-catalog / 节点「Client Capabilities」、sdk-catalog / 连线「Client Capabilities -> A2uiSchemaManager」。证据结论是：Renderer capabilities 支持 `supportedCatalogIds` 和可选 inline catalogs；`getClientDataModel` 只返回 `sendDataModel` surface。。图中的具体解释是：Renderer can expose supported catalog ids and inline catalog schemas.；关系语义：selects catalog。",
+    "explanation": "这条证据在架构图中支撑 SDK and Catalog Pipeline / 节点「Client Capabilities」、SDK and Catalog Pipeline / 连线「Client Capabilities -> A2uiSchemaManager」。证据结论是：Renderer capabilities 支持 `supportedCatalogIds` 和可选 inline catalogs；`getClientDataModel` 只返回 `sendDataModel` surface。。图中的具体解释是：Renderer can expose supported catalog ids and inline catalog schemas.；关系语义：selects catalog。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1238,6 +1282,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "Agent / SDK",
         "sub": "Generates A2UI messages and validates payloads",
@@ -1248,6 +1293,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "Agent / SDK -> A2UI v0.9 Messages",
         "sub": "emits",
@@ -1259,6 +1305,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "Parser / Fixer",
         "sub": "Tagged text and JSON repair",
@@ -1269,6 +1316,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "SendA2uiToClientToolset -> Parser / Fixer",
         "sub": "tool output",
@@ -1278,7 +1326,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "SendA2uiToClientToolset 到 Parser / Fixer"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 overview / 节点「Agent / SDK」、overview / 连线「Agent / SDK -> A2UI v0.9 Messages」、sdk-catalog / 节点「Parser / Fixer」、sdk-catalog / 连线「SendA2uiToClientToolset -> Parser / Fixer」。证据结论是：Python parser 从 `<a2ui-json>` tags 提取 payload，并处理 markdown code block。。图中的具体解释是：Python SDK supplies parser, schema manager, validator, toolset, and A2A conversion.；关系语义：emits。",
+    "explanation": "这条证据在架构图中支撑 System Overview / 节点「Agent / SDK」、System Overview / 连线「Agent / SDK -> A2UI v0.9 Messages」、SDK and Catalog Pipeline / 节点「Parser / Fixer」、SDK and Catalog Pipeline / 连线「SendA2uiToClientToolset -> Parser / Fixer」。证据结论是：Python parser 从 `<a2ui-json>` tags 提取 payload，并处理 markdown code block。。图中的具体解释是：Python SDK supplies parser, schema manager, validator, toolset, and A2A conversion.；关系语义：emits。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1305,6 +1353,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "A2uiSchemaManager",
         "sub": "Catalog selection and prompt",
@@ -1315,6 +1364,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "SendA2uiToClientToolset",
         "sub": "Tool declaration and execution",
@@ -1325,6 +1375,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "A2uiSchemaManager -> SendA2uiToClientToolset",
         "sub": "prompt/schema",
@@ -1334,7 +1385,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "A2uiSchemaManager 到 SendA2uiToClientToolset"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 sdk-catalog / 节点「A2uiSchemaManager」、sdk-catalog / 节点「SendA2uiToClientToolset」、sdk-catalog / 连线「A2uiSchemaManager -> SendA2uiToClientToolset」。证据结论是：`A2uiSchemaManager` 根据 inline/supported/default catalog 选择 active catalog，并生成 system prompt。。图中的具体解释是：SchemaManager selects active catalog and renders LLM instructions.；Toolset injects schema/examples and validates tool output.",
+    "explanation": "这条证据在架构图中支撑 SDK and Catalog Pipeline / 节点「A2uiSchemaManager」、SDK and Catalog Pipeline / 节点「SendA2uiToClientToolset」、SDK and Catalog Pipeline / 连线「A2uiSchemaManager -> SendA2uiToClientToolset」。证据结论是：`A2uiSchemaManager` 根据 inline/supported/default catalog 选择 active catalog，并生成 system prompt。。图中的具体解释是：SchemaManager selects active catalog and renders LLM instructions.；Toolset injects schema/examples and validates tool output.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1361,6 +1412,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "Part/Event Converter",
         "sub": "A2UI DataPart",
@@ -1371,6 +1423,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "A2uiValidator -> Part/Event Converter",
         "sub": "valid A2UI",
@@ -1380,7 +1433,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "A2uiValidator 到 Part/Event Converter"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 sdk-catalog / 节点「Part/Event Converter」、sdk-catalog / 连线「A2uiValidator -> Part/Event Converter」。证据结论是：ADK `PartConverter` 可从 tool response、generic tool response 或 text tags 中抽取 A2UI 并转为 A2A parts。。图中的具体解释是：Converters package A2UI payloads for A2A clients.；关系语义：valid A2UI。",
+    "explanation": "这条证据在架构图中支撑 SDK and Catalog Pipeline / 节点「Part/Event Converter」、SDK and Catalog Pipeline / 连线「A2uiValidator -> Part/Event Converter」。证据结论是：ADK `PartConverter` 可从 tool response、generic tool response 或 text tags 中抽取 A2UI 并转为 A2A parts。。图中的具体解释是：Converters package A2UI payloads for A2A clients.；关系语义：valid A2UI。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1417,6 +1470,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "A2uiValidator",
         "sub": "Schema, graph, path checks",
@@ -1427,6 +1481,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "Parser / Fixer -> A2uiValidator",
         "sub": "payload",
@@ -1436,7 +1491,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "Parser / Fixer 到 A2uiValidator"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 sdk-catalog / 节点「A2uiValidator」、sdk-catalog / 连线「Parser / Fixer -> A2uiValidator」。证据结论是：`A2uiValidator` 除 JSON Schema 外，还校验 component integrity、topology、recursion 和 path syntax。。图中的具体解释是：Validator checks schema and additional topology/path integrity.；关系语义：payload。",
+    "explanation": "这条证据在架构图中支撑 SDK and Catalog Pipeline / 节点「A2uiValidator」、SDK and Catalog Pipeline / 连线「Parser / Fixer -> A2uiValidator」。证据结论是：`A2uiValidator` 除 JSON Schema 外，还校验 component integrity、topology、recursion 和 path syntax。。图中的具体解释是：Validator checks schema and additional topology/path integrity.；关系语义：payload。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1483,6 +1538,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "Transport / A2A / AG UI",
         "sub": "Ordered message delivery and metadata",
@@ -1493,6 +1549,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "A2UI v0.9 Messages -> Transport / A2A / AG UI",
         "sub": "carried by",
@@ -1504,6 +1561,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "Part/Event Converter -> Renderer Catalog",
         "sub": "A2A DataPart",
@@ -1513,7 +1571,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "Part/Event Converter 到 Renderer Catalog"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 overview / 节点「Transport / A2A / AG UI」、overview / 连线「A2UI v0.9 Messages -> Transport / A2A / AG UI」、sdk-catalog / 连线「Part/Event Converter -> Renderer Catalog」。证据结论是：A2A helper 将 A2UI 包装为 metadata `mimeType: application/json+a2ui` 的 DataPart，并支持 streaming parts。。图中的具体解释是：A2UI can be carried as A2A DataPart with application/json+a2ui metadata.；关系语义：carried by。",
+    "explanation": "这条证据在架构图中支撑 System Overview / 节点「Transport / A2A / AG UI」、System Overview / 连线「A2UI v0.9 Messages -> Transport / A2A / AG UI」、SDK and Catalog Pipeline / 连线「Part/Event Converter -> Renderer Catalog」。证据结论是：A2A helper 将 A2UI 包装为 metadata `mimeType: application/json+a2ui` 的 DataPart，并支持 streaming parts。。图中的具体解释是：A2UI can be carried as A2A DataPart with application/json+a2ui metadata.；关系语义：carried by。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1550,6 +1608,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "Catalog Assembler",
         "sub": "Standalone catalog.json",
@@ -1560,6 +1619,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "sdk-catalog",
+        "viewLabel": "SDK and Catalog Pipeline",
         "viewDescription": "The Python SDK uses catalog selection, prompt generation, parsing, repair, validation, and A2A conversion to keep generated UI within renderer capabilities.",
         "title": "Catalog Assembler -> A2uiSchemaManager",
         "sub": "catalog schema",
@@ -1569,7 +1629,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "Catalog Assembler 到 A2uiSchemaManager"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 sdk-catalog / 节点「Catalog Assembler」、sdk-catalog / 连线「Catalog Assembler -> A2uiSchemaManager」。证据结论是：`assemble_catalog.py` 可合并/展平 refs，组合 components/functions/themes，并生成 standalone catalog。。图中的具体解释是：The assembly tool flattens refs and merges custom components, functions, and themes.；关系语义：catalog schema。",
+    "explanation": "这条证据在架构图中支撑 SDK and Catalog Pipeline / 节点「Catalog Assembler」、SDK and Catalog Pipeline / 连线「Catalog Assembler -> A2uiSchemaManager」。证据结论是：`assemble_catalog.py` 可合并/展平 refs，组合 components/functions/themes，并生成 standalone catalog。。图中的具体解释是：The assembly tool flattens refs and merges custom components, functions, and themes.；关系语义：catalog schema。",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1660,6 +1720,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "overview",
+        "viewLabel": "System Overview",
         "viewDescription": "A2UI turns agent-generated JSON UI intent into native UI through transport, message processing, catalog lookup, state models, binding, and renderer components.",
         "title": "Transport / A2A / AG UI -> MessageProcessor",
         "sub": "delivers",
@@ -1671,6 +1732,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "React Shell",
         "sub": "Owns transport and surface list",
@@ -1681,6 +1743,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "renderer-runtime",
+        "viewLabel": "Renderer Runtime",
         "viewDescription": "The reusable implementation center is web_core; React is a comparatively thin adapter over surface state, component context, and GenericBinder.",
         "title": "React Shell -> MessageProcessor",
         "sub": "processMessage",
@@ -1692,6 +1755,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "节点",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "Action Handler",
         "sub": "Sends client action",
@@ -1702,6 +1766,7 @@ window.EVIDENCE_ITEMS = [
       {
         "kind": "连线",
         "viewId": "actions-state",
+        "viewLabel": "Actions and Data State",
         "viewDescription": "Input components update DataModel through setters; event actions resolve context at trigger time and travel back to the agent through host action handlers.",
         "title": "Action Handler -> Agent",
         "sub": "POST action",
@@ -1711,7 +1776,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "Action Handler 到 Agent"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 overview / 连线「Transport / A2A / AG UI -> MessageProcessor」、renderer-runtime / 节点「React Shell」、renderer-runtime / 连线「React Shell -> MessageProcessor」、actions-state / 节点「Action Handler」。证据结论是：React shell sample 创建 MessageProcessor，注册 action handler，处理 mock/real stream 并渲染 `<A2uiSurface>`。。图中的具体解释是：关系语义：delivers。；The sample shell receives chunks, processes messages, and renders surfaces.",
+    "explanation": "这条证据在架构图中支撑 System Overview / 连线「Transport / A2A / AG UI -> MessageProcessor」、Renderer Runtime / 节点「React Shell」、Renderer Runtime / 连线「React Shell -> MessageProcessor」、Actions and Data State / 节点「Action Handler」。证据结论是：React shell sample 创建 MessageProcessor，注册 action handler，处理 mock/real stream 并渲染 `<A2uiSurface>`。。图中的具体解释是：关系语义：delivers。；The sample shell receives chunks, processes messages, and renders surfaces.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -1742,6 +1807,177 @@ window.EVIDENCE_ITEMS = [
         "end": 324,
         "snippet": "  319        {/* Render all surfaces */}\n  320        {hasSurfaces && (\n  321          <section className=\"surfaces\">\n  322            {surfaces.map(surface => (\n  323              <A2uiSurface key={surface.id} surface={surface} />\n  324            ))}",
         "omitted": ""
+      }
+    ],
+    "sourceLimitNote": ""
+  },
+  {
+    "id": "EVD-035",
+    "conclusion": "A2UI 官网把项目定义为 agent-driven interfaces 的声明式 UI protocol，强调跨 web/mobile/desktop 原生渲染且不执行任意代码。",
+    "type": "官方网页",
+    "location": "`https://a2ui.org/introduction/what-is-a2ui/`，retrieved 2026-05-28",
+    "confidence": "高",
+    "verified": "",
+    "note": "与本地 README/intro 文档一致",
+    "graphRefs": [],
+    "explanation": "这条证据当前没有被可视化架构图直接引用，主要用于支撑证据索引中的结论或后续推断。",
+    "sourceRefs": [
+      {
+        "kind": "url",
+        "display": "https://a2ui.org/introduction/what-is-a2ui/",
+        "url": "https://a2ui.org/introduction/what-is-a2ui/"
+      }
+    ],
+    "sourceLimitNote": ""
+  },
+  {
+    "id": "EVD-036",
+    "conclusion": "官网 v0.9 protocol 页面说明 v0.9 是 JSON-based streaming UI protocol，并定义四类 server-to-client message。",
+    "type": "官方网页",
+    "location": "`https://a2ui.org/specification/v0.9-a2ui/`，retrieved 2026-05-28",
+    "confidence": "高",
+    "verified": "",
+    "note": "与本地 `specification/v0_9` 一致",
+    "graphRefs": [],
+    "explanation": "这条证据当前没有被可视化架构图直接引用，主要用于支撑证据索引中的结论或后续推断。",
+    "sourceRefs": [
+      {
+        "kind": "url",
+        "display": "https://a2ui.org/specification/v0.9-a2ui/",
+        "url": "https://a2ui.org/specification/v0.9-a2ui/"
+      }
+    ],
+    "sourceLimitNote": ""
+  },
+  {
+    "id": "EVD-037",
+    "conclusion": "官网 Roadmap 把 v0.9 标为 current、feature complete、supported；v0.10 与 v1.0 为 draft/目标版本。",
+    "type": "官方网页",
+    "location": "`https://a2ui.org/roadmap/`，retrieved 2026-05-28",
+    "confidence": "高",
+    "verified": "",
+    "note": "版本状态口径",
+    "graphRefs": [],
+    "explanation": "这条证据当前没有被可视化架构图直接引用，主要用于支撑证据索引中的结论或后续推断。",
+    "sourceRefs": [
+      {
+        "kind": "url",
+        "display": "https://a2ui.org/roadmap/",
+        "url": "https://a2ui.org/roadmap/"
+      }
+    ],
+    "sourceLimitNote": ""
+  },
+  {
+    "id": "EVD-038",
+    "conclusion": "Roadmap 的 Q2 2026 milestones 包括发布 v0.9 spec、web core/renderers 支持 v0.9、官方 React renderer、Python Agents SDK。",
+    "type": "官方网页",
+    "location": "`https://a2ui.org/roadmap/`，retrieved 2026-05-28",
+    "confidence": "高",
+    "verified": "",
+    "note": "与本地源码结构匹配",
+    "graphRefs": [],
+    "explanation": "这条证据当前没有被可视化架构图直接引用，主要用于支撑证据索引中的结论或后续推断。",
+    "sourceRefs": [
+      {
+        "kind": "url",
+        "display": "https://a2ui.org/roadmap/",
+        "url": "https://a2ui.org/roadmap/"
+      }
+    ],
+    "sourceLimitNote": ""
+  },
+  {
+    "id": "EVD-039",
+    "conclusion": "官网 Renderers Reference 将 renderer 类比 browser，要求支持 adjacency list、data binding/lifecycle、incremental messages、server updates、user actions。",
+    "type": "官方网页",
+    "location": "`https://a2ui.org/reference/renderers/`，retrieved 2026-05-28",
+    "confidence": "高",
+    "verified": "",
+    "note": "与 `web_core`/React 分析一致",
+    "graphRefs": [],
+    "explanation": "这条证据当前没有被可视化架构图直接引用，主要用于支撑证据索引中的结论或后续推断。",
+    "sourceRefs": [
+      {
+        "kind": "url",
+        "display": "https://a2ui.org/reference/renderers/",
+        "url": "https://a2ui.org/reference/renderers/"
+      }
+    ],
+    "sourceLimitNote": ""
+  },
+  {
+    "id": "EVD-040",
+    "conclusion": "官网 Client Setup 说明 web renderers 共享 `@a2ui/web_core`，custom catalog 是 agent 与 renderer 的契约。",
+    "type": "官方网页",
+    "location": "`https://a2ui.org/guides/client-setup/`，retrieved 2026-05-28",
+    "confidence": "高",
+    "verified": "",
+    "note": "支持 catalog/web_core 主结论",
+    "graphRefs": [],
+    "explanation": "这条证据当前没有被可视化架构图直接引用，主要用于支撑证据索引中的结论或后续推断。",
+    "sourceRefs": [
+      {
+        "kind": "url",
+        "display": "https://a2ui.org/guides/client-setup/",
+        "url": "https://a2ui.org/guides/client-setup/"
+      }
+    ],
+    "sourceLimitNote": ""
+  },
+  {
+    "id": "EVD-041",
+    "conclusion": "官网 Ecosystem Renderers 列出社区 renderer，并提醒社区 renderer 由各自作者维护、需检查兼容版本和维护状态。",
+    "type": "官方网页",
+    "location": "`https://a2ui.org/ecosystem/renderers/`，retrieved 2026-05-28",
+    "confidence": "中",
+    "verified": "",
+    "note": "生态背景，不作为实现事实",
+    "graphRefs": [],
+    "explanation": "这条证据当前没有被可视化架构图直接引用，主要用于支撑证据索引中的结论或后续推断。",
+    "sourceRefs": [
+      {
+        "kind": "url",
+        "display": "https://a2ui.org/ecosystem/renderers/",
+        "url": "https://a2ui.org/ecosystem/renderers/"
+      }
+    ],
+    "sourceLimitNote": ""
+  },
+  {
+    "id": "EVD-042",
+    "conclusion": "CrewAI 文档把 A2UI 描述为 A2A extension，valid messages 会包装为 `application/json+a2ui` DataPart，并由 client 注入 catalog/instructions 和跟踪 surface state。",
+    "type": "集成方文档",
+    "location": "`https://docs.crewai.com/en/learn/a2ui`，retrieved 2026-05-28",
+    "confidence": "中",
+    "verified": "",
+    "note": "与本地 A2A parts/converter 机制相符，未运行 CrewAI",
+    "graphRefs": [],
+    "explanation": "这条证据当前没有被可视化架构图直接引用，主要用于支撑证据索引中的结论或后续推断。",
+    "sourceRefs": [
+      {
+        "kind": "url",
+        "display": "https://docs.crewai.com/en/learn/a2ui",
+        "url": "https://docs.crewai.com/en/learn/a2ui"
+      }
+    ],
+    "sourceLimitNote": ""
+  },
+  {
+    "id": "EVD-043",
+    "conclusion": "CopilotKit 文档称 A2UI 是 Google 牵头的 declarative Generative UI specification，并区分 dynamic schema 与 fixed schema 两种实践路径。",
+    "type": "集成方文档",
+    "location": "`https://docs.copilotkit.ai/google-adk/generative-ui/a2ui`，retrieved 2026-05-28",
+    "confidence": "中",
+    "verified": "",
+    "note": "作为生态/集成背景",
+    "graphRefs": [],
+    "explanation": "这条证据当前没有被可视化架构图直接引用，主要用于支撑证据索引中的结论或后续推断。",
+    "sourceRefs": [
+      {
+        "kind": "url",
+        "display": "https://docs.copilotkit.ai/google-adk/generative-ui/a2ui",
+        "url": "https://docs.copilotkit.ai/google-adk/generative-ui/a2ui"
       }
     ],
     "sourceLimitNote": ""

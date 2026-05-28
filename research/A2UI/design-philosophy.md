@@ -58,7 +58,7 @@ A2UI 不绑定 transport，也不绑定 React。README 和 renderer docs 都强�
 
 ## 8. Preview-first Evolution
 
-README 标注 v0.8 public preview，代码中又有 v0.9 主实现和 v0.10 under development。项目处在快速演进阶段。对使用方来说，合适的姿势是学习架构与抽象，生产落地时锁定版本并封装兼容层，而不是直接依赖未稳定 API。
+本地 README 保留 v0.8 public preview 口径，代码中已有 v0.9 主实现和 v0.10 目录；官网 Roadmap 则把 v0.9 标为 current/supported，同时把 v0.10/v1.0 标为 draft/目标版本。对使用方来说，合适的姿势是学习架构与抽象，生产落地时锁定版本并封装兼容层，而不是直接依赖未确认的演进 API。
 
 ## 可以学习的设计原则
 

@@ -8,7 +8,7 @@ sequenceDiagram
   participant Main as hermes_cli.main
   participant CLI as cli.py
   participant Agent as AIAgent
-  participant Loop as conversation_loop
+  participant ConvLoop as conversation_loop
   participant Tools as model_tools/registry
   participant Provider as Provider client
 
@@ -18,12 +18,12 @@ sequenceDiagram
   Main->>CLI: cli.main(**kwargs)
   CLI->>Agent: construct AIAgent
   Agent->>Agent: agent_init.init_agent
-  Agent->>Loop: run_conversation
-  Loop->>Provider: streaming API call
-  Provider-->>Loop: text/tool calls
-  Loop->>Tools: execute tool calls
-  Tools-->>Loop: tool results
-  Loop-->>CLI: final result/session state
+  Agent->>ConvLoop: run_conversation
+  ConvLoop->>Provider: streaming API call
+  Provider-->>ConvLoop: text/tool calls
+  ConvLoop->>Tools: execute tool calls
+  Tools-->>ConvLoop: tool results
+  ConvLoop-->>CLI: final result/session state
 ```
 
 关键状态：
@@ -70,21 +70,21 @@ sequenceDiagram
   participant ToolMod as tools/*.py
   participant Registry as ToolRegistry
   participant ModelTools as model_tools
-  participant Loop as conversation_loop
+  participant ConvLoop as conversation_loop
   participant LLM
 
   ToolMod->>Registry: register(definition, handler, check_fn)
   ModelTools->>Registry: get_definitions()
   ModelTools->>ModelTools: apply toolsets / disabled toolsets / cache
-  Loop->>LLM: send tool schemas
-  LLM-->>Loop: tool call
-  Loop->>Loop: validate args / JSON repair / guardrail
-  Loop->>ModelTools: handle_function_call(name, args)
+  ConvLoop->>LLM: send tool schemas
+  LLM-->>ConvLoop: tool call
+  ConvLoop->>ConvLoop: validate args / JSON repair / guardrail
+  ConvLoop->>ModelTools: handle_function_call(name, args)
   ModelTools->>ModelTools: pre_tool_call hooks / ACP approvals
   ModelTools->>Registry: dispatch(name, args)
   Registry-->>ModelTools: handler result
   ModelTools->>ModelTools: post hooks / transform result
-  ModelTools-->>Loop: tool result message
+  ModelTools-->>ConvLoop: tool result message
 ```
 
 关键状态：
@@ -104,7 +104,7 @@ sequenceDiagram
   participant Runner as GatewayRunner
   participant Session as gateway.session
   participant Agent as AIAgent
-  participant Loop as run_conversation
+  participant ConvLoop as run_conversation
   participant Delivery
 
   Platform->>Adapter: inbound message/event
@@ -114,8 +114,8 @@ sequenceDiagram
   Runner->>Session: build SessionSource/SessionContext/session key
   Runner->>Runner: pending sentinel to avoid duplicate agent
   Runner->>Agent: cached or fresh AIAgent
-  Agent->>Loop: run_conversation(history/task id)
-  Loop-->>Runner: streaming/final output
+  Agent->>ConvLoop: run_conversation(history/task id)
+  ConvLoop-->>Runner: streaming/final output
   Runner->>Delivery: avoid duplicate final delivery if stream already sent
   Delivery->>Adapter: platform send/update
 ```

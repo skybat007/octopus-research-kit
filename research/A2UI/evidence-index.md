@@ -54,8 +54,22 @@
 | <a id="EVD-033"></a>EVD-033 | Conformance 和 renderer tests 覆盖 parser、validator、catalog、schema manager、MessageProcessor、DataModel、GenericBinder、React components。 | 测试 | `agent_sdks/conformance/README.md:1-26`, `renderers/web_core/src/v0_9/processing/message-processor.test.ts:36-481`, `renderers/web_core/src/v0_9/state/data-model.test.ts:74-310`, `renderers/react/tests/v0_9/catalog-components.test.tsx:150-230` | 是 | 高 | 测试支撑 |
 | <a id="EVD-034"></a>EVD-034 | React shell sample 创建 MessageProcessor，注册 action handler，处理 mock/real stream 并渲染 `<A2uiSurface>`。 | 样例 | `samples/client/react/shell/src/App.tsx:68-75`, `samples/client/react/shell/src/App.tsx:172-207`, `samples/client/react/shell/src/App.tsx:319-324` | 是 | 高 | 集成示例 |
 
+## 联网资料证据
+
+| ID | 结论 | 证据类型 | 来源 | 已源码验证 | 置信度 | 备注 |
+|---|---|---|---|---|---|---|
+| <a id="EVD-035"></a>EVD-035 | A2UI 官网把项目定义为 agent-driven interfaces 的声明式 UI protocol，强调跨 web/mobile/desktop 原生渲染且不执行任意代码。 | 官方网页 | `https://a2ui.org/introduction/what-is-a2ui/`，retrieved 2026-05-28 | 是 | 高 | 与本地 README/intro 文档一致 |
+| <a id="EVD-036"></a>EVD-036 | 官网 v0.9 protocol 页面说明 v0.9 是 JSON-based streaming UI protocol，并定义四类 server-to-client message。 | 官方网页 | `https://a2ui.org/specification/v0.9-a2ui/`，retrieved 2026-05-28 | 是 | 高 | 与本地 `specification/v0_9` 一致 |
+| <a id="EVD-037"></a>EVD-037 | 官网 Roadmap 把 v0.9 标为 current、feature complete、supported；v0.10 与 v1.0 为 draft/目标版本。 | 官方网页 | `https://a2ui.org/roadmap/`，retrieved 2026-05-28 | 部分 | 高 | 版本状态口径 |
+| <a id="EVD-038"></a>EVD-038 | Roadmap 的 Q2 2026 milestones 包括发布 v0.9 spec、web core/renderers 支持 v0.9、官方 React renderer、Python Agents SDK。 | 官方网页 | `https://a2ui.org/roadmap/`，retrieved 2026-05-28 | 是 | 高 | 与本地源码结构匹配 |
+| <a id="EVD-039"></a>EVD-039 | 官网 Renderers Reference 将 renderer 类比 browser，要求支持 adjacency list、data binding/lifecycle、incremental messages、server updates、user actions。 | 官方网页 | `https://a2ui.org/reference/renderers/`，retrieved 2026-05-28 | 是 | 高 | 与 `web_core`/React 分析一致 |
+| <a id="EVD-040"></a>EVD-040 | 官网 Client Setup 说明 web renderers 共享 `@a2ui/web_core`，custom catalog 是 agent 与 renderer 的契约。 | 官方网页 | `https://a2ui.org/guides/client-setup/`，retrieved 2026-05-28 | 是 | 高 | 支持 catalog/web_core 主结论 |
+| <a id="EVD-041"></a>EVD-041 | 官网 Ecosystem Renderers 列出社区 renderer，并提醒社区 renderer 由各自作者维护、需检查兼容版本和维护状态。 | 官方网页 | `https://a2ui.org/ecosystem/renderers/`，retrieved 2026-05-28 | 不适用 | 中 | 生态背景，不作为实现事实 |
+| <a id="EVD-042"></a>EVD-042 | CrewAI 文档把 A2UI 描述为 A2A extension，valid messages 会包装为 `application/json+a2ui` DataPart，并由 client 注入 catalog/instructions 和跟踪 surface state。 | 集成方文档 | `https://docs.crewai.com/en/learn/a2ui`，retrieved 2026-05-28 | 部分 | 中 | 与本地 A2A parts/converter 机制相符，未运行 CrewAI |
+| <a id="EVD-043"></a>EVD-043 | CopilotKit 文档称 A2UI 是 Google 牵头的 declarative Generative UI specification，并区分 dynamic schema 与 fixed schema 两种实践路径。 | 集成方文档 | `https://docs.copilotkit.ai/google-adk/generative-ui/a2ui`，retrieved 2026-05-28 | 部分 | 中 | 作为生态/集成背景 |
+
 ## 证据完整性说明
 
 - “已源码验证”表示该结论至少被源码、规范、测试或官方文档中的一种固定文件证据支持。
 - 关于生产采纳优先级的建议属于工程推断，已尽量绑定到 catalog、validator、capabilities、data model 等源码证据。
-- 本轮没有实时网络检索，因此 release 活跃度、社区讨论和最新 issue 不在证据范围内。
+- 本轮已补充官网、GitHub 和集成方网络检索；GitHub issue/PR/discussion 未逐条 triage，因此具体社区痛点仍不在本轮结论范围内。

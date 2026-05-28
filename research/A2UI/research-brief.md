@@ -13,7 +13,7 @@
 | 调研快照 | `main @ e05dd9699dea21ba832059acb680f71022dd5a77` |
 | 最新提交时间 | 2026-05-27 14:12:24 -0700 |
 | 调研日期 | 2026-05-28 |
-| 核心版本 | v0.9 protocol；packages 标注到 `0.10.0`；v0.10 规范目录仍标注 under development |
+| 核心版本 | v0.9 protocol；packages 标注到 `0.10.0`；官网 Roadmap 把 v0.9 标为 current/supported，v0.10/v1.0 仍为 draft/规划 |
 
 ## 调研问题
 
@@ -44,11 +44,12 @@
 3. 从 `renderers/web_core` 追踪消息处理、surface/component/data model、binding 和 action 流。
 4. 从 `renderers/react` 追踪具体 UI 渲染适配。
 5. 从 `agent_sdks/python` 追踪 schema manager、validator、parser、ADK toolset 和 A2A part converter。
-6. 用 tests、samples、conformance suites 验证实现声明，而不是只依赖说明文档。
+6. 补充官网、GitHub、Roadmap、renderer/client setup、生态集成文档的网络检索，把外部说法转成源码验证问题。
+7. 用 tests、samples、conformance suites 验证实现声明，而不是只依赖说明文档。
 
 ## 非目标
 
 - 不评估 UI 视觉质量和组件库美观度。
 - 不做性能 benchmark。
-- 不覆盖仓库外竞品的最新版本和社区讨论。
+- 不做 exhaustive issue triage、完整 release diff 或仓库外竞品 benchmark。
 - 不尝试修改 A2UI 源码或运行完整测试矩阵。

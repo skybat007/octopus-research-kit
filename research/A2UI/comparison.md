@@ -2,7 +2,7 @@
 
 ## 比较边界
 
-本轮没有联网检索竞品最新资料，因此外部对比只做架构层面的有限比较。更可靠的比较来自仓库内部：v0.8.1 到 v0.9 的 evolution guide、A2A/AG UI binding 文档、React sample 和 renderer implementation。
+本轮已补充官网、GitHub、Roadmap 和集成方文档检索，但没有做竞品最新版本的系统性 benchmark。因此外部对比仍只做架构层面的有限比较。更可靠的比较来自仓库内部：v0.8.1 到 v0.9 的 evolution guide、A2A/AG UI binding 文档、React sample 和 renderer implementation。
 
 ## A2UI vs 直接生成 HTML/JS
 

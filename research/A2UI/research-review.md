@@ -11,7 +11,7 @@
 | Renderer 源码阅读 | 完成 | React v0.9、web_core message/state/rendering/catalog |
 | SDK 源码阅读 | 完成 | Python parser、schema manager、validator、ADK toolset、A2A converters |
 | 测试/样例验证 | 完成 | React shell sample、web_core tests、React tests、conformance README |
-| 外部网络研究 | 未执行 | 本轮以本地固定快照和仓库官方文档为准 |
+| 外部网络研究 | 完成 | 已补充官网、GitHub、Roadmap、renderer/client setup、生态 renderer、CrewAI/CopilotKit 集成文档检索 |
 | 架构可视化 | 完成 | `visual/architecture.html` |
 | Dashboard | 完成 | `dashboard.html`、`docs.html` |
 | 调研校验 | 完成 | `node docs/tech-research-guide/scripts/validate-research.js research/A2UI` 返回 OK |
@@ -26,14 +26,21 @@
 | 是否避免依赖本机绝对路径 | 通过 |
 | 是否覆盖核心流程 | 通过，覆盖生成、transport、message processing、binding、action、SDK/A2A |
 | 是否覆盖扩展点 | 通过，覆盖 catalog、renderer、function、capabilities、transport、validator |
+| 是否覆盖必要外部资料 | 通过；网络检索已补齐，流程偏差记录见下 |
 | 是否覆盖风险 | 通过 |
 
 ## 主要残余风险
 
 - 未运行 A2UI 仓库自身完整测试套件；测试证据来自源码阅读。
-- 未实时查询 GitHub issue/release，因此不能代表 2026-05-28 之后的最新状态。
-- v0.10 未展开调研，只确认其处于 under development。
+- GitHub issue/PR/discussion 只做入口和数量级确认，未逐条 triage。
+- 不能代表 2026-05-28 之后的最新状态。
+- v0.10 未展开源码级调研，只确认其在线/本地文档仍处于 draft 或 under development 口径。
 - Flutter/Lit/Angular renderer 未逐行分析，本轮以 React + web_core 为主。
+
+## 流程审查记录
+
+- 初版外部资料调研误用了 skill 中“本地仓库已有官方文档可跳过”的例外，没有按项目级调研指南执行网络检索；现已补做官网、GitHub、Roadmap、renderer/client setup、生态 renderer、CrewAI/CopilotKit 检索。
+- 初版 `external-research.md` 曾写入流程修正说明；这类内容与正式资料文档无关，已移至本审查文档。正式外部资料文档只保留检索策略、资料列表、关键观点、源码验证状态、口径差异和资料边界。
 
 ## 复核建议
 

@@ -108,4 +108,4 @@ Python SDK 的架构与 renderer 镜像互补：
 ## 风险与推断
 
 - 推断：如果生产系统只使用 Basic Catalog，不定义自有 catalog，那么 UI 一致性和业务安全策略会偏弱。该判断来自 catalog 文档对生产自定义 catalog 的建议，以及 renderer/SDK 均以 catalog 为能力边界。
-- 推断：当前 API 仍可能变化。该判断来自 README public preview 声明、v0.10 under development 和 v0.9 evolution guide。
+- 推断：当前 API 仍可能变化。该判断来自本地 README public preview 声明、v0.9 evolution guide、v0.10 draft/under development 口径，以及官网 Roadmap 对 v1.0 的规划。

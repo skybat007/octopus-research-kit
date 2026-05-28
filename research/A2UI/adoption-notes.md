@@ -19,7 +19,7 @@
 
 ### 1. 锁定协议版本
 
-以 v0.9 为基础做 PoC，明确所有 payload 带版本。由于 v0.10 已在开发中，应用层应封装 A2UI version adapter，避免业务代码散落依赖协议细节。
+以 v0.9 为基础做 PoC，明确所有 payload 带版本。官网 Roadmap 已把 v0.9 标为 current/supported，但 v0.10/v1.0 仍在 draft/规划中；应用层应封装 A2UI version adapter，避免业务代码散落依赖协议细节。
 
 ### 2. 定义 Custom Catalog
 

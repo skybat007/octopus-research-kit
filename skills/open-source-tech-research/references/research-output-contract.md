@@ -33,6 +33,7 @@ A good output:
 - answers the user's stated research questions
 - fixes the framework version or clearly labels it as current snapshot
 - captures relevant official, collaboration, and community evidence or explains why external research was skipped
+- keeps process deviations, skipped/compensated steps, validation failures, tool-run notes, correction explanations, and agent workflow issues in `research-review.md`, not in formal research documents such as `external-research.md`
 - converts external claims into source-verifiable research questions
 - includes a deterministic `references/source-inventory.json` for local source trees, or explains why it could not be generated
 - includes `dashboard.html` as a browser reading entry and `docs.html` as a UTF-8 Markdown/JSON reader; do not link raw `.md` files from the dashboard

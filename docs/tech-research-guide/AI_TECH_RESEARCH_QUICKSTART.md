@@ -30,7 +30,7 @@
 
 1. 创建 `research/<framework-name>/research-brief.md`。
 2. 固定代码版本和调研范围。
-3. 收集必要外部资料，生成 `external-research.md`；如果只做本地源码调研，记录跳过原因。
+3. 收集必要外部资料，生成 `external-research.md`；如果只做本地源码调研，跳过原因写入 `research-review.md`。
 4. 将外部观点和用户目标转成源码验证问题，生成 `research-questions.md`。
 5. 如果有本地源码，生成 `references/source-inventory.json`。
 6. 生成 `source-map.md`。
@@ -59,6 +59,8 @@
 
 ```text
 请先不要直接分析源码。请围绕 <框架名称> 进行外部资料调研，优先收集官方文档、README/Quickstart、Architecture/Concept 文档、Release Notes、官方 Examples、重要 Issue/PR/Discussion 和高质量第三方技术分析。请输出 external-research.md，区分官方资料、协作资料和第三方资料，标记可信度，并标记哪些观点需要源码验证。
+
+注意：external-research.md 是正式资料文档，不记录调研过程偏差、补救说明、工具调用细节或“上一版为什么错了”。这类过程性内容写入 research-review.md。
 ```
 
 ```text

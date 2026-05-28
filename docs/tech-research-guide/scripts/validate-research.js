@@ -58,6 +58,7 @@ function validateDir(researchDir) {
   validateRequiredDocs(researchDir, result);
   validateInventory(researchDir, result);
   validateNoPersonalPaths(researchDir, result);
+  validateMermaidSyntaxHints(researchDir, result);
 
   const evidencePath = path.join(researchDir, 'evidence-index.md');
   const evidenceIds = fs.existsSync(evidencePath)
@@ -179,6 +180,69 @@ function validateNoPersonalPaths(researchDir, result) {
       result.errors.push(`${rel(file)} contains a personal local path; use project name or repository-relative paths instead`);
     }
   }
+}
+
+function validateMermaidSyntaxHints(researchDir, result) {
+  const reservedAliases = new Set([
+    'loop',
+    'alt',
+    'opt',
+    'par',
+    'and',
+    'else',
+    'break',
+    'critical',
+    'option',
+    'rect',
+    'end',
+    'note',
+    'activate',
+    'deactivate',
+    'create',
+    'destroy',
+    'participant',
+    'actor'
+  ]);
+  for (const file of listResearchFiles(researchDir, new Set(['.md']))) {
+    const content = fs.readFileSync(file, 'utf8');
+    for (const block of mermaidBlocks(content)) {
+      if (!/^\s*sequenceDiagram\b/m.test(block.code)) continue;
+      for (const line of block.code.split(/\r?\n/)) {
+        const match = line.match(/^\s*(?:participant|actor)\s+([A-Za-z][\w-]*)\b/);
+        if (!match) continue;
+        const alias = match[1];
+        if (reservedAliases.has(alias.toLowerCase())) {
+          result.errors.push(`${rel(file)} Mermaid sequenceDiagram uses reserved participant alias "${alias}" near line ${block.startLine}; rename it, for example "${alias}Node"`);
+        }
+      }
+    }
+  }
+}
+
+function mermaidBlocks(content) {
+  const blocks = [];
+  const lines = String(content || '').split(/\r?\n/);
+  let inBlock = false;
+  let startLine = 0;
+  let lang = '';
+  let code = [];
+  for (let i = 0; i < lines.length; i += 1) {
+    const fence = lines[i].match(/^\s*```(\S*)/);
+    if (!inBlock && fence) {
+      inBlock = true;
+      startLine = i + 1;
+      lang = (fence[1] || '').toLowerCase();
+      code = [];
+      continue;
+    }
+    if (inBlock && /^\s*```/.test(lines[i])) {
+      if (lang === 'mermaid') blocks.push({ startLine, code: code.join('\n') });
+      inBlock = false;
+      continue;
+    }
+    if (inBlock) code.push(lines[i]);
+  }
+  return blocks;
 }
 
 function listResearchFiles(dir, extensions, out = []) {

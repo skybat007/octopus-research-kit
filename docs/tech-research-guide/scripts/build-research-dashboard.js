@@ -181,6 +181,16 @@ function renderDashboard(data) {
       overflow: auto;
     }
     main { padding: 28px 30px 56px; }
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 16px;
+      color: #475569;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .home-link:hover { color: var(--accent); text-decoration: none; }
     .brand { font-weight: 800; margin-bottom: 4px; }
     .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
     .nav-group { margin: 15px 0 4px; }
@@ -369,6 +379,7 @@ function renderSideNav({ title, subtitle, docs, currentFile = '' }) {
   }
 
   return `<aside>
+      <a class="home-link" href="../index.html" title="返回 Tech Research 首页"><span aria-hidden="true">&larr;</span> 调研首页</a>
       <div class="brand">${escapeHtml(title)}</div>
       <div class="sub">${escapeHtml(subtitle)}</div>
       ${NAV_GROUPS.map(group => {
@@ -468,6 +479,16 @@ function renderDocsViewer(data) {
       overflow: auto;
     }
     main { padding: 28px 30px 56px; }
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 16px;
+      color: #475569;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .home-link:hover { color: var(--accent); text-decoration: none; }
     .brand { font-weight: 800; margin-bottom: 4px; }
     .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
     .nav-group { margin: 15px 0 4px; }

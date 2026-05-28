@@ -174,17 +174,40 @@ function render(i) {
   fit();
 }
 function graphSVG(v) {
-  const nodes = Object.fromEntries(v.nodes.map(n => [n.id, n]));
-  let s = svgOpen(v);
-  v.edges.forEach(e => {
+  const view = layoutGraph(v);
+  const nodes = Object.fromEntries(view.nodes.map(n => [n.id, n]));
+  let s = svgOpen(view);
+  view.edges.forEach(e => {
     if (!nodes[e.from] || !nodes[e.to]) return;
     const a = center(nodes[e.from]), b = center(nodes[e.to]);
     const cls = ['conn', edgeClass(e.kind), edgeAnim(e.kind)].filter(Boolean).join(' ');
     s += `<path class="${cls}" data-kind="${attr(e.kind)}" data-ev="${attr(e.ev)}" data-doc="${attr(e.doc)}" d="M${a.x},${a.y} L${b.x},${b.y}"/>`;
     if (e.label) s += `<text x="${(a.x+b.x)/2}" y="${(a.y+b.y)/2-8}" text-anchor="middle" class="edge-label">${escapeHtml(e.label)}</text>`;
   });
-  v.nodes.forEach(n => s += nodeSVG(n));
+  view.nodes.forEach(n => s += nodeSVG(n));
   return s + '</svg>';
+}
+function layoutGraph(v) {
+  const rawNodes = Array.isArray(v.nodes) ? v.nodes : [];
+  const needsLayout = !finite(v.width) || !finite(v.height) || rawNodes.some(n => !finite(n.x) || !finite(n.y) || !finite(n.w) || !finite(n.h));
+  if (!needsLayout) return v;
+  const nodeW = 218, nodeH = 82, gapX = 82, gapY = 96, marginX = 72, marginY = 72;
+  const count = Math.max(rawNodes.length, 1);
+  const cols = count <= 4 ? count : (count === 9 ? 3 : 4);
+  const rows = Math.ceil(count / cols);
+  const nodes = rawNodes.map((n, i) => {
+    const w = finite(n.w) ? Number(n.w) : nodeW;
+    const h = finite(n.h) ? Number(n.h) : nodeH;
+    const x = finite(n.x) ? Number(n.x) : marginX + (i % cols) * (nodeW + gapX);
+    const y = finite(n.y) ? Number(n.y) : marginY + Math.floor(i / cols) * (nodeH + gapY);
+    return { ...n, x, y, w, h };
+  });
+  return {
+    ...v,
+    width: finite(v.width) ? Number(v.width) : marginX * 2 + cols * nodeW + (cols - 1) * gapX,
+    height: finite(v.height) ? Number(v.height) : marginY * 2 + rows * nodeH + (rows - 1) * gapY,
+    nodes
+  };
 }
 function layerSVG(v) {
   let s = svgOpen(v);
@@ -220,6 +243,7 @@ function nodeSVG(n) {
 function edgeClass(kind) { return kind || 'dependency'; }
 function edgeAnim(kind) { return ['request-flow', 'model-stream'].includes(kind) ? 'flow' : ''; }
 function center(n) { return { x: n.x + n.w / 2, y: n.y + n.h / 2 }; }
+function finite(value) { return Number.isFinite(Number(value)); }
 function bindTooltips() {
   document.querySelectorAll('.node').forEach(el => {
     el.onmouseenter = () => {
