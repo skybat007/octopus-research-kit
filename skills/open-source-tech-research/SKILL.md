@@ -31,7 +31,8 @@ Do not produce generic introductions. Important conclusions must be backed by of
    - track status as pending, verified, partially verified, or unverified
    - write findings to `research-questions.md`
 5. Generate a deterministic source inventory when a local source tree is available:
-   - run `node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name>` from the project root
+   - run `node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name> --source-root /absolute/path/to/source` from the project root
+   - use `--source-root` only as a runtime input; generated Markdown/JSON/HTML must not include personal absolute paths
    - use `references/source-inventory.json` as a reading aid for languages, top-level folders, build files, package files, entry candidates, tests, examples, docs, config, and large files
    - do not treat `references/source-inventory.json` as an architecture conclusion; verify important claims in source, tests, config, docs, or examples
    - if there is no local source tree, record the reason in `research-review.md`

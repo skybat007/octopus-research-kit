@@ -40,6 +40,9 @@ node docs/tech-research-guide/scripts/build-research-dashboard.js research/<fram
 
 # 校验文档、Dashboard、结构化清单、visual data、证据编号和 HTML 内联脚本
 node docs/tech-research-guide/scripts/validate-research.js research/<framework-name>
+
+# 发布前检查个人路径、常见令牌和私钥形态
+node docs/tech-research-guide/scripts/check-release-safety.js
 ```
 
 ## 边界

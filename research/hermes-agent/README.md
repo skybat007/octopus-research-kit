@@ -1,7 +1,6 @@
 # Hermes Agent 技术调研
 
 Status: draft
-Owner: cheng / Codex
 Last Updated: 2026-05-25
 
 ## 调研摘要

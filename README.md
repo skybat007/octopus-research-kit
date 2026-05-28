@@ -36,7 +36,11 @@
 
 ```text
 .
+├── .github/
+│   └── workflows/
 ├── AGENTS.md
+├── LICENSE
+├── package.json
 ├── README.md
 ├── QUICKSTART.md
 ├── docs/
@@ -44,11 +48,14 @@
 │   ├── tech-research-guide/
 │   │   ├── README.md
 │   │   ├── TECH_RESEARCH_GUIDE.md
+│   │   ├── roles/
+│   │   ├── scripts/
 │   │   └── templates/
 │   ├── memory/
 │   └── specs-archive/
 ├── research/
-│   └── example-framework/
+│   ├── index.html
+│   └── <framework-name>/
 └── skills/
     └── open-source-tech-research/
 ```
@@ -80,3 +87,16 @@
 5. 使用 `open-source-tech-research` skill 推进源码扫描、核心抽象、架构拆解、主流程追踪、扩展点和设计思想提炼。
 6. 将每个关键结论记录到 `evidence-index.md`，保留官方资料、源码、测试、协作资料或社区资料证据。
 7. 在 `adoption-notes.md` 中沉淀值得学习、需要结合语境后再借鉴和不适合照搬的设计。
+
+## 发布前检查
+
+公开发布前建议至少执行：
+
+```bash
+npm run research:sanitize
+npm run research:dashboard
+npm run research:validate:strict
+npm run release:check
+```
+
+这些检查用于确认调研产物结构完整、Dashboard 可重新生成、Mermaid 常见语法问题可被发现，并避免把个人本机路径、常见令牌或私钥形态误提交到公开仓库。

@@ -1,5 +1,6 @@
 # Ignore IDE-specific files
 .idea/
+.vscode/
 *.iml
 *.ipr
 *.iws
@@ -9,9 +10,12 @@
 Thumbs.db
 
 # Ignore build and log files
+node_modules/
 build/
 logs/
 *.log
+coverage/
+.nyc_output/
 
 # Ignore temporary and generated files
 *.tmp
@@ -19,3 +23,8 @@ logs/
 *.bak
 output/
 /dist/
+
+# Ignore local environment files
+.env
+.env.*
+!.env.example

@@ -1,0 +1,18 @@
+{
+  "name": "octopus-tech-research",
+  "version": "0.1.0",
+  "description": "A source-backed open-source technology research framework with Markdown specs, evidence logs, dashboards, and visual architecture diagrams.",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "research:sanitize": "node docs/tech-research-guide/scripts/sanitize-research-privacy.js",
+    "research:dashboard": "node docs/tech-research-guide/scripts/build-research-dashboard.js",
+    "research:validate": "node docs/tech-research-guide/scripts/validate-research.js",
+    "research:validate:strict": "node docs/tech-research-guide/scripts/validate-research.js --strict",
+    "release:check": "node docs/tech-research-guide/scripts/check-release-safety.js",
+    "test": "npm run research:validate && npm run release:check"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

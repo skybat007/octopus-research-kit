@@ -1,7 +1,6 @@
 # 调研简报
 
 Status: draft
-Owner: cheng / Codex
 Last Updated: 2026-05-25
 
 ## 1. 研究对象
