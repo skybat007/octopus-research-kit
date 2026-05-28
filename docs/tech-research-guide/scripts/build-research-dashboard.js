@@ -14,6 +14,15 @@ if (process.argv.includes('--help')) {
 const targetDirs = args.length ? args : discoverResearchDirs();
 const generated = [];
 
+const NAV_GROUPS = [
+  { id: 'overview', label: '总览' },
+  { id: 'prep', label: '调研准备' },
+  { id: 'source-architecture', label: '源码与架构' },
+  { id: 'design', label: '设计沉淀' },
+  { id: 'evidence', label: '证据' },
+  { id: 'support', label: '辅助材料' }
+];
+
 for (const dir of targetDirs) {
   const researchDir = path.resolve(root, dir);
   if (!fs.existsSync(researchDir)) continue;
@@ -59,23 +68,23 @@ function buildIndex(items) {
 
 function documentList(researchDir) {
   const specs = [
-    ['README.md', '总览', '调研摘要、当前结论和文件导航', 'primary'],
-    ['research-brief.md', '调研简报', '目标、范围、问题和验收标准', 'plan'],
-    ['external-research.md', '外部资料', '官方、协作和社区资料', 'research'],
-    ['research-questions.md', '研究问题', '待验证问题和验证状态', 'research'],
-    ['source-map.md', '源码地图', '仓库结构、入口和阅读顺序', 'source'],
-    ['architecture.md', '架构文档', '模块职责、边界和依赖方向', 'architecture'],
-    ['runtime-flows.md', '运行流程', '主链路和关键状态变化', 'flow'],
-    ['key-abstractions.md', '核心抽象', '接口、对象和生命周期', 'architecture'],
-    ['extension-points.md', '扩展点', '插件、Hook、Provider 和 Registry', 'extension'],
-    ['design-philosophy.md', '设计思想', '设计取舍和可学习模式', 'thinking'],
-    ['comparison.md', '横向对比', '相邻框架或同类方案对照', 'compare'],
-    ['adoption-notes.md', '学习借鉴', '可学习、需适配和不建议照搬的设计', 'adoption'],
+    ['README.md', '总览文档', '调研摘要、当前结论和文件导航', 'overview'],
+    ['research-brief.md', '调研简报', '目标、范围、问题和验收标准', 'prep'],
+    ['external-research.md', '外部资料', '官方、协作和社区资料', 'prep'],
+    ['research-questions.md', '研究问题', '待验证问题和验证状态', 'prep'],
+    ['source-map.md', '源码地图', '仓库结构、入口和阅读顺序', 'source-architecture'],
+    ['architecture.md', '架构文档', '模块职责、边界和依赖方向', 'source-architecture'],
+    ['visual/architecture.html', '可视化架构图', '专门的交互式架构图查看器', 'source-architecture'],
+    ['runtime-flows.md', '运行流程', '主链路和关键状态变化', 'source-architecture'],
+    ['key-abstractions.md', '核心抽象', '接口、对象和生命周期', 'source-architecture'],
+    ['extension-points.md', '扩展点', '插件、Hook、Provider 和 Registry', 'source-architecture'],
+    ['design-philosophy.md', '设计思想', '设计取舍和可学习模式', 'design'],
+    ['comparison.md', '横向对比', '相邻框架或同类方案对照', 'design'],
+    ['adoption-notes.md', '学习借鉴', '可学习、需适配和不建议照搬的设计', 'design'],
+    ['visual/evidence.html', '证据查看器', '从架构图回到证据解释', 'evidence'],
     ['evidence-index.md', '证据索引', '关键结论和证据锚点', 'evidence'],
-    ['research-review.md', '调研审查', '质量门禁、风险和开放问题', 'review'],
-    ['visual/architecture.html', '可视化架构图', '专门的交互式架构图查看器', 'visual'],
-    ['visual/evidence.html', '证据查看器', '从架构图回到证据解释', 'visual'],
-    ['references/source-inventory.json', '源码清单', '机器生成的过程性源码索引', 'reference']
+    ['research-review.md', '调研审查', '质量门禁、风险和开放问题', 'support'],
+    ['references/source-inventory.json', '源码清单', '机器生成的过程性源码索引', 'support']
   ];
   return specs.map(([file, label, desc, group]) => ({
     file,
@@ -87,14 +96,19 @@ function documentList(researchDir) {
 }
 
 function renderDashboard(data) {
-  const mainDocs = data.docs.filter(doc => doc.group !== 'reference');
-  const referenceDocs = data.docs.filter(doc => doc.group === 'reference');
-  const actionLinks = [
-    linkButton('README', './docs.html?doc=README.md', true),
-    linkButton('架构图', './visual/architecture.html', exists(data.docs, 'visual/architecture.html')),
-    linkButton('证据查看器', './visual/evidence.html', exists(data.docs, 'visual/evidence.html')),
-    linkButton('证据索引', './docs.html?doc=evidence-index.md', exists(data.docs, 'evidence-index.md'))
-  ].join('');
+  const readingOrder = [
+    'research-brief.md',
+    'external-research.md',
+    'research-questions.md',
+    'source-map.md',
+    'architecture.md',
+    'visual/architecture.html',
+    'runtime-flows.md',
+    'design-philosophy.md',
+    'evidence-index.md'
+  ]
+    .map(file => data.docs.find(doc => doc.file === file && doc.exists))
+    .filter(Boolean);
 
   return `<!doctype html>
 <html lang="zh-CN">
@@ -126,7 +140,37 @@ function renderDashboard(data) {
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .shell { max-width: 1180px; margin: 0 auto; padding: 32px 20px 52px; }
+    .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 100vh; }
+    aside {
+      border-right: 1px solid var(--line);
+      background: #fff;
+      padding: 18px 14px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+    }
+    main { padding: 28px 30px 56px; }
+    .brand { font-weight: 800; margin-bottom: 4px; }
+    .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+    .nav-group { margin: 15px 0 4px; }
+    .nav-group-title {
+      color: #7a879c;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin: 0 0 5px;
+    }
+    .nav-link {
+      display: block;
+      padding: 8px 9px;
+      border-radius: 6px;
+      color: #33415c;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .nav-link.active { background: #e8f0ff; color: #1d4ed8; font-weight: 700; }
+    .nav-link.disabled { color: #a0aabc; pointer-events: none; background: #f8fafc; }
     .hero {
       background: var(--panel);
       border: 1px solid var(--line);
@@ -138,21 +182,6 @@ function renderDashboard(data) {
     h1 { margin: 0 0 10px; font-size: 30px; line-height: 1.2; letter-spacing: 0; }
     h2 { margin: 28px 0 14px; font-size: 18px; letter-spacing: 0; }
     .summary { max-width: 920px; color: #33415c; white-space: pre-wrap; }
-    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
-    .button {
-      display: inline-flex;
-      align-items: center;
-      min-height: 36px;
-      padding: 7px 12px;
-      border-radius: 6px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--text);
-      font-weight: 600;
-      font-size: 14px;
-    }
-    .button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .button.disabled { color: #9aa6b8; pointer-events: none; background: #f2f5f9; }
     .meta {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -168,23 +197,6 @@ function renderDashboard(data) {
     }
     .metric .label { color: var(--muted); font-size: 12px; }
     .metric .value { margin-top: 4px; font-size: 18px; font-weight: 700; overflow-wrap: anywhere; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .doc {
-      min-height: 116px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--panel);
-      padding: 14px;
-    }
-    .doc.missing { opacity: 0.58; background: #f8fafc; }
-    .doc-title { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; }
-    .doc-desc { margin-top: 8px; color: var(--muted); font-size: 13px; }
-    .tag { color: var(--ok); background: #e9f7f4; border-radius: 999px; padding: 2px 8px; font-size: 12px; white-space: nowrap; }
-    .missing .tag { color: var(--warn); background: #fff7df; }
     .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .panel {
       border: 1px solid var(--line);
@@ -192,22 +204,49 @@ function renderDashboard(data) {
       background: var(--panel);
       padding: 16px;
     }
+    .reading-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .reading-list a {
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 9px 10px;
+      background: #fbfdff;
+      font-weight: 700;
+    }
+    .reading-list span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+      margin-top: 3px;
+    }
     ul { margin: 0; padding-left: 20px; }
     li { margin: 8px 0; color: #33415c; }
     .footer { margin-top: 28px; color: var(--muted); font-size: 13px; }
     @media (max-width: 900px) {
-      .meta, .grid, .columns { grid-template-columns: 1fr; }
+      .layout { grid-template-columns: 1fr; }
+      aside { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+      main { padding: 18px 14px 36px; }
+      .meta, .columns, .reading-list { grid-template-columns: 1fr; }
       h1 { font-size: 24px; }
     }
   </style>
 </head>
 <body>
-  <main class="shell">
+  <div class="layout">
+    ${renderSideNav({ title: data.title, subtitle: '调研导航', docs: data.docs, currentFile: 'dashboard.html' })}
+  <main>
     <section class="hero">
       <div class="eyebrow">Tech Research Dashboard · ${escapeHtml(data.name)}</div>
       <h1>${escapeHtml(data.title)}</h1>
       <div class="summary">${escapeHtml(shortText(data.summary, 700))}</div>
-      <div class="actions">${actionLinks}</div>
       <div class="meta">
         <div class="metric"><div class="label">状态</div><div class="value">${escapeHtml(data.status)}</div></div>
         <div class="metric"><div class="label">更新日期</div><div class="value">${escapeHtml(data.updated || '未记录')}</div></div>
@@ -216,9 +255,11 @@ function renderDashboard(data) {
       </div>
     </section>
 
-    <h2>推荐阅读入口</h2>
-    <section class="grid">
-      ${mainDocs.map(renderDocCard).join('\n')}
+    <h2>建议阅读顺序</h2>
+    <section class="panel">
+      <ol class="reading-list">
+        ${readingOrder.map(doc => `<li><a href="${escapeAttr(docHref(doc.file))}">${escapeHtml(doc.label)}<span>${escapeHtml(doc.desc)}</span></a></li>`).join('\n')}
+      </ol>
     </section>
 
     <h2>当前结论与待确认</h2>
@@ -233,13 +274,9 @@ function renderDashboard(data) {
       </div>
     </section>
 
-    <h2>辅助材料</h2>
-    <section class="grid">
-      ${referenceDocs.map(renderDocCard).join('\n')}
-    </section>
-
-    <div class="footer">Dashboard 只做阅读导航。Markdown 是知识源，visual/architecture.html 是专门的架构图查看器，references/ 放机器生成或过程性材料。</div>
+    <div class="footer">Dashboard 只做阅读导航。Markdown 是知识源，visual/architecture.html 是“源码与架构”下的专门架构图查看器，references/ 放机器生成或过程性材料。</div>
   </main>
+  </div>
 </body>
 </html>
 `;
@@ -282,18 +319,48 @@ function renderIndex(items) {
 `;
 }
 
-function renderDocCard(doc) {
-  const tag = doc.exists ? '已生成' : '缺失';
-  const href = doc.exists ? docHref(doc.file) : '#';
-  const cls = doc.exists ? 'doc' : 'doc missing';
-  return `<article class="${cls}">
-  <div class="doc-title"><a href="${escapeAttr(href)}">${escapeHtml(doc.label)}</a><span class="tag">${tag}</span></div>
-  <div class="doc-desc">${escapeHtml(doc.desc)}</div>
-  <div class="doc-desc">${escapeHtml(doc.file)}</div>
-</article>`;
+function renderSideNav({ title, subtitle, docs, currentFile = '' }) {
+  const overviewItems = [
+    {
+      file: 'dashboard.html',
+      label: 'Dashboard',
+      desc: '调研摘要和阅读入口',
+      group: 'overview',
+      exists: true
+    },
+    ...docs.filter(doc => doc.group === 'overview')
+  ];
+  const docsByGroup = new Map(NAV_GROUPS.map(group => [group.id, []]));
+  docsByGroup.set('overview', overviewItems);
+  for (const doc of docs) {
+    if (doc.group === 'overview') continue;
+    if (!docsByGroup.has(doc.group)) docsByGroup.set(doc.group, []);
+    docsByGroup.get(doc.group).push(doc);
+  }
+
+  return `<aside>
+      <div class="brand">${escapeHtml(title)}</div>
+      <div class="sub">${escapeHtml(subtitle)}</div>
+      ${NAV_GROUPS.map(group => {
+        const items = docsByGroup.get(group.id) || [];
+        if (!items.length) return '';
+        return `<div class="nav-group">
+        <div class="nav-group-title">${escapeHtml(group.label)}</div>
+        ${items.map(item => renderNavLink(item, currentFile)).join('\n')}
+      </div>`;
+      }).join('\n')}
+    </aside>`;
+}
+
+function renderNavLink(item, currentFile) {
+  const active = item.file === currentFile ? ' active' : '';
+  const disabled = item.exists ? '' : ' disabled';
+  const href = item.exists ? docHref(item.file) : '#';
+  return `<a class="nav-link${active}${disabled}" data-nav-file="${escapeAttr(item.file)}" href="${escapeAttr(href)}" title="${escapeAttr(item.desc)}">${escapeHtml(item.label)}</a>`;
 }
 
 function docHref(file) {
+  if (file === 'dashboard.html') return './dashboard.html';
   if (file.endsWith('.md') || file.endsWith('.json')) {
     return `./docs.html?doc=${encodeURIComponent(file)}`;
   }
@@ -309,15 +376,6 @@ function renderIndexCard(item) {
     <a class="button" href="./${escapeAttr(item.name)}/dashboard.html">Dashboard</a>
   </div>
 </article>`;
-}
-
-function linkButton(label, href, enabled) {
-  const cls = enabled ? (label === '架构图' ? 'button primary' : 'button') : 'button disabled';
-  return `<a class="${cls}" href="${enabled ? escapeAttr(href) : '#'}">${escapeHtml(label)}</a>`;
-}
-
-function exists(docs, file) {
-  return docs.some(doc => doc.file === file && doc.exists);
 }
 
 function renderList(items, emptyText) {
@@ -359,7 +417,7 @@ function renderDocsViewer(data) {
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .layout { display: grid; grid-template-columns: 270px minmax(0, 1fr); min-height: 100vh; }
+    .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 100vh; }
     aside {
       border-right: 1px solid var(--line);
       background: #fff;
@@ -372,6 +430,14 @@ function renderDocsViewer(data) {
     main { padding: 28px 30px 56px; }
     .brand { font-weight: 800; margin-bottom: 4px; }
     .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+    .nav-group { margin: 15px 0 4px; }
+    .nav-group-title {
+      color: #7a879c;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin: 0 0 5px;
+    }
     .nav-link {
       display: block;
       padding: 8px 9px;
@@ -381,25 +447,7 @@ function renderDocsViewer(data) {
       margin-bottom: 3px;
     }
     .nav-link.active { background: #e8f0ff; color: #1d4ed8; font-weight: 700; }
-    .toolbar {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-    .button {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      padding: 6px 10px;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background: #fff;
-      color: var(--text);
-      font-weight: 650;
-      font-size: 13px;
-    }
+    .nav-link.disabled { color: #a0aabc; pointer-events: none; background: #f8fafc; }
     .doc {
       background: var(--panel);
       border: 1px solid var(--line);
@@ -464,18 +512,8 @@ function renderDocsViewer(data) {
 </head>
 <body>
   <div class="layout">
-    <aside>
-      <div class="brand">${escapeHtml(data.title)}</div>
-      <div class="sub">Markdown 文档阅读器</div>
-      <a class="nav-link" href="./dashboard.html">返回 Dashboard</a>
-      ${readableDocs.map(doc => `<a class="nav-link" data-doc="${escapeAttr(doc.file)}" href="?doc=${encodeURIComponent(doc.file)}">${escapeHtml(doc.label)}</a>`).join('\n')}
-    </aside>
+    ${renderSideNav({ title: data.title, subtitle: '调研导航', docs: data.docs })}
     <main>
-      <div class="toolbar">
-        <a class="button" href="./dashboard.html">Dashboard</a>
-        <a class="button" href="./visual/architecture.html">架构图</a>
-        <a class="button" href="./visual/evidence.html">证据查看器</a>
-      </div>
       <article id="doc" class="doc"></article>
     </main>
   </div>
@@ -490,8 +528,8 @@ function renderDocsViewer(data) {
     const requested = params.get('doc') || 'README.md';
     const current = docs.get(requested) || window.RESEARCH_DOCS[0];
     const container = document.getElementById('doc');
-    document.querySelectorAll('[data-doc]').forEach(link => {
-      if (current && link.dataset.doc === current.file) link.classList.add('active');
+    document.querySelectorAll('[data-nav-file]').forEach(link => {
+      if (current && link.dataset.navFile === current.file) link.classList.add('active');
     });
     if (!current) {
       container.innerHTML = '<p class="missing">没有可展示的文档。</p>';

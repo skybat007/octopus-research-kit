@@ -78,7 +78,9 @@
 - Dashboard 只导航已有 Markdown、visual/architecture.html、visual/evidence.html 和 references/ 辅助材料
 - Markdown 文档链接必须进入 docs.html?doc=<file>，不要直接打开 .md
 - 不在 Dashboard 中新增 Markdown 没有的架构结论
-- visual/architecture.html 仍作为专门的架构图查看器保留
+- Dashboard 和 docs.html 使用同一套左侧导航
+- visual/architecture.html 仍作为专门的架构图查看器保留，并归入“源码与架构”
+- visual/evidence.html 归入“证据”
 - 根目录的 visual-architecture.html 如存在，只作为旧链接兼容跳转页
 - research/index.html 只保留各框架 Dashboard 入口
 ```

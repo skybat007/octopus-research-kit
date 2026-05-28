@@ -258,7 +258,9 @@ Dashboard 是阅读入口，不是新的知识源。它负责把 README、Markdo
 
 - Dashboard 只做导航和摘要，不在其中新增 Markdown 中不存在的架构结论
 - Dashboard 中的 Markdown 文档链接必须指向 `docs.html?doc=<file>`，不要直接打开 `.md`
-- `visual/architecture.html` 仍然作为专门的架构图查看器保留
+- Dashboard 和 `docs.html` 使用同一套左侧导航，避免入口数量和分组不一致
+- `visual/architecture.html` 仍然作为专门的架构图查看器保留，并归入“源码与架构”
+- `visual/evidence.html` 归入“证据”
 - 旧版 `visual-architecture.html` 可作为兼容跳转页保留，不再作为新规范主入口
 - `research/index.html` 可以作为全部框架调研的总入口，但只保留各框架 `dashboard.html` 入口
 ### 3.8 可视化架构图

@@ -28,7 +28,37 @@
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .shell { max-width: 1180px; margin: 0 auto; padding: 32px 20px 52px; }
+    .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 100vh; }
+    aside {
+      border-right: 1px solid var(--line);
+      background: #fff;
+      padding: 18px 14px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+    }
+    main { padding: 28px 30px 56px; }
+    .brand { font-weight: 800; margin-bottom: 4px; }
+    .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+    .nav-group { margin: 15px 0 4px; }
+    .nav-group-title {
+      color: #7a879c;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin: 0 0 5px;
+    }
+    .nav-link {
+      display: block;
+      padding: 8px 9px;
+      border-radius: 6px;
+      color: #33415c;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .nav-link.active { background: #e8f0ff; color: #1d4ed8; font-weight: 700; }
+    .nav-link.disabled { color: #a0aabc; pointer-events: none; background: #f8fafc; }
     .hero {
       background: var(--panel);
       border: 1px solid var(--line);
@@ -40,21 +70,6 @@
     h1 { margin: 0 0 10px; font-size: 30px; line-height: 1.2; letter-spacing: 0; }
     h2 { margin: 28px 0 14px; font-size: 18px; letter-spacing: 0; }
     .summary { max-width: 920px; color: #33415c; white-space: pre-wrap; }
-    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
-    .button {
-      display: inline-flex;
-      align-items: center;
-      min-height: 36px;
-      padding: 7px 12px;
-      border-radius: 6px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--text);
-      font-weight: 600;
-      font-size: 14px;
-    }
-    .button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .button.disabled { color: #9aa6b8; pointer-events: none; background: #f2f5f9; }
     .meta {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -70,23 +85,6 @@
     }
     .metric .label { color: var(--muted); font-size: 12px; }
     .metric .value { margin-top: 4px; font-size: 18px; font-weight: 700; overflow-wrap: anywhere; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .doc {
-      min-height: 116px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--panel);
-      padding: 14px;
-    }
-    .doc.missing { opacity: 0.58; background: #f8fafc; }
-    .doc-title { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; }
-    .doc-desc { margin-top: 8px; color: var(--muted); font-size: 13px; }
-    .tag { color: var(--ok); background: #e9f7f4; border-radius: 999px; padding: 2px 8px; font-size: 12px; white-space: nowrap; }
-    .missing .tag { color: var(--warn); background: #fff7df; }
     .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .panel {
       border: 1px solid var(--line);
@@ -94,22 +92,88 @@
       background: var(--panel);
       padding: 16px;
     }
+    .reading-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .reading-list a {
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 9px 10px;
+      background: #fbfdff;
+      font-weight: 700;
+    }
+    .reading-list span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+      margin-top: 3px;
+    }
     ul { margin: 0; padding-left: 20px; }
     li { margin: 8px 0; color: #33415c; }
     .footer { margin-top: 28px; color: var(--muted); font-size: 13px; }
     @media (max-width: 900px) {
-      .meta, .grid, .columns { grid-template-columns: 1fr; }
+      .layout { grid-template-columns: 1fr; }
+      aside { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+      main { padding: 18px 14px 36px; }
+      .meta, .columns, .reading-list { grid-template-columns: 1fr; }
       h1 { font-size: 24px; }
     }
   </style>
 </head>
 <body>
-  <main class="shell">
+  <div class="layout">
+    <aside>
+      <div class="brand">Claude Code 技术调研</div>
+      <div class="sub">调研导航</div>
+      <div class="nav-group">
+        <div class="nav-group-title">总览</div>
+        <a class="nav-link active" data-nav-file="dashboard.html" href="./dashboard.html" title="调研摘要和阅读入口">Dashboard</a>
+<a class="nav-link" data-nav-file="README.md" href="./docs.html?doc=README.md" title="调研摘要、当前结论和文件导航">总览文档</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">调研准备</div>
+        <a class="nav-link" data-nav-file="research-brief.md" href="./docs.html?doc=research-brief.md" title="目标、范围、问题和验收标准">调研简报</a>
+<a class="nav-link" data-nav-file="external-research.md" href="./docs.html?doc=external-research.md" title="官方、协作和社区资料">外部资料</a>
+<a class="nav-link" data-nav-file="research-questions.md" href="./docs.html?doc=research-questions.md" title="待验证问题和验证状态">研究问题</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">源码与架构</div>
+        <a class="nav-link" data-nav-file="source-map.md" href="./docs.html?doc=source-map.md" title="仓库结构、入口和阅读顺序">源码地图</a>
+<a class="nav-link" data-nav-file="architecture.md" href="./docs.html?doc=architecture.md" title="模块职责、边界和依赖方向">架构文档</a>
+<a class="nav-link" data-nav-file="visual/architecture.html" href="./visual/architecture.html" title="专门的交互式架构图查看器">可视化架构图</a>
+<a class="nav-link" data-nav-file="runtime-flows.md" href="./docs.html?doc=runtime-flows.md" title="主链路和关键状态变化">运行流程</a>
+<a class="nav-link" data-nav-file="key-abstractions.md" href="./docs.html?doc=key-abstractions.md" title="接口、对象和生命周期">核心抽象</a>
+<a class="nav-link" data-nav-file="extension-points.md" href="./docs.html?doc=extension-points.md" title="插件、Hook、Provider 和 Registry">扩展点</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">设计沉淀</div>
+        <a class="nav-link" data-nav-file="design-philosophy.md" href="./docs.html?doc=design-philosophy.md" title="设计取舍和可学习模式">设计思想</a>
+<a class="nav-link" data-nav-file="comparison.md" href="./docs.html?doc=comparison.md" title="相邻框架或同类方案对照">横向对比</a>
+<a class="nav-link" data-nav-file="adoption-notes.md" href="./docs.html?doc=adoption-notes.md" title="可学习、需适配和不建议照搬的设计">学习借鉴</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">证据</div>
+        <a class="nav-link" data-nav-file="visual/evidence.html" href="./visual/evidence.html" title="从架构图回到证据解释">证据查看器</a>
+<a class="nav-link" data-nav-file="evidence-index.md" href="./docs.html?doc=evidence-index.md" title="关键结论和证据锚点">证据索引</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">辅助材料</div>
+        <a class="nav-link" data-nav-file="research-review.md" href="./docs.html?doc=research-review.md" title="质量门禁、风险和开放问题">调研审查</a>
+<a class="nav-link" data-nav-file="references/source-inventory.json" href="./docs.html?doc=references%2Fsource-inventory.json" title="机器生成的过程性源码索引">源码清单</a>
+      </div>
+    </aside>
+  <main>
     <section class="hero">
       <div class="eyebrow">Tech Research Dashboard · claude-code</div>
       <h1>Claude Code 技术调研</h1>
       <div class="summary">本轮调研对象是 /Users/cheng/IdeaProjects/claude-code，它不是 Anthropic 官方仓库，而是一个面向安全研究的 Claude Code source snapshot。仓库 README 说明该快照来自 npm distribution 中公开可访问的 source map，并声明用途是 educational、defensive security 和 software supply-chain analysis。[C-001] 从源码看，Claude Code 的架构核心可以概括为：多入口命令路由 + 统一 setup/trust 边界 + React/Ink REPL + stateful QueryEngine + queryLoop 编排 + Tool contract + 权限流水线 + Skills/Plugins/MCP 扩展面 + session transcript 持久化。它不是一个只围绕单次 prompt 的 CLI，而是把本地交互、headless SDK、remote session、bridge 和 direct-connect 都接入同一套消息、工具和权限语义。C-003C-006C-008C-010 本轮已补充 Claude Code 官方文档互证；源码验证部分仍只做静态分析，没有启动 CLI、没有跑测试、没有访问真实 API。</div>
-      <div class="actions"><a class="button" href="./docs.html?doc=README.md">README</a><a class="button primary" href="./visual/architecture.html">架构图</a><a class="button" href="./visual/evidence.html">证据查看器</a><a class="button" href="./docs.html?doc=evidence-index.md">证据索引</a></div>
       <div class="meta">
         <div class="metric"><div class="label">状态</div><div class="value">draft</div></div>
         <div class="metric"><div class="label">更新日期</div><div class="value">2026-05-25</div></div>
@@ -118,88 +182,19 @@
       </div>
     </section>
 
-    <h2>推荐阅读入口</h2>
-    <section class="grid">
-      <article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=README.md">总览</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">调研摘要、当前结论和文件导航</div>
-  <div class="doc-desc">README.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=research-brief.md">调研简报</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">目标、范围、问题和验收标准</div>
-  <div class="doc-desc">research-brief.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=external-research.md">外部资料</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">官方、协作和社区资料</div>
-  <div class="doc-desc">external-research.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=research-questions.md">研究问题</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">待验证问题和验证状态</div>
-  <div class="doc-desc">research-questions.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=source-map.md">源码地图</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">仓库结构、入口和阅读顺序</div>
-  <div class="doc-desc">source-map.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=architecture.md">架构文档</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">模块职责、边界和依赖方向</div>
-  <div class="doc-desc">architecture.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=runtime-flows.md">运行流程</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">主链路和关键状态变化</div>
-  <div class="doc-desc">runtime-flows.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=key-abstractions.md">核心抽象</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">接口、对象和生命周期</div>
-  <div class="doc-desc">key-abstractions.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=extension-points.md">扩展点</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">插件、Hook、Provider 和 Registry</div>
-  <div class="doc-desc">extension-points.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=design-philosophy.md">设计思想</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">设计取舍和可学习模式</div>
-  <div class="doc-desc">design-philosophy.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=comparison.md">横向对比</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">相邻框架或同类方案对照</div>
-  <div class="doc-desc">comparison.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=adoption-notes.md">学习借鉴</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">可学习、需适配和不建议照搬的设计</div>
-  <div class="doc-desc">adoption-notes.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=evidence-index.md">证据索引</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">关键结论和证据锚点</div>
-  <div class="doc-desc">evidence-index.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=research-review.md">调研审查</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">质量门禁、风险和开放问题</div>
-  <div class="doc-desc">research-review.md</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./visual/architecture.html">可视化架构图</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">专门的交互式架构图查看器</div>
-  <div class="doc-desc">visual/architecture.html</div>
-</article>
-<article class="doc">
-  <div class="doc-title"><a href="./visual/evidence.html">证据查看器</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">从架构图回到证据解释</div>
-  <div class="doc-desc">visual/evidence.html</div>
-</article>
+    <h2>建议阅读顺序</h2>
+    <section class="panel">
+      <ol class="reading-list">
+        <li><a href="./docs.html?doc=research-brief.md">调研简报<span>目标、范围、问题和验收标准</span></a></li>
+<li><a href="./docs.html?doc=external-research.md">外部资料<span>官方、协作和社区资料</span></a></li>
+<li><a href="./docs.html?doc=research-questions.md">研究问题<span>待验证问题和验证状态</span></a></li>
+<li><a href="./docs.html?doc=source-map.md">源码地图<span>仓库结构、入口和阅读顺序</span></a></li>
+<li><a href="./docs.html?doc=architecture.md">架构文档<span>模块职责、边界和依赖方向</span></a></li>
+<li><a href="./visual/architecture.html">可视化架构图<span>专门的交互式架构图查看器</span></a></li>
+<li><a href="./docs.html?doc=runtime-flows.md">运行流程<span>主链路和关键状态变化</span></a></li>
+<li><a href="./docs.html?doc=design-philosophy.md">设计思想<span>设计取舍和可学习模式</span></a></li>
+<li><a href="./docs.html?doc=evidence-index.md">证据索引<span>关键结论和证据锚点</span></a></li>
+      </ol>
     </section>
 
     <h2>当前结论与待确认</h2>
@@ -214,16 +209,8 @@
       </div>
     </section>
 
-    <h2>辅助材料</h2>
-    <section class="grid">
-      <article class="doc">
-  <div class="doc-title"><a href="./docs.html?doc=references%2Fsource-inventory.json">源码清单</a><span class="tag">已生成</span></div>
-  <div class="doc-desc">机器生成的过程性源码索引</div>
-  <div class="doc-desc">references/source-inventory.json</div>
-</article>
-    </section>
-
-    <div class="footer">Dashboard 只做阅读导航。Markdown 是知识源，visual/architecture.html 是专门的架构图查看器，references/ 放机器生成或过程性材料。</div>
+    <div class="footer">Dashboard 只做阅读导航。Markdown 是知识源，visual/architecture.html 是“源码与架构”下的专门架构图查看器，references/ 放机器生成或过程性材料。</div>
   </main>
+  </div>
 </body>
 </html>
