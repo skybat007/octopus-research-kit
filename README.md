@@ -8,6 +8,8 @@
 
 ![Octopus Research Kit Dashboard](assets/research-dashboard.png)
 
+![A2UI 调研项目 Dashboard](assets/a2ui-dashboard.png)
+
 ## 适合谁
 
 - 想系统研究一个陌生技术、开源框架或代码库，而不是只收藏几篇文章的人。
