@@ -79,6 +79,7 @@
 - Markdown 文档链接必须进入 docs.html?doc=<file>，不要直接打开 .md
 - 不在 Dashboard 中新增 Markdown 没有的架构结论
 - Dashboard 和 docs.html 使用同一套左侧导航
+- docs.html 支持渲染 Markdown 中的 Mermaid 代码块；脚本不可用时保留原始代码块降级展示
 - visual/architecture.html 仍作为专门的架构图查看器保留，并归入“源码与架构”
 - visual/evidence.html 归入“证据”
 - 根目录的 visual-architecture.html 如存在，只作为旧链接兼容跳转页

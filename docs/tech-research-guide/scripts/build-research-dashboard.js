@@ -481,6 +481,41 @@ function renderDocsViewer(data) {
       line-height: 1.5;
     }
     pre code { background: transparent; border: 0; padding: 0; color: inherit; }
+    .mermaid-block {
+      border: 1px solid #d9e1ee;
+      border-radius: 8px;
+      background: #fbfdff;
+      margin: 16px 0;
+      padding: 16px;
+      overflow: auto;
+    }
+    .mermaid-block.rendered { background: #fff; }
+    .mermaid-rendered {
+      min-width: 640px;
+      display: flex;
+      justify-content: center;
+    }
+    .mermaid-rendered svg {
+      max-width: 100%;
+      height: auto;
+    }
+    .mermaid-source {
+      margin: 0;
+    }
+    .mermaid-status {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    .mermaid-block.rendered .mermaid-source {
+      display: none;
+    }
+    .mermaid-block.failed {
+      background: #fff;
+    }
+    .mermaid-block.failed .mermaid-status {
+      color: #a16207;
+    }
     table {
       border-collapse: collapse;
       width: 100%;
@@ -535,6 +570,7 @@ function renderDocsViewer(data) {
       container.innerHTML = '<p class="missing">没有可展示的文档。</p>';
     } else {
       container.innerHTML = renderDocument(current);
+      renderMermaidBlocks();
       if (window.location.hash) {
         const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
         if (target) target.scrollIntoView();
@@ -557,6 +593,7 @@ function renderDocsViewer(data) {
         if (!line.trim()) { i += 1; continue; }
         const fence = line.match(/^\\s*\\x60\\x60\\x60(.*)$/);
         if (fence) {
+          const lang = fence[1].trim().split(/\\s+/)[0].toLowerCase();
           const code = [];
           i += 1;
           while (i < lines.length && !/^\\s*\\x60\\x60\\x60/.test(lines[i])) {
@@ -564,6 +601,10 @@ function renderDocsViewer(data) {
             i += 1;
           }
           i += 1;
+          if (lang === 'mermaid') {
+            out.push(renderMermaidSource(code.join('\\n')));
+            continue;
+          }
           out.push('<pre><code>' + escapeHtml(code.join('\\n')) + '</code></pre>');
           continue;
         }
@@ -645,6 +686,62 @@ function renderDocsViewer(data) {
       if (value.startsWith('|')) value = value.slice(1);
       if (value.endsWith('|')) value = value.slice(0, -1);
       return value.split('|').map(cell => cell.trim());
+    }
+
+    function renderMermaidSource(source) {
+      return '<div class="mermaid-block" data-mermaid-pending="true"><div class="mermaid-status">正在渲染 Mermaid 图形...</div><pre class="mermaid-source"><code>' + escapeHtml(source) + '</code></pre></div>';
+    }
+
+    var mermaidLoadPromise;
+    function ensureMermaid() {
+      if (window.mermaid) return Promise.resolve(window.mermaid);
+      if (mermaidLoadPromise) return mermaidLoadPromise;
+      mermaidLoadPromise = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js';
+        script.onload = () => window.mermaid ? resolve(window.mermaid) : reject(new Error('Mermaid 脚本未初始化'));
+        script.onerror = () => reject(new Error('Mermaid 脚本加载失败'));
+        document.head.appendChild(script);
+      });
+      return mermaidLoadPromise;
+    }
+
+    async function renderMermaidBlocks() {
+      const blocks = [...document.querySelectorAll('.mermaid-block[data-mermaid-pending="true"]')];
+      if (!blocks.length) return;
+      let mermaidApi;
+      try {
+        mermaidApi = await ensureMermaid();
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'strict',
+          theme: 'default',
+          flowchart: { htmlLabels: true, curve: 'basis' }
+        });
+      } catch (error) {
+        blocks.forEach(block => markMermaidFailed(block, error));
+        return;
+      }
+      for (let index = 0; index < blocks.length; index += 1) {
+        const block = blocks[index];
+        const source = block.querySelector('.mermaid-source')?.textContent || '';
+        try {
+          const id = 'mermaid-' + Date.now() + '-' + index;
+          const result = await mermaidApi.render(id, source);
+          block.innerHTML = '<div class="mermaid-rendered">' + result.svg + '</div>';
+          block.classList.add('rendered');
+          block.removeAttribute('data-mermaid-pending');
+        } catch (error) {
+          markMermaidFailed(block, error);
+        }
+      }
+    }
+
+    function markMermaidFailed(block, error) {
+      block.classList.add('failed');
+      block.removeAttribute('data-mermaid-pending');
+      const status = block.querySelector('.mermaid-status');
+      if (status) status.textContent = 'Mermaid 图形渲染失败，下面保留原始源码：' + (error && error.message ? error.message : '未知错误');
     }
 
     function inline(value) {
