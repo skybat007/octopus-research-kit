@@ -1,0 +1,45 @@
+# Research Review
+
+## 完成度检查
+
+| 项目 | 状态 | 说明 |
+|---|---|---|
+| 固定源码版本 | 完成 | `main @ e05dd9699dea21ba832059acb680f71022dd5a77` |
+| 生成源码清单 | 完成 | `references/source-inventory.json`，1968 files indexed |
+| 官方文档阅读 | 完成 | README、introduction、concepts、reference renderers |
+| 规范阅读 | 完成 | v0.9 protocol、server_to_client schema、common_types、Basic Catalog、evolution guide |
+| Renderer 源码阅读 | 完成 | React v0.9、web_core message/state/rendering/catalog |
+| SDK 源码阅读 | 完成 | Python parser、schema manager、validator、ADK toolset、A2A converters |
+| 测试/样例验证 | 完成 | React shell sample、web_core tests、React tests、conformance README |
+| 外部网络研究 | 未执行 | 本轮以本地固定快照和仓库官方文档为准 |
+| 架构可视化 | 完成 | `visual/architecture.html` |
+| Dashboard | 完成 | `dashboard.html`、`docs.html` |
+| 调研校验 | 完成 | `node docs/tech-research-guide/scripts/validate-research.js research/A2UI` 返回 OK |
+
+## 质量门
+
+| 检查项 | 结果 |
+|---|---|
+| 关键结论是否有证据编号 | 通过 |
+| 证据是否指向源码/规范/测试/官方文档 | 通过 |
+| 是否区分事实与推断 | 基本通过，生产建议已标记为工程推断 |
+| 是否避免依赖本机绝对路径 | 通过 |
+| 是否覆盖核心流程 | 通过，覆盖生成、transport、message processing、binding、action、SDK/A2A |
+| 是否覆盖扩展点 | 通过，覆盖 catalog、renderer、function、capabilities、transport、validator |
+| 是否覆盖风险 | 通过 |
+
+## 主要残余风险
+
+- 未运行 A2UI 仓库自身完整测试套件；测试证据来自源码阅读。
+- 未实时查询 GitHub issue/release，因此不能代表 2026-05-28 之后的最新状态。
+- v0.10 未展开调研，只确认其处于 under development。
+- Flutter/Lit/Angular renderer 未逐行分析，本轮以 React + web_core 为主。
+
+## 复核建议
+
+后续若要进入采用决策，建议补充：
+
+1. 运行 A2UI 自身测试矩阵，至少覆盖 `renderers/web_core`、`renderers/react`、`agent_sdks/python`。
+2. 用一个业务 custom catalog 做 PoC，验证 SDK prompt、validator、renderer component implementation 的闭环。
+3. 对 A2A 实际 server/client 做 end-to-end streaming 测试。
+4. 单独追踪 v0.10 与 v0.9 的 schema/API 差异。

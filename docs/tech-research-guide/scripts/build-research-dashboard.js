@@ -13,7 +13,6 @@ if (process.argv.includes('--help')) {
 }
 
 const targetDirs = args.length ? args : discoverResearchDirs();
-const generated = [];
 
 const NAV_GROUPS = [
   { id: 'overview', label: '总览' },
@@ -27,10 +26,10 @@ const NAV_GROUPS = [
 for (const dir of targetDirs) {
   const researchDir = path.resolve(root, dir);
   if (!fs.existsSync(researchDir)) continue;
-  generated.push(buildDashboard(researchDir));
+  buildDashboard(researchDir);
 }
 
-buildIndex(generated.filter(Boolean));
+buildIndex(collectIndexItems());
 
 function discoverResearchDirs() {
   const researchRoot = path.join(root, 'research');
@@ -58,6 +57,35 @@ function buildDashboard(researchDir) {
   fs.writeFileSync(path.join(researchDir, 'docs.html'), sanitizePersonalPaths(renderDocsViewer({ name, title, docs, researchDir })));
   console.log(`${rel(researchDir)}: wrote dashboard.html`);
   return { name, title, status, updated, summary: shortText(summary, 180), path: rel(outPath), inventory };
+}
+
+function collectIndexItems() {
+  return discoverResearchDirs()
+    .map(dir => readIndexItem(path.resolve(root, dir)))
+    .filter(Boolean)
+    .sort((a, b) => a.title.localeCompare(b.title, 'zh-CN'));
+}
+
+function readIndexItem(researchDir) {
+  const readmePath = path.join(researchDir, 'README.md');
+  if (!fs.existsSync(readmePath)) return null;
+  const name = path.basename(researchDir);
+  const readme = sanitizePersonalPaths(fs.readFileSync(readmePath, 'utf8'));
+  const title = firstHeading(readme) || titleCase(name);
+  const status = readField(readme, 'Status') || 'draft';
+  const updated = readField(readme, 'Last Updated') || '';
+  const summary = sectionText(readme, '调研摘要') || sectionText(readme, '当前结论') || '暂无摘要。';
+  const inventory = readInventory(path.join(researchDir, 'references', 'source-inventory.json'));
+  return {
+    name,
+    title,
+    status,
+    updated,
+    summary: shortText(summary, 180),
+    path: rel(path.join(researchDir, 'dashboard.html')),
+    inventory,
+    hasDashboard: fs.existsSync(path.join(researchDir, 'dashboard.html'))
+  };
 }
 
 function buildIndex(items) {

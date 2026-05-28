@@ -25,6 +25,11 @@ for (const dir of targetDirs) {
   printResult(result);
 }
 
+const indexResult = validateResearchIndex();
+totalErrors += indexResult.errors.length;
+totalWarnings += indexResult.warnings.length;
+printResult(indexResult);
+
 if (totalErrors || (strict && totalWarnings)) {
   process.exitCode = 1;
 }
@@ -71,6 +76,32 @@ function validateDir(researchDir) {
   validateArchitectureVisual(path.join(visualDir, 'architecture.visual.js'), evidenceIds, result);
   validateEvidenceVisual(path.join(visualDir, 'evidence.visual.js'), evidenceIds, result);
 
+  return result;
+}
+
+function validateResearchIndex() {
+  const result = {
+    dir: 'research/index.html',
+    errors: [],
+    warnings: [],
+    info: []
+  };
+  const indexPath = path.join(root, 'research', 'index.html');
+  if (!fs.existsSync(indexPath)) {
+    result.errors.push('missing research/index.html');
+    return result;
+  }
+  const html = fs.readFileSync(indexPath, 'utf8');
+  const expected = discoverResearchDirs()
+    .filter(dir => fs.existsSync(path.join(root, dir, 'README.md')))
+    .map(dir => path.basename(dir));
+  for (const name of expected) {
+    const href = `./${name}/dashboard.html`;
+    if (!html.includes(href)) {
+      result.errors.push(`research/index.html missing dashboard link for research/${name}`);
+    }
+  }
+  result.info.push(`${expected.length} research dashboard link(s) expected`);
   return result;
 }
 
