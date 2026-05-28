@@ -6,6 +6,8 @@
 [![Node.js >= 18](https://img.shields.io/badge/Node.js-%3E%3D18-339933.svg)](package.json)
 [![Research Artifacts](https://img.shields.io/badge/research-evidence--backed-2563eb.svg)](research/)
 
+![Octopus Research Kit Dashboard](assets/research-dashboard.png)
+
 ## 适合谁
 
 - 想系统研究一个陌生技术、开源框架或代码库，而不是只收藏几篇文章的人。
