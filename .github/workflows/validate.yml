@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - main
+      - release_github_cn
+      - release_github_en
 
 jobs:
   validate:
