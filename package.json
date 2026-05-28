@@ -1,7 +1,7 @@
 {
-  "name": "octopus-tech-research",
+  "name": "octopus-research-kit",
   "version": "0.1.0",
-  "description": "面向开源框架源码分析的证据化技术调研工作台，包含 Markdown 规范、证据索引、Dashboard 和可视化架构图。",
+  "description": "证据化技术调研工具箱，面向源码阅读、框架分析、技术选型和架构研究，包含 Markdown 规范、证据索引、Dashboard 和可视化架构图。",
   "license": "MIT",
   "private": false,
   "keywords": [
