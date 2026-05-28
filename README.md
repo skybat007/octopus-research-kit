@@ -6,6 +6,8 @@ An evidence-backed research kit for technologies, codebases, and AI systems. It 
 [![Node.js >= 18](https://img.shields.io/badge/Node.js-%3E%3D18-339933.svg)](package.json)
 [![Research Artifacts](https://img.shields.io/badge/research-evidence--backed-2563eb.svg)](research/)
 
+![Octopus Research Kit dashboard](assets/research-dashboard.png)
+
 ## Who This Is For
 
 - Developers who want to understand unfamiliar technologies, open-source frameworks, or codebases systematically, not just collect links.
