@@ -8,6 +8,8 @@ An evidence-backed research kit for technologies, codebases, and AI systems. It 
 
 ![Octopus Research Kit dashboard](assets/research-dashboard.png)
 
+![A2UI project dashboard](assets/a2ui-dashboard.png)
+
 ## Who This Is For
 
 - Developers who want to understand unfamiliar technologies, open-source frameworks, or codebases systematically, not just collect links.
