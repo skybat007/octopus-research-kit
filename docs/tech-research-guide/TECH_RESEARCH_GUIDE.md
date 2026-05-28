@@ -2,7 +2,7 @@
 
 本文档用于指导 Agent 在本项目中进行开源框架、基础设施、中间件、工具链或陌生代码库的技术调研。
 
-调研目标不是堆资料，而是形成一套能反复复用的理解资产：外部资料摘要、研究问题、架构图、可视化架构图、源码地图、关键流程、设计思想、证据索引和学习借鉴笔记。
+调研目标不是堆资料，而是形成一套能反复复用的理解资产：外部资料摘要、研究问题、源码地图、结构化源码清单、架构图、可视化架构图、Dashboard 阅读入口、关键流程、设计思想、证据索引和学习借鉴笔记。
 
 ## 1. 基本原则
 
@@ -122,6 +122,8 @@ research/<framework-name>/
   external-research.md
   research-questions.md
   source-map.md
+  dashboard.html
+  docs.html
   architecture.md
   visual/
     architecture.html
@@ -137,6 +139,7 @@ research/<framework-name>/
   evidence-index.md
   research-review.md
   references/
+    source-inventory.json
 ```
 
 简单调研可以合并文档，但至少要包含：
@@ -144,6 +147,7 @@ research/<framework-name>/
 - 研究目标和范围
 - 外部资料摘要和待验证问题
 - 源码地图
+- `references/source-inventory.json` 结构化源码清单，或说明没有本地源码可生成
 - 核心架构
 - 一个主流程追踪
 - 设计思想总结
@@ -154,6 +158,7 @@ research/<framework-name>/
 
 - 扩展机制分析
 - 可视化架构图
+- Dashboard 阅读入口
 - 横向对比
 - 学习借鉴笔记
 - 调研质量审查
@@ -204,8 +209,31 @@ research/<framework-name>/
 - 对外入口
 - 示例和测试入口
 - 阅读顺序建议
+- 说明是否已生成 `references/source-inventory.json`
 
-### 3.5 Architecture
+### 3.5 Source Inventory
+
+生成或更新 `references/source-inventory.json`：
+
+```bash
+node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name>
+```
+
+`references/source-inventory.json` 是从本地源码仓库确定性扫描出来的结构化索引，用于辅助阅读和后续校验。它属于过程性/机器生成材料，默认放在 `references/`，不作为一级阅读入口。它可以记录：
+
+- 本地源码路径、remote、branch、commit、调研版本提示
+- 文件数量、主要语言、顶层目录摘要
+- 构建文件、包文件、入口候选、测试、示例、文档、配置和大文件
+- 对 `source-map.md`、`runtime-flows.md` 和 `evidence-index.md` 有帮助的候选入口
+
+使用规则：
+
+- 它不是架构结论，不能替代 `architecture.md`
+- 它不解释设计思想，只提供确定性的源码索引
+- 重要结论仍必须写入 Markdown，并在 `evidence-index.md` 中绑定证据
+- 如果目标没有本地源码，允许缺失，但必须在 `research-review.md` 中说明原因
+
+### 3.6 Architecture
 
 完成 `architecture.md`：
 
@@ -216,7 +244,24 @@ research/<framework-name>/
 - 扩展点
 - 状态和数据流
 
-### 3.6 可视化架构图
+### 3.7 Dashboard
+
+生成或更新 `dashboard.html`：
+
+```bash
+node docs/tech-research-guide/scripts/build-research-dashboard.js research/<framework-name>
+```
+
+Dashboard 是阅读入口，不是新的知识源。它负责把 README、Markdown 文档、可视化架构图、证据查看器和 `references/` 辅助材料组织成一个可浏览的入口页。`docs.html` 是 Dashboard 使用的 UTF-8 文档阅读器，用来避免浏览器直接打开 `.md` 时出现编码问题。
+
+使用规则：
+
+- Dashboard 只做导航和摘要，不在其中新增 Markdown 中不存在的架构结论
+- Dashboard 中的 Markdown 文档链接必须指向 `docs.html?doc=<file>`，不要直接打开 `.md`
+- `visual/architecture.html` 仍然作为专门的架构图查看器保留
+- 旧版 `visual-architecture.html` 可作为兼容跳转页保留，不再作为新规范主入口
+- `research/index.html` 可以作为全部框架调研的总入口，但只保留各框架 `dashboard.html` 入口
+### 3.8 可视化架构图
 
 当 Markdown/Mermaid 图无法清晰表达多层架构、多入口、多流程或大量扩展点时，补充可视化架构图。
 
@@ -300,7 +345,7 @@ HTML 模板使用规则：
 - 是否区分了源码事实、设计推断和待验证内容
 - 是否有线条严重交叉或节点布局拥挤
 
-### 3.7 Key Abstractions
+### 3.9 Key Abstractions
 
 完成 `key-abstractions.md`：
 
@@ -310,7 +355,7 @@ HTML 模板使用规则：
 - 每个抽象解决的问题
 - 每个抽象的设计限制和可借鉴点
 
-### 3.8 Runtime Flows
+### 3.10 Runtime Flows
 
 完成 `runtime-flows.md`：
 
@@ -319,7 +364,7 @@ HTML 模板使用规则：
 - 画出时序图或流程图
 - 标注关键函数和状态变化
 
-### 3.9 Extension Points
+### 3.11 Extension Points
 
 完成 `extension-points.md`：
 
@@ -328,7 +373,7 @@ HTML 模板使用规则：
 - 扩展失败如何处理
 - 哪些扩展机制适合借鉴
 
-### 3.10 Design Philosophy
+### 3.12 Design Philosophy
 
 完成 `design-philosophy.md`：
 
@@ -341,7 +386,7 @@ HTML 模板使用规则：
 - 源码证据必须用于确认真实实现
 - 社区资料只能作为实践经验或问题背景
 
-### 3.11 Comparison
+### 3.13 Comparison
 
 当用户需要比较多个框架时，完成 `comparison.md`：
 
@@ -350,7 +395,7 @@ HTML 模板使用规则：
 - 工程化程度和二次开发友好度
 - 对学习、选型或设计判断的启发
 
-### 3.12 Adoption Notes
+### 3.14 Adoption Notes
 
 完成 `adoption-notes.md`：
 
@@ -360,7 +405,7 @@ HTML 模板使用规则：
 - 适用前提、约束和验证问题
 - 学习价值和后续单独评估方向
 
-### 3.13 Evidence Index
+### 3.15 Evidence Index
 
 持续维护 `evidence-index.md`：
 
@@ -371,7 +416,7 @@ HTML 模板使用规则：
 - 推断结论标明推断链路
 - 低置信度结论不能进入最终建议
 
-### 3.14 Research Review
+### 3.16 Research Review
 
 完成 `research-review.md`：
 
@@ -406,6 +451,8 @@ HTML 模板使用规则：
 | 外部资料 | 已覆盖必要官方资料、协作资料或社区资料；若跳过则说明原因 |
 | 研究问题 | 已把外部关键说法转成可验证问题，并记录验证状态 |
 | 源码地图 | 已说明仓库结构、入口、模块和阅读顺序 |
+| 结构化源码清单 | 已生成 `references/source-inventory.json`，或说明没有本地源码可生成 |
+| Dashboard | 已生成 `dashboard.html` 作为阅读入口，或说明不需要 |
 | 主链路 | 至少追踪一条从入口到核心执行的运行链路 |
 | 核心抽象 | 已识别关键接口、对象、数据结构和生命周期 |
 | 扩展点 | 已识别注册、加载、执行、隔离和失败处理方式 |
@@ -416,6 +463,7 @@ HTML 模板使用规则：
 | 事实区分 | 区分源码事实、官方事实、仓库文档事实、协作事实、社区事实、测试事实、推断和待确认 |
 | 借鉴笔记 | 输出可学习、不建议照搬和需要继续验证的内容 |
 | 审查记录 | 复杂调研已完成 research-review.md |
+| 自动校验 | 已运行 `node docs/tech-research-guide/scripts/validate-research.js research/<framework-name>`，或记录无法运行原因 |
 
 ## 6. 调研角色
 
@@ -424,7 +472,7 @@ HTML 模板使用规则：
 | 角色 | 角色目标 | 主要适用文档 |
 |---|---|---|
 | Research Lead | 把模糊调研意图转化为范围清晰、问题明确、可验收的 Research Brief，并组织外部资料和研究问题 | `research-brief.md`、`external-research.md`、`research-questions.md`、`README.md`、`research-review.md` |
-| Source Code Analyst | 建立可信的源码入口、目录地图和调用链证据，并验证研究问题 | `source-map.md`、`runtime-flows.md`、`research-questions.md`、`evidence-index.md` |
+| Source Code Analyst | 建立可信的源码入口、目录地图、结构化源码清单和调用链证据，并验证研究问题 | `source-map.md`、`references/source-inventory.json`、`runtime-flows.md`、`research-questions.md`、`evidence-index.md` |
 | Architecture Analyst | 把源码事实抽象成架构模型和核心抽象关系 | `architecture.md`、`key-abstractions.md`、`extension-points.md` |
 | Design Philosophy Analyst | 从官方目标、源码结构和架构取舍中提炼设计思想 | `design-philosophy.md`、`external-research.md`、`architecture.md`、`key-abstractions.md` |
 | Adoption Analyst | 把开源框架设计转化为学习借鉴笔记，说明适用前提和不可照搬点 | `adoption-notes.md`、`comparison.md`、`external-research.md` |

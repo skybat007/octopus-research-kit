@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenClaw 技术调研 Dashboard</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #627089;
+      --line: #d9e1ee;
+      --accent: #2563eb;
+      --accent-soft: #e8f0ff;
+      --ok: #0f766e;
+      --warn: #a16207;
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .shell { max-width: 1180px; margin: 0 auto; padding: 32px 20px 52px; }
+    .hero {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 14px 36px rgba(23, 32, 51, 0.06);
+    }
+    .eyebrow { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+    h1 { margin: 0 0 10px; font-size: 30px; line-height: 1.2; letter-spacing: 0; }
+    h2 { margin: 28px 0 14px; font-size: 18px; letter-spacing: 0; }
+    .summary { max-width: 920px; color: #33415c; white-space: pre-wrap; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 7px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .button.disabled { color: #9aa6b8; pointer-events: none; background: #f2f5f9; }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfdff;
+      padding: 12px;
+      min-height: 76px;
+    }
+    .metric .label { color: var(--muted); font-size: 12px; }
+    .metric .value { margin-top: 4px; font-size: 18px; font-weight: 700; overflow-wrap: anywhere; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .doc {
+      min-height: 116px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: 14px;
+    }
+    .doc.missing { opacity: 0.58; background: #f8fafc; }
+    .doc-title { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; }
+    .doc-desc { margin-top: 8px; color: var(--muted); font-size: 13px; }
+    .tag { color: var(--ok); background: #e9f7f4; border-radius: 999px; padding: 2px 8px; font-size: 12px; white-space: nowrap; }
+    .missing .tag { color: var(--warn); background: #fff7df; }
+    .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: 16px;
+    }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 8px 0; color: #33415c; }
+    .footer { margin-top: 28px; color: var(--muted); font-size: 13px; }
+    @media (max-width: 900px) {
+      .meta, .grid, .columns { grid-template-columns: 1fr; }
+      h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">Tech Research Dashboard · openclaw</div>
+      <h1>OpenClaw 技术调研</h1>
+      <div class="summary">OpenClaw 是一个本地优先的个人 AI Assistant / Gateway 项目。它把多渠道消息、设备节点、Agent 运行时、工具、模型 Provider、插件和会话管理统一到一个长期运行的 Gateway 控制平面中；真正的产品定位不是 Gateway 本身，而是“能在用户设备和渠道里做事的个人助手”。C-001 本轮调研固定在本地快照 /Users/cheng/IdeaProjects/openclaw，branch main，commit 989e53c20d395d3c8bf47efc21fdb9d56e7227b0。这是第一版架构级调研，重点覆盖 Gateway、Agent runtime、Plugin/capability model、Channel、Session/Multi-agent 和可借鉴设计，不覆盖每个具体渠道、移动端 App、完整 Provider 实现细节。</div>
+      <div class="actions"><a class="button" href="./docs.html?doc=README.md">README</a><a class="button primary" href="./visual/architecture.html">架构图</a><a class="button" href="./visual/evidence.html">证据查看器</a><a class="button" href="./docs.html?doc=evidence-index.md">证据索引</a></div>
+      <div class="meta">
+        <div class="metric"><div class="label">状态</div><div class="value">draft</div></div>
+        <div class="metric"><div class="label">更新日期</div><div class="value">2026-05-25</div></div>
+        <div class="metric"><div class="label">源码文件</div><div class="value">17990</div></div>
+        <div class="metric"><div class="label">主要语言</div><div class="value">TypeScript</div></div>
+      </div>
+    </section>
+
+    <h2>推荐阅读入口</h2>
+    <section class="grid">
+      <article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=README.md">总览</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">调研摘要、当前结论和文件导航</div>
+  <div class="doc-desc">README.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=research-brief.md">调研简报</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">目标、范围、问题和验收标准</div>
+  <div class="doc-desc">research-brief.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=external-research.md">外部资料</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">官方、协作和社区资料</div>
+  <div class="doc-desc">external-research.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=research-questions.md">研究问题</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">待验证问题和验证状态</div>
+  <div class="doc-desc">research-questions.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=source-map.md">源码地图</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">仓库结构、入口和阅读顺序</div>
+  <div class="doc-desc">source-map.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=architecture.md">架构文档</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">模块职责、边界和依赖方向</div>
+  <div class="doc-desc">architecture.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=runtime-flows.md">运行流程</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">主链路和关键状态变化</div>
+  <div class="doc-desc">runtime-flows.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=key-abstractions.md">核心抽象</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">接口、对象和生命周期</div>
+  <div class="doc-desc">key-abstractions.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=extension-points.md">扩展点</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">插件、Hook、Provider 和 Registry</div>
+  <div class="doc-desc">extension-points.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=design-philosophy.md">设计思想</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">设计取舍和可学习模式</div>
+  <div class="doc-desc">design-philosophy.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=comparison.md">横向对比</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">相邻框架或同类方案对照</div>
+  <div class="doc-desc">comparison.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=adoption-notes.md">学习借鉴</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">可学习、需适配和不建议照搬的设计</div>
+  <div class="doc-desc">adoption-notes.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=evidence-index.md">证据索引</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">关键结论和证据锚点</div>
+  <div class="doc-desc">evidence-index.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=research-review.md">调研审查</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">质量门禁、风险和开放问题</div>
+  <div class="doc-desc">research-review.md</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./visual/architecture.html">可视化架构图</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">专门的交互式架构图查看器</div>
+  <div class="doc-desc">visual/architecture.html</div>
+</article>
+<article class="doc">
+  <div class="doc-title"><a href="./visual/evidence.html">证据查看器</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">从架构图回到证据解释</div>
+  <div class="doc-desc">visual/evidence.html</div>
+</article>
+    </section>
+
+    <h2>当前结论与待确认</h2>
+    <section class="columns">
+      <div class="panel">
+        <h2 style="margin-top:0">当前结论</h2>
+        <ul><li>OpenClaw 官方文档和本地源码共同指向同一核心：它最值得学习的不是“接了很多聊天渠道”，而是把多渠道接入、Agent 执行、会话、工具、设备节点和插件统一成一个 Gateway control plane。C-004</li><li>插件体系采用“manifest 先于 runtime”的控制面设计：先用 openclaw.plugin.json 做身份、能力归属、配置校验和启动规划，再按需加载 runtime 注册能力。C-010</li><li>Agent 运行时是 OpenClaw 自有的 session/workspace/delivery 外壳加 Pi agent core，入口既支持 CLI，也支持 Gateway RPC；网络入口必须显式声明 senderIsOwner 和 allowModelOverride，这是非常值得借鉴的信任边界设计。C-007</li><li>会话隔离和多 Agent 路由是产品架构的一等概念，而不是后补功能；DM、群组、cron、webhook、agent workspace、auth profile 都有明确归属。[C-009]</li><li>对后续学习和单独评估最有价值的思想是：能力归属前置、核心保持 owner-agnostic、运行时热路径携带已解析事实、外部入口信任显式化、插件扩展从“能不能插”升级为“谁拥有这个 capability”。C-003</li></ul>
+      </div>
+      <div class="panel">
+        <h2 style="margin-top:0">待确认</h2>
+        <ul><li>尚未逐一调研所有 bundled plugin 和 channel 的具体实现质量。</li><li>尚未运行 OpenClaw 本地测试或启动 Gateway，只做了静态源码和仓库文档分析。</li><li>已补充官方外部资料互证，但尚未采用独立第三方实践文章作为结论依据。</li><li>横向对比对象待定，建议下一轮选择 Home Assistant、LangGraph、Dify、Botpress 或同类 Agent Gateway 项目之一做对比。</li></ul>
+      </div>
+    </section>
+
+    <h2>辅助材料</h2>
+    <section class="grid">
+      <article class="doc">
+  <div class="doc-title"><a href="./docs.html?doc=references%2Fsource-inventory.json">源码清单</a><span class="tag">已生成</span></div>
+  <div class="doc-desc">机器生成的过程性源码索引</div>
+  <div class="doc-desc">references/source-inventory.json</div>
+</article>
+    </section>
+
+    <div class="footer">Dashboard 只做阅读导航。Markdown 是知识源，visual/architecture.html 是专门的架构图查看器，references/ 放机器生成或过程性材料。</div>
+  </main>
+</body>
+</html>

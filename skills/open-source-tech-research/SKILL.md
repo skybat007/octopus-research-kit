@@ -30,15 +30,21 @@ Do not produce generic introductions. Important conclusions must be backed by of
    - convert external claims and user goals into source-verifiable questions
    - track status as pending, verified, partially verified, or unverified
    - write findings to `research-questions.md`
-5. Build a source map:
+5. Generate a deterministic source inventory when a local source tree is available:
+   - run `node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name>` from the project root
+   - use `references/source-inventory.json` as a reading aid for languages, top-level folders, build files, package files, entry candidates, tests, examples, docs, config, and large files
+   - do not treat `references/source-inventory.json` as an architecture conclusion; verify important claims in source, tests, config, docs, or examples
+   - if there is no local source tree, record the reason in `research-review.md`
+6. Build a source map:
    - use `rg --files` to inspect structure
+   - use `references/source-inventory.json` to avoid missing entry candidates, tests, examples, package boundaries, or build/config files
    - identify build files, packages, examples, docs, tests, public APIs, CLI entrypoints, server startup, and config loaders
    - write findings to `source-map.md`
-6. Trace architecture:
+7. Trace architecture:
    - identify core abstractions, module boundaries, dependency direction, state flow, extension points, and lifecycle
    - use official evidence for design goals and source evidence for implementation behavior
    - write findings to `architecture.md`
-7. Add visual architecture when Markdown diagrams are not enough:
+8. Add visual architecture when Markdown diagrams are not enough:
    - prefer `visual/architecture.html` plus `visual/architecture.visual.js` for complex layered diagrams, multi-flow diagrams, or diagrams with many nodes
    - keep Markdown as the knowledge source: `architecture.md`, `runtime-flows.md`, `source-map.md`, and `evidence-index.md`
    - keep `visual/architecture.html` as a renderer only; put graph data in `visual/architecture.visual.js`
@@ -55,36 +61,38 @@ Do not produce generic introductions. Important conclusions must be backed by of
    - keep evidence IDs as metadata or in the design note; do not render evidence IDs on the diagram surface unless the user explicitly asks
    - use `doc` fields to point back to Markdown evidence or architecture sections, but do not navigate directly to raw Markdown from the renderer
    - use only offline HTML/CSS/SVG/JS; do not depend on remote assets or CDNs
-8. Extract key abstractions:
+9. Extract key abstractions:
    - document important interfaces, classes, functions, data structures, lifecycle objects, and their collaboration
    - write findings to `key-abstractions.md`
-9. Trace extension points when relevant:
+10. Trace extension points when relevant:
    - inspect plugin, hook, registry, provider, middleware, tool, skill, or integration mechanisms
    - document registration, discovery, loading, execution, isolation, configuration, and failure handling
    - write findings to `extension-points.md`
-10. Trace runtime flows:
+11. Trace runtime flows:
    - start from a real user-facing API, example, test, CLI, or bootstrap path
    - follow the call chain into core execution
    - capture state changes, important branching, error handling, and extension hooks
    - write findings to `runtime-flows.md`
-11. Extract design philosophy:
+12. Extract design philosophy:
    - explain why the code is organized this way
    - compare tradeoffs and likely alternatives
    - separate official design intent, source-verified behavior, community practice, and inference
    - avoid empty labels such as "high cohesion" unless tied to concrete code structure
    - write findings to `design-philosophy.md`
-12. Compare frameworks when the user asks for comparison:
+13. Compare frameworks when the user asks for comparison:
    - fix version/source evidence for every compared framework; use web research unless each comparison target already has local evidence
    - compare positioning, architecture style, runtime, tool abstractions, workflow, memory, plugin model, engineering maturity, and adoption cost
    - write findings to `comparison.md`
-13. Convert findings into adoption notes when useful:
+14. Convert findings into adoption notes when useful:
    - identify directly reusable designs, designs requiring adaptation, and designs not worth copying
    - explain applicability, constraints, risks, and open validation questions
    - write findings to `adoption-notes.md`
-14. Review research quality:
+15. Review research quality:
    - verify version, scope, external research coverage, research question validation, source map, main runtime flow, visual architecture need, core abstractions, extension points, evidence, fact/inference labels, and adoption advice
+   - run `node docs/tech-research-guide/scripts/build-research-dashboard.js research/<framework-name>` to create `dashboard.html`, `docs.html`, and the research index when the project guide scripts are available
+   - run `node docs/tech-research-guide/scripts/validate-research.js research/<framework-name>` when the project guide scripts are available
    - write findings to `research-review.md` for complex research
-15. Maintain `evidence-index.md` throughout the work.
+16. Maintain `evidence-index.md` throughout the work.
 
 ## Output Contract
 
@@ -113,6 +121,7 @@ Before finalizing complex research, check:
 - scope and non-scope are explicit
 - external research is present or explicitly skipped with a reason
 - research questions are generated and source verification status is recorded
+- `references/source-inventory.json` exists when local source is available, or the absence is explained
 - source map exists
 - at least one main runtime flow is traced
 - core abstractions are identified
@@ -121,10 +130,12 @@ Before finalizing complex research, check:
 - visual architecture is present for complex diagrams or explicitly skipped
 - visual architecture separates Markdown knowledge source, `architecture.visual.js` graph data, `evidence.visual.js` evidence data, and HTML rendering
 - visual architecture uses one view per question, architecture-object nodes, typed edges, and hidden-on-surface evidence metadata
+- `dashboard.html` exists as the reading entry, `docs.html` renders Markdown/JSON without opening raw `.md`, and neither replaces Markdown as the knowledge source
 - design philosophy is grounded in code structure and tradeoffs
 - key conclusions are in `evidence-index.md`
 - facts, inferences, and pending questions are separated
 - adoption notes explain what to learn from, adapt, avoid, and validate later
+- `build-research-dashboard.js` and `validate-research.js` have been run for complex research, or the reason they could not run is recorded
 
 ## Relationship to Project Docs
 

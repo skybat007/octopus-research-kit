@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-28T08:08:40.064Z",
+  "researchName": "example-framework",
+  "researchDir": "research/example-framework",
+  "status": "missing-project-root",
+  "projectRoot": "",
+  "remote": "",
+  "versionHint": "",
+  "message": "No readable local project root was found in evidence-index.md."
+}

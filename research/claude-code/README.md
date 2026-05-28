@@ -20,6 +20,9 @@ Last Updated: 2026-05-25
 | external-research.md | Claude Code 官方资料、快照来源和外部观点验证关系 |
 | research-questions.md | 从官方资料生成的源码验证问题 |
 | source-map.md | 仓库结构、入口、核心模块和阅读顺序 |
+| dashboard.html | 浏览器阅读入口，导航 Markdown、可视化图和辅助材料 |
+| docs.html | UTF-8 文档阅读器，避免浏览器直接打开 Markdown 乱码 |
+| references/source-inventory.json | 确定性源码扫描索引，辅助定位入口、测试、示例、构建和配置 |
 | architecture.md | 技术架构、模块边界、依赖方向和核心链路 |
 | visual/architecture.html | HTML 可视化结构图，展示入口路由、Conversation Runtime、Tool、权限流水线和扩展面 |
 | visual/architecture.visual.js | 可视化图数据，承接 Markdown 结论和证据链接 |

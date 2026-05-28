@@ -18,6 +18,9 @@ Understand Anything 是一个面向代码库、知识库和文档的理解工具
 | external-research.md | 官方资料、外部资料和需要源码验证的观点 |
 | research-questions.md | 从外部资料转化出的源码验证问题 |
 | source-map.md | 仓库结构、入口、模块和阅读顺序 |
+| dashboard.html | 浏览器阅读入口，导航 Markdown、可视化图和辅助材料 |
+| docs.html | UTF-8 文档阅读器，避免浏览器直接打开 Markdown 乱码 |
+| references/source-inventory.json | 确定性源码扫描索引，辅助定位入口、测试、示例、构建和配置 |
 | architecture.md | 总体架构、模块职责和依赖方向 |
 | visual/architecture.html | HTML 可视化架构图 |
 | visual/architecture.visual.js | 可视化图数据，承接 Markdown 结论和证据链接 |
@@ -46,4 +49,3 @@ Understand Anything 是一个面向代码库、知识库和文档的理解工具
 - 未完整审查所有语言 extractor 的准确性和测试覆盖。
 - 未验证官方主页 Demo 与本地 Dashboard 当前实现是否完全一致。
 - 远程最新 tag 与本地版本号存在差异，发布流程需要单独确认。
-

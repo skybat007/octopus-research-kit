@@ -18,6 +18,9 @@ OpenClaw 是一个本地优先的个人 AI Assistant / Gateway 项目。它把�
 | external-research.md | 官方资料、协作资料、外部观点和源码验证关系 |
 | research-questions.md | 从外部资料生成的源码验证问题 |
 | source-map.md | 仓库结构、入口、模块和阅读顺序 |
+| dashboard.html | 浏览器阅读入口，导航 Markdown、可视化图和辅助材料 |
+| docs.html | UTF-8 文档阅读器，避免浏览器直接打开 Markdown 乱码 |
+| references/source-inventory.json | 确定性源码扫描索引，辅助定位入口、测试、示例、构建和配置 |
 | architecture.md | 技术架构、模块边界和依赖方向 |
 | visual/architecture.html | HTML 可视化结构图，展示 Gateway、Agent Runtime、Plugin Capability 和状态边界 |
 | visual/architecture.visual.js | 可视化图数据，承接 Markdown 结论和证据链接 |

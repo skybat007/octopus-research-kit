@@ -57,6 +57,8 @@ Last Updated: YYYY-MM-DD
 | 外部资料调研 | external-research.md | 官方资料、协作资料、社区资料和待验证观点 |
 | 研究问题 | research-questions.md | 将外部观点和用户目标转成源码验证问题 |
 | 源码地图 | source-map.md |  |
+| Dashboard | dashboard.html, docs.html | 浏览器阅读入口和 UTF-8 文档阅读器 |
+| 结构化源码清单 | references/source-inventory.json | 有本地源码时生成，用于辅助定位入口、测试、示例、构建和配置 |
 | 技术架构 | architecture.md |  |
 | 可视化架构图 | visual/architecture.html, visual/architecture.visual.js | 当 Markdown 架构图不直观时生成 |
 | 可视化证据解释 | visual/evidence.html, visual/evidence.visual.js | 为架构图节点提供可点击证据解释、源码/文档片段和证据回溯 |
@@ -78,3 +80,5 @@ Last Updated: YYYY-MM-DD
 | AC-003 | 外部资料中的关键观点已转成研究问题并记录验证状态 | 检查 external-research.md、research-questions.md |
 | AC-004 | 复杂架构已补充可视化图，或说明无需生成 | 检查 visual/architecture.html、visual/architecture.visual.js、research-review.md |
 | AC-005 | 借鉴建议区分可直接学习、需结合语境后借鉴和不建议照搬 | 检查 adoption-notes.md |
+| AC-006 | 本地源码已生成结构化清单，或说明无法生成原因 | 检查 references/source-inventory.json、research-review.md |
+| AC-007 | 已生成统一阅读入口 | 检查 dashboard.html、docs.html |

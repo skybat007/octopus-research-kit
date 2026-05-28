@@ -8,6 +8,8 @@
 | 快照属性 | 已覆盖 | README 明确这是非官方 security research snapshot。[C-001] |
 | 外部资料 | 已覆盖 | external-research.md 已覆盖 Claude Code 官方 overview/how-it-works/permissions/MCP/skills/hooks 文档。 |
 | 研究问题 | 已覆盖 | research-questions.md 已记录 RQ-CC-001 到 RQ-CC-005，并区分官方当前行为和本地 snapshot。 |
+| Source inventory | 已覆盖 | references/source-inventory.json 已生成，覆盖 1915 个文件。 |
+| Dashboard | 已覆盖 | dashboard.html 已生成阅读入口。 |
 | Source map | 已覆盖 | 已整理入口、核心模块、扩展模块、状态和远程通道。 |
 | 主运行流 | 已覆盖 | CLI 启动、REPL turn、QueryEngine、queryLoop、tool execution、MCP、session、remote flows 已追踪。 |
 | 可视化架构图 | 已覆盖 | visual/architecture.html 负责渲染，visual/architecture.visual.js 承接图数据与证据链接；visual/evidence.html 提供可点击证据查看。 |
@@ -15,6 +17,7 @@
 | 扩展点 | 已覆盖 | Commands、Skills、Plugins、MCP、Hooks、Model/API providers、Remote/Bridge。 |
 | 设计思想 | 已覆盖 | 模式归一、trust 前置、Tool 协议、权限流水线、扩展分层、prompt-cache 稳定性。 |
 | 证据索引 | 已覆盖 | 15 条本地证据、5 条外部资料证据、4 条推断链路。 |
+| 自动校验 | 已覆盖 | `validate-research.js research/claude-code` 已通过。 |
 | 运行验证 | 未覆盖 | 本轮未启动 CLI、未跑测试、未访问模型 API。 |
 
 ## 2. 置信度

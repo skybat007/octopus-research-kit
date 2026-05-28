@@ -1533,36 +1533,12 @@ window.EVIDENCE_ITEMS = [
         "viewId": "overview",
         "viewLabel": "架构总览",
         "viewDescription": "Claude Code snapshot 的核心不是单次 CLI prompt，而是把本地交互、headless SDK、remote、bridge 和 direct-connect 收敛到同一套消息、工具、权限和 session 语义。",
-        "title": "Model Client / QueryDeps",
-        "sub": "streaming / fallback / compact",
-        "role": "runtime-object",
-        "status": "source-verified",
-        "detail": "模型调用通过 QueryDeps 注入，减少 queryLoop 对具体 API provider 的直接绑定。",
-        "relation": ""
-      },
-      {
-        "kind": "节点",
-        "viewId": "overview",
-        "viewLabel": "架构总览",
-        "viewDescription": "Claude Code snapshot 的核心不是单次 CLI prompt，而是把本地交互、headless SDK、remote、bridge 和 direct-connect 收敛到同一套消息、工具、权限和 session 语义。",
         "title": "Session And Context",
         "sub": "transcript / project root / CLAUDE.md / git",
         "role": "state",
         "status": "official-supported",
         "detail": "sessionStorage、bootstrap state 和 context memoization 共同构成长期状态与上下文快照。",
         "relation": ""
-      },
-      {
-        "kind": "连线",
-        "viewId": "overview",
-        "viewLabel": "架构总览",
-        "viewDescription": "Claude Code snapshot 的核心不是单次 CLI prompt，而是把本地交互、headless SDK、remote、bridge 和 direct-connect 收敛到同一套消息、工具、权限和 session 语义。",
-        "title": "queryLoop -> Model Client / QueryDeps",
-        "sub": "模型流",
-        "role": "model-stream",
-        "status": "",
-        "detail": "关系语义：模型流。",
-        "relation": "queryLoop 到 Model Client / QueryDeps"
       },
       {
         "kind": "连线",
@@ -1661,7 +1637,7 @@ window.EVIDENCE_ITEMS = [
         "relation": "JSONL / project root / CLAUDE.md / git"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 架构总览 / 节点「Model Client / QueryDeps」、架构总览 / 节点「Session And Context」、架构总览 / 连线「queryLoop -> Model Client / QueryDeps」、架构总览 / 连线「queryLoop -> Session And Context」。证据结论是：context 层 memoized 生成 git/user/system context；API client 支持 Direct API、Bedrock、Foundry、Vertex 等环境路径和默认 headers；query deps 注入模型调用和 compact 依赖。图中的具体解释是：模型调用通过 QueryDeps 注入，减少 queryLoop 对具体 API provider 的直接绑定。；sessionStorage、bootstrap state 和 context memoization 共同构成长期状态与上下文快照。",
+    "explanation": "这条证据在架构图中支撑 架构总览 / 节点「Session And Context」、架构总览 / 连线「queryLoop -> Session And Context」、架构总览 / 连线「QueryEngine -> Session And Context」、Turn 主链路 / 节点「Context Assembly」。证据结论是：context 层 memoized 生成 git/user/system context；API client 支持 Direct API、Bedrock、Foundry、Vertex 等环境路径和默认 headers；query deps 注入模型调用和 compact 依赖。图中的具体解释是：sessionStorage、bootstrap state 和 context memoization 共同构成长期状态与上下文快照。；关系语义：读写上下文。",
     "sourceRefs": [
       {
         "kind": "file",

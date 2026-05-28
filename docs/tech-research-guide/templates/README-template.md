@@ -14,6 +14,9 @@ Last Updated: YYYY-MM-DD
 | external-research.md | 官方资料、协作资料、社区资料和关键外部观点 |
 | research-questions.md | 由外部资料和用户目标生成的源码验证问题 |
 | source-map.md | 仓库结构、入口、模块和阅读顺序 |
+| dashboard.html | 浏览器阅读入口，导航 Markdown、可视化图和辅助材料 |
+| docs.html | UTF-8 文档阅读器，避免浏览器直接打开 Markdown 乱码 |
+| references/source-inventory.json | 确定性源码扫描索引，辅助定位入口、测试、示例、构建和配置 |
 | architecture.md | 技术架构、模块边界和依赖方向 |
 | visual/architecture.html | 复杂架构的 HTML 可视化图 |
 | visual/architecture.visual.js | 可视化架构图数据，承接 Markdown 结论和证据链接 |

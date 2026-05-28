@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "YYYY-MM-DDTHH:mm:ss.sssZ",
+  "researchName": "<framework-name>",
+  "researchDir": "research/<framework-name>",
+  "status": "ok",
+  "projectRoot": "/absolute/path/to/source",
+  "remote": "https://github.com/example/project.git",
+  "branch": "main",
+  "commit": "<commit-sha>",
+  "versionHint": "branch `main`, commit `<commit-sha>`",
+  "fileCount": 0,
+  "languages": [
+    {
+      "language": "TypeScript",
+      "count": 0
+    }
+  ],
+  "topLevel": [
+    {
+      "path": "src",
+      "fileCount": 0,
+      "samples": []
+    }
+  ],
+  "buildFiles": [],
+  "packageFiles": [],
+  "entryCandidates": [],
+  "testFiles": [],
+  "exampleFiles": [],
+  "docsFiles": [],
+  "configFiles": [],
+  "largeFiles": [],
+  "notes": [
+    "references/source-inventory.json 是确定性源码扫描索引，不是架构结论。",
+    "架构结论仍应写入 Markdown 文档，并用 evidence-index.md 绑定证据。"
+  ]
+}

@@ -1,5 +1,9 @@
 # 源码地图
 
+## 0. 结构化源码清单
+
+本轮已生成 `references/source-inventory.json`，覆盖 `/Users/cheng/IdeaProjects/Understand-Anything` 当前快照的 411 个文件。该文件用于辅助定位入口、测试、示例、构建和配置，不替代下文的模块职责判断。
+
 ## 1. 顶层结构
 
 | 路径 | 职责 |
@@ -69,4 +73,3 @@
 5. `agents/*.md`：理解 LLM Agent 的语义职责。
 6. `App.tsx`、`store.ts`、`vite.config.ts`：理解图谱消费和安全边界。
 7. `fingerprint.ts`、`staleness.ts`、`hooks/auto-update-prompt.md`：理解增量更新。
-

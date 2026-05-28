@@ -32,13 +32,15 @@
 2. 固定代码版本和调研范围。
 3. 收集必要外部资料，生成 `external-research.md`；如果只做本地源码调研，记录跳过原因。
 4. 将外部观点和用户目标转成源码验证问题，生成 `research-questions.md`。
-5. 生成 `source-map.md`。
-6. 追踪一条主运行链路，生成 `runtime-flows.md`。
-7. 提炼核心抽象，生成 `key-abstractions.md`。
-8. 生成 `architecture.md`；如果架构图在 Markdown 中不直观，补充 `visual/architecture.html`、`visual/architecture.visual.js`、`visual/evidence.html` 和 `visual/evidence.visual.js`。
-9. 生成 `design-philosophy.md`。
-10. 记录证据到 `evidence-index.md`。
-11. 输出 `adoption-notes.md`。
+5. 如果有本地源码，生成 `references/source-inventory.json`。
+6. 生成 `source-map.md`。
+7. 追踪一条主运行链路，生成 `runtime-flows.md`。
+8. 提炼核心抽象，生成 `key-abstractions.md`。
+9. 生成 `architecture.md`；如果架构图在 Markdown 中不直观，补充 `visual/architecture.html`、`visual/architecture.visual.js`、`visual/evidence.html` 和 `visual/evidence.visual.js`。
+10. 生成 `design-philosophy.md`。
+11. 记录证据到 `evidence-index.md`。
+12. 输出 `adoption-notes.md`。
+13. 生成 `dashboard.html` 和 `docs.html` 作为阅读入口与 UTF-8 文档阅读器。
 
 ## 3. 完整调研流程
 
@@ -65,6 +67,20 @@
 
 ```text
 请基于 research-questions.md 进入源码验证。对每个研究问题给出验证结果，标记已验证、部分验证、未验证或待确认，并给出源码路径、类、函数、配置或测试用例作为证据。
+```
+
+```text
+请在分析源码前生成 references/source-inventory.json。要求从 evidence-index.md 读取本地源码路径，使用确定性扫描记录文件数量、主要语言、顶层目录、构建文件、包文件、入口候选、测试、示例、文档和配置。references/source-inventory.json 是过程性阅读索引，不要把它当作架构结论，也不要作为一级阅读入口。
+```
+
+```text
+请生成 dashboard.html 和 docs.html 作为本次调研的统一阅读入口与 UTF-8 文档阅读器。要求：
+- Dashboard 只导航已有 Markdown、visual/architecture.html、visual/evidence.html 和 references/ 辅助材料
+- Markdown 文档链接必须进入 docs.html?doc=<file>，不要直接打开 .md
+- 不在 Dashboard 中新增 Markdown 没有的架构结论
+- visual/architecture.html 仍作为专门的架构图查看器保留
+- 根目录的 visual-architecture.html 如存在，只作为旧链接兼容跳转页
+- research/index.html 只保留各框架 Dashboard 入口
 ```
 
 ```text
@@ -122,6 +138,8 @@
 - 是否明确调研范围和不做范围
 - 是否覆盖必要外部资料，或说明跳过原因
 - 是否把外部观点转成研究问题并记录源码验证状态
+- 是否生成 `references/source-inventory.json`，或说明没有本地源码可生成
+- 是否生成 `dashboard.html` 和 `docs.html` 作为阅读入口
 - 是否有源码地图
 - 是否至少追踪一条主运行链路
 - 复杂架构是否补充 HTML 可视化图，或说明无需补充
@@ -136,3 +154,4 @@
 - 关键结论是否进入 `evidence-index.md`
 - 是否区分官方事实、源码事实、社区事实、推断和待确认
 - 是否输出可学习、可借鉴和不适合照搬的设计判断
+- 是否运行 `node docs/tech-research-guide/scripts/validate-research.js research/<framework-name>`，或记录无法运行原因

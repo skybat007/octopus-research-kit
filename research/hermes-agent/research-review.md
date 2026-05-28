@@ -14,6 +14,8 @@ Last Updated: 2026-05-25
 | 固定版本/commit | 通过 | `main@cae7537359c0ba8fceedc0a6423a4d9f30972100` |
 | 外部资料调研 | 通过 | external-research.md 已覆盖官方 GitHub、docs、toolsets/plugins/memory/gateway/cron 文档 |
 | 研究问题验证 | 通过 | research-questions.md 已记录 RQ-HA-001 到 RQ-HA-006 |
+| 结构化源码清单 | 通过 | references/source-inventory.json 已生成，覆盖 3636 个文件 |
+| Dashboard | 通过 | dashboard.html 已生成阅读入口 |
 | 模块关系说明 | 通过 | source-map.md 与 architecture.md 已覆盖 |
 | 至少一条运行链路 | 通过 | runtime-flows.md 覆盖 CLI chat、Agent loop、Tool call、Gateway、TUI、cron |
 | 可视化架构图 | 通过 | visual/architecture.html 负责渲染，visual/architecture.visual.js 承接图数据与证据链接；visual/evidence.html 提供可点击证据查看 |
@@ -21,6 +23,7 @@ Last Updated: 2026-05-25
 | 区分事实与推断 | 通过 | evidence-index.md 区分源码/仓库文档/官方资料/推断 |
 | 学习借鉴建议 | 通过 | adoption-notes.md |
 | 横向对照 | 部分完成 | comparison.md 给出对照维度和与 OpenClaw 的初步观察 |
+| 自动校验 | 通过 | `validate-research.js research/hermes-agent` 已通过 |
 
 ## 3. 主要风险
 

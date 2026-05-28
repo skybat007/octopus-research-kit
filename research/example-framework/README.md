@@ -11,7 +11,12 @@ Last Updated: YYYY-MM-DD
 | 文件 | 说明 |
 |---|---|
 | [research-brief.md](research-brief.md) | 调研目标、范围、问题和交付物 |
+| [external-research.md](external-research.md) | 官方资料、协作资料、社区资料和待验证观点 |
+| [research-questions.md](research-questions.md) | 由外部资料和用户目标生成的源码验证问题 |
 | [source-map.md](source-map.md) | 仓库结构、模块边界、入口和阅读顺序 |
+| [dashboard.html](dashboard.html) | 浏览器阅读入口，导航 Markdown、可视化图和辅助材料 |
+| [docs.html](docs.html) | UTF-8 文档阅读器，避免浏览器直接打开 Markdown 乱码 |
+| [references/source-inventory.json](references/source-inventory.json) | 确定性源码扫描索引，有本地源码时生成 |
 | [architecture.md](architecture.md) | 技术架构、核心抽象、依赖方向和扩展机制 |
 | [visual/architecture.html](visual/architecture.html) | HTML 可视化结构图，适合表达 Markdown 图不清晰的分层关系 |
 | [visual/architecture.visual.js](visual/architecture.visual.js) | 可视化图数据，承接 Markdown 结论和证据链接 |
@@ -30,5 +35,6 @@ Last Updated: YYYY-MM-DD
 
 1. 将 `example-framework` 改成真实框架名。
 2. 先补全 `research-brief.md`。
-3. 再从源码地图开始推进。
-4. 所有关键结论同步写入 `evidence-index.md`。
+3. 有本地源码时先生成 `references/source-inventory.json`。
+4. 再从源码地图开始推进。
+5. 所有关键结论同步写入 `evidence-index.md`。

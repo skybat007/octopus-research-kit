@@ -4,17 +4,19 @@ const fs = require('fs');
 const path = require('path');
 
 const root = process.cwd();
-const defaultDirs = [
-  'research/example-framework',
-  'research/hermes-agent',
-  'research/openclaw',
-  'research/claude-code'
-];
 const dirs = process.argv.slice(2);
-const targetDirs = dirs.length ? dirs : defaultDirs;
+const targetDirs = dirs.length ? dirs : discoverResearchDirs();
 
 for (const dir of targetDirs) {
   buildForDir(path.resolve(root, dir));
+}
+
+function discoverResearchDirs() {
+  const researchRoot = path.join(root, 'research');
+  if (!fs.existsSync(researchRoot)) return [];
+  return fs.readdirSync(researchRoot)
+    .map(name => path.join('research', name))
+    .filter(dir => fs.existsSync(path.join(root, dir, 'evidence-index.md')));
 }
 
 function buildForDir(researchDir) {

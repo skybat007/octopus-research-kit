@@ -13,6 +13,7 @@
 | commit | `4b9d30f7953273e567a18eb819f4eddd45fcc877` |
 | remote | `https://github.com/jarmuine/claude-code.git` |
 | `src` 文件数 | 约 1902 |
+| source-inventory | `references/source-inventory.json`，1915 个文件 |
 
 ## 2. 顶层阅读入口
 

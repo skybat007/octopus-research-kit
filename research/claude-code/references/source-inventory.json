@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-28T08:08:39.984Z",
+  "researchName": "claude-code",
+  "researchDir": "research/claude-code",
+  "status": "ok",
+  "projectRoot": "/Users/cheng/IdeaProjects/claude-code",
+  "remote": "https://github.com/jarmuine/claude-code.git",
+  "branch": "main",
+  "commit": "4b9d30f7953273e567a18eb819f4eddd45fcc877",
+  "versionHint": "branch main, commit 4b9d30f7953273e567a18eb819f4eddd45fcc877",
+  "fileCount": 1915,
+  "languages": [
+    {
+      "language": "TypeScript",
+      "count": 1332
+    },
+    {
+      "language": "TypeScript React",
+      "count": 552
+    },
+    {
+      "language": "JavaScript",
+      "count": 18
+    },
+    {
+      "language": "Markdown",
+      "count": 5
+    },
+    {
+      "language": "XML",
+      "count": 4
+    },
+    {
+      "language": "Other",
+      "count": 2
+    },
+    {
+      "language": "DB",
+      "count": 1
+    },
+    {
+      "language": "IML",
+      "count": 1
+    }
+  ],
+  "topLevel": [
+    {
+      "path": "src",
+      "fileCount": 1902,
+      "samples": [
+        "src/QueryEngine.ts",
+        "src/Task.ts",
+        "src/Tool.ts",
+        "src/assistant/sessionHistory.ts",
+        "src/bootstrap/state.ts",
+        "src/bridge/bridgeApi.ts",
+        "src/bridge/bridgeConfig.ts",
+        "src/bridge/bridgeDebug.ts"
+      ]
+    },
+    {
+      "path": ".idea",
+      "fileCount": 7,
+      "samples": [
+        ".idea/.gitignore",
+        ".idea/claude-code.iml",
+        ".idea/easyapi-cache/.api.local.storage.v2.db",
+        ".idea/google-java-format.xml",
+        ".idea/misc.xml",
+        ".idea/modules.xml",
+        ".idea/vcs.xml"
+      ]
+    },
+    {
+      "path": "docs",
+      "fileCount": 4,
+      "samples": [
+        "docs/claude-code-technical-architecture.md",
+        "docs/claude-code-vs-openclaw.md",
+        "docs/claude-code.md",
+        "docs/harness.md"
+      ]
+    },
+    {
+      "path": ".",
+      "fileCount": 2,
+      "samples": [
+        ".gitignore",
+        "README.md"
+      ]
+    }
+  ],
+  "buildFiles": [
+    ".idea/google-java-format.xml",
+    "src/commands/install-github-app/setupGitHubActions.ts",
+    "src/setup.ts",
+    "src/utils/claudeInChrome/setup.ts",
+    "src/utils/claudeInChrome/setupPortable.ts",
+    "src/utils/computerUse/setup.ts",
+    "src/utils/nativeInstaller/packageManagers.ts"
+  ],
+  "packageFiles": [],
+  "entryCandidates": [
+    "src/cli/exit.ts",
+    "src/cli/handlers/agents.ts",
+    "src/cli/handlers/auth.ts",
+    "src/cli/handlers/autoMode.ts",
+    "src/cli/handlers/mcp.tsx",
+    "src/cli/handlers/plugins.ts",
+    "src/cli/handlers/util.tsx",
+    "src/cli/ndjsonSafeStringify.ts",
+    "src/cli/print.ts",
+    "src/cli/remoteIO.ts",
+    "src/cli/structuredIO.ts",
+    "src/cli/transports/HybridTransport.ts",
+    "src/cli/transports/SSETransport.ts",
+    "src/cli/transports/SerialBatchEventUploader.ts",
+    "src/cli/transports/WebSocketTransport.ts",
+    "src/cli/transports/WorkerStateUploader.ts",
+    "src/cli/transports/ccrClient.ts",
+    "src/cli/transports/transportUtils.ts",
+    "src/cli/update.ts",
+    "src/commands/add-dir/index.ts",
+    "src/commands/agents/index.ts",
+    "src/commands/ant-trace/index.js",
+    "src/commands/autofix-pr/index.js",
+    "src/commands/backfill-sessions/index.js",
+    "src/commands/branch/index.ts",
+    "src/commands/break-cache/index.js",
+    "src/commands/bridge/index.ts",
+    "src/commands/btw/index.ts",
+    "src/commands/bughunter/index.js",
+    "src/commands/chrome/index.ts",
+    "src/commands/clear/index.ts",
+    "src/commands/color/index.ts",
+    "src/commands/compact/index.ts",
+    "src/commands/config/index.ts",
+    "src/commands/context/index.ts",
+    "src/commands/copy/index.ts",
+    "src/commands/cost/index.ts",
+    "src/commands/ctx_viz/index.js",
+    "src/commands/debug-tool-call/index.js",
+    "src/commands/desktop/index.ts",
+    "src/commands/diff/index.ts",
+    "src/commands/doctor/index.ts",
+    "src/commands/effort/index.ts",
+    "src/commands/env/index.js",
+    "src/commands/exit/index.ts",
+    "src/commands/export/index.ts",
+    "src/commands/extra-usage/index.ts",
+    "src/commands/fast/index.ts",
+    "src/commands/feedback/index.ts",
+    "src/commands/files/index.ts",
+    "src/commands/good-claude/index.js",
+    "src/commands/heapdump/index.ts",
+    "src/commands/help/index.ts",
+    "src/commands/hooks/index.ts",
+    "src/commands/ide/index.ts",
+    "src/commands/install-github-app/index.ts",
+    "src/commands/install-slack-app/index.ts",
+    "src/commands/issue/index.js",
+    "src/commands/keybindings/index.ts",
+    "src/commands/login/index.ts",
+    "src/commands/logout/index.ts",
+    "src/commands/mcp/index.ts",
+    "src/commands/memory/index.ts",
+    "src/commands/mobile/index.ts",
+    "src/commands/mock-limits/index.js",
+    "src/commands/model/index.ts",
+    "src/commands/oauth-refresh/index.js",
+    "src/commands/onboarding/index.js",
+    "src/commands/output-style/index.ts",
+    "src/commands/passes/index.ts",
+    "src/commands/perf-issue/index.js",
+    "src/commands/permissions/index.ts",
+    "src/commands/plan/index.ts",
+    "src/commands/plugin/index.tsx",
+    "src/commands/pr_comments/index.ts",
+    "src/commands/privacy-settings/index.ts",
+    "src/commands/rate-limit-options/index.ts",
+    "src/commands/release-notes/index.ts",
+    "src/commands/reload-plugins/index.ts",
+    "src/commands/remote-env/index.ts",
+    "src/commands/remote-setup/index.ts",
+    "src/commands/rename/index.ts",
+    "src/commands/reset-limits/index.js",
+    "src/commands/resume/index.ts",
+    "src/commands/rewind/index.ts",
+    "src/commands/sandbox-toggle/index.ts",
+    "src/commands/session/index.ts",
+    "src/commands/share/index.js",
+    "src/commands/skills/index.ts",
+    "src/commands/stats/index.ts",
+    "src/commands/status/index.ts",
+    "src/commands/stickers/index.ts",
+    "src/commands/summary/index.js",
+    "src/commands/tag/index.ts",
+    "src/commands/tasks/index.ts",
+    "src/commands/teleport/index.js",
+    "src/commands/terminalSetup/index.ts",
+    "src/commands/theme/index.ts",
+    "src/commands/thinkback-play/index.ts",
+    "src/commands/thinkback/index.ts",
+    "src/commands/upgrade/index.ts",
+    "src/commands/usage/index.ts",
+    "src/commands/vim/index.ts",
+    "src/commands/voice/index.ts",
+    "src/components/CustomSelect/index.ts",
+    "src/components/Spinner/index.ts",
+    "src/components/mcp/index.ts",
+    "src/components/wizard/index.ts",
+    "src/entrypoints/cli.tsx",
+    "src/main.tsx",
+    "src/native-ts/color-diff/index.ts",
+    "src/native-ts/file-index/index.ts",
+    "src/native-ts/yoga-layout/index.ts",
+    "src/plugins/bundled/index.ts",
+    "src/services/analytics/index.ts",
+    "src/services/oauth/index.ts",
+    "src/services/policyLimits/index.ts",
+    "src/services/remoteManagedSettings/index.ts",
+    "src/services/settingsSync/index.ts",
+    "src/services/teamMemorySync/index.ts"
+  ],
+  "testFiles": [
+    "src/utils/bash/specs/alias.ts",
+    "src/utils/bash/specs/index.ts",
+    "src/utils/bash/specs/nohup.ts",
+    "src/utils/bash/specs/pyright.ts",
+    "src/utils/bash/specs/sleep.ts",
+    "src/utils/bash/specs/srun.ts",
+    "src/utils/bash/specs/time.ts",
+    "src/utils/bash/specs/timeout.ts"
+  ],
+  "exampleFiles": [],
+  "docsFiles": [
+    "README.md",
+    "docs/claude-code-technical-architecture.md",
+    "docs/claude-code-vs-openclaw.md",
+    "docs/claude-code.md",
+    "docs/harness.md"
+  ],
+  "configFiles": [
+    ".gitignore",
+    ".idea/.gitignore",
+    ".idea/easyapi-cache/.api.local.storage.v2.db"
+  ],
+  "largeFiles": [
+    {
+      "path": "src/screens/REPL.tsx",
+      "bytes": 895850
+    },
+    {
+      "path": "src/main.tsx",
+      "bytes": 803924
+    }
+  ],
+  "notes": [
+    "This inventory is a deterministic source-reading aid, not an architecture conclusion.",
+    "Use source-map.md and evidence-index.md for interpreted research conclusions."
+  ]
+}

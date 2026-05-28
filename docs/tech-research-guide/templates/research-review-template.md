@@ -18,6 +18,8 @@
 | 是否覆盖必要外部资料 | 通过/不通过/跳过 |  |
 | 是否生成 research-questions | 通过/不通过/跳过 |  |
 | 外部观点是否完成源码验证 | 通过/不通过/部分 |  |
+| 是否生成 references/source-inventory.json | 通过/不通过/不适用 |  |
+| 是否生成 dashboard.html/docs.html | 通过/不通过/不适用 |  |
 | 是否生成 source-map | 通过/不通过 |  |
 | 是否跟踪至少一条主运行链路 | 通过/不通过 |  |
 | 是否需要 visual/architecture.html 和 visual/architecture.visual.js | 需要/不需要 |  |
@@ -37,6 +39,7 @@
 | 是否区分官方事实、源码事实、社区事实、推断、待确认 | 通过/不通过 |  |
 | 是否输出学习借鉴笔记 | 通过/不通过 |  |
 | 是否说明不适合照搬的设计 | 通过/不通过 |  |
+| 是否运行 validate-research.js | 通过/不通过/未运行 |  |
 
 ## 3. 问题清单
 

@@ -9,6 +9,7 @@
 | commit | `cae7537359c0ba8fceedc0a6423a4d9f30972100` |
 | remote | `https://github.com/NousResearch/hermes-agent.git` |
 | 工作区状态 | 存在未跟踪 `.idea/` 与 `tinker-atropos/`，本轮未修改目标仓库 |
+| source-inventory | `references/source-inventory.json`，3636 个文件 |
 
 ## 2. 入口文件
 

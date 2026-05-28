@@ -10,6 +10,9 @@ For a full research pass, produce or update:
 - `external-research.md`
 - `research-questions.md`
 - `source-map.md`
+- `dashboard.html`
+- `docs.html`
+- `references/source-inventory.json` when a local source tree is available
 - `architecture.md`
 - `visual/architecture.html` and `visual/architecture.visual.js` when Markdown diagrams are too dense or the framework has multiple major views
 - `key-abstractions.md`
@@ -31,6 +34,8 @@ A good output:
 - fixes the framework version or clearly labels it as current snapshot
 - captures relevant official, collaboration, and community evidence or explains why external research was skipped
 - converts external claims into source-verifiable research questions
+- includes a deterministic `references/source-inventory.json` for local source trees, or explains why it could not be generated
+- includes `dashboard.html` as a browser reading entry and `docs.html` as a UTF-8 Markdown/JSON reader; do not link raw `.md` files from the dashboard
 - explains module relationships, not just directory names
 - traces at least one concrete runtime path for full research
 - uses `visual/architecture.html` plus `visual/architecture.visual.js` for complex layered diagrams that are hard to read in Markdown
@@ -44,6 +49,7 @@ A good output:
 - separates official intent, source-verified behavior, community practice, and inference
 - turns design observations into practical learning and adoption notes
 - explains which designs can be copied, adapted, avoided, or validated first
+- passes `node docs/tech-research-guide/scripts/validate-research.js research/<framework-name>` for complex research, or records unresolved validation warnings
 
 ## Evidence Labels
 

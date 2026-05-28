@@ -9,6 +9,7 @@
 - [GLOSSARY.md](./GLOSSARY.md)：调研术语表
 - [roles/](./roles/)：调研角色边界
 - [templates/](./templates/)：每次调研可复制的文档模板
+- [scripts/](./scripts/)：结构化清单、证据解释页和调研产物校验脚本
 
 ## 使用方式
 
@@ -17,9 +18,29 @@
 3. 先完成 `research-brief.md`。它也可以理解为 Research Charter。
 4. 先完成 `external-research.md`，收集必要的官方资料、协作资料和社区资料；如果跳过，记录原因。
 5. 再完成 `research-questions.md`，把外部资料和用户目标转成源码验证问题。
-6. 按源码地图、核心抽象、运行链路、架构、扩展点、设计思想、学习借鉴的顺序推进。
-7. 将关键结论同步记录到 `evidence-index.md`。
-8. 如果需要 HTML 可视化图，优先复制 `visual-architecture-template.html` 为 `visual/architecture.html`，并用 `architecture.visual.js` 维护图数据；同时复制 `evidence-viewer-template.html` 为 `visual/evidence.html`，用 `evidence.visual.js` 维护证据解释数据。
+6. 如果有本地源码，先生成结构化清单：`node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name>`。
+7. 按源码地图、核心抽象、运行链路、架构、扩展点、设计思想、学习借鉴的顺序推进。
+8. 将关键结论同步记录到 `evidence-index.md`。
+9. 如果需要 HTML 可视化图，优先复制 `visual-architecture-template.html` 为 `visual/architecture.html`，并用 `architecture.visual.js` 维护图数据；同时复制 `evidence-viewer-template.html` 为 `visual/evidence.html`，用 `evidence.visual.js` 维护证据解释数据。
+10. 生成证据解释数据：`node docs/tech-research-guide/scripts/build-evidence-visual.js research/<framework-name>`。
+11. 生成阅读入口和 UTF-8 文档阅读器：`node docs/tech-research-guide/scripts/build-research-dashboard.js research/<framework-name>`。
+12. 最终校验产物：`node docs/tech-research-guide/scripts/validate-research.js research/<framework-name>`。
+
+## 脚本
+
+```bash
+# 从 evidence-index.md 中的本地路径扫描源码，生成 references/source-inventory.json
+node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name>
+
+# 从 evidence-index.md 和 visual/architecture.visual.js 生成可点击证据解释页数据
+node docs/tech-research-guide/scripts/build-evidence-visual.js research/<framework-name>
+
+# 生成 dashboard.html、docs.html 和 research/index.html 阅读入口
+node docs/tech-research-guide/scripts/build-research-dashboard.js research/<framework-name>
+
+# 校验文档、Dashboard、结构化清单、visual data、证据编号和 HTML 内联脚本
+node docs/tech-research-guide/scripts/validate-research.js research/<framework-name>
+```
 
 ## 边界
 

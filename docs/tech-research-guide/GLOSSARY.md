@@ -8,6 +8,14 @@
 
 源码地图。用于说明仓库结构、核心模块、入口、测试、示例和推荐阅读顺序。
 
+## Source Inventory
+
+结构化源码清单。通常是 `references/source-inventory.json`，由脚本从本地源码确定性扫描生成，用于记录文件数量、主要语言、顶层目录、构建文件、入口候选、测试、示例、文档和配置。它是过程性阅读辅助索引，不是架构结论。
+
+## Research Dashboard
+
+调研阅读入口。通常由 `dashboard.html` 和 `docs.html` 组成：`dashboard.html` 用于把 README、Markdown 调研文档、可视化架构图、证据查看器和 `references/` 辅助材料组织成一个浏览入口；`docs.html` 用于以 UTF-8 渲染 Markdown/JSON，避免直接打开 `.md` 出现编码问题。Dashboard 不替代 Markdown，也不新增架构结论。
+
 ## 可视化架构图
 
 可视化架构图。推荐由 `visual/architecture.html`、`visual/architecture.visual.js`、`visual/evidence.html` 和 `visual/evidence.visual.js` 组成，用于承载 Markdown/Mermaid 不易表达的复杂分层图、多视图架构图、流程图和扩展点图。它是 `architecture.md` 的视觉补充，不能替代证据索引和源码验证。图面默认不展示证据编号，证据映射应保留在生成前设计说明、`architecture.visual.js`、`evidence.visual.js` 或 `evidence-index.md` 中。

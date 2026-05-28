@@ -109,21 +109,6 @@ window.ARCHITECTURE_VIEWS = [
         doc: "../evidence-index.md#C-008"
       },
       {
-        id: "model",
-        type: "runtime",
-        title: "Model Client / QueryDeps",
-        sub: "streaming / fallback / compact",
-        ev: "C-014",
-        x: 1110,
-        y: 185,
-        w: 210,
-        h: 82,
-        tip: "模型调用通过 QueryDeps 注入，减少 queryLoop 对具体 API provider 的直接绑定。",
-        role: "runtime-object",
-        status: "source-verified",
-        doc: "../evidence-index.md#C-014"
-      },
-      {
         id: "tools",
         type: "extension",
         title: "Tool Contract",
@@ -232,14 +217,6 @@ window.ARCHITECTURE_VIEWS = [
         kind: "sync-call",
         ev: "C-008 EXT-CC-002",
         doc: "../evidence-index.md#C-008"
-      },
-      {
-        from: "loop",
-        to: "model",
-        label: "模型流",
-        kind: "model-stream",
-        ev: "C-014",
-        doc: "../evidence-index.md#C-014"
       },
       {
         from: "loop",

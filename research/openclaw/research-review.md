@@ -14,6 +14,8 @@ Last Updated: 2026-05-25
 | 固定版本/commit | 通过 | `main@989e53c20d395d3c8bf47efc21fdb9d56e7227b0` |
 | 外部资料调研 | 通过 | external-research.md 已覆盖官方 docs、GitHub、本地仓库 docs |
 | 研究问题验证 | 通过 | research-questions.md 已记录 RQ-OC-001 到 RQ-OC-005 |
+| 结构化源码清单 | 通过 | references/source-inventory.json 已生成，覆盖 17990 个文件 |
+| Dashboard | 通过 | dashboard.html 已生成阅读入口 |
 | 模块关系说明 | 通过 | source-map.md 与 architecture.md 已覆盖 |
 | 至少一条运行链路 | 通过 | runtime-flows.md 覆盖 Gateway 启动、WS handshake、Agent run、Plugin load |
 | 可视化架构图 | 通过 | visual/architecture.html 负责渲染，visual/architecture.visual.js 承接图数据与证据链接；visual/evidence.html 提供可点击证据查看 |
@@ -21,6 +23,7 @@ Last Updated: 2026-05-25
 | 区分事实与推断 | 通过 | evidence-index.md 区分源码/仓库文档/官方资料/推断 |
 | 借鉴建议 | 通过 | adoption-notes.md |
 | 横向对比 | 未完成 | comparison.md 仅保留后续入口 |
+| 自动校验 | 通过 | `validate-research.js research/openclaw` 已通过 |
 
 ## 3. 主要风险
 

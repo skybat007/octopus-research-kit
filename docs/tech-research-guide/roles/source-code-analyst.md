@@ -2,11 +2,12 @@
 
 ## 角色目标
 
-建立可信的源码入口、目录地图和调用链证据，让后续架构判断、设计思想提炼和学习借鉴都能回到具体源码位置。
+建立可信的源码入口、目录地图、结构化源码清单和调用链证据，让后续架构判断、设计思想提炼和学习借鉴都能回到具体源码位置。
 
 ## 适用文档
 
 - `source-map.md`
+- `references/source-inventory.json`
 - `runtime-flows.md`
 - `evidence-index.md`
 - `key-abstractions.md`
@@ -14,6 +15,7 @@
 
 ## 职责
 
+- 生成或使用 `references/source-inventory.json`，先确定文件数量、主要语言、构建文件、入口候选、测试、示例、文档和配置。
 - 阅读源码，梳理仓库结构、构建系统、入口、关键类、核心调用链。
 - 识别测试、示例、配置、脚本、公共 API、CLI 和启动入口。
 - 根据 `research-questions.md` 验证外部资料中的关键说法。

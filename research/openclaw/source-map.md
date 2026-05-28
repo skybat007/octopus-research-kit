@@ -13,6 +13,7 @@ Last Updated: 2026-05-25
 | package version | `2026.5.19` |
 | package bin | `openclaw -> openclaw.mjs` |
 | workspace | `.`, `ui`, `packages/*`, `extensions/*` |
+| source-inventory | `references/source-inventory.json`，17990 个文件 |
 
 ## 2. 顶层结构
 
