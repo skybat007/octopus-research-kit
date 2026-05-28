@@ -1,6 +1,6 @@
-# Octopus Tech Research Workspace
+# Octopus Research Kit
 
-A source-backed research workspace for open-source framework analysis. It turns code reading into reviewable, reusable, and shareable architecture documents with structured templates, evidence indexes, validation scripts, and visual dashboards.
+An evidence-backed research kit for technologies, codebases, and AI systems. It turns source reading, framework analysis, architecture research, and technology evaluation into reviewable, reusable, and shareable research assets with structured templates, evidence indexes, validation scripts, and visual dashboards.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js >= 18](https://img.shields.io/badge/Node.js-%3E%3D18-339933.svg)](package.json)
@@ -8,9 +8,9 @@ A source-backed research workspace for open-source framework analysis. It turns 
 
 ## Who This Is For
 
-- Developers who want to understand unfamiliar open-source frameworks systematically, not just collect links.
-- Engineers who need to explain architecture, core abstractions, extension points, and design tradeoffs to a team.
-- Teams using AI agents for source research while still requiring traceable evidence for important conclusions.
+- Developers who want to understand unfamiliar technologies, open-source frameworks, or codebases systematically, not just collect links.
+- Engineers who need to explain technical architecture, core abstractions, extension points, and design tradeoffs to a team.
+- Teams using AI agents for technical research while still requiring traceable evidence for important conclusions.
 - Anyone who wants to turn one research effort into reusable templates, workflow, and quality gates.
 
 ## What It Solves
