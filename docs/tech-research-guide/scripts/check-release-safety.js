@@ -78,6 +78,7 @@ function shouldSkipDir(relPath, name) {
 }
 
 function shouldScanFile(name, fullPath) {
+  if (name === '.git') return false;
   const stat = fs.statSync(fullPath);
   if (stat.size > 5 * 1024 * 1024) return false;
   const ext = path.extname(name).toLowerCase();

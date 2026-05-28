@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Private security reporting
+    url: https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability
+    about: If you need to report real tokens, private keys, or sensitive internal content, use GitHub Security Advisory instead of a public issue.

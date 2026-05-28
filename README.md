@@ -1,98 +1,110 @@
 # Octopus Tech Research Workspace
 
-Octopus Tech Research Workspace is a source-backed research framework for studying open-source technologies, reading unfamiliar codebases, and turning that work into reusable technical documents.
+A source-backed research workspace for open-source framework analysis. It turns code reading into reviewable, reusable, and shareable architecture documents with structured templates, evidence indexes, validation scripts, and visual dashboards.
 
-Its goal is not to collect loose notes. It helps you build a traceable understanding of an open-source technology:
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Node.js >= 18](https://img.shields.io/badge/Node.js-%3E%3D18-339933.svg)](package.json)
+[![Research Artifacts](https://img.shields.io/badge/research-evidence--backed-2563eb.svg)](research/)
 
-- What problem it solves
-- Where its architecture boundaries are
-- How its core abstractions are organized
-- How important runtime flows appear in source code
-- What design ideas, tradeoffs, and extension mechanisms it uses
-- Which patterns are worth learning, adapting, or evaluating later
+## Who This Is For
 
-## Core Workflow
+- Developers who want to understand unfamiliar open-source frameworks systematically, not just collect links.
+- Engineers who need to explain architecture, core abstractions, extension points, and design tradeoffs to a team.
+- Teams using AI agents for source research while still requiring traceable evidence for important conclusions.
+- Anyone who wants to turn one research effort into reusable templates, workflow, and quality gates.
 
-This project combines `Research Spec + Research Skill`.
+## What It Solves
 
-`Research Spec` defines a specific research effort:
+Technical research often ends up scattered across chat logs, temporary notes, and screenshots. This repository gives that work a durable shape:
 
-- Target project, version, and code source
-- Goals, scope, and out-of-scope items
-- Key questions to answer
-- Required technical documents
-- External research, source-verification questions, and evidence for conclusions
+1. Define the target, scope, and deliverables in `research-brief.md`.
+2. Convert external materials into source-verification questions with `external-research.md` and `research-questions.md`.
+3. Use `source-map.md`, `architecture.md`, `runtime-flows.md`, and related documents to map structure and behavior.
+4. Tie important conclusions to official docs, source files, tests, configuration, issues, PRs, release notes, or clearly labeled inferences in `evidence-index.md`.
+5. Use dashboards, HTML document readers, and visual architecture diagrams to make the research easier to browse.
+6. Run validation scripts before publishing to check structure, evidence coverage, privacy leaks, and release safety.
 
-`Research Skill` captures the execution method:
+## What You Get
 
-- How to scan an unfamiliar open-source repository
-- How to turn official and community materials into source-verification questions
-- How to locate entry points, core modules, key abstractions, and main flows
-- How to derive architecture conclusions from source evidence
-- How to add HTML visual architecture diagrams driven by `visual/architecture.visual.js` when Markdown is not expressive enough
-- How to produce consistent architecture, design-philosophy, and adoption notes
+| Artifact | Purpose |
+|---|---|
+| Research Spec | Defines the goal, scope, questions, and completion standard for one research effort |
+| Research Skill | Captures the agent workflow, evidence rules, and output contract |
+| Markdown Document Set | Stores architecture, abstractions, flows, extension points, design philosophy, and adoption notes |
+| Evidence Index | Maps key conclusions to sources, versions, code locations, or external references |
+| Dashboard | Provides a single browsing entry for projects under `research/` |
+| Visual Architecture | Shows architecture relationships that are hard to express clearly in Markdown |
+| Release Checks | Checks structure, evidence, privacy, and whitespace before public release |
+
+## Example Research
+
+This repository includes sample research projects. Start from [research/index.html](research/index.html) for the unified dashboard:
+
+| Target | Focus |
+|---|---|
+| [OpenClaw](research/openclaw/README.md) | Local-first personal AI Assistant / Gateway architecture |
+| [Hermes Agent](research/hermes-agent/README.md) | Multi-entry agent runtime, tools, plugins, providers, and gateway flows |
+| [A2UI](research/A2UI/README.md) | Agent-to-UI protocol, renderers, catalogs, and Python SDK |
+| [example-framework](research/example-framework/README.md) | Starter structure for a new research directory |
+
+## Quickstart
+
+```bash
+npm install
+npm test
+```
+
+Create a new research directory:
+
+```bash
+mkdir -p research/<framework-name>
+cp docs/tech-research-guide/templates/* research/<framework-name>/
+```
+
+Then start with `research/<framework-name>/research-brief.md`: define the target, version, scope, key questions, and deliverables before reading broadly.
+
+More entry points:
+
+- [QUICKSTART.md](QUICKSTART.md)
+- [Tech Research Guide](docs/tech-research-guide/TECH_RESEARCH_GUIDE.md)
+- [AI Tech Research Quickstart](docs/tech-research-guide/AI_TECH_RESEARCH_QUICKSTART.md)
+- [Templates](docs/tech-research-guide/templates/)
+- [Open-source tech research skill](skills/open-source-tech-research/SKILL.md)
+
+## Recommended Flow
+
+1. Make the target, version, code source, and out-of-scope items explicit.
+2. Collect official docs, release notes, issues, PRs, and high-quality community material.
+3. Turn external claims into source-verification questions.
+4. Build the source map before analyzing core abstractions, runtime flows, extension points, and design philosophy.
+5. Record every important conclusion in `evidence-index.md` with source type and location.
+6. Generate the dashboard, evidence viewer, and visual architecture diagram.
+7. Capture reusable patterns, adoption prerequisites, and misread risks in `adoption-notes.md`.
+8. Run release checks before publishing.
 
 ## Repository Layout
 
 ```text
 .
 ├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   ├── PULL_REQUEST_TEMPLATE.md
 │   └── workflows/
-├── AGENTS.md
-├── LICENSE
-├── package.json
-├── README.md
-├── QUICKSTART.md
 ├── docs/
-│   ├── README.md
-│   ├── tech-research-guide/
-│   │   ├── README.md
-│   │   ├── TECH_RESEARCH_GUIDE.md
-│   │   ├── roles/
-│   │   ├── scripts/
-│   │   └── templates/
-│   ├── memory/
-│   └── specs-archive/
+│   └── tech-research-guide/
+│       ├── roles/
+│       ├── scripts/
+│       └── templates/
 ├── research/
 │   ├── index.html
 │   └── <framework-name>/
-└── skills/
-    └── open-source-tech-research/
+├── skills/
+│   └── open-source-tech-research/
+├── CONTRIBUTING.md
+├── LICENSE
+├── QUICKSTART.md
+└── README.md
 ```
-
-## Key Entry Points
-
-- [Tech Research Guide](docs/tech-research-guide/TECH_RESEARCH_GUIDE.md)
-- [AI Tech Research Quickstart](docs/tech-research-guide/AI_TECH_RESEARCH_QUICKSTART.md)
-- [Research templates](docs/tech-research-guide/templates/)
-- [Example research spec](research/example-framework/README.md)
-- [Open-source tech research skill](skills/open-source-tech-research/SKILL.md)
-
-## Support This Project
-
-If this research workspace helps you, please consider giving the GitHub repository a Star.
-
-Stars are not just encouragement. They also help more people who need source research, architecture analysis, and evidence-backed technical writing discover the project.
-
-## Intended Use
-
-Use this repository as a technical research workspace for:
-
-- Studying an open-source framework
-- Reading unfamiliar source code
-- Producing architecture documents
-- Extracting design philosophy
-- Building reusable technical knowledge and design patterns
-
-## Recommended Flow
-
-1. Create `research/<framework-name>/`.
-2. Copy the templates from `docs/tech-research-guide/templates/`.
-3. Start with `research-brief.md` to define goals and boundaries.
-4. Produce `external-research.md` and `research-questions.md`, using external materials to build a question list before source verification.
-5. Use the `open-source-tech-research` skill to scan source code, map abstractions, break down architecture, trace runtime flows, inspect extension points, and extract design philosophy.
-6. Record each important conclusion in `evidence-index.md`, backed by official docs, source files, tests, configuration, examples, issues, PRs, release notes, or clearly labeled community evidence.
-7. Capture reusable patterns, context-dependent ideas, and designs that should not be copied directly in `adoption-notes.md`.
 
 ## Release Checks
 
@@ -103,9 +115,22 @@ npm run research:sanitize
 npm run research:dashboard
 npm run research:validate:strict
 npm run release:check
+git diff --check
 ```
 
 These checks verify research structure, regenerated dashboards, common Mermaid issues, and likely privacy leaks such as local paths, tokens, or private-key shapes.
+
+## Contributing
+
+Contributions are welcome: templates, quality gates, sample research projects, script improvements, and documentation fixes all help. Please read [CONTRIBUTING.md](CONTRIBUTING.md), and keep important conclusions traceable to evidence.
+
+If you want to request research for an open-source project, open an issue with the target, version, key questions, and expected outputs.
+
+## Support This Project
+
+If this research workspace helps you understand unfamiliar codebases faster, please consider giving the GitHub repository a Star.
+
+Stars are not just encouragement. They help more people who need source research, architecture analysis, and evidence-backed technical writing discover the project.
 
 ## License
 
