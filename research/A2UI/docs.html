@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A2UI 技术调研 Docs</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #627089;
+      --line: #d9e1ee;
+      --accent: #2563eb;
+      --code: #f3f6fb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 100vh; }
+    aside {
+      border-right: 1px solid var(--line);
+      background: #fff;
+      padding: 18px 14px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+    }
+    main { padding: 28px 30px 56px; }
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 16px;
+      color: #475569;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .home-link:hover { color: var(--accent); text-decoration: none; }
+    .brand { font-weight: 800; margin-bottom: 4px; }
+    .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+    .nav-group { margin: 15px 0 4px; }
+    .nav-group-title {
+      color: #7a879c;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin: 0 0 5px;
+    }
+    .nav-link {
+      display: block;
+      padding: 8px 9px;
+      border-radius: 6px;
+      color: #33415c;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+    .nav-link.active { background: #e8f0ff; color: #1d4ed8; font-weight: 700; }
+    .nav-link.disabled { color: #a0aabc; pointer-events: none; background: #f8fafc; }
+    .doc {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 28px;
+      max-width: 1120px;
+      box-shadow: 0 14px 36px rgba(23, 32, 51, 0.05);
+    }
+    h1, h2, h3, h4 { line-height: 1.28; letter-spacing: 0; }
+    h1 { font-size: 30px; margin: 0 0 20px; }
+    h2 { font-size: 22px; margin: 30px 0 14px; padding-top: 8px; border-top: 1px solid #edf1f7; }
+    h3 { font-size: 18px; margin: 22px 0 10px; }
+    h4 { font-size: 16px; margin: 18px 0 8px; }
+    p { margin: 10px 0; color: #33415c; }
+    ul, ol { padding-left: 24px; }
+    li { margin: 6px 0; color: #33415c; }
+    code {
+      background: var(--code);
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+      padding: 1px 5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 14px;
+      overflow: auto;
+      line-height: 1.5;
+    }
+    pre code { background: transparent; border: 0; padding: 0; color: inherit; }
+    .mermaid-block {
+      border: 1px solid #d9e1ee;
+      border-radius: 8px;
+      background: #fbfdff;
+      margin: 16px 0;
+      padding: 16px;
+      overflow: auto;
+    }
+    .mermaid-block.rendered { background: #fff; }
+    .mermaid-rendered {
+      min-width: 640px;
+      display: flex;
+      justify-content: center;
+    }
+    .mermaid-rendered svg {
+      max-width: 100%;
+      height: auto;
+    }
+    .mermaid-source {
+      margin: 0;
+    }
+    .mermaid-status {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    .mermaid-block.rendered .mermaid-source {
+      display: none;
+    }
+    .mermaid-block.failed {
+      background: #fff;
+    }
+    .mermaid-block.failed .mermaid-status {
+      color: #a16207;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #d9e1ee;
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th { background: #f3f6fb; }
+    blockquote {
+      margin: 12px 0;
+      padding: 8px 14px;
+      border-left: 4px solid #c7d2fe;
+      background: #f8faff;
+      color: #47556e;
+    }
+    .missing { color: var(--muted); }
+    .visual-doc {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 12px;
+      height: calc(100vh - 56px);
+      max-width: none;
+    }
+    .visual-head {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-shadow: 0 8px 22px rgba(23, 32, 51, 0.04);
+    }
+    .visual-head h1 {
+      margin: 0 0 4px;
+      font-size: 18px;
+    }
+    .visual-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .visual-frame {
+      width: 100%;
+      height: 100%;
+      min-height: 560px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+      main { padding: 18px 14px 36px; }
+      .doc { padding: 18px; }
+      .visual-doc { height: auto; }
+      .visual-frame { height: 72vh; min-height: 420px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <a class="home-link" href="../index.html" title="返回 Tech Research 首页"><span aria-hidden="true">&larr;</span> 调研首页</a>
+      <div class="brand">A2UI 技术调研</div>
+      <div class="sub">调研导航</div>
+      <div class="nav-group">
+        <div class="nav-group-title">总览</div>
+        <a class="nav-link" data-nav-file="dashboard.html" href="./dashboard.html" title="调研摘要和阅读入口">Dashboard</a>
+<a class="nav-link" data-nav-file="README.md" href="./docs.html?doc=README.md" title="调研摘要、当前结论和文件导航">总览文档</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">调研准备</div>
+        <a class="nav-link" data-nav-file="research-brief.md" href="./docs.html?doc=research-brief.md" title="目标、范围、问题和验收标准">调研简报</a>
+<a class="nav-link" data-nav-file="external-research.md" href="./docs.html?doc=external-research.md" title="官方、协作和社区资料">外部资料</a>
+<a class="nav-link" data-nav-file="research-questions.md" href="./docs.html?doc=research-questions.md" title="待验证问题和验证状态">研究问题</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">架构解析</div>
+        <a class="nav-link" data-nav-file="architecture.md" href="./docs.html?doc=architecture.md" title="模块职责、边界和依赖方向">架构文档</a>
+<a class="nav-link" data-nav-file="visual/architecture.html" href="./docs.html?view=visual%2Farchitecture.html" title="专门的交互式架构图查看器">可视化架构图</a>
+<a class="nav-link" data-nav-file="runtime-flows.md" href="./docs.html?doc=runtime-flows.md" title="主链路和关键状态变化">运行流程</a>
+<a class="nav-link" data-nav-file="key-abstractions.md" href="./docs.html?doc=key-abstractions.md" title="接口、对象和生命周期">核心抽象</a>
+<a class="nav-link" data-nav-file="extension-points.md" href="./docs.html?doc=extension-points.md" title="插件、Hook、Provider 和 Registry">扩展点</a>
+<a class="nav-link" data-nav-file="design-philosophy.md" href="./docs.html?doc=design-philosophy.md" title="设计取舍和可学习模式">设计思想</a>
+<a class="nav-link" data-nav-file="comparison.md" href="./docs.html?doc=comparison.md" title="相邻框架或同类方案对照">横向对比</a>
+<a class="nav-link" data-nav-file="adoption-notes.md" href="./docs.html?doc=adoption-notes.md" title="可学习、需适配和不建议照搬的设计">学习借鉴</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">源码解析</div>
+        <a class="nav-link" data-nav-file="source-map.md" href="./docs.html?doc=source-map.md" title="仓库结构、入口和阅读顺序">源码地图</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">证据</div>
+        <a class="nav-link" data-nav-file="visual/evidence.html" href="./docs.html?view=visual%2Fevidence.html" title="从架构图回到证据解释">证据查看器</a>
+<a class="nav-link" data-nav-file="evidence-index.md" href="./docs.html?doc=evidence-index.md" title="关键结论和证据锚点">证据索引</a>
+      </div>
+<div class="nav-group">
+        <div class="nav-group-title">辅助材料</div>
+        <a class="nav-link" data-nav-file="research-review.md" href="./docs.html?doc=research-review.md" title="质量门禁、风险和开放问题">调研审查</a>
+      </div>
+    </aside>
+    <main>
+      <article id="doc" class="doc"></article>
+    </main>
+  </div>
+  <script>
+    window.RESEARCH_DOCS = [{"file":"README.md","label":"总览文档","content":"# A2UI 技术调研\n\nStatus: draft\nLast Updated: 2026-05-28\n\n## 调研摘要\n\nA2UI 是 Google 开源的 Agent-to-UI 协议与实现仓库，目标是让 agent 输出安全、可验证、可流式更新的声明式 UI JSON，由客户端使用本地组件库渲染成原生界面。当前仓库同时包含协议规范、Basic Catalog、React/Lit/Angular/Flutter renderer、Python SDK、A2A/ADK 集成、catalog 构建工具、样例和 conformance 测试。\n\n本轮调研固定在 `google/A2UI` 的 `main` 分支快照 `e05dd9699dea21ba832059acb680f71022dd5a77`。重点分析 v0.9 协议，因为 README、概念文档、React/web_core renderer 和 Python SDK 的主实现都围绕 v0.9 展开；同时补充了 2026-05-28 的官网/生态网络检索，确认官方 Roadmap 已把 v0.9 标为 current、feature complete、supported，而 v0.10/v1.0 仍处于 draft/规划阶段。\n\n## 核心结论\n\n- A2UI 的核心边界是“agent 只发送数据化 UI 意图，客户端负责解释和渲染”。这使它比直接执行 agent 生成代码更安全，也让同一份 UI 意图可映射到多端 renderer。\n- v0.9 将协议组织成 `createSurface`、`updateComponents`、`updateDataModel`、`deleteSurface` 四类 server-to-client 消息，组件采用扁平 adjacency-list 模型，用 `id` 和 child refs 维护树结构，适合 LLM 增量生成。\n- renderer 的关键实现不在 React 组件本身，而在 `web_core` 的 `MessageProcessor`、`SurfaceModel`、`DataModel`、`DataContext`、`GenericBinder` 和 `Catalog`。React renderer 是这些状态与绑定抽象的 UI 适配层。\n- Catalog 是协议能力、设计系统和安全边界的中心。Basic Catalog 提供可移植默认组件与函数；生产系统更应定义自有 catalog，并通过 capabilities / inline catalogs 与 agent 协商。\n- Python SDK 的价值是把 A2UI 从“让模型凭空输出 JSON”升级为“prompt/schema/catalog/validator/A2A part converter 串联的生成管线”。它会注入 schema、修复常见 JSON 问题、校验组件完整性与拓扑，并把 A2UI payload 包装为 A2A DataPart。\n- 成熟度口径需要区分来源：本地 README 仍保留 public preview / evolving 提示；官网 Roadmap 则把 v0.9 标为 current/supported，v0.10 和 v1.0 仍是 draft/目标版本。生产采纳时应锁定协议版本并核对目标 package/renderer 的实际发布状态。\n\n## 阅读顺序\n\n1. [research-brief.md](research-brief.md) - 调研范围、版本、交付物。\n2. [architecture.md](architecture.md) - 总体架构与模块职责。\n3. [runtime-flows.md](runtime-flows.md) - 生成、渲染、交互、SDK/A2A 流程。\n4. [key-abstractions.md](key-abstractions.md) - 核心抽象拆解。\n5. [extension-points.md](extension-points.md) - 扩展点与二次开发入口。\n6. [adoption-notes.md](adoption-notes.md) - 采纳建议、风险和落地路径。\n7. [evidence-index.md](evidence-index.md) - 结论到源码/文档/测试的证据映射。\n8. [dashboard.html](dashboard.html) - 本调研目录的浏览入口。\n9. [visual/architecture.html](visual/architecture.html) - 架构图可视化。\n\n## 调研边界\n\n本轮以本地源码快照和仓库内官方文档作为实现分析依据，并补充了官网、GitHub 仓库、Roadmap、renderer/client setup、ecosystem renderers、CrewAI/CopilotKit 集成文档的网络检索。未做 exhaustive issue triage、完整 release diff 或第三方 benchmark；所有关键实现判断仍绑定到源码、规范、测试或样例证据，无法从源码直接证明的内容在文档中标记为推断。\n"},{"file":"research-brief.md","label":"调研简报","content":"# Research Brief\n\n## 目标\n\n调研 A2UI 的协议定位、核心架构、renderer 实现、SDK 生成链路、扩展点和工程可借鉴点，为后续评估是否在 agent-driven UI、A2A 客户端、动态表单或多端 UI 生成场景中采用/借鉴 A2UI 提供源码级依据。\n\n## 固定版本\n\n| 项目 | 内容 |\n|---|---|\n| 目标仓库 | `google/A2UI` |\n| 代码来源 | `https://github.com/google/A2UI.git` |\n| 调研快照 | `main @ e05dd9699dea21ba832059acb680f71022dd5a77` |\n| 最新提交时间 | 2026-05-27 14:12:24 -0700 |\n| 调研日期 | 2026-05-28 |\n| 核心版本 | v0.9 protocol；packages 标注到 `0.10.0`；官网 Roadmap 把 v0.9 标为 current/supported，v0.10/v1.0 仍为 draft/规划 |\n\n## 调研问题\n\n- A2UI 解决的核心问题是什么，和直接让 agent 输出 HTML/JS 或纯文本相比有什么边界？\n- v0.9 协议如何描述界面、数据、事件和生命周期？\n- renderer 如何把 JSON 消息转换成 React/native UI，状态更新和数据绑定在哪里实现？\n- Catalog 在安全、能力声明、设计系统映射中的作用是什么？\n- Python SDK 如何降低 LLM 输出无效 UI JSON 的概率？\n- A2A/AG UI/transport 如何与 A2UI 协议分层？\n- 生产采纳时需要补哪些能力、测试和安全边界？\n\n## 交付物\n\n本目录包含：\n\n- 源码清单：`references/source-inventory.json`\n- 调研说明：`research-brief.md`、`external-research.md`、`research-questions.md`\n- 源码地图与架构：`source-map.md`、`architecture.md`、`runtime-flows.md`\n- 设计和扩展：`key-abstractions.md`、`extension-points.md`、`design-philosophy.md`\n- 对比和采纳：`comparison.md`、`adoption-notes.md`\n- 证据与复核：`evidence-index.md`、`research-review.md`\n- 可视化入口：`dashboard.html`、`docs.html`、`visual/architecture.html`\n\n## 调研方法\n\n1. 先阅读 README、概念文档和 v0.9 specification，建立协议模型。\n2. 用 `source-inventory.json` 统计仓库结构，定位 renderer、SDK、samples、tools 和 tests。\n3. 从 `renderers/web_core` 追踪消息处理、surface/component/data model、binding 和 action 流。\n4. 从 `renderers/react` 追踪具体 UI 渲染适配。\n5. 从 `agent_sdks/python` 追踪 schema manager、validator、parser、ADK toolset 和 A2A part converter。\n6. 补充官网、GitHub、Roadmap、renderer/client setup、生态集成文档的网络检索，把外部说法转成源码验证问题。\n7. 用 tests、samples、conformance suites 验证实现声明，而不是只依赖说明文档。\n\n## 非目标\n\n- 不评估 UI 视觉质量和组件库美观度。\n- 不做性能 benchmark。\n- 不做 exhaustive issue triage、完整 release diff 或仓库外竞品 benchmark。\n- 不尝试修改 A2UI 源码或运行完整测试矩阵。\n"},{"file":"external-research.md","label":"外部资料","content":"# External Research\n\n## 本轮策略\n\n本轮进行了实时网络检索。检索日期：2026-05-28。\n\n## 检索范围\n\n| 类型 | 覆盖范围 |\n|---|---|\n| 官方资料 | `a2ui.org` 官网、Introduction、v0.9/v0.10 protocol、Roadmap、Renderers、Client Setup、Ecosystem Renderers |\n| 官方仓库 | `github.com/google/A2UI` 仓库首页、公开状态、issue/PR 数量、stars/forks、quickstart/roadmap 链接 |\n| 集成方资料 | CrewAI A2UI 文档、CopilotKit A2UI 文档 |\n| 社区/第三方资料 | 本轮只用于发现生态入口；核心结论不依赖非官方聚合站点 |\n\n## 1. 官方资料\n\n| 资料 | 链接或路径 | 主要内容 | 对本次调研的价值 | 可信度等级 |\n|---|---|---|---|---|\n| A2UI 官网首页 | `https://a2ui.org/` | A2UI 让 agent 生成可原生渲染的交互 UI，强调不执行任意代码。 | 确认官方定位。 | A |\n| What is A2UI | `https://a2ui.org/introduction/what-is-a2ui/` | A2UI 是声明式 UI protocol；agent 生成 JSON，经任意 transport 传递，client 使用本地组件渲染；核心价值是安全、native feel、portability。 | 与本地 README/intro 文档互证。 | A |\n| A2UI Protocol v0.9 | `https://a2ui.org/specification/v0.9-a2ui/` | v0.9 是 draft；定义 `createSurface`、`updateComponents`、`updateDataModel`、`deleteSurface`；transport contract；prompt-generate-validate loop。 | 与本地 `specification/v0_9` 对齐，确认实现主线。 | A |\n| A2UI Protocol v0.10 | `https://a2ui.org/specification/v0_10/docs/a2ui_protocol/` | v0.10 draft；保留 streaming JSON 协议主轴，增加/整理 capabilities、metadata、action response 等内容。 | 说明 v0.10 已在线发布为 draft，但本轮源码重点仍是 v0.9。 | A |\n| Roadmap | `https://a2ui.org/roadmap/` | v0.9 标为 current、feature complete、supported；v0.10/v1.0 draft；React/Lit/Angular/Flutter stable；Q4 2026 目标 v1.0。 | 补充当前官方状态和版本规划。 | A |\n| Renderers Reference | `https://a2ui.org/reference/renderers/` | Renderer 负责消息 buffering/lifecycle/render/action；React/Lit/Angular/Flutter 为 maintained renderers；合规 renderer 要支持 adjacency list、data binding、incremental messages、user actions。 | 与 `web_core` 和 React renderer 源码验证相连。 | A |\n| Client Setup | `https://a2ui.org/guides/client-setup/` | React/Lit/Angular/Flutter 支持 v0.8/v0.9；web renderers 共享 `@a2ui/web_core`；custom catalog 是 agent 与 renderer 的契约。 | 强化 `web_core` 和 catalog 是架构中心的结论。 | A |\n| Ecosystem Renderers | `https://a2ui.org/ecosystem/renderers/` | 列出社区 renderer、相关项目和提交 renderer 的方式；提醒社区 renderer 由各自作者维护。 | 判断生态扩展性与成熟度边界。 | A |\n| GitHub 仓库 | `https://github.com/google/A2UI` | 公开仓库，Apache-2.0；检索时显示约 15k stars、1.2k forks、196 issues、104 pull requests；README 链接 quickstart、composer、theater、roadmap。 | 版本、维护活跃度和生态关注度背景。 | A/B |\n\n## 2. 项目协作与集成资料\n\n| 资料 | 链接或路径 | 主要观点 | 时间/版本 | 可信度等级 | 是否需要源码验证 |\n|---|---|---|---|---|---|\n| CrewAI A2UI 文档 | `https://docs.crewai.com/en/learn/a2ui` | CrewAI 把 A2UI 描述为 A2A extension，server 扫描 agent 输出并包装为 `application/json+a2ui` DataPart，client 注入 A2UI instructions/catalog 并跟踪 surface state。 | 页面显示 CrewAI v1.14.0；检索日期 2026-05-28 | B | 是，本地 SDK/A2A parts 已验证类似机制 |\n| CopilotKit A2UI 文档 | `https://docs.copilotkit.ai/google-adk/generative-ui/a2ui` | CopilotKit 称 A2UI 是由 Google 牵头、CopilotKit 作为 launch/design partner 的 declarative Generative UI specification，并区分 dynamic schema 与 fixed schema。 | 检索日期 2026-05-28 | B | 部分需要，仓库中有 AG UI/CopilotKit quickstart 链接但未运行 |\n\n## 3. 社区与第三方资料\n\n| 资料 | 作者/来源 | 主要观点 | 可信度等级 | 是否需要源码验证 |\n|---|---|---|---|---|\n| A2UI ecosystem renderer 列表 | A2UI 官方生态页 | 社区已出现 Android、React Native、SwiftUI、Vue、ShadCN 等 renderer 或相关项目，但维护状态需看各项目。 | A/B | 是，只作为生态背景 |\n| 非官方聚合站点与 Reddit 讨论 | 社区 | 多数重复“A2UI 是 Google 开源的 agent UI protocol”这一定位。 | C | 未用于核心结论 |\n\n## 4. 外部资料中的关键观点\n\n| 外部观点 | 来源 | 源码验证问题 | 验证状态 | 结论 |\n|---|---|---|---|---|\n| A2UI 是 protocol，不是通用前端 framework；agent 发送 JSON，client 原生渲染。 | What is A2UI、README | 本地 README、intro docs、renderer docs 是否一致？ | 已验证 | 一致，且源码中 renderer/catalog 也体现此边界。 |\n| v0.9 是当前实现主线，但线上规范页仍标 Draft；Roadmap 又说 current/feature complete/supported。 | v0.9 protocol、Roadmap | 本地源码是否主要实现 v0.9？ | 已验证 | 本地 renderer/SDK 主实现围绕 v0.9；状态口径需同时记录。 |\n| v0.10 已作为 draft 文档在线出现。 | v0.10 protocol | 本地是否有 v0.10 目录？ | 已验证 | 本地有 `specification/v0_10`，但本轮未展开源码级调研。 |\n| Web renderers 共享 `@a2ui/web_core`。 | Client Setup | 本地 `renderers/web_core` 是否承载 message/state/binding？ | 已验证 | 已在 `MessageProcessor`、`DataModel`、`GenericBinder` 中验证。 |\n| React/Lit/Angular/Flutter 是 maintained/stable renderer。 | Roadmap、Renderers、Client Setup | 仓库中是否存在相关 renderer/package？ | 部分验证 | React/web_core 已深入验证；Lit/Angular/Flutter 仅做结构确认。 |\n| Custom catalog 是 agent 与 renderer 的契约，生产应定义自己的组件/函数。 | Client Setup、v0.9 protocol | 本地 Catalog runtime 和 SDK 是否支持 custom catalog？ | 已验证 | `Catalog`、`assemble_catalog.py`、`A2uiSchemaManager` 支持该模式。 |\n| A2A、AG UI、SSE、WebSocket、REST/MCP 可作为 transport。 | v0.9/v0.10 protocol | 本地 SDK 是否有 A2A converter/parts？ | 已验证 | A2A parts/converters 已验证；AG UI/REST/MCP 未运行。 |\n| CrewAI/CopilotKit 已有 A2UI 集成文档。 | CrewAI、CopilotKit | A2UI 仓库是否提供对应桥接或样例？ | 部分验证 | 本地有 A2A/ADK/CopilotKit quickstart 链接；未跑第三方集成。 |\n\n## 5. 外部资料与源码不一致或口径变化\n\n| 外部资料说法 | 本地源码/文档情况 | 判断 | 后续处理 |\n|---|---|---|---|\n| Roadmap：v0.9 current、feature complete、supported。 | 本地 README 仍写 v0.8 public preview/evolving；v0.9 protocol 文档标 Draft。 | 官方当前状态与仓库内旧 README/规范页状态口径并存。 | 报告中改为“双口径”：实现分析以固定 commit 为准，当前状态以官网 Roadmap 补充。 |\n| Roadmap：React renderer stable。 | 本地 React package 和 tests 存在，且 package 版本为 `0.10.0`。 | 与源码结构基本一致。 | React 深入分析已完成。 |\n| Ecosystem：多社区 renderer。 | 本地仓库不包含这些社区项目源码。 | 只能作为生态背景，不作为实现结论。 | 采纳建议里标记需另行验证维护状态。 |\n| CopilotKit 文档展示的操作名里混用旧/新协议命名。 | 本地 v0.9 规范使用 `createSurface`、`updateComponents`、`updateDataModel`、`deleteSurface`。 | 第三方集成可能兼容多版本或文档未完全同步。 | 核心协议结论以 A2UI 官方规范和本地源码为准。 |\n\n## 6. 资料边界\n\n- 核心实现分析以固定源码快照 `e05dd9699dea21ba832059acb680f71022dd5a77` 为准。\n- GitHub issue、PR、discussion 只做入口和数量级确认，未逐条 triage。\n- CrewAI/CopilotKit 资料用于生态背景和集成方向，未运行第三方集成样例。\n- v0.10/v1.0 只作为版本规划背景，本轮不做源码级差异分析。\n"},{"file":"research-questions.md","label":"研究问题","content":"# Research Questions\n\n| ID | 问题 | 状态 | 结论摘要 | 主要证据 |\n|---|---|---|---|---|\n| RQ-001 | A2UI 的定位是什么？ | 已验证 | A2UI 是 agent 输出声明式 JSON UI、客户端使用本地组件渲染的协议与实现集合。 | EVD-001, EVD-002, EVD-003 |\n| RQ-002 | v0.9 的协议对象是什么？ | 已验证 | v0.9 以四类 server-to-client 消息管理 surface、components、data model 和删除生命周期。 | EVD-007, EVD-008, EVD-009 |\n| RQ-003 | 为什么组件要扁平化？ | 已验证 | 扁平 adjacency-list 支持 ID 引用、增量更新和 LLM 友好输出。 | EVD-004, EVD-005, EVD-016 |\n| RQ-004 | React renderer 的核心逻辑在哪里？ | 已验证 | React 层主要负责组件适配；状态、绑定、action 和 catalog 逻辑主要在 `web_core`。 | EVD-014, EVD-015, EVD-017, EVD-018 |\n| RQ-005 | 数据绑定如何工作？ | 已验证 | 使用 JSON Pointer、DataModel、DataContext 和 GenericBinder，把动态值订阅、setter、模板 child list、validation 都绑定到数据模型。 | EVD-011, EVD-019, EVD-020, EVD-021 |\n| RQ-006 | 用户交互如何回到 agent？ | 已验证 | action 在 GenericBinder 中变成闭包，解析 context 后由 SurfaceModel 派发 client action，样例 shell 再发送给 agent。 | EVD-012, EVD-022, EVD-023, EVD-031 |\n| RQ-007 | Catalog 是什么边界？ | 已验证 | Catalog 同时定义组件 schema、函数 schema/实现和 theme schema；renderer capabilities 可暴露支持的 catalog，SDK 可选择或内联 catalog。 | EVD-013, EVD-024, EVD-025, EVD-026 |\n| RQ-008 | Python SDK 是否只是辅助 prompt？ | 已验证 | 不是。它还负责 schema manager、catalog 选择、JSON 修复、校验、ADK toolset、A2A part/event conversion。 | EVD-027, EVD-028, EVD-029, EVD-030 |\n| RQ-009 | 现阶段成熟度如何？ | 已验证 | 本地 README 保留 public preview/evolving 口径；官网 Roadmap 把 v0.9 标为 current/feature complete/supported，v0.10/v1.0 仍为 draft/目标版本。 | EVD-006, EVD-010, EVD-034, EVD-037, EVD-038 |\n| RQ-010 | 生产采纳优先改造什么？ | 推断 | 优先自定义 catalog、增强 validator/conformance、封装 transport/action policy、明确 data model 同步策略，并锁定协议版本。 | EVD-013, EVD-026, EVD-030, EVD-033, EVD-040 |\n| RQ-011 | 外部生态和集成状态如何？ | 部分验证 | 官网列出官方/社区 renderer 与 ecosystem；CrewAI/CopilotKit 有集成文档，但本轮未运行第三方集成。 | EVD-039, EVD-041, EVD-042, EVD-043 |\n\n## 仍需进一步验证\n\n- 不同 renderer 之间的行为一致性需要运行更完整的 conformance 和 UI 测试矩阵。\n- v0.10 规范目录已存在，但本轮没有把 v0.10 作为主要目标；如果要跟进未来协议，需要单独做增量调研。\n- A2A/AG UI 的真实互操作质量需要接入具体 agent server 与 host client 验证。\n- GitHub issue/PR/discussion 只做了公开状态和入口确认，未逐条 triage。\n"},{"file":"architecture.md","label":"架构文档","content":"# Architecture\n\n## 一句话架构\n\nA2UI 把 agent 输出的 UI 意图限定为可校验的 JSON 消息流，客户端用 catalog 解释这些消息，维护 surface/component/data model 状态，再由 renderer adapter 映射到本地组件库。\n\n```mermaid\nflowchart LR\n  A[\"Agent / SDK\"] --\u003e B[\"A2UI JSON messages\"]\n  B --\u003e C[\"Transport / A2A / AG UI\"]\n  C --\u003e D[\"MessageProcessor\"]\n  D --\u003e E[\"SurfaceModel\"]\n  E --\u003e F[\"Component + DataModel\"]\n  F --\u003e G[\"GenericBinder\"]\n  G --\u003e H[\"React / Lit / Angular / Flutter components\"]\n  H --\u003e I[\"Native UI\"]\n```\n\n## 分层\n\n| 层 | 主要职责 | 代表文件 | 证据 |\n|---|---|---|---|\n| 协议层 | 定义消息类型、common types、catalog、transport 约束 | `specification/v0_9/docs/a2ui_protocol.md`, `specification/v0_9/json/server_to_client.json` | EVD-007, EVD-008 |\n| Catalog 层 | 定义可用组件、函数、theme schema，形成 renderer 和 agent 的能力边界 | `specification/v0_9/catalogs/basic/catalog.json`, `renderers/web_core/src/v0_9/catalog/types.ts` | EVD-013, EVD-024 |\n| 状态层 | 管理 surface、component、data model、action dispatch | `renderers/web_core/src/v0_9/state/*.ts` | EVD-017, EVD-018, EVD-019 |\n| 绑定层 | 把 schema 中的 dynamic/action/child/checkable 字段变成 renderer props | `renderers/web_core/src/v0_9/rendering/generic-binder.ts` | EVD-021 |\n| Renderer 适配层 | 把 A2UI component implementation 映射到具体 UI 框架 | `renderers/react/src/v0_9/A2uiSurface.tsx`, `renderers/react/src/v0_9/adapter.tsx` | EVD-014, EVD-015 |\n| Agent SDK 层 | prompt 注入、JSON 修复、schema/catalog 选择、校验、A2A 转换 | `agent_sdks/python/src/a2ui/**/*.py` | EVD-027, EVD-028, EVD-029 |\n| 工具/验证层 | catalog assembly、conformance、renderer tests | `tools/build_catalog/assemble_catalog.py`, `agent_sdks/conformance/README.md`, renderer tests | EVD-032, EVD-033 |\n\n## 核心组件关系\n\n```mermaid\nflowchart TD\n  MP[\"MessageProcessor\"] --\u003e SGM[\"SurfaceGroupModel\"]\n  SGM --\u003e SM[\"SurfaceModel\"]\n  SM --\u003e SCM[\"SurfaceComponentsModel\"]\n  SM --\u003e DM[\"DataModel\"]\n  SCM --\u003e CM[\"ComponentModel\"]\n  SM --\u003e CAT[\"Catalog\"]\n  CAT --\u003e FN[\"Function implementations\"]\n  CAT --\u003e CI[\"Component implementations\"]\n  CM --\u003e CC[\"ComponentContext\"]\n  DM --\u003e DC[\"DataContext\"]\n  CC --\u003e GB[\"GenericBinder\"]\n  DC --\u003e GB\n  GB --\u003e RP[\"Renderer props\"]\n  RP --\u003e RUI[\"React/native components\"]\n```\n\n### MessageProcessor\n\n`MessageProcessor` 是客户端接收 A2UI server-to-client 消息的中心。它持有 `SurfaceGroupModel`，按消息类型创建 surface、更新组件、更新 data model 或删除 surface。它还暴露 `getClientCapabilities()` 和 `getClientDataModel()`，用于把支持的 catalog 和可同步 data model 反馈给 agent。\n\n源码上，处理逻辑会拒绝同一消息中出现多个 update 类型，也会在组件 type 变化时重建 component model。这说明它把 v0.9 的消息流当作有序状态机处理，而不是简单 append-only 渲染。\n\n### SurfaceModel\n\n`SurfaceModel` 是单个 UI surface 的运行时实体，聚合：\n\n- `DataModel`\n- `SurfaceComponentsModel`\n- `Catalog`\n- `Theme`\n- `sendDataModel` flag\n- action/error event emitters\n\naction 从组件触发后会通过 `SurfaceModel.dispatchAction()` 统一包装成 client action，包括 action name、surfaceId、sourceComponentId、timestamp 和 context。\n\n### DataModel + DataContext\n\n`DataModel` 是 JSON Pointer 可寻址的数据存储，并使用 signal/subscribe 机制通知绑定字段更新。`DataContext` 是带相对路径作用域的视图：绝对路径保留，非绝对路径会相对当前 base path 解析。这让动态列表模板可以在每个 item 的作用域内使用 `name`、`imageUrl` 这类相对绑定。\n\n### GenericBinder\n\n`GenericBinder` 是 renderer 通用绑定器。它根据 component schema 识别字段类型：\n\n- dynamic value：订阅 DataModel 并输出当前值。\n- action：生成点击/交互闭包，执行时解析 context 并 dispatch。\n- structural child list：把 child id 或 template + path 转换成可渲染 child refs。\n- checkable：执行验证函数并输出 `isValid` / `validationErrors`。\n- static/object/array：按结构递归转换。\n\n这解释了为什么 React 组件可以写得很薄：React Button 只接收 `action`、`isValid`、`child` 等 props，复杂绑定由 shared core 提前完成。\n\n### Catalog\n\nCatalog 既是 schema 描述，也是 runtime implementation registry。`Catalog` 对象包含组件 map、函数 map 和可选 theme schema；函数调用会通过 Zod schema 校验参数后执行。Basic Catalog 在规范里定义 schema，在 renderer 里绑定到具体 React 组件和函数实现。\n\n### Agent SDK\n\nPython SDK 的架构与 renderer 镜像互补：\n\n- `A2uiSchemaManager` 选择 catalog 并生成 agent instructions。\n- `A2uiValidator` 校验消息 schema、组件类型、重复 root、拓扑、循环、orphan、路径语法。\n- parser 从文本中提取 `\u003ca2ui-json\u003e` blocks，并修正常见 JSON 问题。\n- ADK toolset 将发送 A2UI 声明为 tool，执行时 parse/validate 并返回 JSON。\n- A2A converter 把 tool result 或文本标签里的 A2UI 转成 A2A DataPart。\n\n## 关键架构判断\n\n1. A2UI 不是 UI 框架，而是 agent UI intent protocol 加 renderer runtime。\n2. v0.9 的扁平 component list 是为了 streaming、incremental update 和 LLM 生成可控性服务。\n3. Catalog 是系统的“可渲染能力声明”和“安全策略表”，生产采纳时它比 Basic Catalog 本身更重要。\n4. `web_core` 是复用价值最高的模块；React/Lit/Angular 等 renderer 更多是 adapter 和 component implementation。\n5. SDK 和 renderer 都围绕同一份 schema/catalog 建模，这是 A2UI 能跨 agent/client 校验的基础。\n\n## 风险与推断\n\n- 推断：如果生产系统只使用 Basic Catalog，不定义自有 catalog，那么 UI 一致性和业务安全策略会偏弱。该判断来自 catalog 文档对生产自定义 catalog 的建议，以及 renderer/SDK 均以 catalog 为能力边界。\n- 推断：当前 API 仍可能变化。该判断来自本地 README public preview 声明、v0.9 evolution guide、v0.10 draft/under development 口径，以及官网 Roadmap 对 v1.0 的规划。\n"},{"file":"runtime-flows.md","label":"运行流程","content":"# Runtime Flows\n\n## Flow 1: Agent 生成到 React 渲染\n\n```mermaid\nsequenceDiagram\n  participant Agent\n  participant Transport\n  participant Shell as React Shell\n  participant MP as MessageProcessor\n  participant Surface as SurfaceModel\n  participant Binder as GenericBinder\n  participant UI as React Components\n\n  Agent-\u003e\u003eTransport: A2UI JSON / A2A DataPart / stream chunk\n  Transport-\u003e\u003eShell: parsed message(s)\n  Shell-\u003e\u003eMP: process(message)\n  MP-\u003e\u003eSurface: create/update/delete surface\n  MP-\u003e\u003eSurface: update components/data model\n  UI-\u003e\u003eSurface: read root component\n  Surface-\u003e\u003eBinder: ComponentContext + schema\n  Binder-\u003e\u003eUI: bound props and child refs\n  UI--\u003e\u003eShell: native rendered UI\n```\n\n实现证据：\n\n- v0.9 规范定义 server-to-client 消息是 JSON stream objects，并规定 reliable ordering、framing、metadata support 等 transport contract。\n- React shell sample 从 `/a2a` 或 mock response 读取 chunks，调用 `MessageProcessor.processMessage`，再用 `\u003cA2uiSurface\u003e` 渲染每个 surface。\n- `A2uiSurface` 固定从 `root` component 开始，以 `ComponentContext` 和 catalog component implementation 渲染子树。\n\n## Flow 2: updateComponents 与 progressive rendering\n\n```mermaid\nflowchart TD\n  A[\"updateComponents message\"] --\u003e B[\"MessageProcessor\"]\n  B --\u003e C{\"surface exists?\"}\n  C -- no --\u003e D[\"emit error\"]\n  C -- yes --\u003e E[\"for each component\"]\n  E --\u003e F{\"component id exists?\"}\n  F -- no --\u003e G[\"add ComponentModel\"]\n  F -- yes --\u003e H{\"same type?\"}\n  H -- yes --\u003e I[\"update properties\"]\n  H -- no --\u003e J[\"remove and recreate\"]\n  G --\u003e K[\"created listeners wake deferred child\"]\n  I --\u003e L[\"updated listeners refresh binder snapshot\"]\n  J --\u003e K\n```\n\n这个流程解释了两个设计点：\n\n- 组件列表可以分批到达，React `DeferredChild` 会在 child 未创建时显示 loading，并订阅 created/deleted。\n- 组件 type 变化不是简单覆盖属性，而是重建 component model，降低 schema/implementation 不一致的风险。\n\n## Flow 3: Data binding 与动态列表\n\n```mermaid\nflowchart LR\n  A[\"DataModel JSON\"] --\u003e B[\"DataContext base path\"]\n  B --\u003e C[\"DynamicValue path/function/literal\"]\n  C --\u003e D[\"GenericBinder subscriptions\"]\n  D --\u003e E[\"renderer props\"]\n  E --\u003e F[\"native component\"]\n  F --\u003e G[\"setter / input\"]\n  G --\u003e A\n```\n\n动态列表的关键是 `ChildList` 可以是 template：\n\n- `componentId` 指向模板组件。\n- `path` 指向数组数据。\n- binder 会把数组每个 index 映射成 `{id, basePath}` child ref。\n- 相对绑定如 `name`、`imageUrl` 会在每个 item 的 base path 下解析。\n\nReact shell 的 restaurant mock messages 就使用这种模式渲染餐厅列表。\n\n## Flow 4: 用户 action 回到 agent\n\n```mermaid\nsequenceDiagram\n  participant User\n  participant Button\n  participant Binder\n  participant DataContext\n  participant Surface\n  participant Shell\n  participant Agent\n\n  User-\u003e\u003eButton: click\n  Button-\u003e\u003eBinder: action()\n  Binder-\u003e\u003eDataContext: resolve action context\n  DataContext--\u003e\u003eBinder: concrete context\n  Binder-\u003e\u003eSurface: dispatchAction(action)\n  Surface--\u003e\u003eShell: onAction(client action)\n  Shell-\u003e\u003eAgent: POST /a2a {version, action}\n```\n\n实现细节：\n\n- `GenericBinder` 对 action 字段生成闭包，不在渲染时立刻解析 context。\n- 触发时由 DataContext 解析 dynamic context，然后 `SurfaceModel.dispatchAction` 包装 surfaceId/sourceComponentId/timestamp。\n- React shell sample 的 action handler 将 client action 发送给 agent。\n\n## Flow 5: Python SDK 生成与校验\n\n```mermaid\nflowchart TD\n  A[\"Client capabilities / requested extension\"] --\u003e B[\"A2uiSchemaManager\"]\n  B --\u003e C[\"select catalog\"]\n  C --\u003e D[\"generate system prompt\"]\n  D --\u003e E[\"ADK SendA2uiToClientToolset\"]\n  E --\u003e F[\"LLM tool response or tagged text\"]\n  F --\u003e G[\"parse_and_fix\"]\n  G --\u003e H[\"A2uiValidator\"]\n  H --\u003e I[\"A2A DataPart\"]\n  I --\u003e J[\"Client renderer\"]\n```\n\n源码显示 SDK 不只是“给模型一段提示词”。它在多个阶段施加约束：\n\n- schema manager 根据 supported/inline/default catalog 选择 active catalog。\n- toolset 在 LLM request 中追加 schema 和 examples。\n- tool execution 会 parse/repair JSON，并调用 validator。\n- A2A converter 可以从 tool response 或普通 text tags 中抽取 A2UI payload。\n\n## Flow 6: Catalog assembly\n\n```mermaid\nflowchart LR\n  A[\"Custom components\"] --\u003e D[\"assemble_catalog.py\"]\n  B[\"Custom functions\"] --\u003e D\n  C[\"Theme schema\"] --\u003e D\n  E[\"Basic catalog\"] --\u003e D\n  D --\u003e F[\"standalone catalog.json\"]\n  F --\u003e G[\"SDK prompt/validation\"]\n  F --\u003e H[\"Renderer capabilities\"]\n```\n\nCatalog 文档要求最终 catalog 是 standalone JSON。`assemble_catalog.py` 会解析本地/远程 refs，合并组件、函数和 theme，生成 `anyComponent` / `anyFunction`。这为生产设计系统接入提供了可操作路径。\n"},{"file":"key-abstractions.md","label":"核心抽象","content":"# Key Abstractions\n\n## Surface\n\nSurface 是一块由 A2UI 驱动的 UI 区域。v0.9 通过 `createSurface` 创建 surface，后续 `updateComponents` 和 `updateDataModel` 都带 `surfaceId`。renderer 侧的 `SurfaceModel` 持有 data model、component model、catalog、theme 和 action dispatch。\n\n关键点：\n\n- `root` 是约定的根 component id。\n- surface 可被删除，删除时需要 dispose 组件、data model 和事件订阅。\n- `sendDataModel` 控制客户端是否把 data model 回传给 agent。\n\n证据：EVD-007, EVD-008, EVD-017, EVD-018。\n\n## Component\n\n组件在 v0.9 中以扁平列表传输，每个组件有 `id` 和 `component` 类型字段。树结构不靠嵌套 JSON 表达，而靠 child id、children id list、tabs 等引用字段表达。\n\n关键点：\n\n- 扁平结构支持增量更新和 progressive rendering。\n- component type 变化时，renderer 会重建 component model。\n- Basic Catalog 组件 schema 使用 `unevaluatedProperties: false`，避免模型输出未知字段。\n\n证据：EVD-004, EVD-005, EVD-009, EVD-016。\n\n## DataModel\n\nDataModel 是 surface 内的 JSON 数据源，按 JSON Pointer 读写。它支持：\n\n- 根替换。\n- 对象/数组路径写入。\n- 删除对象 key 或数组 index。\n- exact、ancestor、descendant、root 订阅通知。\n- 穿越 primitive 或数组非数字路径时报错。\n\n证据：EVD-011, EVD-019, EVD-033。\n\n## DataContext\n\nDataContext 是 DataModel 的作用域视图。它将相对路径解析到当前 base path，因此 template child 可以绑定到当前 item 的局部字段。\n\n关键点：\n\n- `path` 动态值会解析为 DataModel signal。\n- function dynamic value 会按参数 signal 反应式计算。\n- action context 会在触发时解析，避免使用过期值。\n- setter 可以从 renderer 输入反写 data model。\n\n证据：EVD-020, EVD-021。\n\n## GenericBinder\n\nGenericBinder 是把 component schema 转成 renderer props 的核心抽象。它会先分析 schema 字段，把字段分为 dynamic、action、structural、checkable、static、object、array，然后在 component render 前生成稳定 props snapshot。\n\n这使 renderer component 只需要关心普通 props：\n\n- `Text` 收到字符串。\n- `Button` 收到 `action` 函数和 `isValid`。\n- `TextField` 收到 value 和 setter。\n- list/card/row/column 收到 child refs。\n\n证据：EVD-021, EVD-022, EVD-033。\n\n## Catalog\n\nCatalog 是 A2UI 的能力注册表。它包含：\n\n- component API schema。\n- component renderer implementation。\n- function API schema。\n- function implementation。\n- optional theme schema。\n\n`Catalog.invokeFunction` 会先校验函数参数再执行实现，这让 validation/checks/formatting/openUrl 等能力以 schema 化方式开放给 agent。\n\n证据：EVD-013, EVD-024, EVD-025。\n\n## MessageProcessor\n\nMessageProcessor 是客户端消息入口。它处理 message list 或 wrapper，识别 v0.9 消息类型，并调用 SurfaceGroup/Surface/Component/DataModel 更新。\n\n关键点：\n\n- 支持 client capabilities。\n- 支持 inline catalog schema generation。\n- 支持只回传 `sendDataModel` surface 的 data model。\n- 对不合法消息形态发出错误。\n\n证据：EVD-017, EVD-026, EVD-033。\n\n## A2uiSchemaManager\n\nSchema manager 是 Python SDK 侧的 catalog 和 prompt 协调器。它从 supported catalog、inline catalog、默认 catalog 中选择 active catalog，并生成包含工作流、UI 说明、catalog instructions 和 examples 的 system prompt。\n\n证据：EVD-027, EVD-028。\n\n## A2uiValidator\n\nValidator 是生成链路的安全网。除 JSON Schema 外，它还检查：\n\n- catalog 中是否存在 component type。\n- root/duplicate/root refs。\n- component graph 是否有 cycle、orphan、深度过深。\n- path syntax 和 recursion depth。\n\n证据：EVD-030, EVD-033。\n\n## A2A DataPart\n\nA2UI 在 A2A 中被包装为 metadata `mimeType: application/json+a2ui` 的 DataPart。SDK 提供 part converter 和 event converter，从 ADK tool response 或 text tags 中提取 A2UI payload，并隐藏中间 function call。\n\n证据：EVD-029, EVD-031。\n"},{"file":"extension-points.md","label":"扩展点","content":"# Extension Points\n\n## 1. Custom Catalog\n\n最重要的扩展点是自定义 catalog。Catalog 可以定义：\n\n- 业务组件 schema。\n- 组件渲染实现。\n- 函数 schema 和实现。\n- theme schema。\n- examples 和 LLM instructions。\n\n适用场景：\n\n- 把 A2UI 约束到企业设计系统。\n- 禁止 agent 使用不符合产品策略的组件或字段。\n- 通过 schema 描述业务域组件，例如订单卡片、审批流、数据表、图表。\n\n实现入口：\n\n- 规范 schema：`specification/v0_9/catalogs/basic/catalog.json`\n- runtime abstraction：`renderers/web_core/src/v0_9/catalog/types.ts`\n- assembly 工具：`tools/build_catalog/assemble_catalog.py`\n- SDK catalog config：`agent_sdks/python/src/a2ui/schema/catalog.py`\n\n## 2. Renderer Component Implementations\n\nReact renderer 通过 `createComponentImplementation` 和 `GenericBinder` 将 schema 化组件绑定到 React component。新增组件时通常需要：\n\n1. 在 catalog schema 中定义 component properties。\n2. 在 renderer 侧实现 React component。\n3. 使用 adapter 注册 component implementation。\n4. 在 SDK/catalog prompt 中暴露说明和示例。\n\n可借鉴点是：业务 React component 不需要自己处理 JSON Pointer、action context、模板 child list；这些由 `GenericBinder` 完成。\n\n## 3. Function Implementations\n\n函数用于 validation、formatting、local action 等。Basic functions 已包含 required、regex、length、numeric、email、formatString、formatNumber、formatCurrency、formatDate、pluralize、openUrl、and/or/not 等。\n\n扩展函数时需要注意：\n\n- 函数参数通过 schema 校验。\n- 函数可能参与 reactive expression，返回值应可预测。\n- 有副作用函数如 `openUrl` 需要 host policy 控制，不能只依赖 agent 自律。\n\n## 4. Renderer Capabilities 与 Inline Catalogs\n\n`MessageProcessor.getClientCapabilities()` 可以返回：\n\n- `supportedCatalogIds`\n- `inlineCatalogs`\n\nAction 文档也把 capabilities 描述为 agent 了解 renderer 能力的 handshake。Python schema manager 会根据 supported/inline/default catalog 选择 active catalog。这是多客户端、多 catalog 场景的扩展点。\n\n## 5. Transport Binding\n\nA2UI 协议本身不绑定具体 transport。v0.9 规范只要求可靠排序、消息 framing、metadata support 和可选 bidirectional。仓库提供 A2A/AG UI binding 文档与样例 shell；生产系统可以替换为：\n\n- SSE。\n- WebSocket。\n- A2A DataPart。\n- 现有 agent gateway。\n\n关键是保持 message ordering、surfaceId/action metadata 和 data model sync 语义。\n\n## 6. Agent SDK / ADK Toolset\n\n`SendA2uiToClientToolset` 可以作为 ADK agent 的工具集。扩展方式包括：\n\n- 自定义 catalog provider。\n- 自定义 examples provider。\n- 控制是否启用 A2UI。\n- 替换/包裹 part converter。\n- 根据会话状态决定 active catalog。\n\n这对多租户、多 UI 能力客户端很关键。\n\n## 7. Validator 与 Conformance\n\nValidator 已经覆盖 schema、组件类型、graph topology、path syntax、recursion depth。生产中可以在此基础上添加：\n\n- 业务字段白名单/黑名单。\n- action event allowlist。\n- URL/domain allowlist。\n- surface/component 数量限制。\n- data model 大小限制。\n- renderer-specific conformance cases。\n\n`agent_sdks/conformance/` 提供了跨 SDK suite 的雏形，可作为多语言 SDK 对齐的基础。\n\n## 8. Theme\n\nCatalog 支持 theme schema，`createSurface` 可以带 theme。当前调研没有深入各 renderer 的 theme 实现一致性，但从协议和 catalog 抽象看，theme 是将 A2UI 接入品牌系统的自然扩展点。\n\n## 扩展优先级建议\n\n| 优先级 | 扩展点 | 原因 |\n|---|---|---|\n| P0 | Custom Catalog | 决定可生成 UI 的安全边界和产品一致性 |\n| P0 | Validator policy | 防止 agent 输出越权 action、危险 URL、过大 data model |\n| P1 | Renderer component set | 将协议映射到真实设计系统 |\n| P1 | Capabilities negotiation | 支持多客户端/多版本演进 |\n| P2 | Conformance cases | 保证 renderer/SDK 行为一致 |\n| P2 | Theme schema | 品牌化和多主题 |\n"},{"file":"design-philosophy.md","label":"设计思想","content":"# Design Philosophy\n\n## 1. Safe Like Data, Expressive Like Code\n\nREADME 明确把 A2UI 定位为“agent 发送声明式 JSON 意图，客户端使用原生组件库渲染”。这背后的设计哲学是：agent 不执行任意代码，也不直接操控 DOM/native UI，而是输出可校验的数据结构。\n\n源码印证：\n\n- JSON Schema 限制消息和 component fields。\n- Catalog 定义可用组件和函数。\n- Validator 检查 schema、topology 和 path。\n- Renderer 只执行本地注册的 component/function implementation。\n\n## 2. Renderer as Browser, Catalog as DOM/Capability Boundary\n\n官方 renderer 文档把 renderer 类比为 browser：解析消息、管理 lifecycle、渲染 native UI、处理用户交互。A2UI 没有把“浏览器能力”开放给 agent，而是通过 catalog 声明 host 支持的组件和函数。\n\n可借鉴点：做 agent UI 时，不要让 agent 直接选择任意前端代码；应给它一个严格的、业务可审计的 UI vocabulary。\n\n## 3. Prompt-first but Schema-backed\n\nv0.9 evolution guide 说明从 structured-output first 转向 prompt-first，同时 schema 变得更模块化。这是一个现实取舍：LLM 更容易按 prompt examples 生成复杂 UI，但需要更强的 post-generation validation。\n\n该设计不是放弃 schema，而是把 schema 用在：\n\n- prompt 注入。\n- catalog instructions。\n- tool result validation。\n- renderer message validation。\n- conformance。\n\n## 4. Flat Graph over Nested Trees\n\nA2UI 选择扁平 component list + ID refs，而不是深层嵌套 JSON。这明显服务于两个目标：\n\n- LLM 生成更稳定：可逐个声明组件，不需要维护复杂括号层级。\n- Streaming/patch 更自然：可以先创建 root 或 shell，再逐步填充 children。\n\n该判断由 components 文档、v0.9 protocol 和 renderer `DeferredChild` 的实现共同支持。\n\n## 5. Data Model Is Shared Context, Not Hidden Widget State\n\nData binding 文档和 `DataModel` 源码显示，A2UI 鼓励把界面状态放进 JSON data model，用 JSON Pointer 绑定 UI。输入组件可以反写 data model，action 可以选择 context 发送给 agent。\n\n这使 agent 和 client 可以围绕同一个 data model 协作，但也带来生产问题：哪些 data 可以回传、何时回传、是否包含敏感信息，都需要 policy。\n\n## 6. Local Functions Are Host-controlled Capability\n\nactions 文档区分 event 和 local function。event 发送给 agent；function 在 renderer 本地执行。Basic functions 中有 validation/formatting，也有 `openUrl`。这表明 A2UI 的函数机制不是让 agent 运行代码，而是让 host 预注册有限能力。\n\n生产采纳时，应把 local function 视为 capability policy，而不是普通工具函数。\n\n## 7. Multi-transport, Multi-renderer Portability\n\nA2UI 不绑定 transport，也不绑定 React。README 和 renderer docs 都强调可通过 A2A、AG UI 或其他 transport 承载，并可映射到 web/flutter 等 host framework。\n\n可借鉴点：协议层只关心有序消息和 metadata；renderer 层关心本地组件；SDK 层关心生成和校验。三者分开后，系统更容易跨客户端扩展。\n\n## 8. Preview-first Evolution\n\n本地 README 保留 v0.8 public preview 口径，代码中已有 v0.9 主实现和 v0.10 目录；官网 Roadmap 则把 v0.9 标为 current/supported，同时把 v0.10/v1.0 标为 draft/目标版本。对使用方来说，合适的姿势是学习架构与抽象，生产落地时锁定版本并封装兼容层，而不是直接依赖未确认的演进 API。\n\n## 可以学习的设计原则\n\n- 给 agent 的表达空间要小而清楚。\n- UI 生成协议必须和校验器、renderer、测试一起设计。\n- 数据绑定、action、validation 应该是协议内的一等概念，而不是散落在前端 glue code 中。\n- Catalog 应成为业务设计系统、agent prompt 和 renderer implementation 的共同契约。\n- Streaming UI 需要从数据结构上支持增量，而不是只靠 transport 分块。\n"},{"file":"comparison.md","label":"横向对比","content":"# Comparison\n\n## 比较边界\n\n本轮已补充官网、GitHub、Roadmap 和集成方文档检索，但没有做竞品最新版本的系统性 benchmark。因此外部对比仍只做架构层面的有限比较。更可靠的比较来自仓库内部：v0.8.1 到 v0.9 的 evolution guide、A2A/AG UI binding 文档、React sample 和 renderer implementation。\n\n## A2UI vs 直接生成 HTML/JS\n\n| 维度 | A2UI | 直接 HTML/JS |\n|---|---|---|\n| 安全边界 | agent 输出 JSON；host 只执行本地 catalog implementation | agent 可能生成脚本、样式和 DOM 行为，需要额外 sandbox |\n| 可验证性 | JSON Schema + validator + catalog | HTML/JS 校验更难，行为空间更大 |\n| 原生体验 | renderer 映射到 React/Flutter/native component | 通常偏 web view 或 iframe |\n| 多端复用 | 同一协议可由多个 renderer 实现 | HTML/JS 对非 web 端复用较弱 |\n| 表达能力 | 受 catalog 限制 | 表达能力更强但风险更大 |\n\n结论：A2UI 更适合安全可控、设计系统强约束的 agent UI；不适合让 agent 自由创作任意 UI/动画/前端逻辑。\n\n## A2UI v0.8.1 vs v0.9\n\n| 维度 | v0.8.1 | v0.9 |\n|---|---|---|\n| 生成策略 | structured-output first 色彩更强 | prompt-first，schema/post-validation 更重要 |\n| 消息 | `beginRendering` 等旧消息 | `createSurface`、`updateComponents`、`updateDataModel`、`deleteSurface` |\n| Schema 组织 | 较集中 | common types、server-to-client、catalogs/basic 模块化 |\n| Component discriminator | 旧字段形式 | flattened `component` 属性 |\n| Root | 旧约定 | `root` component id 规则明确 |\n| Catalog | 旧集成 | `catalogId` 更明确，支持 catalog schema 组合 |\n\n结论：v0.9 是当前代码和文档的主要研究面，生产评估应以 v0.9 为基础，同时关注 v0.10 演进。\n\n## A2UI vs A2A/AG UI\n\n仓库文档把 A2A/AG UI 视为 transport/binding 层，而 A2UI 是 UI payload 协议。也就是说：\n\n- A2A 可以承载 A2UI DataPart。\n- AG UI 可以作为另一种事件/消息承载方式。\n- A2UI 关注 surface、component、data model、catalog 和 renderer。\n\n结论：A2UI 不替代 A2A，它补足“消息里如何表达可渲染 UI”的层次。\n\n## Basic Catalog vs Custom Catalog\n\n| 维度 | Basic Catalog | Custom Catalog |\n|---|---|---|\n| 目标 | 通用、可移植、快速开始 | 业务/设计系统落地 |\n| 组件 | Text、Image、Row、Column、Card、Button、TextField 等通用组件 | 订单、审批、报表、图表、业务表单等 |\n| 安全策略 | 通用限制 | 可加入业务 action、URL、字段策略 |\n| LLM 提示 | 通用 examples | 可加入领域 examples |\n| 生产适配 | 可作为 fallback | 推荐主路径 |\n\n结论：Basic Catalog 适合学习和 demo；生产价值更大的是用同一机制定义自有 catalog。\n\n## React renderer vs web_core\n\n| 维度 | React renderer | web_core |\n|---|---|---|\n| 职责 | 渲染 React component，提供 Basic Catalog React implementation | 消息处理、状态模型、data binding、action、catalog runtime |\n| 复用价值 | React 项目直接使用 | 多 web renderer 或自研 renderer 都可借鉴 |\n| 复杂度 | 相对薄 | 核心复杂度集中处 |\n\n结论：学习 A2UI 不应只看 React components；真正的架构重点在 `web_core`。\n"},{"file":"adoption-notes.md","label":"学习借鉴","content":"# Adoption Notes\n\n## 适合采用的场景\n\n- Agent 需要生成结构化界面，但产品不能接受执行模型生成代码。\n- 前端已有设计系统，希望 agent 只能在设计系统 vocabulary 内组合 UI。\n- 需要同一 agent UI 输出在多个客户端或 renderer 中复用。\n- 表单、卡片、列表、流程确认、数据查看、轻交互面板等任务型 UI。\n- A2A agent 需要在消息中返回可渲染 UI，而不是纯文本。\n\n## 不适合直接采用的场景\n\n- 需要任意复杂前端逻辑、动态图形、游戏、富动画或完全自由布局。\n- 需要像浏览器一样渲染任意 HTML/CSS/JS。\n- UI 能力尚未稳定、但又要求长期 API 兼容的核心产品路径。\n- 无法定义清晰 catalog 或 action policy 的开放式应用。\n\n## 生产落地建议\n\n### 1. 锁定协议版本\n\n以 v0.9 为基础做 PoC，明确所有 payload 带版本。官网 Roadmap 已把 v0.9 标为 current/supported，但 v0.10/v1.0 仍在 draft/规划中；应用层应封装 A2UI version adapter，避免业务代码散落依赖协议细节。\n\n### 2. 定义 Custom Catalog\n\n不要长期依赖 Basic Catalog。生产 catalog 至少应包含：\n\n- 业务组件 schema。\n- action event allowlist。\n- function allowlist。\n- URL/domain policy。\n- examples。\n- 设计系统 token/theme schema。\n\n### 3. 强化校验链路\n\n在 SDK validator 之外，建议 host 侧增加：\n\n- surface/component 总量限制。\n- data model 大小限制。\n- action context 敏感字段过滤。\n- event/function 权限校验。\n- openUrl 等副作用函数策略。\n- telemetry 和 rejection reason。\n\n### 4. 明确 DataModel 同步策略\n\n`sendDataModel` 很方便，但也容易误传敏感状态。建议：\n\n- 默认不发送全量 data model。\n- 对可发送路径做 allowlist。\n- action context 优先只发送必要字段。\n- 对用户输入字段做隐私分类。\n\n### 5. 从 React shell sample 改造成 host SDK\n\n可借鉴 `samples/client/react/shell/src/App.tsx`：\n\n- 初始化 `MessageProcessor`。\n- 注册 catalogs 和 action handler。\n- 对每个 surface 渲染 `\u003cA2uiSurface\u003e`。\n- 将 action 发送到 agent。\n\n但生产中要把 demo shell 拆成：\n\n- transport client。\n- surface registry。\n- action policy。\n- error reporting。\n- catalog registry。\n- renderer host component。\n\n### 6. 建 conformance\n\n如果要扩展多 renderer 或多语言 SDK，优先扩充 `agent_sdks/conformance/` 风格的测试：\n\n- parser cases。\n- validator cases。\n- catalog selection cases。\n- dynamic list binding cases。\n- action context cases。\n- input round-trip cases。\n\n## 可借鉴的架构模式\n\n- Schema/catalog 驱动 agent UI 能力。\n- Client-side renderer 作为安全解释器。\n- Data model + JSON Pointer 作为 agent/client 共享状态语言。\n- Generic binding layer 隔离协议字段和 UI component props。\n- Capabilities handshake 让 agent 按客户端能力生成。\n- Validator 不只校验 schema，还校验组件拓扑。\n\n## 主要风险\n\n| 风险 | 影响 | 缓解 |\n|---|---|---|\n| 协议仍在演进 | API 变化导致 payload/renderer 不兼容 | 锁版本、封 adapter、跟踪 v0.10 |\n| Catalog 设计不足 | agent 输出 UI 不符合产品和安全策略 | 先设计 catalog 再接 agent |\n| Data model 泄漏 | action 或 sendDataModel 发送敏感信息 | 路径 allowlist、字段脱敏、默认关闭全量同步 |\n| Renderer 行为差异 | 多端表现不一致 | conformance + snapshot/integration tests |\n| 函数副作用 | openUrl 等能力被滥用 | host policy 和 permission prompt |\n| LLM 输出漂移 | 无效 JSON 或拓扑错误 | SDK prompt + parse repair + validator + rejection loop |\n\n## PoC 推荐路径\n\n1. 选一个窄业务场景，例如“订单详情 + 操作确认”。\n2. 定义 5-8 个业务组件的 custom catalog。\n3. 在 React 中注册 component implementations。\n4. 用 Python SDK 生成 system prompt 和 validator。\n5. 通过 A2A DataPart 或 SSE 连接 demo agent。\n6. 加入 action allowlist 和 data model allowlist。\n7. 用 conformance cases 固化期望行为。\n"},{"file":"source-map.md","label":"源码地图","content":"# Source Map\n\n## 仓库结构概览\n\n源码清单共索引 1968 个文件。按目录看，仓库由样例、renderer、规范、工具和 SDK 构成：\n\n| 目录 | 文件量级 | 职责 |\n|---|---:|---|\n| `samples/` | 668 | React/client/server 示例、mock messages、end-to-end 集成样例 |\n| `renderers/` | 617 | React/Lit/Angular/Flutter renderer 和共享 web_core |\n| `specification/` | 271 | v0.8/v0.9/v0.10 协议文档、JSON Schema、Basic Catalog |\n| `tools/` | 167 | catalog assembly、验证和辅助工具 |\n| `agent_sdks/` | 122 | Python SDK、A2A/ADK 集成、parser/validator/conformance |\n| `docs/` | 56 | 用户概念文档、reference、quickstart |\n| `eval/` | 19 | 评估相关素材 |\n\n语言分布以 TypeScript/TSX、JSON Schema、Markdown、Python 为主。这和项目形态一致：协议和 catalog 用 JSON Schema 表达，renderer 以 TypeScript 为主，agent SDK 以 Python 为主。\n\n## 关键入口\n\n| 模块 | 入口 | 说明 |\n|---|---|---|\n| 项目定位 | `README.md` | 定义 A2UI 是 agent 生成 UI 的安全声明式协议与 renderer 生态 |\n| v0.9 规范 | `specification/v0_9/docs/a2ui_protocol.md` | server-to-client 消息、transport contract、A2A/AG UI binding |\n| v0.9 JSON Schema | `specification/v0_9/json/server_to_client.json` | `createSurface`、`updateComponents`、`updateDataModel`、`deleteSurface` schema |\n| Basic Catalog | `specification/v0_9/catalogs/basic/catalog.json` | 18 个基础组件与 14 个基础函数的 schema |\n| React renderer | `renderers/react/src/v0_9/A2uiSurface.tsx` | React surface 渲染入口，从 root component 开始递归/延迟渲染 |\n| React catalog adapter | `renderers/react/src/v0_9/adapter.tsx` | 把 component implementation 接入 GenericBinder |\n| Shared core | `renderers/web_core/src/v0_9/processing/message-processor.ts` | 接收 A2UI 消息并维护 surfaces/components/data model |\n| Data model | `renderers/web_core/src/v0_9/state/data-model.ts` | JSON Pointer 数据存储、订阅和更新通知 |\n| Binding | `renderers/web_core/src/v0_9/rendering/generic-binder.ts` | 根据 schema 把 dynamic/action/child/checkable 字段转成 renderer props |\n| Catalog runtime | `renderers/web_core/src/v0_9/catalog/types.ts` | 组件、函数和 theme schema 的运行时抽象 |\n| Python parser | `agent_sdks/python/src/a2ui/parser/parser.py` | 从文本中提取 `\u003ca2ui-json\u003e` blocks 并修复 JSON |\n| Python validator | `agent_sdks/python/src/a2ui/schema/validator.py` | schema 校验、组件完整性、拓扑、递归和路径验证 |\n| Schema manager | `agent_sdks/python/src/a2ui/schema/manager.py` | catalog 选择、schema prompt 生成 |\n| ADK toolset | `agent_sdks/python/src/a2ui/adk/send_a2ui_to_client_toolset.py` | 把 A2UI 作为 agent tool 输出并做校验 |\n| A2A converter | `agent_sdks/python/src/a2ui/adk/a2a/part_converter.py` | 将 tool/text 中的 A2UI 转换为 A2A DataPart |\n| React shell sample | `samples/client/react/shell/src/App.tsx` | 演示 MessageProcessor、A2uiSurface 和 action handler 的客户端组合 |\n\n## 规范层\n\n`specification/v0_9/` 是调研主线。它包含：\n\n- `docs/a2ui_protocol.md`：协议叙述、transport、A2A/AG UI binding、消息序列。\n- `json/server_to_client.json`：server-to-client 消息 schema。\n- `json/common_types.json`：component id、accessibility、dynamic values、data binding、actions、checks。\n- `catalogs/basic/catalog.json`：Basic Catalog 的组件和函数 schema。\n- `docs/evolution_guide.md`：v0.8.1 到 v0.9 的迁移，解释 prompt-first、模块化 schema、扁平 discriminator 等变化。\n\n## Renderer 层\n\n`renderers/web_core/src/v0_9/` 是多种 web renderer 共用的核心逻辑：\n\n- `processing/message-processor.ts`：处理消息、创建/删除 surface、更新 components/data model、暴露 client capabilities/data model。\n- `state/`：`SurfaceGroupModel`、`SurfaceModel`、`SurfaceComponentsModel`、`ComponentModel`、`DataModel`。\n- `rendering/`：`ComponentContext`、`DataContext`、`GenericBinder`。\n- `catalog/` 与 `basic_catalog/`：运行时 catalog、组件 API、函数 API 和 Basic Catalog definitions。\n\n`renderers/react/src/v0_9/` 是 React 适配层：\n\n- `A2uiSurface.tsx` 从 `root` component 开始渲染，处理 missing/unknown child。\n- `adapter.tsx` 使用 `GenericBinder` 将 component model 绑定成 React props。\n- `catalog/basic/` 将 Basic Catalog 映射到 React 组件。\n\n## Agent SDK 层\n\n`agent_sdks/python/src/a2ui/` 把协议约束放进 agent 生成链路：\n\n- `schema/manager.py` 选择 catalog 并生成 system prompt。\n- `schema/validator.py` 执行 JSON Schema 和自定义拓扑/路径校验。\n- `parser/` 支持文本中 `\u003ca2ui-json\u003e` blocks、JSON 修复、v0.9 streaming parser。\n- `adk/` 提供 ADK toolset 和 A2A event/part conversion。\n- `a2a/` 提供 A2UI DataPart metadata、extension negotiation 和 streaming parts。\n\n## Tooling 与测试\n\n- `tools/build_catalog/assemble_catalog.py` 支持合并 Basic Catalog、自定义 components/functions/themes，并生成独立 catalog。\n- `agent_sdks/conformance/` 定义跨 SDK 的 parser、streaming parser、validator、catalog、schema manager suite。\n- `renderers/web_core/src/v0_9/**/*.test.ts` 验证 message processor、data model、generic binder。\n- `renderers/react/tests/v0_9/*.test.tsx` 验证 React catalog components 和 integration scenarios。\n\n## 源码阅读建议\n\n最短源码路径：\n\n1. `README.md`\n2. `specification/v0_9/docs/a2ui_protocol.md`\n3. `specification/v0_9/json/server_to_client.json`\n4. `renderers/web_core/src/v0_9/processing/message-processor.ts`\n5. `renderers/web_core/src/v0_9/rendering/generic-binder.ts`\n6. `renderers/react/src/v0_9/A2uiSurface.tsx`\n7. `agent_sdks/python/src/a2ui/schema/validator.py`\n8. `samples/client/react/shell/src/App.tsx`\n"},{"file":"evidence-index.md","label":"证据索引","content":"# Evidence Index\n\n## 版本与范围\n\n| ID | 结论 | 证据类型 | 来源 | 已源码验证 | 置信度 | 备注 |\n|---|---|---|---|---|---|---|\n| \u003ca id=\"EVD-001\"\u003e\u003c/a\u003eEVD-001 | A2UI 是面向 agent-generated UI 的开源协议/格式与 renderer 集合。 | README | `README.md:1-6` | 是 | 高 | 项目自述 |\n| \u003ca id=\"EVD-002\"\u003e\u003c/a\u003eEVD-002 | A2UI 的核心模式是 agent 发送声明式 JSON，客户端用原生组件渲染。 | README | `README.md:25-31` | 是 | 高 | 与架构主结论绑定 |\n| \u003ca id=\"EVD-003\"\u003e\u003c/a\u003eEVD-003 | 官方介绍把 A2UI 定义为 agent-driven interface 的声明式 UI protocol，强调 native rendering 和 no arbitrary code。 | 官方文档 | `docs/introduction/what-is-a2ui.md:1-3`, `docs/introduction/what-is-a2ui.md:171-179` | 是 | 高 | 安全定位 |\n| \u003ca id=\"EVD-004\"\u003e\u003c/a\u003eEVD-004 | 组件采用 flat list / adjacency-list 模型，用 ID refs 表达结构。 | 官方文档 | `docs/concepts/components.md:1-18` | 是 | 高 | 解释 LLM/增量友好性 |\n| \u003ca id=\"EVD-005\"\u003e\u003c/a\u003eEVD-005 | v0.9 component 使用 `component` 字符串字段和 child ids。 | 官方文档 | `docs/concepts/components.md:85-137` | 是 | 高 | v0.9 结构 |\n| \u003ca id=\"EVD-006\"\u003e\u003c/a\u003eEVD-006 | README 标注 public preview / evolving，提醒 API 与协议可能变化。 | README | `README.md:12-17` | 是 | 高 | 成熟度判断 |\n| \u003ca id=\"EVD-007\"\u003e\u003c/a\u003eEVD-007 | v0.9 server-to-client 协议包含 `createSurface`、`updateComponents`、`updateDataModel`、`deleteSurface`。 | 规范 | `specification/v0_9/docs/a2ui_protocol.md:14-25` | 是 | 高 | 协议核心 |\n| \u003ca id=\"EVD-008\"\u003e\u003c/a\u003eEVD-008 | v0.9 JSON Schema 用 `oneOf` 定义四类 server-to-client message。 | JSON Schema | `specification/v0_9/json/server_to_client.json:1-12` | 是 | 高 | 机器可验证 |\n| \u003ca id=\"EVD-009\"\u003e\u003c/a\u003eEVD-009 | `updateComponents` schema 要求 `surfaceId` 和 component list，component 引用 catalog anyComponent。 | JSON Schema | `specification/v0_9/json/server_to_client.json:48-83` | 是 | 高 | 组件更新 |\n| \u003ca id=\"EVD-010\"\u003e\u003c/a\u003eEVD-010 | v0.10 规范目录存在但标注 under development。 | 规范 | `specification/v0_10/README.md:1-5` | 是 | 高 | 版本演进 |\n\n## 协议与数据模型\n\n| ID | 结论 | 证据类型 | 来源 | 已源码验证 | 置信度 | 备注 |\n|---|---|---|---|---|---|---|\n| \u003ca id=\"EVD-011\"\u003e\u003c/a\u003eEVD-011 | Data binding 基于 JSON Pointer，支持 UI structure 与 state 分离、动态值和双向输入。 | 官方文档 | `docs/concepts/data-binding.md:1-18`, `docs/concepts/data-binding.md:173-181` | 是 | 高 | 与 DataModel 实现一致 |\n| \u003ca id=\"EVD-012\"\u003e\u003c/a\u003eEVD-012 | action 分为 local Function 与发给 agent 的 Event，checks 主要用于 UX 禁用而非数据完整性。 | 官方文档 | `docs/concepts/actions.md:1-15`, `docs/concepts/actions.md:63-69` | 是 | 高 | action 语义 |\n| \u003ca id=\"EVD-013\"\u003e\u003c/a\u003eEVD-013 | Catalog 定义 components/functions/themes，所有 A2UI JSON 应按选定 catalog 校验；生产可定义自有 catalog。 | 官方文档 | `docs/concepts/catalogs.md:5-9`, `docs/concepts/catalogs.md:70-85` | 是 | 高 | 扩展主入口 |\n| \u003ca id=\"EVD-014\"\u003e\u003c/a\u003eEVD-014 | Renderer 负责解析 adjacency list、映射 widgets、data binding/lifecycle、增量消息和用户 action。 | 官方文档 | `docs/reference/renderers.md:3-9`, `docs/reference/renderers.md:70-78` | 是 | 高 | Renderer 职责 |\n| \u003ca id=\"EVD-015\"\u003e\u003c/a\u003eEVD-015 | React renderer 导出 `A2uiSurface`、adapter 和 Basic Catalog。 | 源码 | `renderers/react/src/v0_9/index.ts:17-21` | 是 | 高 | React 入口 |\n| \u003ca id=\"EVD-016\"\u003e\u003c/a\u003eEVD-016 | Basic Catalog v0.9 提供 Text/Image/Icon/Row/Column/List/Card/Button/TextField 等 18 个基础组件和 14 个函数。 | JSON Schema | `specification/v0_9/catalogs/basic/catalog.json:1-80` | 是 | 中 | 完整列表由 JSON schema 统计 |\n\n## Renderer 实现\n\n| ID | 结论 | 证据类型 | 来源 | 已源码验证 | 置信度 | 备注 |\n|---|---|---|---|---|---|---|\n| \u003ca id=\"EVD-017\"\u003e\u003c/a\u003eEVD-017 | `MessageProcessor` 持有 `SurfaceGroupModel`，处理 create/update/delete/data model 消息并暴露 capabilities。 | 源码 | `renderers/web_core/src/v0_9/processing/message-processor.ts:45-85`, `renderers/web_core/src/v0_9/processing/message-processor.ts:229-335` | 是 | 高 | 客户端状态入口 |\n| \u003ca id=\"EVD-018\"\u003e\u003c/a\u003eEVD-018 | `SurfaceModel` 聚合 data model、components、catalog、theme、sendDataModel，并统一 dispatch action/error。 | 源码 | `renderers/web_core/src/v0_9/state/surface-model.ts:26-94` | 是 | 高 | surface runtime |\n| \u003ca id=\"EVD-019\"\u003e\u003c/a\u003eEVD-019 | `DataModel` 是 JSON Pointer 可寻址、可订阅的 observable data store，支持 root replace、嵌套创建、删除和路径通知。 | 源码 | `renderers/web_core/src/v0_9/state/data-model.ts:35-39`, `renderers/web_core/src/v0_9/state/data-model.ts:78-170`, `renderers/web_core/src/v0_9/state/data-model.ts:183-280` | 是 | 高 | binding 基础 |\n| \u003ca id=\"EVD-020\"\u003e\u003c/a\u003eEVD-020 | `DataContext` 解析相对/绝对路径、dynamic values、function expressions 和 action context。 | 源码 | `renderers/web_core/src/v0_9/rendering/data-context.ts:28-35`, `renderers/web_core/src/v0_9/rendering/data-context.ts:88-164`, `renderers/web_core/src/v0_9/rendering/data-context.ts:273-367` | 是 | 高 | 动态绑定 |\n| \u003ca id=\"EVD-021\"\u003e\u003c/a\u003eEVD-021 | `GenericBinder` 根据 schema 识别 dynamic/action/structural/checkable/static/object/array，并生成 renderer props。 | 源码 | `renderers/web_core/src/v0_9/rendering/generic-binder.ts:23-92`, `renderers/web_core/src/v0_9/rendering/generic-binder.ts:160-328` | 是 | 高 | renderer 复用核心 |\n| \u003ca id=\"EVD-022\"\u003e\u003c/a\u003eEVD-022 | action 字段在 binder 中变成闭包，触发时解析 context 并 dispatch。 | 源码 | `renderers/web_core/src/v0_9/rendering/generic-binder.ts:243-255` | 是 | 高 | 交互流 |\n| \u003ca id=\"EVD-023\"\u003e\u003c/a\u003eEVD-023 | React Button 实现只接收 bound props，点击调用 `props.action`，`isValid === false` 时 disabled。 | 源码 | `renderers/react/src/v0_9/catalog/basic/components/Button.tsx:22-35` | 是 | 高 | adapter 变薄 |\n| \u003ca id=\"EVD-024\"\u003e\u003c/a\u003eEVD-024 | `Catalog` 运行时包含组件、函数、theme schema，并用 Zod 校验函数参数后执行。 | 源码 | `renderers/web_core/src/v0_9/catalog/types.ts:45-82`, `renderers/web_core/src/v0_9/catalog/types.ts:117-185` | 是 | 高 | catalog runtime |\n| \u003ca id=\"EVD-025\"\u003e\u003c/a\u003eEVD-025 | React Basic Catalog 将 Basic component implementations 与 `BASIC_FUNCTIONS` 注册为 catalog。 | 源码 | `renderers/react/src/v0_9/catalog/basic/index.ts:42-67` | 是 | 高 | React catalog |\n| \u003ca id=\"EVD-026\"\u003e\u003c/a\u003eEVD-026 | Renderer capabilities 支持 `supportedCatalogIds` 和可选 inline catalogs；`getClientDataModel` 只返回 `sendDataModel` surface。 | 源码 | `renderers/web_core/src/v0_9/processing/message-processor.ts:73-201` | 是 | 高 | 能力协商与同步 |\n\n## SDK、A2A 与工具\n\n| ID | 结论 | 证据类型 | 来源 | 已源码验证 | 置信度 | 备注 |\n|---|---|---|---|---|---|---|\n| \u003ca id=\"EVD-027\"\u003e\u003c/a\u003eEVD-027 | Python parser 从 `\u003ca2ui-json\u003e` tags 提取 payload，并处理 markdown code block。 | 源码 | `agent_sdks/python/src/a2ui/parser/parser.py:22-88` | 是 | 高 | 文本输出兼容 |\n| \u003ca id=\"EVD-028\"\u003e\u003c/a\u003eEVD-028 | `A2uiSchemaManager` 根据 inline/supported/default catalog 选择 active catalog，并生成 system prompt。 | 源码 | `agent_sdks/python/src/a2ui/schema/manager.py:101-236` | 是 | 高 | 生成链路 |\n| \u003ca id=\"EVD-029\"\u003e\u003c/a\u003eEVD-029 | ADK `PartConverter` 可从 tool response、generic tool response 或 text tags 中抽取 A2UI 并转为 A2A parts。 | 源码 | `agent_sdks/python/src/a2ui/adk/a2a/part_converter.py:15-20`, `agent_sdks/python/src/a2ui/adk/a2a/part_converter.py:79-133` | 是 | 高 | A2A bridge |\n| \u003ca id=\"EVD-030\"\u003e\u003c/a\u003eEVD-030 | `A2uiValidator` 除 JSON Schema 外，还校验 component integrity、topology、recursion 和 path syntax。 | 源码 | `agent_sdks/python/src/a2ui/schema/validator.py:101-126`, `agent_sdks/python/src/a2ui/schema/validator.py:480-603`, `agent_sdks/python/src/a2ui/schema/validator.py:864-907` | 是 | 高 | 输出安全网 |\n| \u003ca id=\"EVD-031\"\u003e\u003c/a\u003eEVD-031 | A2A helper 将 A2UI 包装为 metadata `mimeType: application/json+a2ui` 的 DataPart，并支持 streaming parts。 | 源码 | `agent_sdks/python/src/a2ui/a2a/parts.py:28-64`, `agent_sdks/python/src/a2ui/a2a/parts.py:126-159` | 是 | 高 | transport binding |\n| \u003ca id=\"EVD-032\"\u003e\u003c/a\u003eEVD-032 | `assemble_catalog.py` 可合并/展平 refs，组合 components/functions/themes，并生成 standalone catalog。 | 源码 | `tools/build_catalog/assemble_catalog.py:65-124`, `tools/build_catalog/assemble_catalog.py:197-380` | 是 | 高 | catalog 工具链 |\n| \u003ca id=\"EVD-033\"\u003e\u003c/a\u003eEVD-033 | Conformance 和 renderer tests 覆盖 parser、validator、catalog、schema manager、MessageProcessor、DataModel、GenericBinder、React components。 | 测试 | `agent_sdks/conformance/README.md:1-26`, `renderers/web_core/src/v0_9/processing/message-processor.test.ts:36-481`, `renderers/web_core/src/v0_9/state/data-model.test.ts:74-310`, `renderers/react/tests/v0_9/catalog-components.test.tsx:150-230` | 是 | 高 | 测试支撑 |\n| \u003ca id=\"EVD-034\"\u003e\u003c/a\u003eEVD-034 | React shell sample 创建 MessageProcessor，注册 action handler，处理 mock/real stream 并渲染 `\u003cA2uiSurface\u003e`。 | 样例 | `samples/client/react/shell/src/App.tsx:68-75`, `samples/client/react/shell/src/App.tsx:172-207`, `samples/client/react/shell/src/App.tsx:319-324` | 是 | 高 | 集成示例 |\n\n## 联网资料证据\n\n| ID | 结论 | 证据类型 | 来源 | 已源码验证 | 置信度 | 备注 |\n|---|---|---|---|---|---|---|\n| \u003ca id=\"EVD-035\"\u003e\u003c/a\u003eEVD-035 | A2UI 官网把项目定义为 agent-driven interfaces 的声明式 UI protocol，强调跨 web/mobile/desktop 原生渲染且不执行任意代码。 | 官方网页 | `https://a2ui.org/introduction/what-is-a2ui/`，retrieved 2026-05-28 | 是 | 高 | 与本地 README/intro 文档一致 |\n| \u003ca id=\"EVD-036\"\u003e\u003c/a\u003eEVD-036 | 官网 v0.9 protocol 页面说明 v0.9 是 JSON-based streaming UI protocol，并定义四类 server-to-client message。 | 官方网页 | `https://a2ui.org/specification/v0.9-a2ui/`，retrieved 2026-05-28 | 是 | 高 | 与本地 `specification/v0_9` 一致 |\n| \u003ca id=\"EVD-037\"\u003e\u003c/a\u003eEVD-037 | 官网 Roadmap 把 v0.9 标为 current、feature complete、supported；v0.10 与 v1.0 为 draft/目标版本。 | 官方网页 | `https://a2ui.org/roadmap/`，retrieved 2026-05-28 | 部分 | 高 | 版本状态口径 |\n| \u003ca id=\"EVD-038\"\u003e\u003c/a\u003eEVD-038 | Roadmap 的 Q2 2026 milestones 包括发布 v0.9 spec、web core/renderers 支持 v0.9、官方 React renderer、Python Agents SDK。 | 官方网页 | `https://a2ui.org/roadmap/`，retrieved 2026-05-28 | 是 | 高 | 与本地源码结构匹配 |\n| \u003ca id=\"EVD-039\"\u003e\u003c/a\u003eEVD-039 | 官网 Renderers Reference 将 renderer 类比 browser，要求支持 adjacency list、data binding/lifecycle、incremental messages、server updates、user actions。 | 官方网页 | `https://a2ui.org/reference/renderers/`，retrieved 2026-05-28 | 是 | 高 | 与 `web_core`/React 分析一致 |\n| \u003ca id=\"EVD-040\"\u003e\u003c/a\u003eEVD-040 | 官网 Client Setup 说明 web renderers 共享 `@a2ui/web_core`，custom catalog 是 agent 与 renderer 的契约。 | 官方网页 | `https://a2ui.org/guides/client-setup/`，retrieved 2026-05-28 | 是 | 高 | 支持 catalog/web_core 主结论 |\n| \u003ca id=\"EVD-041\"\u003e\u003c/a\u003eEVD-041 | 官网 Ecosystem Renderers 列出社区 renderer，并提醒社区 renderer 由各自作者维护、需检查兼容版本和维护状态。 | 官方网页 | `https://a2ui.org/ecosystem/renderers/`，retrieved 2026-05-28 | 不适用 | 中 | 生态背景，不作为实现事实 |\n| \u003ca id=\"EVD-042\"\u003e\u003c/a\u003eEVD-042 | CrewAI 文档把 A2UI 描述为 A2A extension，valid messages 会包装为 `application/json+a2ui` DataPart，并由 client 注入 catalog/instructions 和跟踪 surface state。 | 集成方文档 | `https://docs.crewai.com/en/learn/a2ui`，retrieved 2026-05-28 | 部分 | 中 | 与本地 A2A parts/converter 机制相符，未运行 CrewAI |\n| \u003ca id=\"EVD-043\"\u003e\u003c/a\u003eEVD-043 | CopilotKit 文档称 A2UI 是 Google 牵头的 declarative Generative UI specification，并区分 dynamic schema 与 fixed schema 两种实践路径。 | 集成方文档 | `https://docs.copilotkit.ai/google-adk/generative-ui/a2ui`，retrieved 2026-05-28 | 部分 | 中 | 作为生态/集成背景 |\n\n## 证据完整性说明\n\n- “已源码验证”表示该结论至少被源码、规范、测试或官方文档中的一种固定文件证据支持。\n- 关于生产采纳优先级的建议属于工程推断，已尽量绑定到 catalog、validator、capabilities、data model 等源码证据。\n- 本轮已补充官网、GitHub 和集成方网络检索；GitHub issue/PR/discussion 未逐条 triage，因此具体社区痛点仍不在本轮结论范围内。\n"},{"file":"research-review.md","label":"调研审查","content":"# Research Review\n\n## 完成度检查\n\n| 项目 | 状态 | 说明 |\n|---|---|---|\n| 固定源码版本 | 完成 | `main @ e05dd9699dea21ba832059acb680f71022dd5a77` |\n| 生成源码清单 | 完成 | `references/source-inventory.json`，1968 files indexed |\n| 官方文档阅读 | 完成 | README、introduction、concepts、reference renderers |\n| 规范阅读 | 完成 | v0.9 protocol、server_to_client schema、common_types、Basic Catalog、evolution guide |\n| Renderer 源码阅读 | 完成 | React v0.9、web_core message/state/rendering/catalog |\n| SDK 源码阅读 | 完成 | Python parser、schema manager、validator、ADK toolset、A2A converters |\n| 测试/样例验证 | 完成 | React shell sample、web_core tests、React tests、conformance README |\n| 外部网络研究 | 完成 | 已补充官网、GitHub、Roadmap、renderer/client setup、生态 renderer、CrewAI/CopilotKit 集成文档检索 |\n| 架构可视化 | 完成 | `visual/architecture.html` |\n| Dashboard | 完成 | `dashboard.html`、`docs.html` |\n| 调研校验 | 完成 | `node docs/tech-research-guide/scripts/validate-research.js research/A2UI` 返回 OK |\n\n## 质量门\n\n| 检查项 | 结果 |\n|---|---|\n| 关键结论是否有证据编号 | 通过 |\n| 证据是否指向源码/规范/测试/官方文档 | 通过 |\n| 是否区分事实与推断 | 基本通过，生产建议已标记为工程推断 |\n| 是否避免依赖本机绝对路径 | 通过 |\n| 是否覆盖核心流程 | 通过，覆盖生成、transport、message processing、binding、action、SDK/A2A |\n| 是否覆盖扩展点 | 通过，覆盖 catalog、renderer、function、capabilities、transport、validator |\n| 是否覆盖必要外部资料 | 通过；网络检索已补齐，流程偏差记录见下 |\n| 是否覆盖风险 | 通过 |\n\n## 主要残余风险\n\n- 未运行 A2UI 仓库自身完整测试套件；测试证据来自源码阅读。\n- GitHub issue/PR/discussion 只做入口和数量级确认，未逐条 triage。\n- 不能代表 2026-05-28 之后的最新状态。\n- v0.10 未展开源码级调研，只确认其在线/本地文档仍处于 draft 或 under development 口径。\n- Flutter/Lit/Angular renderer 未逐行分析，本轮以 React + web_core 为主。\n\n## 流程审查记录\n\n- 初版外部资料调研误用了 skill 中“本地仓库已有官方文档可跳过”的例外，没有按项目级调研指南执行网络检索；现已补做官网、GitHub、Roadmap、renderer/client setup、生态 renderer、CrewAI/CopilotKit 检索。\n- 初版 `external-research.md` 曾写入流程修正说明；这类内容与正式资料文档无关，已移至本审查文档。正式外部资料文档只保留检索策略、资料列表、关键观点、源码验证状态、口径差异和资料边界。\n\n## 复核建议\n\n后续若要进入采用决策，建议补充：\n\n1. 运行 A2UI 自身测试矩阵，至少覆盖 `renderers/web_core`、`renderers/react`、`agent_sdks/python`。\n2. 用一个业务 custom catalog 做 PoC，验证 SDK prompt、validator、renderer component implementation 的闭环。\n3. 对 A2A 实际 server/client 做 end-to-end streaming 测试。\n4. 单独追踪 v0.10 与 v0.9 的 schema/API 差异。\n"}];
+    window.RESEARCH_VISUALS = [{"file":"visual/architecture.html","label":"可视化架构图","desc":"专门的交互式架构图查看器"},{"file":"visual/evidence.html","label":"证据查看器","desc":"从架构图回到证据解释"}];
+    const docs = new Map(window.RESEARCH_DOCS.map(doc => [doc.file, doc]));
+    const visuals = new Map(window.RESEARCH_VISUALS.map(doc => [doc.file, doc]));
+    const params = new URLSearchParams(window.location.search);
+    const requestedVisual = params.get('view') || '';
+    const requested = params.get('doc') || (requestedVisual ? '' : 'README.md');
+    const current = requestedVisual
+      ? visuals.get(requestedVisual)
+      : (docs.get(requested) || window.RESEARCH_DOCS[0]);
+    const container = document.getElementById('doc');
+    document.querySelectorAll('[data-nav-file]').forEach(link => {
+      if (current && link.dataset.navFile === current.file) link.classList.add('active');
+    });
+    if (!current) {
+      container.innerHTML = '<p class="missing">没有可展示的文档。</p>';
+    } else if (requestedVisual) {
+      container.outerHTML = renderVisual(current);
+    } else {
+      container.innerHTML = renderDocument(current);
+      renderMermaidBlocks();
+      if (window.location.hash) {
+        const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+        if (target) target.scrollIntoView();
+      }
+    }
+
+    function renderVisual(doc) {
+      const hash = window.location.hash || '';
+      return '<section class="visual-doc"><div class="visual-head"><h1>' + escapeHtml(doc.label) + '</h1><p>' + escapeHtml(doc.desc || '') + '</p></div><iframe class="visual-frame" src="./' + escapeAttr(doc.file + hash) + '" title="' + escapeAttr(doc.label) + '"></iframe></section>';
+    }
+
+    function renderDocument(doc) {
+      if (doc.file.endsWith('.json')) {
+        return '<h1>' + escapeHtml(doc.label) + '</h1><pre><code>' + escapeHtml(formatJson(doc.content)) + '</code></pre>';
+      }
+      return renderMarkdown(doc.content);
+    }
+
+    function renderMarkdown(markdown) {
+      const lines = markdown.replace(/\r\n/g, '\n').split('\n');
+      const out = [];
+      let i = 0;
+      while (i < lines.length) {
+        const line = lines[i];
+        if (!line.trim()) { i += 1; continue; }
+        const fence = line.match(/^\s*\x60\x60\x60(.*)$/);
+        if (fence) {
+          const lang = fence[1].trim().split(/\s+/)[0].toLowerCase();
+          const code = [];
+          i += 1;
+          while (i < lines.length && !/^\s*\x60\x60\x60/.test(lines[i])) {
+            code.push(lines[i]);
+            i += 1;
+          }
+          i += 1;
+          if (lang === 'mermaid') {
+            out.push(renderMermaidSource(code.join('\n')));
+            continue;
+          }
+          out.push('<pre><code>' + escapeHtml(code.join('\n')) + '</code></pre>');
+          continue;
+        }
+        const heading = line.match(/^(#{1,4})\s+(.+)$/);
+        if (heading) {
+          const level = heading[1].length;
+          const text = stripAnchorText(heading[2]);
+          const id = heading[2].match(/<a\s+id="([^"]+)"><\/a>/) || [];
+          const headingId = id[1] || slug(text);
+          out.push('<h' + level + ' id="' + escapeAttr(headingId) + '">' + inline(heading[2]) + '</h' + level + '>');
+          i += 1;
+          continue;
+        }
+        if (isTableStart(lines, i)) {
+          const tableLines = [];
+          while (i < lines.length && /^\s*\|/.test(lines[i])) {
+            tableLines.push(lines[i]);
+            i += 1;
+          }
+          out.push(renderTable(tableLines));
+          continue;
+        }
+        if (/^\s*[-*]\s+/.test(line)) {
+          const items = [];
+          while (i < lines.length && /^\s*[-*]\s+/.test(lines[i])) {
+            items.push(lines[i].replace(/^\s*[-*]\s+/, ''));
+            i += 1;
+          }
+          out.push('<ul>' + items.map(item => '<li>' + inline(item) + '</li>').join('') + '</ul>');
+          continue;
+        }
+        if (/^\s*\d+\.\s+/.test(line)) {
+          const items = [];
+          while (i < lines.length && /^\s*\d+\.\s+/.test(lines[i])) {
+            items.push(lines[i].replace(/^\s*\d+\.\s+/, ''));
+            i += 1;
+          }
+          out.push('<ol>' + items.map(item => '<li>' + inline(item) + '</li>').join('') + '</ol>');
+          continue;
+        }
+        if (/^>\s?/.test(line)) {
+          const quote = [];
+          while (i < lines.length && /^>\s?/.test(lines[i])) {
+            quote.push(lines[i].replace(/^>\s?/, ''));
+            i += 1;
+          }
+          out.push('<blockquote>' + quote.map(inline).join('<br>') + '</blockquote>');
+          continue;
+        }
+        const para = [];
+        while (i < lines.length && lines[i].trim() && !isBlockStart(lines, i)) {
+          para.push(lines[i]);
+          i += 1;
+        }
+        out.push('<p>' + inline(para.join(' ')) + '</p>');
+      }
+      return out.join('\n');
+    }
+
+    function isBlockStart(lines, idx) {
+      const line = lines[idx] || '';
+      return /^\s*\x60\x60\x60/.test(line) || /^(#{1,4})\s+/.test(line) || /^\s*\|/.test(line) || /^\s*[-*]\s+/.test(line) || /^\s*\d+\.\s+/.test(line) || /^>\s?/.test(line);
+    }
+
+    function isTableStart(lines, idx) {
+      return /^\s*\|/.test(lines[idx] || '') && idx + 1 < lines.length && /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(lines[idx + 1] || '');
+    }
+
+    function renderTable(tableLines) {
+      const rows = tableLines.filter((_, idx) => idx !== 1).map(splitRow);
+      if (!rows.length) return '';
+      const header = rows[0].map(cell => '<th>' + inline(cell) + '</th>').join('');
+      const body = rows.slice(1).map(row => '<tr>' + row.map(cell => '<td>' + inline(cell) + '</td>').join('') + '</tr>').join('');
+      return '<table><thead><tr>' + header + '</tr></thead><tbody>' + body + '</tbody></table>';
+    }
+
+    function splitRow(row) {
+      let value = row.trim();
+      if (value.startsWith('|')) value = value.slice(1);
+      if (value.endsWith('|')) value = value.slice(0, -1);
+      return value.split('|').map(cell => cell.trim());
+    }
+
+    function renderMermaidSource(source) {
+      return '<div class="mermaid-block" data-mermaid-pending="true"><div class="mermaid-status">正在渲染 Mermaid 图形...</div><pre class="mermaid-source"><code>' + escapeHtml(source) + '</code></pre></div>';
+    }
+
+    var mermaidLoadPromise;
+    function ensureMermaid() {
+      if (window.mermaid) return Promise.resolve(window.mermaid);
+      if (mermaidLoadPromise) return mermaidLoadPromise;
+      mermaidLoadPromise = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js';
+        script.onload = () => window.mermaid ? resolve(window.mermaid) : reject(new Error('Mermaid 脚本未初始化'));
+        script.onerror = () => reject(new Error('Mermaid 脚本加载失败'));
+        document.head.appendChild(script);
+      });
+      return mermaidLoadPromise;
+    }
+
+    async function renderMermaidBlocks() {
+      const blocks = [...document.querySelectorAll('.mermaid-block[data-mermaid-pending="true"]')];
+      if (!blocks.length) return;
+      let mermaidApi;
+      try {
+        mermaidApi = await ensureMermaid();
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'strict',
+          theme: 'default',
+          flowchart: { htmlLabels: true, curve: 'basis' }
+        });
+      } catch (error) {
+        blocks.forEach(block => markMermaidFailed(block, error));
+        return;
+      }
+      for (let index = 0; index < blocks.length; index += 1) {
+        const block = blocks[index];
+        const source = block.querySelector('.mermaid-source')?.textContent || '';
+        try {
+          const id = 'mermaid-' + Date.now() + '-' + index;
+          const result = await mermaidApi.render(id, source);
+          block.innerHTML = '<div class="mermaid-rendered">' + result.svg + '</div>';
+          block.classList.add('rendered');
+          block.removeAttribute('data-mermaid-pending');
+        } catch (error) {
+          markMermaidFailed(block, error);
+        }
+      }
+    }
+
+    function markMermaidFailed(block, error) {
+      block.classList.add('failed');
+      block.removeAttribute('data-mermaid-pending');
+      const status = block.querySelector('.mermaid-status');
+      if (status) status.textContent = 'Mermaid 图形渲染失败，下面保留原始源码：' + (error && error.message ? error.message : '未知错误');
+    }
+
+    function inline(value) {
+      let html = escapeHtml(value);
+      html = html.replace(/&lt;a\s+id=&quot;([^&]+)&quot;&gt;&lt;\/a&gt;/g, '<a id="$1"></a>');
+      html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, href) => '<a href="' + escapeAttr(rewriteHref(href)) + '">' + escapeHtml(text) + '</a>');
+      html = html.replace(/\x60([^\x60]+)\x60/g, '<code>$1</code>');
+      html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      return html;
+    }
+
+    function rewriteHref(href) {
+      if (/^(https?:|mailto:|#)/.test(href)) return href;
+      const hashIndex = href.indexOf('#');
+      const hash = hashIndex >= 0 ? href.slice(hashIndex) : '';
+      const clean = hashIndex >= 0 ? href.slice(0, hashIndex) : href;
+      if (docs.has(clean)) return './docs.html?doc=' + encodeURIComponent(clean) + hash;
+      return href;
+    }
+
+    function stripAnchorText(value) {
+      return value.replace(/<a\s+id="[^"]+"><\/a>/g, '').replace(new RegExp('[#\\x60*_]', 'g'), '').trim();
+    }
+
+    function slug(value) {
+      return stripAnchorText(value).toLowerCase().replace(/\s+/g, '-').replace(/[^\w\u4e00-\u9fa5-]/g, '');
+    }
+
+    function formatJson(value) {
+      try { return JSON.stringify(JSON.parse(value), null, 2); } catch { return value; }
+    }
+
+    function escapeHtml(value) {
+      return String(value || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value).replace(new RegExp('\\x60', 'g'), '&#96;');
+    }
+  </script>
+</body>
+</html>

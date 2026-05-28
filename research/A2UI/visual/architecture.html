@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>可视化架构图</title>
+<style>
+:root {
+  --bg: #f7f8fb;
+  --panel: #ffffff;
+  --text: #172033;
+  --muted: #637083;
+  --line: #c9d1df;
+  --entry: #2563eb;
+  --core: #059669;
+  --runtime: #7c3aed;
+  --extension: #d97706;
+  --state: #db2777;
+  --infra: #0891b2;
+  --policy: #e11d48;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif; }
+button { font: inherit; }
+a { color: #bfdbfe; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.tabs { position: fixed; top: 0; left: 0; right: 0; z-index: 20; min-height: 50px; display: flex; gap: 6px; align-items: center; padding: 8px 16px; background: rgba(255,255,255,.94); border-bottom: 1px solid #e3e8f2; }
+.tab { border: 1px solid transparent; background: transparent; color: var(--muted); padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+.tab:hover { color: var(--text); background: #eef2f8; }
+.tab.active { color: var(--entry); background: #e8f0ff; border-color: #bfd4ff; }
+.title { position: fixed; left: 18px; bottom: 16px; z-index: 15; max-width: 620px; padding: 10px 12px; background: rgba(255,255,255,.9); border: 1px solid #e3e8f2; border-radius: 8px; box-shadow: 0 8px 22px rgba(19,33,68,.08); }
+.title h1 { margin: 0 0 4px; font-size: 15px; }
+.title p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.canvas-wrap { position: fixed; top: 50px; left: 0; right: 0; bottom: 0; overflow: hidden; cursor: grab; }
+.canvas-wrap.dragging { cursor: grabbing; }
+.canvas { position: absolute; transform-origin: 0 0; }
+svg { display: block; }
+.node { cursor: pointer; }
+.node rect { stroke-width: 1.4; filter: drop-shadow(0 5px 10px rgba(19,33,68,.08)); }
+.node text { pointer-events: none; }
+.label { font-size: 13px; font-weight: 700; fill: var(--text); }
+.sub { font-size: 10px; fill: var(--muted); }
+.conn { fill: none; stroke: var(--line); stroke-width: 1.5; marker-end: url(#arrow); }
+.request-flow, .sync-call, .model-stream { stroke-width: 1.8; }
+.async-event, .registration, .dependency { stroke-dasharray: 7 5; }
+.read-write, .context-build { stroke-dasharray: 3 5; }
+.permission-check { stroke: var(--policy); stroke-dasharray: 6 4; }
+.result-return { stroke-dasharray: 2 6; }
+.flow { animation: dash 1.4s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -24; } }
+.edge-label { font-size: 10px; fill: #475569; paint-order: stroke; stroke: #f7f8fb; stroke-width: 4px; }
+.legend { position: fixed; right: 16px; bottom: 16px; z-index: 15; display: grid; grid-template-columns: repeat(2, max-content); gap: 7px 12px; max-width: 560px; padding: 9px 12px; background: rgba(255,255,255,.9); border: 1px solid #e3e8f2; border-radius: 8px; box-shadow: 0 8px 22px rgba(19,33,68,.08); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); font-size: 11px; }
+.dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.line-demo { width: 18px; height: 0; border-top: 2px solid var(--line); display: inline-block; }
+.line-demo.dashed { border-top-style: dashed; }
+.line-demo.dotted { border-top-style: dotted; }
+.line-demo.policy { border-top-color: var(--policy); border-top-style: dashed; }
+.zoom { position: fixed; right: 16px; top: 66px; z-index: 15; display: grid; gap: 6px; }
+.zoom button { width: 34px; height: 34px; border: 1px solid #d8e0ec; border-radius: 7px; background: var(--panel); color: var(--muted); cursor: pointer; }
+.zoom button:hover { color: var(--text); background: #eef2f8; }
+.tooltip { position: fixed; z-index: 40; max-width: 390px; opacity: 0; pointer-events: none; padding: 10px 12px; background: #142033; color: #f8fafc; border-radius: 8px; font-size: 12px; line-height: 1.5; transition: opacity .12s; }
+.tooltip.show { opacity: 1; }
+.tooltip strong { display: block; margin-bottom: 4px; }
+.tooltip .muted { color: #cbd5e1; }
+.detail { position: fixed; right: 16px; top: 118px; z-index: 35; display: none; width: 380px; max-height: calc(100vh - 176px); overflow: auto; padding: 14px 16px; background: rgba(255,255,255,.97); border: 1px solid #dbe3ef; border-radius: 10px; box-shadow: 0 14px 32px rgba(19,33,68,.14); }
+.detail.show { display: block; }
+.detail h2 { margin: 0 28px 8px 0; font-size: 15px; line-height: 1.35; }
+.detail p { margin: 0 0 10px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.detail .meta { padding-top: 9px; border-top: 1px solid #e3e8f2; color: #475569; font-size: 12px; line-height: 1.65; word-break: break-word; }
+.detail a { color: var(--entry); cursor: pointer; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.detail a:hover { color: #1d4ed8; }
+.detail .hint { color: #7b8798; font-size: 11px; }
+.detail-close { position: absolute; top: 8px; right: 8px; width: 26px; height: 26px; border: 1px solid #d8e0ec; border-radius: 6px; background: #fff; color: var(--muted); cursor: pointer; }
+.detail-close:hover { color: var(--text); background: #eef2f8; }
+@media (max-width: 760px) {
+  .detail { left: 12px; right: 12px; top: auto; bottom: 76px; width: auto; max-height: 45vh; }
+}
+</style>
+</head>
+<body>
+<script>
+if (window.top === window.self && !new URLSearchParams(window.location.search).has('standalone')) {
+  window.location.replace('../docs.html?view=visual/architecture.html' + window.location.hash);
+}
+</script>
+<div class="tabs" id="tabs"></div>
+<div class="zoom">
+  <button onclick="zoom(1.15)">+</button>
+  <button onclick="zoom(.87)">-</button>
+  <button onclick="fit()">fit</button>
+</div>
+<div class="canvas-wrap" id="wrap"><div class="canvas" id="canvas"></div></div>
+<div class="title">
+  <h1 id="docTitle">可视化架构图</h1>
+  <p id="docDescription">本图是 <code>architecture.md</code> 的视觉补充。点击节点可查看职责、状态和来源路径。</p>
+</div>
+<div class="legend" id="legend"></div>
+<div class="tooltip" id="tooltip"></div>
+<div class="detail" id="detail">
+  <button class="detail-close" id="detailClose" type="button" aria-label="关闭详情">×</button>
+  <div id="detailContent"></div>
+</div>
+
+<script src="./architecture.visual.js"></script>
+<script>
+const palette = {
+  entry: getCSS('--entry'),
+  core: getCSS('--core'),
+  runtime: getCSS('--runtime'),
+  extension: getCSS('--extension'),
+  state: getCSS('--state'),
+  infra: getCSS('--infra'),
+  policy: getCSS('--policy')
+};
+
+const fallbackViews = [
+  {
+    id: 'missing-data',
+    label: '缺少图数据',
+    purpose: '提示 architecture.visual.js 未加载或未定义 ARCHITECTURE_VIEWS。',
+    description: '请在同级目录创建 architecture.visual.js，并定义 window.ARCHITECTURE_VIEWS。',
+    width: 900,
+    height: 420,
+    nodes: [
+      { id: 'source', type: 'state', role: 'source-doc', x: 90, y: 165, w: 230, h: 72, title: 'Markdown 知识源', sub: 'architecture / evidence / source-map', tip: '先从 Markdown 提取结论和证据。', status: 'pending' },
+      { id: 'data', type: 'core', role: 'visual-data', x: 390, y: 165, w: 220, h: 72, title: 'architecture.visual.js', sub: 'views / nodes / edges', tip: '图数据应放在 JS 数据文件里。', status: 'pending' },
+      { id: 'html', type: 'runtime', role: 'renderer', x: 680, y: 165, w: 160, h: 72, title: 'HTML 渲染器', sub: 'render only', tip: 'HTML 只负责可视化呈现。', status: 'pending' }
+    ],
+    edges: [
+      { from: 'source', to: 'data', label: '提取图数据', kind: 'context-build' },
+      { from: 'data', to: 'html', label: '渲染', kind: 'dependency' }
+    ]
+  }
+];
+
+const meta = window.ARCHITECTURE_META || {};
+const views = Array.isArray(window.ARCHITECTURE_VIEWS) && window.ARCHITECTURE_VIEWS.length ? window.ARCHITECTURE_VIEWS : fallbackViews;
+
+let current = 0;
+let scale = 1, panX = 0, panY = 0, dragging = false, lastX = 0, lastY = 0;
+const tabs = document.getElementById('tabs');
+const wrap = document.getElementById('wrap');
+const canvas = document.getElementById('canvas');
+const tooltip = document.getElementById('tooltip');
+const detail = document.getElementById('detail');
+const detailContent = document.getElementById('detailContent');
+document.getElementById('detailClose').onclick = () => detail.classList.remove('show');
+
+document.title = meta.title || document.title;
+document.getElementById('docTitle').textContent = meta.title || '可视化架构图';
+if (meta.description) document.getElementById('docDescription').innerHTML = `${escapeHtml(meta.description)} 点击节点可查看职责、状态和来源路径。`;
+
+views.forEach((v, i) => {
+  const b = document.createElement('button');
+  b.className = 'tab' + (i === 0 ? ' active' : '');
+  b.textContent = v.label;
+  b.onclick = () => render(i);
+  tabs.appendChild(b);
+});
+renderLegend();
+render(0);
+
+function getCSS(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function render(i) {
+  current = i;
+  document.querySelectorAll('.tab').forEach((t, idx) => t.classList.toggle('active', idx === i));
+  const v = views[i];
+  canvas.innerHTML = v.layers ? layerSVG(v) : graphSVG(v);
+  detail.classList.remove('show');
+  const viewText = v.description || v.desc || v.purpose || '';
+  document.getElementById('docDescription').innerHTML = `${escapeHtml(viewText)} 点击节点可查看职责、状态和来源路径。`;
+  bindTooltips();
+  fit();
+}
+function graphSVG(v) {
+  const view = layoutGraph(v);
+  const nodes = Object.fromEntries(view.nodes.map(n => [n.id, n]));
+  let s = svgOpen(view);
+  view.edges.forEach(e => {
+    if (!nodes[e.from] || !nodes[e.to]) return;
+    const a = center(nodes[e.from]), b = center(nodes[e.to]);
+    const cls = ['conn', edgeClass(e.kind), edgeAnim(e.kind)].filter(Boolean).join(' ');
+    s += `<path class="${cls}" data-kind="${attr(e.kind)}" data-ev="${attr(e.ev)}" data-doc="${attr(e.doc)}" d="M${a.x},${a.y} L${b.x},${b.y}"/>`;
+    if (e.label) s += `<text x="${(a.x+b.x)/2}" y="${(a.y+b.y)/2-8}" text-anchor="middle" class="edge-label">${escapeHtml(e.label)}</text>`;
+  });
+  view.nodes.forEach(n => s += nodeSVG(n));
+  return s + '</svg>';
+}
+function layoutGraph(v) {
+  const rawNodes = Array.isArray(v.nodes) ? v.nodes : [];
+  const needsLayout = !finite(v.width) || !finite(v.height) || rawNodes.some(n => !finite(n.x) || !finite(n.y) || !finite(n.w) || !finite(n.h));
+  if (!needsLayout) return v;
+  const nodeW = 218, nodeH = 82, gapX = 82, gapY = 96, marginX = 72, marginY = 72;
+  const count = Math.max(rawNodes.length, 1);
+  const cols = count <= 4 ? count : (count === 9 ? 3 : 4);
+  const rows = Math.ceil(count / cols);
+  const nodes = rawNodes.map((n, i) => {
+    const w = finite(n.w) ? Number(n.w) : nodeW;
+    const h = finite(n.h) ? Number(n.h) : nodeH;
+    const x = finite(n.x) ? Number(n.x) : marginX + (i % cols) * (nodeW + gapX);
+    const y = finite(n.y) ? Number(n.y) : marginY + Math.floor(i / cols) * (nodeH + gapY);
+    return { ...n, x, y, w, h };
+  });
+  return {
+    ...v,
+    width: finite(v.width) ? Number(v.width) : marginX * 2 + cols * nodeW + (cols - 1) * gapX,
+    height: finite(v.height) ? Number(v.height) : marginY * 2 + rows * nodeH + (rows - 1) * gapY,
+    nodes
+  };
+}
+function layerSVG(v) {
+  let s = svgOpen(v);
+  v.layers.forEach((l, i) => {
+    const y = 70 + i * 120, c = palette[l.type] || palette.core;
+    s += `<g class="node" data-title="${attr(l.title)}" data-role="${attr(l.role)}" data-tip="${attr(l.tip || l.sub)}" data-status="${attr(l.status)}" data-doc="${attr(l.doc)}" data-ev="${attr(l.ev)}">`;
+    s += `<rect x="90" y="${y}" width="920" height="88" rx="8" fill="${c}14" stroke="${c}"/>`;
+    s += `<text x="130" y="${y+32}" class="label" fill="${c}">${escapeHtml(l.title)}</text>`;
+    s += `<text x="130" y="${y+55}" class="sub">${escapeHtml(l.sub)}</text>`;
+    (l.items || []).forEach((it, k) => {
+      const x = 400 + k * 160;
+      s += `<rect x="${x}" y="${y+27}" width="130" height="30" rx="6" fill="#fff" stroke="${c}55"/>`;
+      s += `<text x="${x+65}" y="${y+47}" text-anchor="middle" class="sub">${escapeHtml(it)}</text>`;
+    });
+    s += '</g>';
+    if (i < v.layers.length - 1) s += `<path class="conn dependency flow" d="M550,${y+88} L550,${y+120}"/>`;
+  });
+  return s + '</svg>';
+}
+function svgOpen(v) {
+  return `<svg width="${v.width}" height="${v.height}" viewBox="0 0 ${v.width} ${v.height}" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8" fill="none" stroke="context-stroke" stroke-width="1.5"/></marker></defs>
+  <rect width="${v.width}" height="${v.height}" fill="transparent"/>`;
+}
+function nodeSVG(n) {
+  const c = palette[n.type] || palette.core;
+  return `<g class="node" data-title="${attr(n.title)}" data-role="${attr(n.role)}" data-tip="${attr(n.tip)}" data-status="${attr(n.status)}" data-doc="${attr(n.doc)}" data-ev="${attr(n.ev)}">
+    <rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="8" fill="${c}12" stroke="${c}"/>
+    <text x="${n.x + n.w/2}" y="${n.y + 29}" text-anchor="middle" class="label">${escapeHtml(n.title)}</text>
+    <text x="${n.x + n.w/2}" y="${n.y + 51}" text-anchor="middle" class="sub">${escapeHtml(n.sub)}</text>
+  </g>`;
+}
+function edgeClass(kind) { return kind || 'dependency'; }
+function edgeAnim(kind) { return ['request-flow', 'model-stream'].includes(kind) ? 'flow' : ''; }
+function center(n) { return { x: n.x + n.w / 2, y: n.y + n.h / 2 }; }
+function finite(value) { return Number.isFinite(Number(value)); }
+function bindTooltips() {
+  document.querySelectorAll('.node').forEach(el => {
+    el.onmouseenter = () => {
+      tooltip.innerHTML = nodeTooltipHtml(el);
+      tooltip.classList.add('show');
+    };
+    el.onclick = e => {
+      e.preventDefault();
+      e.stopPropagation();
+      detailContent.innerHTML = nodeDetailHtml(el);
+      detail.classList.add('show');
+    };
+    el.onmousemove = e => {
+      tooltip.style.left = Math.min(e.clientX + 12, window.innerWidth - 410) + 'px';
+      tooltip.style.top = Math.min(e.clientY + 12, window.innerHeight - 180) + 'px';
+    };
+    el.onmouseleave = () => tooltip.classList.remove('show');
+  });
+}
+function nodeTooltipHtml(el) {
+  return `<strong>${escapeHtml(el.dataset.title)}</strong><div>${escapeHtml(el.dataset.tip || '')}</div><div class="muted">点击查看完整来源</div>`;
+}
+function nodeDetailHtml(el) {
+  const source = el.dataset.doc ? `<div>来源路径：<a href="${attr(sourceHref(el.dataset.doc))}" target="_top">${escapeHtml(el.dataset.doc)}</a></div><div class="hint">点击打开证据解释页，避免浏览器直接打开 Markdown 原文。</div>` : '';
+  return `<h2>${escapeHtml(el.dataset.title)}</h2>
+    <p>${escapeHtml(el.dataset.tip || '')}</p>
+    <div class="meta">
+      <div>角色：${escapeHtml(el.dataset.role || '')}</div>
+      <div>状态：${escapeHtml(el.dataset.status || '')}</div>
+      ${source}
+    </div>`;
+}
+function sourceHref(doc) {
+  const value = String(doc || '');
+  const hash = value.includes('#') ? value.slice(value.indexOf('#') + 1) : '';
+  return hash ? `../docs.html?view=visual/evidence.html#${encodeURIComponent(hash)}` : '../docs.html?view=visual/evidence.html';
+}
+function renderLegend() {
+  const legend = document.getElementById('legend');
+  const nodeLabels = [['entry','入口'], ['core','核心'], ['runtime','运行时'], ['extension','扩展'], ['state','状态'], ['infra','基础设施'], ['policy','权限/策略']];
+  const edgeLabels = [['line-demo','主流程/调用'], ['line-demo dashed','依赖/注册/事件'], ['line-demo dotted','状态/上下文'], ['line-demo policy','权限检查']];
+  legend.innerHTML = nodeLabels.map(([k,l]) => `<span><i class="dot" style="background:${palette[k]}"></i>${l}</span>`).join('') + edgeLabels.map(([k,l]) => `<span><i class="${k}"></i>${l}</span>`).join('');
+}
+function fit() {
+  const svg = canvas.querySelector('svg');
+  if (!svg) return;
+  const w = Number(svg.getAttribute('width')), h = Number(svg.getAttribute('height'));
+  scale = Math.min((wrap.clientWidth - 120) / w, (wrap.clientHeight - 120) / h, 1.2);
+  panX = (wrap.clientWidth - w * scale) / 2;
+  panY = (wrap.clientHeight - h * scale) / 2;
+  apply();
+}
+function zoom(factor) { scale = Math.max(.25, Math.min(2.5, scale * factor)); apply(); }
+function apply() { canvas.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`; }
+function escapeHtml(value) { return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch])); }
+function attr(value) { return escapeHtml(value); }
+wrap.addEventListener('mousedown', e => { dragging = true; wrap.classList.add('dragging'); lastX = e.clientX; lastY = e.clientY; });
+window.addEventListener('mousemove', e => { if (!dragging) return; panX += e.clientX - lastX; panY += e.clientY - lastY; lastX = e.clientX; lastY = e.clientY; apply(); });
+window.addEventListener('mouseup', () => { dragging = false; wrap.classList.remove('dragging'); });
+wrap.addEventListener('wheel', e => { e.preventDefault(); zoom(e.deltaY < 0 ? 1.08 : .92); }, { passive: false });
+</script>
+</body>
+</html>

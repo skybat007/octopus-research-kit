@@ -1,0 +1,1160 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-28T08:08:39.897Z",
+  "researchName": "hermes-agent",
+  "researchDir": "research/hermes-agent",
+  "status": "ok",
+  "projectRoot": "hermes-agent",
+  "remote": "https://github.com/NousResearch/hermes-agent.git",
+  "branch": "main",
+  "commit": "cae7537359c0ba8fceedc0a6423a4d9f30972100",
+  "versionHint": "branch main, commit cae7537359c0ba8fceedc0a6423a4d9f30972100",
+  "fileCount": 3636,
+  "languages": [
+    {
+      "language": "Python",
+      "count": 1818
+    },
+    {
+      "language": "Markdown",
+      "count": 1029
+    },
+    {
+      "language": "TypeScript",
+      "count": 324
+    },
+    {
+      "language": "YAML",
+      "count": 109
+    },
+    {
+      "language": "TypeScript React",
+      "count": 88
+    },
+    {
+      "language": "JSON",
+      "count": 46
+    },
+    {
+      "language": "XSD",
+      "count": 39
+    },
+    {
+      "language": "PNG",
+      "count": 24
+    },
+    {
+      "language": "Shell",
+      "count": 20
+    },
+    {
+      "language": "Other",
+      "count": 16
+    },
+    {
+      "language": "JavaScript",
+      "count": 14
+    },
+    {
+      "language": "STY",
+      "count": 13
+    },
+    {
+      "language": "NIX",
+      "count": 12
+    },
+    {
+      "language": "TEX",
+      "count": 11
+    },
+    {
+      "language": "WOFF2",
+      "count": 10
+    },
+    {
+      "language": "CSS",
+      "count": 6
+    },
+    {
+      "language": "HTML",
+      "count": 6
+    },
+    {
+      "language": "BIB",
+      "count": 5
+    },
+    {
+      "language": "BST",
+      "count": 5
+    },
+    {
+      "language": "PDF",
+      "count": 5
+    },
+    {
+      "language": "TXT",
+      "count": 5
+    },
+    {
+      "language": "SVG",
+      "count": 4
+    },
+    {
+      "language": "TMPL",
+      "count": 3
+    },
+    {
+      "language": "XML",
+      "count": 3
+    },
+    {
+      "language": "EXAMPLE",
+      "count": 2
+    },
+    {
+      "language": "ICO",
+      "count": 2
+    },
+    {
+      "language": "LOCK",
+      "count": 2
+    },
+    {
+      "language": "PS1",
+      "count": 2
+    },
+    {
+      "language": "CMD",
+      "count": 1
+    },
+    {
+      "language": "DB",
+      "count": 1
+    },
+    {
+      "language": "dockerfile",
+      "count": 1
+    },
+    {
+      "language": "IN",
+      "count": 1
+    },
+    {
+      "language": "INI",
+      "count": 1
+    },
+    {
+      "language": "JPG",
+      "count": 1
+    },
+    {
+      "language": "JSONL",
+      "count": 1
+    },
+    {
+      "language": "makefile",
+      "count": 1
+    },
+    {
+      "language": "MDX",
+      "count": 1
+    },
+    {
+      "language": "Ruby",
+      "count": 1
+    },
+    {
+      "language": "SERVICE",
+      "count": 1
+    },
+    {
+      "language": "TOML",
+      "count": 1
+    },
+    {
+      "language": "WAV",
+      "count": 1
+    }
+  ],
+  "topLevel": [
+    {
+      "path": "tests",
+      "fileCount": 1200,
+      "samples": [
+        "tests/__init__.py",
+        "tests/acp/__init__.py",
+        "tests/acp/test_approval_isolation.py",
+        "tests/acp/test_auth.py",
+        "tests/acp/test_edit_approval.py",
+        "tests/acp/test_entry.py",
+        "tests/acp/test_events.py",
+        "tests/acp/test_mcp_e2e.py"
+      ]
+    },
+    {
+      "path": "skills",
+      "fileCount": 570,
+      "samples": [
+        "skills/apple/DESCRIPTION.md",
+        "skills/apple/apple-notes/SKILL.md",
+        "skills/apple/apple-reminders/SKILL.md",
+        "skills/apple/findmy/SKILL.md",
+        "skills/apple/imessage/SKILL.md",
+        "skills/apple/macos-computer-use/SKILL.md",
+        "skills/autonomous-ai-agents/DESCRIPTION.md",
+        "skills/autonomous-ai-agents/claude-code/SKILL.md"
+      ]
+    },
+    {
+      "path": "website",
+      "fileCount": 389,
+      "samples": [
+        "website/.gitignore",
+        "website/README.md",
+        "website/docs/developer-guide/_category_.json",
+        "website/docs/developer-guide/acp-internals.md",
+        "website/docs/developer-guide/adding-platform-adapters.md",
+        "website/docs/developer-guide/adding-providers.md",
+        "website/docs/developer-guide/adding-tools.md",
+        "website/docs/developer-guide/agent-loop.md"
+      ]
+    },
+    {
+      "path": "ui-tui",
+      "fileCount": 335,
+      "samples": [
+        "ui-tui/.gitignore",
+        "ui-tui/.prettierrc",
+        "ui-tui/README.md",
+        "ui-tui/eslint.config.mjs",
+        "ui-tui/package-lock.json",
+        "ui-tui/package.json",
+        "ui-tui/packages/hermes-ink/ambient.d.ts",
+        "ui-tui/packages/hermes-ink/index.d.ts"
+      ]
+    },
+    {
+      "path": "optional-skills",
+      "fileCount": 285,
+      "samples": [
+        "optional-skills/DESCRIPTION.md",
+        "optional-skills/autonomous-ai-agents/DESCRIPTION.md",
+        "optional-skills/autonomous-ai-agents/blackbox/SKILL.md",
+        "optional-skills/autonomous-ai-agents/honcho/SKILL.md",
+        "optional-skills/blockchain/evm/SKILL.md",
+        "optional-skills/blockchain/evm/scripts/evm_client.py",
+        "optional-skills/blockchain/hyperliquid/SKILL.md",
+        "optional-skills/blockchain/hyperliquid/scripts/hyperliquid_client.py"
+      ]
+    },
+    {
+      "path": "plugins",
+      "fileCount": 213,
+      "samples": [
+        "plugins/__init__.py",
+        "plugins/browser/browser_use/__init__.py",
+        "plugins/browser/browser_use/plugin.yaml",
+        "plugins/browser/browser_use/provider.py",
+        "plugins/browser/browserbase/__init__.py",
+        "plugins/browser/browserbase/plugin.yaml",
+        "plugins/browser/browserbase/provider.py",
+        "plugins/browser/firecrawl/__init__.py"
+      ]
+    },
+    {
+      "path": "web",
+      "fileCount": 107,
+      "samples": [
+        "web/README.md",
+        "web/eslint.config.js",
+        "web/index.html",
+        "web/package-lock.json",
+        "web/package.json",
+        "web/public/favicon.ico",
+        "web/public/fonts-terminal/JetBrainsMono-Bold.woff2",
+        "web/public/fonts-terminal/JetBrainsMono-Italic.woff2"
+      ]
+    },
+    {
+      "path": "agent",
+      "fileCount": 102,
+      "samples": [
+        "agent/__init__.py",
+        "agent/account_usage.py",
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "agent/anthropic_adapter.py",
+        "agent/async_utils.py",
+        "agent/auxiliary_client.py",
+        "agent/azure_identity_adapter.py"
+      ]
+    },
+    {
+      "path": "hermes_cli",
+      "fileCount": 97,
+      "samples": [
+        "hermes_cli/__init__.py",
+        "hermes_cli/_parser.py",
+        "hermes_cli/_subprocess_compat.py",
+        "hermes_cli/auth.py",
+        "hermes_cli/auth_commands.py",
+        "hermes_cli/azure_detect.py",
+        "hermes_cli/backup.py",
+        "hermes_cli/banner.py"
+      ]
+    },
+    {
+      "path": "tools",
+      "fileCount": 97,
+      "samples": [
+        "tools/__init__.py",
+        "tools/ansi_strip.py",
+        "tools/approval.py",
+        "tools/binary_extensions.py",
+        "tools/browser_camofox.py",
+        "tools/browser_camofox_state.py",
+        "tools/browser_cdp_tool.py",
+        "tools/browser_dialog_tool.py"
+      ]
+    },
+    {
+      "path": "gateway",
+      "fileCount": 63,
+      "samples": [
+        "gateway/__init__.py",
+        "gateway/assets/telegram-botfather-threads-settings.jpg",
+        "gateway/builtin_hooks/__init__.py",
+        "gateway/channel_directory.py",
+        "gateway/config.py",
+        "gateway/delivery.py",
+        "gateway/display_config.py",
+        "gateway/hooks.py"
+      ]
+    },
+    {
+      "path": ".",
+      "fileCount": 55,
+      "samples": [
+        ".dockerignore",
+        ".env.example",
+        ".envrc",
+        ".gitattributes",
+        ".gitignore",
+        ".mailmap",
+        "AGENTS.md",
+        "CONTRIBUTING.md"
+      ]
+    },
+    {
+      "path": "scripts",
+      "fileCount": 27,
+      "samples": [
+        "scripts/benchmark_browser_eval.py",
+        "scripts/build_model_catalog.py",
+        "scripts/build_skills_index.py",
+        "scripts/check-windows-footguns.py",
+        "scripts/contributor_audit.py",
+        "scripts/discord-voice-doctor.py",
+        "scripts/hermes-gateway",
+        "scripts/install.cmd"
+      ]
+    },
+    {
+      "path": ".github",
+      "fileCount": 22,
+      "samples": [
+        ".github/ISSUE_TEMPLATE/bug_report.yml",
+        ".github/ISSUE_TEMPLATE/config.yml",
+        ".github/ISSUE_TEMPLATE/feature_request.yml",
+        ".github/ISSUE_TEMPLATE/setup_help.yml",
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/actions/hermes-smoke-test/action.yml",
+        ".github/actions/nix-setup/action.yml",
+        ".github/dependabot.yml"
+      ]
+    },
+    {
+      "path": "locales",
+      "fileCount": 16,
+      "samples": [
+        "locales/af.yaml",
+        "locales/de.yaml",
+        "locales/en.yaml",
+        "locales/es.yaml",
+        "locales/fr.yaml",
+        "locales/ga.yaml",
+        "locales/hu.yaml",
+        "locales/it.yaml"
+      ]
+    },
+    {
+      "path": "nix",
+      "fileCount": 11,
+      "samples": [
+        "nix/checks.nix",
+        "nix/configMergeScript.nix",
+        "nix/devShell.nix",
+        "nix/hermes-agent.nix",
+        "nix/lib.nix",
+        "nix/nixosModules.nix",
+        "nix/overlays.nix",
+        "nix/packages.nix"
+      ]
+    },
+    {
+      "path": "acp_adapter",
+      "fileCount": 10,
+      "samples": [
+        "acp_adapter/__init__.py",
+        "acp_adapter/__main__.py",
+        "acp_adapter/auth.py",
+        "acp_adapter/edit_approval.py",
+        "acp_adapter/entry.py",
+        "acp_adapter/events.py",
+        "acp_adapter/permissions.py",
+        "acp_adapter/server.py"
+      ]
+    },
+    {
+      "path": "tui_gateway",
+      "fileCount": 8,
+      "samples": [
+        "tui_gateway/__init__.py",
+        "tui_gateway/entry.py",
+        "tui_gateway/event_publisher.py",
+        "tui_gateway/render.py",
+        "tui_gateway/server.py",
+        "tui_gateway/slash_worker.py",
+        "tui_gateway/transport.py",
+        "tui_gateway/ws.py"
+      ]
+    },
+    {
+      "path": ".idea",
+      "fileCount": 4,
+      "samples": [
+        ".idea/easyapi-cache/.api.local.storage.v2.db",
+        ".idea/google-java-format.xml",
+        ".idea/vcs.xml",
+        ".idea/workspace.xml"
+      ]
+    },
+    {
+      "path": "datagen-config-examples",
+      "fileCount": 4,
+      "samples": [
+        "datagen-config-examples/example_browser_tasks.jsonl",
+        "datagen-config-examples/run_browser_tasks.sh",
+        "datagen-config-examples/trajectory_compression.yaml",
+        "datagen-config-examples/web_research.yaml"
+      ]
+    },
+    {
+      "path": "cron",
+      "fileCount": 3,
+      "samples": [
+        "cron/__init__.py",
+        "cron/jobs.py",
+        "cron/scheduler.py"
+      ]
+    },
+    {
+      "path": "docs",
+      "fileCount": 3,
+      "samples": [
+        "docs/hermes-kanban-v1-spec.pdf",
+        "docs/plans/2026-05-02-telegram-dm-user-managed-multisession-topics.md",
+        "docs/plans/2026-05-15-acp-zed-edit-approval-diffs.md"
+      ]
+    },
+    {
+      "path": "providers",
+      "fileCount": 3,
+      "samples": [
+        "providers/README.md",
+        "providers/__init__.py",
+        "providers/base.py"
+      ]
+    },
+    {
+      "path": ".plans",
+      "fileCount": 2,
+      "samples": [
+        ".plans/openai-api-server.md",
+        ".plans/streaming-support.md"
+      ]
+    },
+    {
+      "path": "acp_registry",
+      "fileCount": 2,
+      "samples": [
+        "acp_registry/agent.json",
+        "acp_registry/icon.svg"
+      ]
+    },
+    {
+      "path": "docker",
+      "fileCount": 2,
+      "samples": [
+        "docker/SOUL.md",
+        "docker/entrypoint.sh"
+      ]
+    },
+    {
+      "path": "packaging",
+      "fileCount": 2,
+      "samples": [
+        "packaging/homebrew/README.md",
+        "packaging/homebrew/hermes-agent.rb"
+      ]
+    },
+    {
+      "path": "assets",
+      "fileCount": 1,
+      "samples": [
+        "assets/banner.png"
+      ]
+    },
+    {
+      "path": "infographic",
+      "fileCount": 1,
+      "samples": [
+        "infographic/kanban-db-corruption-defense/infographic.png"
+      ]
+    },
+    {
+      "path": "plans",
+      "fileCount": 1,
+      "samples": [
+        "plans/gemini-oauth-provider.md"
+      ]
+    },
+    {
+      "path": "tinker-atropos",
+      "fileCount": 1,
+      "samples": [
+        "tinker-atropos/"
+      ]
+    }
+  ],
+  "buildFiles": [
+    ".github/ISSUE_TEMPLATE/setup_help.yml",
+    ".idea/google-java-format.xml",
+    "Dockerfile",
+    "agent/google_code_assist.py",
+    "agent/google_oauth.py",
+    "hermes_cli/goals.py",
+    "hermes_cli/setup.py",
+    "nix/packages.nix",
+    "optional-skills/creative/hyperframes/scripts/setup.sh",
+    "optional-skills/creative/kanban-video-orchestrator/assets/setup.sh.tmpl",
+    "optional-skills/finance/dcf-model/requirements.txt",
+    "package-lock.json",
+    "package.json",
+    "pyproject.toml",
+    "scripts/setup_open_webui.sh",
+    "scripts/whatsapp-bridge/package-lock.json",
+    "scripts/whatsapp-bridge/package.json",
+    "setup-hermes.sh",
+    "setup.py",
+    "skills/creative/manim-video/scripts/setup.sh",
+    "skills/creative/p5js/scripts/setup.sh",
+    "skills/creative/touchdesigner-mcp/scripts/setup.sh",
+    "skills/productivity/google-workspace/scripts/google_api.py",
+    "skills/productivity/google-workspace/scripts/setup.py",
+    "skills/red-teaming/godmode/scripts/godmode_race.py",
+    "skills/research/research-paper-writing/templates/neurips2025/Makefile",
+    "ui-tui/package-lock.json",
+    "ui-tui/package.json",
+    "ui-tui/packages/hermes-ink/package-lock.json",
+    "ui-tui/packages/hermes-ink/package.json",
+    "ui-tui/src/app/setupHandoff.ts",
+    "ui-tui/src/app/slash/commands/setup.ts",
+    "ui-tui/src/content/setup.ts",
+    "ui-tui/vitest.config.ts",
+    "web/package-lock.json",
+    "web/package.json",
+    "web/vite.config.ts",
+    "website/docs/guides/google-gemini.md",
+    "website/docs/user-guide/features/goals.md",
+    "website/docs/user-guide/messaging/google_chat.md",
+    "website/docs/user-guide/skills/godmode.md",
+    "website/docs/user-guide/skills/google-workspace.md",
+    "website/package-lock.json",
+    "website/package.json"
+  ],
+  "packageFiles": [
+    "hermes_cli/setup.py",
+    "optional-skills/finance/dcf-model/requirements.txt",
+    "package.json",
+    "pyproject.toml",
+    "scripts/whatsapp-bridge/package.json",
+    "setup.py",
+    "skills/productivity/google-workspace/scripts/setup.py",
+    "ui-tui/package.json",
+    "ui-tui/packages/hermes-ink/package.json",
+    "web/package.json",
+    "website/package.json"
+  ],
+  "entryCandidates": [
+    "acp_adapter/server.py",
+    "agent/lsp/cli.py",
+    "cli.py",
+    "hermes_cli/main.py",
+    "hermes_cli/proxy/cli.py",
+    "hermes_cli/proxy/server.py",
+    "optional-skills/devops/cli/SKILL.md",
+    "optional-skills/devops/cli/references/app-discovery.md",
+    "optional-skills/devops/cli/references/authentication.md",
+    "optional-skills/devops/cli/references/cli-reference.md",
+    "optional-skills/devops/cli/references/running-apps.md",
+    "plugins/google_meet/cli.py",
+    "plugins/google_meet/node/cli.py",
+    "plugins/google_meet/node/server.py",
+    "plugins/hermes-achievements/dashboard/dist/index.js",
+    "plugins/kanban/dashboard/dist/index.js",
+    "plugins/memory/honcho/cli.py",
+    "plugins/teams_pipeline/cli.py",
+    "tests/cli/__init__.py",
+    "tests/cli/test_branch_command.py",
+    "tests/cli/test_busy_input_mode_command.py",
+    "tests/cli/test_cli_approval_ui.py",
+    "tests/cli/test_cli_background_status_indicator.py",
+    "tests/cli/test_cli_background_tui_refresh.py",
+    "tests/cli/test_cli_bracketed_paste_sanitizer.py",
+    "tests/cli/test_cli_browser_connect.py",
+    "tests/cli/test_cli_context_warning.py",
+    "tests/cli/test_cli_copy_command.py",
+    "tests/cli/test_cli_extension_hooks.py",
+    "tests/cli/test_cli_external_editor.py",
+    "tests/cli/test_cli_file_drop.py",
+    "tests/cli/test_cli_force_redraw.py",
+    "tests/cli/test_cli_goal_interrupt.py",
+    "tests/cli/test_cli_image_command.py",
+    "tests/cli/test_cli_init.py",
+    "tests/cli/test_cli_insights_command.py",
+    "tests/cli/test_cli_interrupt_subagent.py",
+    "tests/cli/test_cli_light_mode.py",
+    "tests/cli/test_cli_loading_indicator.py",
+    "tests/cli/test_cli_markdown_rendering.py",
+    "tests/cli/test_cli_mcp_config_watch.py",
+    "tests/cli/test_cli_new_session.py",
+    "tests/cli/test_cli_prefix_matching.py",
+    "tests/cli/test_cli_preloaded_skills.py",
+    "tests/cli/test_cli_provider_resolution.py",
+    "tests/cli/test_cli_reload_skills.py",
+    "tests/cli/test_cli_retry.py",
+    "tests/cli/test_cli_save_config_value.py",
+    "tests/cli/test_cli_secret_capture.py",
+    "tests/cli/test_cli_shift_enter_newline.py",
+    "tests/cli/test_cli_shutdown_memory_messages.py",
+    "tests/cli/test_cli_skin_integration.py",
+    "tests/cli/test_cli_status_bar.py",
+    "tests/cli/test_cli_status_command.py",
+    "tests/cli/test_cli_steer_busy_path.py",
+    "tests/cli/test_cli_terminal_response_sanitizer.py",
+    "tests/cli/test_cli_tools_command.py",
+    "tests/cli/test_cli_user_message_preview.py",
+    "tests/cli/test_compress_focus.py",
+    "tests/cli/test_cprint_bg_thread.py",
+    "tests/cli/test_ctrl_enter_newline.py",
+    "tests/cli/test_cwd_env_respect.py",
+    "tests/cli/test_destructive_slash_confirm.py",
+    "tests/cli/test_exit_delete_session.py",
+    "tests/cli/test_fast_command.py",
+    "tests/cli/test_gquota_command.py",
+    "tests/cli/test_manual_compress.py",
+    "tests/cli/test_personality_none.py",
+    "tests/cli/test_prompt_text_input_thread_safety.py",
+    "tests/cli/test_quick_commands.py",
+    "tests/cli/test_reasoning_command.py",
+    "tests/cli/test_resume_display.py",
+    "tests/cli/test_save_conversation_location.py",
+    "tests/cli/test_session_boundary_hooks.py",
+    "tests/cli/test_stream_delta_think_tag.py",
+    "tests/cli/test_surrogate_sanitization.py",
+    "tests/cli/test_tool_progress_scrollback.py",
+    "tests/cli/test_update_command.py",
+    "tests/cli/test_worktree.py",
+    "tests/cli/test_worktree_security.py",
+    "tui_gateway/server.py",
+    "ui-tui/packages/hermes-ink/index.d.ts",
+    "ui-tui/packages/hermes-ink/index.js",
+    "ui-tui/packages/hermes-ink/package.json",
+    "ui-tui/packages/hermes-ink/src/native-ts/yoga-layout/index.ts",
+    "ui-tui/packages/hermes-ink/text-input.d.ts",
+    "ui-tui/packages/hermes-ink/text-input.js",
+    "ui-tui/src/entry.tsx",
+    "web/src/i18n/index.ts",
+    "web/src/main.tsx",
+    "web/src/plugins/index.ts",
+    "web/src/themes/index.ts",
+    "website/src/components/UserStoriesCollage/index.tsx",
+    "website/src/pages/skills/index.tsx"
+  ],
+  "testFiles": [
+    "plugins/hermes-achievements/tests/test_achievement_engine.py",
+    "scripts/tests/test-install-ps1-stage-protocol.ps1",
+    "scripts/whatsapp-bridge/allowlist.test.mjs",
+    "skills/creative/comfyui/tests/README.md",
+    "skills/creative/comfyui/tests/conftest.py",
+    "skills/creative/comfyui/tests/pytest.ini",
+    "skills/creative/comfyui/tests/test_check_deps.py",
+    "skills/creative/comfyui/tests/test_cloud_integration.py",
+    "skills/creative/comfyui/tests/test_common.py",
+    "skills/creative/comfyui/tests/test_extract_schema.py",
+    "skills/creative/comfyui/tests/test_run_workflow.py",
+    "tests/__init__.py",
+    "tests/acp/__init__.py",
+    "tests/acp/test_approval_isolation.py",
+    "tests/acp/test_auth.py",
+    "tests/acp/test_edit_approval.py",
+    "tests/acp/test_entry.py",
+    "tests/acp/test_events.py",
+    "tests/acp/test_mcp_e2e.py",
+    "tests/acp/test_permissions.py",
+    "tests/acp/test_ping_suppression.py",
+    "tests/acp/test_registry_manifest.py",
+    "tests/acp/test_server.py",
+    "tests/acp/test_session.py",
+    "tests/acp/test_tools.py",
+    "tests/acp_adapter/test_acp_commands.py",
+    "tests/acp_adapter/test_acp_images.py",
+    "tests/acp_adapter/test_detect_provider_entra.py",
+    "tests/agent/__init__.py",
+    "tests/agent/lsp/__init__.py",
+    "tests/agent/lsp/_mock_lsp_server.py",
+    "tests/agent/lsp/test_backend_gate.py",
+    "tests/agent/lsp/test_broken_set.py",
+    "tests/agent/lsp/test_client_e2e.py",
+    "tests/agent/lsp/test_delta_key.py",
+    "tests/agent/lsp/test_diagnostics_field.py",
+    "tests/agent/lsp/test_eventlog.py",
+    "tests/agent/lsp/test_install_and_lint_fixes.py",
+    "tests/agent/lsp/test_lifecycle.py",
+    "tests/agent/lsp/test_protocol.py",
+    "tests/agent/lsp/test_reporter.py",
+    "tests/agent/lsp/test_service.py",
+    "tests/agent/lsp/test_shell_linter_lsp_skip.py",
+    "tests/agent/lsp/test_workspace.py",
+    "tests/agent/test_anthropic_adapter.py",
+    "tests/agent/test_anthropic_keychain.py",
+    "tests/agent/test_anthropic_oauth_pkce.py",
+    "tests/agent/test_arcee_trinity_overrides.py",
+    "tests/agent/test_async_utils.py",
+    "tests/agent/test_auxiliary_client.py",
+    "tests/agent/test_auxiliary_client_anthropic_custom.py",
+    "tests/agent/test_auxiliary_client_azure_foundry.py",
+    "tests/agent/test_auxiliary_config_bridge.py",
+    "tests/agent/test_auxiliary_main_first.py",
+    "tests/agent/test_auxiliary_named_custom_providers.py",
+    "tests/agent/test_auxiliary_transport_autodetect.py",
+    "tests/agent/test_azure_identity_adapter.py",
+    "tests/agent/test_bedrock_1m_context.py",
+    "tests/agent/test_bedrock_adapter.py",
+    "tests/agent/test_bedrock_integration.py",
+    "tests/agent/test_codex_cloudflare_headers.py",
+    "tests/agent/test_compress_focus.py",
+    "tests/agent/test_compressor_historical_media.py",
+    "tests/agent/test_compressor_image_tokens.py",
+    "tests/agent/test_context_compressor.py",
+    "tests/agent/test_context_compressor_summary_continuity.py",
+    "tests/agent/test_context_engine.py",
+    "tests/agent/test_context_references.py",
+    "tests/agent/test_copilot_acp_client.py",
+    "tests/agent/test_copilot_acp_deprecation.py",
+    "tests/agent/test_credential_pool.py",
+    "tests/agent/test_credential_pool_routing.py",
+    "tests/agent/test_crossloop_client_cache.py",
+    "tests/agent/test_curator.py",
+    "tests/agent/test_curator_activity.py",
+    "tests/agent/test_curator_backup.py",
+    "tests/agent/test_curator_classification.py",
+    "tests/agent/test_curator_reports.py",
+    "tests/agent/test_custom_provider_extra_body.py",
+    "tests/agent/test_deepseek_anthropic_thinking.py",
+    "tests/agent/test_direct_provider_url_detection.py",
+    "tests/agent/test_display.py",
+    "tests/agent/test_display_emoji.py",
+    "tests/agent/test_error_classifier.py",
+    "tests/agent/test_external_skills.py",
+    "tests/agent/test_external_skills_dirs_cache.py",
+    "tests/agent/test_file_safety_credentials.py",
+    "tests/agent/test_gemini_cloudcode.py",
+    "tests/agent/test_gemini_fast_fallback.py",
+    "tests/agent/test_gemini_free_tier_gate.py",
+    "tests/agent/test_gemini_native_adapter.py",
+    "tests/agent/test_gemini_schema.py",
+    "tests/agent/test_i18n.py",
+    "tests/agent/test_image_gen_registry.py",
+    "tests/agent/test_image_routing.py",
+    "tests/agent/test_insights.py",
+    "tests/agent/test_kimi_coding_anthropic_thinking.py",
+    "tests/agent/test_local_stream_timeout.py",
+    "tests/agent/test_markdown_tables.py",
+    "tests/agent/test_memory_provider.py",
+    "tests/agent/test_memory_session_switch.py",
+    "tests/agent/test_memory_user_id.py",
+    "tests/agent/test_minimax_auxiliary_url.py",
+    "tests/agent/test_minimax_provider.py",
+    "tests/agent/test_model_metadata.py",
+    "tests/agent/test_model_metadata_local_ctx.py",
+    "tests/agent/test_model_metadata_ssl.py",
+    "tests/agent/test_models_dev.py",
+    "tests/agent/test_moonshot_schema.py",
+    "tests/agent/test_nous_rate_guard.py",
+    "tests/agent/test_onboarding.py",
+    "tests/agent/test_openrouter_response_cache.py",
+    "tests/agent/test_plugin_llm.py",
+    "tests/agent/test_portal_tags.py",
+    "tests/agent/test_prompt_builder.py",
+    "tests/agent/test_prompt_caching.py",
+    "tests/agent/test_proxy_and_url_validation.py",
+    "tests/agent/test_rate_limit_tracker.py",
+    "tests/agent/test_redact.py",
+    "tests/agent/test_shell_hooks.py"
+  ],
+  "exampleFiles": [
+    "optional-skills/creative/concept-diagrams/examples/apartment-floor-plan-conversion.md",
+    "optional-skills/creative/concept-diagrams/examples/automated-password-reset-flow.md",
+    "optional-skills/creative/concept-diagrams/examples/autonomous-llm-research-agent-flow.md",
+    "optional-skills/creative/concept-diagrams/examples/banana-journey-tree-to-smoothie.md",
+    "optional-skills/creative/concept-diagrams/examples/commercial-aircraft-structure.md",
+    "optional-skills/creative/concept-diagrams/examples/cpu-ooo-microarchitecture.md",
+    "optional-skills/creative/concept-diagrams/examples/electricity-grid-flow.md",
+    "optional-skills/creative/concept-diagrams/examples/feature-film-production-pipeline.md",
+    "optional-skills/creative/concept-diagrams/examples/hospital-emergency-department-flow.md",
+    "optional-skills/creative/concept-diagrams/examples/ml-benchmark-grouped-bar-chart.md",
+    "optional-skills/creative/concept-diagrams/examples/place-order-uml-sequence.md",
+    "optional-skills/creative/concept-diagrams/examples/smart-city-infrastructure.md",
+    "optional-skills/creative/concept-diagrams/examples/smartphone-layer-anatomy.md",
+    "optional-skills/creative/concept-diagrams/examples/sn2-reaction-mechanism.md",
+    "optional-skills/creative/concept-diagrams/examples/wind-turbine-structure.md"
+  ],
+  "docsFiles": [
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".plans/openai-api-server.md",
+    ".plans/streaming-support.md",
+    "AGENTS.md",
+    "CONTRIBUTING.md",
+    "README.md",
+    "README.zh-CN.md",
+    "RELEASE_v0.10.0.md",
+    "RELEASE_v0.11.0.md",
+    "RELEASE_v0.12.0.md",
+    "RELEASE_v0.13.0.md",
+    "RELEASE_v0.14.0.md",
+    "RELEASE_v0.2.0.md",
+    "RELEASE_v0.3.0.md",
+    "RELEASE_v0.4.0.md",
+    "RELEASE_v0.5.0.md",
+    "RELEASE_v0.6.0.md",
+    "RELEASE_v0.7.0.md",
+    "RELEASE_v0.8.0.md",
+    "RELEASE_v0.9.0.md",
+    "SECURITY.md",
+    "docker/SOUL.md",
+    "docs/hermes-kanban-v1-spec.pdf",
+    "docs/plans/2026-05-02-telegram-dm-user-managed-multisession-topics.md",
+    "docs/plans/2026-05-15-acp-zed-edit-approval-diffs.md",
+    "gateway/platforms/ADDING_A_PLATFORM.md",
+    "hermes-already-has-routines.md",
+    "optional-skills/DESCRIPTION.md",
+    "optional-skills/autonomous-ai-agents/DESCRIPTION.md",
+    "optional-skills/autonomous-ai-agents/blackbox/SKILL.md",
+    "optional-skills/autonomous-ai-agents/honcho/SKILL.md",
+    "optional-skills/blockchain/evm/SKILL.md",
+    "optional-skills/blockchain/hyperliquid/SKILL.md",
+    "optional-skills/blockchain/solana/SKILL.md",
+    "optional-skills/communication/DESCRIPTION.md",
+    "optional-skills/communication/one-three-one-rule/SKILL.md",
+    "optional-skills/creative/blender-mcp/SKILL.md",
+    "optional-skills/creative/concept-diagrams/SKILL.md",
+    "optional-skills/creative/concept-diagrams/examples/apartment-floor-plan-conversion.md",
+    "optional-skills/creative/concept-diagrams/examples/automated-password-reset-flow.md",
+    "optional-skills/creative/concept-diagrams/examples/autonomous-llm-research-agent-flow.md",
+    "optional-skills/creative/concept-diagrams/examples/banana-journey-tree-to-smoothie.md",
+    "optional-skills/creative/concept-diagrams/examples/commercial-aircraft-structure.md",
+    "optional-skills/creative/concept-diagrams/examples/cpu-ooo-microarchitecture.md",
+    "optional-skills/creative/concept-diagrams/examples/electricity-grid-flow.md",
+    "optional-skills/creative/concept-diagrams/examples/feature-film-production-pipeline.md",
+    "optional-skills/creative/concept-diagrams/examples/hospital-emergency-department-flow.md",
+    "optional-skills/creative/concept-diagrams/examples/ml-benchmark-grouped-bar-chart.md",
+    "optional-skills/creative/concept-diagrams/examples/place-order-uml-sequence.md",
+    "optional-skills/creative/concept-diagrams/examples/smart-city-infrastructure.md",
+    "optional-skills/creative/concept-diagrams/examples/smartphone-layer-anatomy.md",
+    "optional-skills/creative/concept-diagrams/examples/sn2-reaction-mechanism.md",
+    "optional-skills/creative/concept-diagrams/examples/wind-turbine-structure.md",
+    "optional-skills/creative/concept-diagrams/references/dashboard-patterns.md",
+    "optional-skills/creative/concept-diagrams/references/infrastructure-patterns.md",
+    "optional-skills/creative/concept-diagrams/references/physical-shape-cookbook.md",
+    "optional-skills/creative/hyperframes/SKILL.md",
+    "optional-skills/creative/hyperframes/references/cli.md",
+    "optional-skills/creative/hyperframes/references/composition.md",
+    "optional-skills/creative/hyperframes/references/features.md",
+    "optional-skills/creative/hyperframes/references/gsap.md",
+    "optional-skills/creative/hyperframes/references/troubleshooting.md",
+    "optional-skills/creative/hyperframes/references/website-to-video.md",
+    "optional-skills/creative/kanban-video-orchestrator/SKILL.md",
+    "optional-skills/creative/kanban-video-orchestrator/references/examples.md",
+    "optional-skills/creative/kanban-video-orchestrator/references/intake.md",
+    "optional-skills/creative/kanban-video-orchestrator/references/kanban-setup.md",
+    "optional-skills/creative/kanban-video-orchestrator/references/monitoring.md",
+    "optional-skills/creative/kanban-video-orchestrator/references/role-archetypes.md",
+    "optional-skills/creative/kanban-video-orchestrator/references/tool-matrix.md",
+    "optional-skills/creative/meme-generation/EXAMPLES.md",
+    "optional-skills/creative/meme-generation/SKILL.md",
+    "optional-skills/devops/cli/SKILL.md",
+    "optional-skills/devops/cli/references/app-discovery.md",
+    "optional-skills/devops/cli/references/authentication.md",
+    "optional-skills/devops/cli/references/cli-reference.md",
+    "optional-skills/devops/cli/references/running-apps.md",
+    "optional-skills/devops/docker-management/SKILL.md",
+    "optional-skills/devops/pinggy-tunnel/SKILL.md",
+    "optional-skills/devops/watchers/SKILL.md",
+    "optional-skills/dogfood/DESCRIPTION.md",
+    "optional-skills/dogfood/adversarial-ux-test/SKILL.md",
+    "optional-skills/email/agentmail/SKILL.md",
+    "optional-skills/finance/3-statement-model/SKILL.md",
+    "optional-skills/finance/3-statement-model/references/formatting.md",
+    "optional-skills/finance/3-statement-model/references/formulas.md",
+    "optional-skills/finance/3-statement-model/references/sec-filings.md",
+    "optional-skills/finance/comps-analysis/SKILL.md",
+    "optional-skills/finance/dcf-model/SKILL.md",
+    "optional-skills/finance/dcf-model/TROUBLESHOOTING.md",
+    "optional-skills/finance/excel-author/SKILL.md",
+    "optional-skills/finance/lbo-model/SKILL.md",
+    "optional-skills/finance/merger-model/SKILL.md",
+    "optional-skills/finance/pptx-author/SKILL.md",
+    "optional-skills/finance/stocks/SKILL.md",
+    "optional-skills/health/DESCRIPTION.md",
+    "optional-skills/health/fitness-nutrition/SKILL.md",
+    "optional-skills/health/fitness-nutrition/references/FORMULAS.md",
+    "optional-skills/health/neuroskill-bci/SKILL.md",
+    "optional-skills/health/neuroskill-bci/references/api.md",
+    "optional-skills/health/neuroskill-bci/references/metrics.md",
+    "optional-skills/health/neuroskill-bci/references/protocols.md",
+    "optional-skills/mcp/DESCRIPTION.md",
+    "optional-skills/mcp/fastmcp/SKILL.md",
+    "optional-skills/mcp/fastmcp/references/fastmcp-cli.md",
+    "optional-skills/mcp/mcporter/SKILL.md",
+    "optional-skills/migration/DESCRIPTION.md",
+    "optional-skills/migration/openclaw-migration/SKILL.md",
+    "optional-skills/mlops/accelerate/SKILL.md",
+    "optional-skills/mlops/accelerate/references/custom-plugins.md",
+    "optional-skills/mlops/accelerate/references/megatron-integration.md",
+    "optional-skills/mlops/accelerate/references/performance.md",
+    "optional-skills/mlops/chroma/SKILL.md",
+    "optional-skills/mlops/chroma/references/integration.md",
+    "optional-skills/mlops/clip/SKILL.md",
+    "optional-skills/mlops/clip/references/applications.md",
+    "optional-skills/mlops/faiss/SKILL.md",
+    "optional-skills/mlops/faiss/references/index_types.md",
+    "optional-skills/mlops/flash-attention/SKILL.md",
+    "optional-skills/mlops/flash-attention/references/benchmarks.md"
+  ],
+  "configFiles": [
+    ".dockerignore",
+    ".env.example",
+    ".envrc",
+    ".gitattributes",
+    ".github/ISSUE_TEMPLATE/bug_report.yml",
+    ".github/ISSUE_TEMPLATE/config.yml",
+    ".github/ISSUE_TEMPLATE/feature_request.yml",
+    ".github/ISSUE_TEMPLATE/setup_help.yml",
+    ".github/actions/hermes-smoke-test/action.yml",
+    ".github/actions/nix-setup/action.yml",
+    ".github/dependabot.yml",
+    ".github/workflows/contributor-check.yml",
+    ".github/workflows/deploy-site.yml",
+    ".github/workflows/docker-publish.yml",
+    ".github/workflows/docs-site-checks.yml",
+    ".github/workflows/history-check.yml",
+    ".github/workflows/lint.yml",
+    ".github/workflows/nix-lockfile-fix.yml",
+    ".github/workflows/nix.yml",
+    ".github/workflows/osv-scanner.yml",
+    ".github/workflows/skills-index.yml",
+    ".github/workflows/supply-chain-audit.yml",
+    ".github/workflows/tests.yml",
+    ".github/workflows/upload_to_pypi.yml",
+    ".github/workflows/uv-lockfile-check.yml",
+    ".gitignore",
+    ".idea/easyapi-cache/.api.local.storage.v2.db",
+    ".mailmap",
+    "datagen-config-examples/trajectory_compression.yaml",
+    "datagen-config-examples/web_research.yaml",
+    "docker-compose.yml",
+    "locales/af.yaml",
+    "locales/de.yaml",
+    "locales/en.yaml",
+    "locales/es.yaml",
+    "locales/fr.yaml",
+    "locales/ga.yaml",
+    "locales/hu.yaml",
+    "locales/it.yaml",
+    "locales/ja.yaml",
+    "locales/ko.yaml",
+    "locales/pt.yaml",
+    "locales/ru.yaml",
+    "locales/tr.yaml",
+    "locales/uk.yaml",
+    "locales/zh-hant.yaml",
+    "locales/zh.yaml",
+    "optional-skills/creative/meme-generation/scripts/.gitignore",
+    "plugins/browser/browser_use/plugin.yaml",
+    "plugins/browser/browserbase/plugin.yaml",
+    "plugins/browser/firecrawl/plugin.yaml",
+    "plugins/disk-cleanup/plugin.yaml",
+    "plugins/google_meet/plugin.yaml",
+    "plugins/image_gen/fal/plugin.yaml",
+    "plugins/image_gen/openai-codex/plugin.yaml",
+    "plugins/image_gen/openai/plugin.yaml",
+    "plugins/image_gen/xai/plugin.yaml",
+    "plugins/memory/byterover/plugin.yaml",
+    "plugins/memory/hindsight/plugin.yaml",
+    "plugins/memory/holographic/plugin.yaml",
+    "plugins/memory/honcho/plugin.yaml",
+    "plugins/memory/mem0/plugin.yaml",
+    "plugins/memory/openviking/plugin.yaml",
+    "plugins/memory/retaindb/plugin.yaml",
+    "plugins/memory/supermemory/plugin.yaml",
+    "plugins/model-providers/ai-gateway/plugin.yaml",
+    "plugins/model-providers/alibaba-coding-plan/plugin.yaml",
+    "plugins/model-providers/alibaba/plugin.yaml",
+    "plugins/model-providers/anthropic/plugin.yaml",
+    "plugins/model-providers/arcee/plugin.yaml",
+    "plugins/model-providers/azure-foundry/plugin.yaml",
+    "plugins/model-providers/bedrock/plugin.yaml",
+    "plugins/model-providers/copilot-acp/plugin.yaml",
+    "plugins/model-providers/copilot/plugin.yaml",
+    "plugins/model-providers/custom/plugin.yaml",
+    "plugins/model-providers/deepseek/plugin.yaml",
+    "plugins/model-providers/gemini/plugin.yaml",
+    "plugins/model-providers/gmi/plugin.yaml",
+    "plugins/model-providers/huggingface/plugin.yaml",
+    "plugins/model-providers/kilocode/plugin.yaml",
+    "plugins/model-providers/kimi-coding/plugin.yaml",
+    "plugins/model-providers/minimax/plugin.yaml",
+    "plugins/model-providers/nous/plugin.yaml",
+    "plugins/model-providers/novita/plugin.yaml",
+    "plugins/model-providers/nvidia/plugin.yaml",
+    "plugins/model-providers/ollama-cloud/plugin.yaml",
+    "plugins/model-providers/openai-codex/plugin.yaml",
+    "plugins/model-providers/opencode-zen/plugin.yaml",
+    "plugins/model-providers/openrouter/plugin.yaml",
+    "plugins/model-providers/qwen-oauth/plugin.yaml",
+    "plugins/model-providers/stepfun/plugin.yaml",
+    "plugins/model-providers/xai/plugin.yaml",
+    "plugins/model-providers/xiaomi/plugin.yaml",
+    "plugins/model-providers/zai/plugin.yaml",
+    "plugins/observability/langfuse/plugin.yaml",
+    "plugins/platforms/discord/plugin.yaml",
+    "plugins/platforms/google_chat/plugin.yaml",
+    "plugins/platforms/irc/plugin.yaml",
+    "plugins/platforms/line/plugin.yaml",
+    "plugins/platforms/simplex/plugin.yaml",
+    "plugins/platforms/teams/plugin.yaml",
+    "plugins/spotify/plugin.yaml",
+    "plugins/teams_pipeline/plugin.yaml",
+    "plugins/video_gen/fal/plugin.yaml",
+    "plugins/video_gen/xai/plugin.yaml",
+    "plugins/web/brave_free/plugin.yaml",
+    "plugins/web/ddgs/plugin.yaml",
+    "plugins/web/exa/plugin.yaml",
+    "plugins/web/firecrawl/plugin.yaml",
+    "plugins/web/parallel/plugin.yaml",
+    "plugins/web/searxng/plugin.yaml",
+    "plugins/web/tavily/plugin.yaml",
+    "plugins/web/xai/plugin.yaml",
+    "pyproject.toml",
+    "skills/creative/comfyui/tests/pytest.ini",
+    "skills/mlops/inference/obliteratus/templates/abliteration-config.yaml",
+    "skills/mlops/inference/obliteratus/templates/analysis-study.yaml",
+    "skills/mlops/inference/obliteratus/templates/batch-abliteration.yaml",
+    "tests/e2e/matrix_xsign_bootstrap/docker-compose.yml",
+    "ui-tui/.gitignore"
+  ],
+  "largeFiles": [
+    {
+      "path": "plugins/hermes-achievements/docs/assets/achievements-dashboard-hd.png",
+      "bytes": 1430925
+    },
+    {
+      "path": "plugins/hermes-achievements/docs/assets/achievements-tier-showcase-hd.png",
+      "bytes": 1411808
+    },
+    {
+      "path": "website/static/img/logo.png",
+      "bytes": 1319989
+    },
+    {
+      "path": "infographic/kanban-db-corruption-defense/infographic.png",
+      "bytes": 1201840
+    },
+    {
+      "path": "optional-skills/mlops/training/unsloth/references/llms-full.md",
+      "bytes": 1077225
+    },
+    {
+      "path": "gateway/run.py",
+      "bytes": 859456
+    },
+    {
+      "path": "website/static/img/kanban-tutorial/07-fleet-transcribes.png",
+      "bytes": 830148
+    },
+    {
+      "path": "website/static/img/kanban-tutorial/08-pipeline-auth.png",
+      "bytes": 823572
+    },
+    {
+      "path": "optional-skills/mlops/training/unsloth/references/llms-txt.md",
+      "bytes": 813089
+    },
+    {
+      "path": "uv.lock",
+      "bytes": 783642
+    },
+    {
+      "path": "website/static/img/kanban-tutorial/02-board-flat.png",
+      "bytes": 782295
+    },
+    {
+      "path": "website/static/img/kanban-tutorial/01-board-overview.png",
+      "bytes": 766059
+    },
+    {
+      "path": "website/package-lock.json",
+      "bytes": 751938
+    },
+    {
+      "path": "website/static/img/docs/dashboard-models/overview.png",
+      "bytes": 681292
+    },
+    {
+      "path": "cli.py",
+      "bytes": 669050
+    },
+    {
+      "path": "website/static/img/docs/dashboard-models/use-as-dropdown.png",
+      "bytes": 664643
+    },
+    {
+      "path": "website/static/img/docs/dashboard-models/auxiliary-expanded.png",
+      "bytes": 606838
+    },
+    {
+      "path": "tools/neutts_samples/jo.wav",
+      "bytes": 575990
+    },
+    {
+      "path": "hermes_cli/main.py",
+      "bytes": 530867
+    }
+  ],
+  "notes": [
+    "This inventory is a deterministic source-reading aid, not an architecture conclusion.",
+    "Use source-map.md and evidence-index.md for interpreted research conclusions."
+  ]
+}

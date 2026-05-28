@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>证据解释</title>
+<style>
+:root {
+  --bg: #f7f8fb;
+  --panel: #ffffff;
+  --text: #172033;
+  --muted: #637083;
+  --line: #dbe3ef;
+  --active: #2563eb;
+  --soft: #f4f7fb;
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif; }
+.header { position: sticky; top: 0; z-index: 10; padding: 18px 22px 14px; background: rgba(255,255,255,.95); border-bottom: 1px solid var(--line); }
+.header h1 { margin: 0 0 6px; font-size: 20px; }
+.header p { margin: 0 0 12px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.search { width: min(620px, 100%); height: 36px; padding: 0 12px; border: 1px solid #cfd8e6; border-radius: 7px; background: #fff; color: var(--text); }
+.layout { display: grid; grid-template-columns: minmax(300px, 450px) minmax(0, 1fr); gap: 18px; padding: 18px 22px; }
+.list { display: grid; gap: 8px; align-content: start; }
+.item { width: 100%; text-align: left; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--text); cursor: pointer; }
+.item:hover { border-color: #b7c7dc; background: #f9fbff; }
+.item.active { border-color: #8db3ff; background: #edf4ff; }
+.item strong { display: block; margin-bottom: 4px; font-size: 13px; }
+.item span { display: block; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.detail { min-height: 420px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); box-shadow: 0 10px 24px rgba(19,33,68,.06); }
+.detail h2 { margin: 0 0 12px; font-size: 18px; }
+.detail .summary { margin: 0 0 16px; color: #344054; line-height: 1.7; }
+.section { margin-top: 18px; padding-top: 16px; border-top: 1px solid #e8edf5; }
+.section h3 { margin: 0 0 10px; font-size: 14px; }
+.section p { margin: 0; color: #40516b; font-size: 13px; line-height: 1.75; }
+.cards { display: grid; gap: 10px; }
+.card { padding: 12px 13px; border: 1px solid var(--line); border-radius: 8px; background: var(--soft); }
+.card strong { display: block; margin-bottom: 5px; font-size: 13px; }
+.card p { margin: 0 0 8px; color: #40516b; font-size: 12px; line-height: 1.65; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; min-height: 22px; padding: 2px 7px; border: 1px solid #cfd8e6; border-radius: 999px; background: #fff; color: #53657d; font-size: 11px; }
+.source { display: grid; gap: 8px; padding: 12px 13px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.source-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; justify-content: space-between; }
+.source-title { font-weight: 700; font-size: 12px; color: #26364f; word-break: break-word; }
+.source-kind { color: var(--muted); font-size: 11px; }
+pre { margin: 0; max-height: 280px; overflow: auto; padding: 10px 12px; border-radius: 7px; background: #111827; color: #e5e7eb; font-size: 11px; line-height: 1.6; }
+.source-note { color: var(--muted); font-size: 11px; }
+.meta { display: grid; gap: 10px; }
+.row { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 10px; padding-top: 10px; border-top: 1px solid #eef2f7; font-size: 13px; line-height: 1.65; }
+.key { color: var(--muted); }
+.value { word-break: break-word; }
+.value code { font-family: "SF Mono", Consolas, monospace; color: #334155; }
+.empty { color: var(--muted); padding: 24px; border: 1px dashed #ccd6e5; border-radius: 8px; background: #fff; }
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .detail { min-height: 0; }
+}
+</style>
+</head>
+<body>
+<script>
+if (window.top === window.self && !new URLSearchParams(window.location.search).has('standalone')) {
+  window.location.replace('../docs.html?view=visual/evidence.html' + window.location.hash);
+}
+</script>
+<header class="header">
+  <h1 id="title">证据解释</h1>
+  <p id="description">从架构图回到证据解释：展示架构语境、证据结论、源码/文档片段和原始索引位置。</p>
+  <input id="search" class="search" type="search" placeholder="搜索证据编号、结论、位置或备注">
+</header>
+<main class="layout">
+  <section class="list" id="list"></section>
+  <section class="detail" id="detail"></section>
+</main>
+
+<script src="./evidence.visual.js"></script>
+<script>
+const meta = window.EVIDENCE_META || {};
+const items = Array.isArray(window.EVIDENCE_ITEMS) ? window.EVIDENCE_ITEMS : [];
+let filtered = items.slice();
+let selectedId = decodeURIComponent(location.hash.replace(/^#/, '')) || (items[0] && items[0].id);
+
+document.title = meta.title || document.title;
+document.getElementById('title').textContent = meta.title || '证据解释';
+if (meta.description) document.getElementById('description').textContent = meta.description;
+document.getElementById('search').addEventListener('input', e => {
+  const q = e.target.value.trim().toLowerCase();
+  filtered = items.filter(item => searchText(item).includes(q));
+  if (!filtered.some(item => item.id === selectedId)) selectedId = filtered[0] && filtered[0].id;
+  render();
+});
+window.addEventListener('hashchange', () => {
+  selectedId = decodeURIComponent(location.hash.replace(/^#/, '')) || selectedId;
+  render();
+});
+render();
+
+function render() {
+  renderList();
+  renderDetail(items.find(item => item.id === selectedId) || filtered[0]);
+}
+function renderList() {
+  const list = document.getElementById('list');
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty">没有匹配的证据。</div>';
+    return;
+  }
+  list.innerHTML = filtered.map(item => `<button class="item${item.id === selectedId ? ' active' : ''}" type="button" data-id="${attr(item.id)}"><strong>${escapeHtml(item.id)}</strong><span>${escapeHtml(item.conclusion || item.summary || '')}</span></button>`).join('');
+  list.querySelectorAll('.item').forEach(button => {
+    button.onclick = () => {
+      selectedId = button.dataset.id;
+      history.replaceState(null, '', `#${encodeURIComponent(selectedId)}`);
+      render();
+    };
+  });
+}
+function renderDetail(item) {
+  const detail = document.getElementById('detail');
+  if (!item) {
+    detail.innerHTML = '<div class="empty">暂无证据数据。请生成 evidence.visual.js。</div>';
+    return;
+  }
+  detail.innerHTML = `<h2>${escapeHtml(item.id)}</h2>
+    <p class="summary">${escapeHtml(item.conclusion || item.summary || '')}</p>
+    ${renderExplanation(item)}
+    ${renderGraphRefs(item)}
+    ${renderSources(item)}
+    <section class="section">
+      <h3>证据索引原始信息</h3>
+      <div class="meta">
+        ${row('类型', item.type)}
+        ${row('位置/来源', item.location)}
+        ${row('置信度', item.confidence)}
+        ${row('是否验证', item.verified)}
+        ${row('备注', item.note)}
+        ${row('原始路径', `${meta.source || '../evidence-index.md'}#${item.id}`)}
+      </div>
+    </section>`;
+}
+function renderExplanation(item) {
+  if (!item.explanation) return '';
+  return `<section class="section"><h3>这条证据为什么有用</h3><p>${escapeHtml(item.explanation)}</p></section>`;
+}
+function renderGraphRefs(item) {
+  const refs = Array.isArray(item.graphRefs) ? item.graphRefs : [];
+  if (!refs.length) return '<section class="section"><h3>架构图语境</h3><p>当前可视化架构图没有直接引用这条证据。</p></section>';
+  return `<section class="section">
+    <h3>架构图语境</h3>
+    <div class="cards">
+      ${refs.map(ref => `<div class="card">
+        <strong>${escapeHtml(ref.title || ref.kind || '')}</strong>
+        <p>${escapeHtml(ref.detail || ref.sub || ref.relation || '')}</p>
+        <div class="chips">
+          ${chip(ref.viewLabel || ref.viewId)}
+          ${chip(ref.kind)}
+          ${chip(ref.role)}
+          ${chip(ref.status)}
+        </div>
+      </div>`).join('')}
+    </div>
+  </section>`;
+}
+function renderSources(item) {
+  const refs = Array.isArray(item.sourceRefs) ? item.sourceRefs : [];
+  if (!refs.length) return '<section class="section"><h3>源码/文档片段</h3><p>没有可展开的本地源码或文档片段。外部 URL 或推断型证据请参考原始索引信息。</p></section>';
+  return `<section class="section">
+    <h3>源码/文档片段</h3>
+    <div class="cards">
+      ${refs.map(sourceCard).join('')}
+    </div>
+    ${item.sourceLimitNote ? `<p class="source-note">${escapeHtml(item.sourceLimitNote)}</p>` : ''}
+  </section>`;
+}
+function sourceCard(ref) {
+  const title = ref.display || ref.relativePath || ref.path || ref.url || '';
+  const kind = ref.kind === 'url' ? '外部资料' : ref.kind === 'command' ? '命令证据' : '本地片段';
+  return `<div class="source">
+    <div class="source-head">
+      <div class="source-title">${escapeHtml(title)}</div>
+      <div class="source-kind">${escapeHtml(kind)}</div>
+    </div>
+    ${ref.snippet ? `<pre><code>${escapeHtml(ref.snippet)}</code></pre>` : `<div class="source-note">该来源没有可直接展开的本地行号片段。</div>`}
+    ${ref.omitted ? `<div class="source-note">${escapeHtml(ref.omitted)}</div>` : ''}
+  </div>`;
+}
+function chip(value) {
+  return value ? `<span class="chip">${escapeHtml(value)}</span>` : '';
+}
+function row(key, value) {
+  if (!value) return '';
+  return `<div class="row"><div class="key">${escapeHtml(key)}</div><div class="value">${escapeHtml(value)}</div></div>`;
+}
+function searchText(item) {
+  const graph = (item.graphRefs || []).map(ref => [ref.title, ref.detail, ref.viewLabel, ref.role].join(' ')).join(' ');
+  const sources = (item.sourceRefs || []).map(ref => [ref.display, ref.path, ref.snippet].join(' ')).join(' ');
+  return [item.id, item.conclusion, item.summary, item.type, item.location, item.confidence, item.verified, item.note, item.explanation, graph, sources].join(' ').toLowerCase();
+}
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+}
+function attr(value) { return escapeHtml(value); }
+</script>
+</body>
+</html>
