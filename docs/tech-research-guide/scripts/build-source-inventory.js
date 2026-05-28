@@ -62,8 +62,8 @@ function discoverResearchDirs() {
 function buildForDir(researchDir, options = {}) {
   const evidencePath = path.join(researchDir, 'evidence-index.md');
   const md = fs.existsSync(evidencePath) ? fs.readFileSync(evidencePath, 'utf8') : '';
-  const projectRoot = options.sourceRoot || readTableValue(md, '本地源码路径') || readTableValue(md, '本地路径');
-  const remoteHint = readTableValue(md, '代码来源') || readTableValue(md, 'remote');
+  const projectRoot = options.sourceRoot || readTableValue(md, 'Local source path') || readTableValue(md, 'Source root');
+  const remoteHint = readTableValue(md, 'Code source') || readTableValue(md, 'remote');
   const versionHint = readTableValue(md, 'branch/tag/commit');
   const researchName = path.basename(researchDir);
   const referencesDir = path.join(researchDir, 'references');

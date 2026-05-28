@@ -1,106 +1,102 @@
-# 调研简报
+# Research Brief
 
 Status: draft
 Last Updated: 2026-05-25
 
-## 1. 研究对象
+## 1. Research Target
 
-| 项 | 内容 |
+| Item | Value |
 |---|---|
-| 名称 | OpenClaw |
-| 代码来源 | `https://github.com/openclaw/openclaw.git` |
-| 项目标识 | `openclaw` |
-| 版本/tag/commit | branch `main`, commit `989e53c20d395d3c8bf47efc21fdb9d56e7227b0`, package version `2026.5.19` |
-| 官方文档 | 仓库内 `README.md`, `VISION.md`, `docs/**` |
-| 外部资料范围 | OpenClaw 官方 docs.openclaw.ai、GitHub repository、本地仓库 docs；本轮未采用独立第三方文章 |
-| 调研日期 | 2026-05-25 |
+| Name | OpenClaw |
+| Code source | `https://github.com/openclaw/openclaw.git` plus local source snapshot |
+| Project identifier | `openclaw` |
+| Version/tag/commit | branch `main`, commit `989e53c20d395d3c8bf47efc21fdb9d56e7227b0` |
+| Official docs | https://docs.openclaw.ai |
+| External reference scope | Official docs, GitHub repository, local repository docs |
+| Research date | 2026-05-25 |
 
-## 2. 背景和动机
+## 2. Background and Motivation
 
-本次调研面向“如何深入理解一个开源技术，并把架构、设计思想转化为后续学习和设计判断素材”。OpenClaw 的价值在于它不是单一聊天机器人，而是一个本地优先、多渠道、多 Agent、多插件、可扩展工具和设备节点的 AI Gateway。它适合用来研究以下问题：
+OpenClaw is a local-first personal AI assistant and Gateway project. It combines multi-channel messaging, device nodes, agent runtime, tools, model providers, plugins, and session management. The research goal is to understand the architecture patterns that make it a multi-surface assistant rather than only a chat bot or agent loop.
 
-- 一个 AI 助手系统如何组织 Gateway、Agent runtime、工具、会话和消息通道。
-- 插件体系如何在“扩展能力”和“核心稳定”之间划边界。
-- 多用户/多 Agent/多渠道场景下，如何做会话、权限、安全和 delivery 设计。
+## 3. Research Goals
 
-## 3. 研究目标
+- OBJ-001: Understand Gateway as the long-lived control plane.
+- OBJ-002: Trace the agent run path from Gateway ingress to agent execution and delivery.
+- OBJ-003: Understand the plugin capability model and how manifest, registry, and runtime loading interact.
+- OBJ-004: Extract reusable design ideas for multi-channel agent products.
 
-- OBJ-001: 识别 OpenClaw 的核心架构分层、主模块职责和依赖方向。
-- OBJ-002: 追踪 Gateway 启动、WebSocket handshake、Agent RPC 到 runtime 执行的关键链路。
-- OBJ-003: 提炼插件、Channel、Provider、Hook、Skill、Session 等核心抽象。
-- OBJ-004: 提炼值得学习、借鉴和不宜照搬的设计思想。
+## 4. Core Research Questions
 
-## 4. 核心研究问题
-
-| 编号 | 问题 | 优先级 | 预期输出 |
+| ID | Question | Priority | Expected output |
 |---|---|---|---|
-| Q-001 | OpenClaw 的运行时主架构是什么？ | P0 | architecture.md |
-| Q-002 | Gateway 如何启动、暴露控制面并接收客户端连接？ | P0 | runtime-flows.md |
-| Q-003 | Agent 请求如何从 RPC 进入内嵌 Agent runtime？ | P0 | runtime-flows.md |
-| Q-004 | 插件体系如何发现、验证、规划和加载能力？ | P0 | extension-points.md |
-| Q-005 | 会话、多 Agent 和安全边界如何组织？ | P1 | key-abstractions.md, architecture.md |
-| Q-006 | 哪些设计值得学习、借鉴或不宜照搬？ | P1 | adoption-notes.md |
+| RQ-OC-001 | What is Gateway responsible for, and where are its control-plane boundaries? | P0 | architecture.md, source-map.md |
+| RQ-OC-002 | How does an agent command travel from ingress to runtime execution and delivery? | P0 | runtime-flows.md |
+| RQ-OC-003 | How does the plugin capability model separate core ownership from plugin ownership? | P0 | extension-points.md |
+| RQ-OC-004 | How are sessions and multi-agent routing modeled? | P1 | key-abstractions.md |
+| RQ-OC-005 | Which OpenClaw designs are worth learning from or adapting elsewhere? | P1 | adoption-notes.md |
 
-## 5. 范围
+## 5. Scope
 
-### 5.1 本次研究范围
+### 5.1 In Scope
 
-- CLI/Gateway 启动链路。
-- Gateway HTTP/WebSocket 控制面。
-- Agent RPC 到 `agentCommandFromIngress`、`runEmbeddedPiAgent` 的链路。
-- Plugin manifest、registry、loader、API builder、capability model。
-- Channel plugin 和 Provider plugin 的样例。
-- Session、多 Agent、workspace、skill 的官方约定。
+- Gateway startup and WebSocket handshake
+- Gateway `agent` RPC and agent command scheduling
+- Agent runtime shell and Pi agent core boundary
+- Plugin manifest, loader, registry, API builder, and hook model
+- Session and multi-agent ownership model
+- Representative provider and channel plugin examples
 
-### 5.2 不做范围
+### 5.2 Out of Scope
 
-- 不逐个分析 123 个 bundled plugin 的完整实现。
-- 不深入移动端 App、UI、Canvas、Voice Wake、Talk Mode 的客户端实现。
-- 不运行完整测试集或 Gateway live 验证。
-- 不做横向竞品细节对比。
+- Exhaustive review of every bundled channel
+- Mobile app UI implementation details
+- Full provider fallback/auth-profile rotation
+- Live Gateway runtime verification
+- Performance benchmarking or security audit
 
-### 5.3 待确认
+### 5.3 Pending
 
-- 插件运行时热加载和配置 reload 的边界条件需要后续单独验证。
-- Provider failover、auth profile rotation、memory plugin 的细节值得继续深挖。
-- Gateway protocol 的完整 TypeBox schema 和 Swift codegen 链路未展开。
+- Run live Gateway and capture actual WS frames.
+- Inspect plugin runtime output with a real inspect command.
+- Compare OpenClaw with another agent gateway or automation platform.
 
-## 6. 适用场景
+## 6. Use Cases
 
-- 需要设计 AI Gateway、ChatOps、Agent 平台或多渠道消息系统。
-- 需要理解插件能力扩展如何从 ad-hoc hook 演进为 capability registry。
-- 需要为多用户、多 Agent、多会话设计隔离模型。
-- 需要把本地工具执行、远端消息通道和 Agent runtime 组合到一个控制平面。
+- Learn local-first Gateway design for personal AI assistants.
+- Compare multi-channel agent gateway architecture.
+- Extract plugin capability ownership patterns.
+- Evaluate session/multi-agent isolation as a reusable product pattern.
 
-## 7. 后续如何用于学习借鉴
+## 7. How Results Support Learning and Adoption
 
-- 用 OpenClaw 的 Gateway 模式理解统一控制面的收益、代价和适用边界。
-- 用 manifest + registry 的方式理解插件能力归属如何从隐式约定变成显式契约。
-- 用 session key、agent workspace、agentDir、auth profile 的隔离模型理解多 Agent 场景的状态边界。
-- 用显式信任边界理解本地入口、网络入口和消息渠道之间的权限差异。
+This research helps identify which parts of OpenClaw's architecture are reusable in other systems: long-lived control plane, explicit trust at network ingress, manifest-first plugin ownership, runtime shell around an agent core, and first-class session routing.
 
-## 8. 预期交付物
+## 8. Expected Deliverables
 
-| 交付物 | 文件 | 说明 |
+| Deliverable | File | Description |
 |---|---|---|
-| 外部资料调研 | external-research.md | 官方资料、协作资料、外部观点和源码验证关系 |
-| 研究问题 | research-questions.md | 从外部资料生成的源码验证问题 |
-| 源码地图 | source-map.md | 仓库结构、入口、阅读顺序 |
-| 技术架构 | architecture.md | 分层、模块边界、依赖方向 |
-| 核心抽象 | key-abstractions.md | Gateway、Agent、Plugin、Session 等 |
-| 扩展点 | extension-points.md | Plugin、Hook、Channel、Provider、Skill |
-| 主流程追踪 | runtime-flows.md | Gateway/WS/Agent/plugin load 流程 |
-| 设计思想 | design-philosophy.md | 设计原则和取舍 |
-| 横向对比 | comparison.md | 本轮只做占位 |
-| 学习借鉴 | adoption-notes.md | 可直接学习、需结合语境后借鉴、不建议照搬 |
-| 证据索引 | evidence-index.md | 结论到证据映射 |
-| 调研审查 | research-review.md | 覆盖度、风险、待补证据 |
+| External research | external-research.md | Official docs and external claims to verify |
+| Research questions | research-questions.md | Source-verification questions derived from docs and goals |
+| Source map | source-map.md | Repository structure, entries, modules, and reading order |
+| Source inventory | references/source-inventory.json | Deterministic local source inventory |
+| Architecture | architecture.md | Gateway, agent runtime, plugin, session, and channel boundaries |
+| Visual architecture | visual/architecture.html, visual/architecture.visual.js | Evidence-backed architecture views |
+| Evidence viewer | visual/evidence.html, visual/evidence.visual.js | Clickable evidence explanations |
+| Key abstractions | key-abstractions.md | Core objects, lifecycle, and relationships |
+| Extension points | extension-points.md | Plugin/capability registration and execution model |
+| Runtime flows | runtime-flows.md | Startup, WS handshake, agent run, and plugin load |
+| Design philosophy | design-philosophy.md | Design principles and tradeoffs |
+| Adoption notes | adoption-notes.md | Reusable and non-copyable design lessons |
+| Evidence index | evidence-index.md | Evidence log for conclusions |
+| Research review | research-review.md | Quality gate and residual risk |
 
-## 9. 验收标准
+## 9. Acceptance Criteria
 
-| 编号 | 标准 | 验收方式 |
+| ID | Criterion | Verification |
 |---|---|---|
-| AC-001 | 关键结论均有源码、文档或测试证据 | 检查 evidence-index.md |
-| AC-002 | 至少追踪一条主运行链路 | 检查 runtime-flows.md |
-| AC-003 | 外部资料中的关键观点已转成研究问题并记录验证状态 | 检查 external-research.md、research-questions.md |
-| AC-004 | 借鉴建议区分可直接学习、需结合语境后借鉴和不建议照搬 | 检查 adoption-notes.md |
+| AC-001 | Version and source snapshot are pinned | Check this file and evidence-index.md |
+| AC-002 | Key architecture claims are backed by source or repository docs | Check evidence-index.md |
+| AC-003 | At least one agent runtime path is traced | Check runtime-flows.md |
+| AC-004 | Plugin model and session model are covered | Check extension-points.md and key-abstractions.md |
+| AC-005 | Adoption notes distinguish reusable ideas from context-dependent ideas | Check adoption-notes.md |

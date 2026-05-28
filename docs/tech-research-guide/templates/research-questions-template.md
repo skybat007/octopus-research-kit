@@ -1,41 +1,41 @@
-# 研究问题
+# Research Questions
 
-## 1. 问题清单
+## 1. Question List
 
-| 编号 | 问题 | 来源 | 为什么重要 | 需要验证的源码方向 | 状态 |
+| ID | Question | Source | Why it matters | Source area to verify | Status |
 |---|---|---|---|---|---|
-| RQ-001 |  | external-research.md / README / 用户目标 |  |  | 待验证/已验证/部分验证/未验证 |
+| RQ-001 |  | external-research.md / README / user goal |  |  | pending/verified/partially verified/unverified |
 
-## 2. 详细问题
+## 2. Detailed Questions
 
 ### RQ-001:
 
-外部资料来源：
+External reference source:
 
-- 
+-
 
-需要源码验证：
+Needs source verification:
 
-- 
+-
 
-验证结果：
+Verification result:
 
-- 待验证/已验证/部分验证/未验证
+- pending/verified/partially verified/unverified
 
-源码证据：
+Source evidence:
 
-- 
+-
 
-结论：
+Conclusion:
 
-- 
+-
 
-## 3. 外部观点验证状态
+## 3. External Claim Verification Status
 
-| 外部观点 | 对应问题 | 验证状态 | 证据 |
+| External claim | Related question | Verification status | Evidence |
 |---|---|---|---|
 |  | RQ-001 |  |  |
 
-## 4. 待继续确认
+## 4. Still Pending
 
-- 
+-

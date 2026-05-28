@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OpenClaw 技术调研 Dashboard</title>
+  <title>OpenClaw Technical Research Dashboard</title>
   <style>
     :root {
       color-scheme: light;
@@ -21,7 +21,7 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.55;
@@ -140,88 +140,88 @@
 <body>
   <div class="layout">
     <aside>
-      <a class="home-link" href="../index.html" title="返回 Tech Research 首页"><span aria-hidden="true">&larr;</span> 调研首页</a>
-      <div class="brand">OpenClaw 技术调研</div>
-      <div class="sub">调研导航</div>
+      <a class="home-link" href="../index.html" title="Back to Tech Research home"><span aria-hidden="true">&larr;</span> Research Home</a>
+      <div class="brand">OpenClaw Technical Research</div>
+      <div class="sub">Research Navigation</div>
       <div class="nav-group">
-        <div class="nav-group-title">总览</div>
-        <a class="nav-link active" data-nav-file="dashboard.html" href="./dashboard.html" title="调研摘要和阅读入口">Dashboard</a>
-<a class="nav-link" data-nav-file="README.md" href="./docs.html?doc=README.md" title="调研摘要、当前结论和文件导航">总览文档</a>
+        <div class="nav-group-title">Overview</div>
+        <a class="nav-link active" data-nav-file="dashboard.html" href="./dashboard.html" title="Research summary and reading entry">Dashboard</a>
+<a class="nav-link" data-nav-file="README.md" href="./docs.html?doc=README.md" title="Research summary, current conclusions, and file navigation">Overview</a>
       </div>
 <div class="nav-group">
-        <div class="nav-group-title">调研准备</div>
-        <a class="nav-link" data-nav-file="research-brief.md" href="./docs.html?doc=research-brief.md" title="目标、范围、问题和验收标准">调研简报</a>
-<a class="nav-link" data-nav-file="external-research.md" href="./docs.html?doc=external-research.md" title="官方、协作和社区资料">外部资料</a>
-<a class="nav-link" data-nav-file="research-questions.md" href="./docs.html?doc=research-questions.md" title="待验证问题和验证状态">研究问题</a>
+        <div class="nav-group-title">Research Prep</div>
+        <a class="nav-link" data-nav-file="research-brief.md" href="./docs.html?doc=research-brief.md" title="Goals, scope, questions, and acceptance criteria">Research Brief</a>
+<a class="nav-link" data-nav-file="external-research.md" href="./docs.html?doc=external-research.md" title="Official, collaboration, and community references">External Research</a>
+<a class="nav-link" data-nav-file="research-questions.md" href="./docs.html?doc=research-questions.md" title="Questions to verify and verification status">Research Questions</a>
       </div>
 <div class="nav-group">
-        <div class="nav-group-title">架构解析</div>
-        <a class="nav-link" data-nav-file="architecture.md" href="./docs.html?doc=architecture.md" title="模块职责、边界和依赖方向">架构文档</a>
-<a class="nav-link" data-nav-file="visual/architecture.html" href="./docs.html?view=visual%2Farchitecture.html" title="专门的交互式架构图查看器">可视化架构图</a>
-<a class="nav-link" data-nav-file="runtime-flows.md" href="./docs.html?doc=runtime-flows.md" title="主链路和关键状态变化">运行流程</a>
-<a class="nav-link" data-nav-file="key-abstractions.md" href="./docs.html?doc=key-abstractions.md" title="接口、对象和生命周期">核心抽象</a>
-<a class="nav-link" data-nav-file="extension-points.md" href="./docs.html?doc=extension-points.md" title="插件、Hook、Provider 和 Registry">扩展点</a>
-<a class="nav-link" data-nav-file="design-philosophy.md" href="./docs.html?doc=design-philosophy.md" title="设计取舍和可学习模式">设计思想</a>
-<a class="nav-link" data-nav-file="comparison.md" href="./docs.html?doc=comparison.md" title="相邻框架或同类方案对照">横向对比</a>
-<a class="nav-link" data-nav-file="adoption-notes.md" href="./docs.html?doc=adoption-notes.md" title="可学习、需适配和不建议照搬的设计">学习借鉴</a>
+        <div class="nav-group-title">Architecture Analysis</div>
+        <a class="nav-link" data-nav-file="architecture.md" href="./docs.html?doc=architecture.md" title="Module responsibilities, boundaries, and dependency direction">Architecture</a>
+<a class="nav-link" data-nav-file="visual/architecture.html" href="./docs.html?view=visual%2Farchitecture.html" title="Dedicated interactive architecture viewer">Visual Architecture</a>
+<a class="nav-link" data-nav-file="runtime-flows.md" href="./docs.html?doc=runtime-flows.md" title="Main runtime paths and key state changes">Runtime Flows</a>
+<a class="nav-link" data-nav-file="key-abstractions.md" href="./docs.html?doc=key-abstractions.md" title="Interfaces, objects, and lifecycles">Key Abstractions</a>
+<a class="nav-link" data-nav-file="extension-points.md" href="./docs.html?doc=extension-points.md" title="Plugins, hooks, providers, registries, and other extension mechanisms">Extension Points</a>
+<a class="nav-link" data-nav-file="design-philosophy.md" href="./docs.html?doc=design-philosophy.md" title="Design tradeoffs and reusable patterns">Design Philosophy</a>
+<a class="nav-link" data-nav-file="comparison.md" href="./docs.html?doc=comparison.md" title="Comparison with neighboring frameworks or similar solutions">Comparison</a>
+<a class="nav-link" data-nav-file="adoption-notes.md" href="./docs.html?doc=adoption-notes.md" title="Learn/adapt/avoid design guidance">Adoption Notes</a>
       </div>
 <div class="nav-group">
-        <div class="nav-group-title">源码解析</div>
-        <a class="nav-link" data-nav-file="source-map.md" href="./docs.html?doc=source-map.md" title="仓库结构、入口和阅读顺序">源码地图</a>
+        <div class="nav-group-title">Source Analysis</div>
+        <a class="nav-link" data-nav-file="source-map.md" href="./docs.html?doc=source-map.md" title="Repository structure, entries, and reading order">Source Map</a>
       </div>
 <div class="nav-group">
-        <div class="nav-group-title">证据</div>
-        <a class="nav-link" data-nav-file="visual/evidence.html" href="./docs.html?view=visual%2Fevidence.html" title="从架构图回到证据解释">证据查看器</a>
-<a class="nav-link" data-nav-file="evidence-index.md" href="./docs.html?doc=evidence-index.md" title="关键结论和证据锚点">证据索引</a>
+        <div class="nav-group-title">Evidence</div>
+        <a class="nav-link" data-nav-file="visual/evidence.html" href="./docs.html?view=visual%2Fevidence.html" title="Trace from diagrams back to evidence explanations">Evidence Viewer</a>
+<a class="nav-link" data-nav-file="evidence-index.md" href="./docs.html?doc=evidence-index.md" title="Key conclusions and evidence anchors">Evidence Index</a>
       </div>
 <div class="nav-group">
-        <div class="nav-group-title">辅助材料</div>
-        <a class="nav-link" data-nav-file="research-review.md" href="./docs.html?doc=research-review.md" title="质量门禁、风险和开放问题">调研审查</a>
+        <div class="nav-group-title">Supporting Materials</div>
+        <a class="nav-link" data-nav-file="research-review.md" href="./docs.html?doc=research-review.md" title="Quality gate, risks, and open questions">Research Review</a>
       </div>
     </aside>
   <main>
     <section class="hero">
       <div class="eyebrow">Tech Research Dashboard · openclaw</div>
-      <h1>OpenClaw 技术调研</h1>
-      <div class="summary">OpenClaw 是一个本地优先的个人 AI Assistant / Gateway 项目。它把多渠道消息、设备节点、Agent 运行时、工具、模型 Provider、插件和会话管理统一到一个长期运行的 Gateway 控制平面中；真正的产品定位不是 Gateway 本身，而是“能在用户设备和渠道里做事的个人助手”。C-001 本轮调研固定在本地快照 openclaw，branch main，commit 989e53c20d395d3c8bf47efc21fdb9d56e7227b0。这是第一版架构级调研，重点覆盖 Gateway、Agent runtime、Plugin/capability model、Channel、Session/Multi-agent 和可借鉴设计，不覆盖每个具体渠道、移动端 App、完整 Provider 实现细节。</div>
+      <h1>OpenClaw Technical Research</h1>
+      <div class="summary">OpenClaw is a local-first personal AI Assistant / Gateway project. It unifies multi-channel messaging, device nodes, agent runtime, tools, model providers, plugins, and session management under a long-lived Gateway control plane. Its real product identity is not the Gateway alone, but a personal assistant that can act across the user&#39;s devices and communication channels. C-001 This research is pinned to the local openclaw snapshot on branch main, commit 989e53c20d395d3c8bf47efc21fdb9d56e7227b0. This first architecture-level pass focuses on Gateway, agent runtime, plugin/capability model, channels, sessions/multi-agent routing, and reusable design ideas. It does not cover every specific chan...</div>
       <div class="meta">
-        <div class="metric"><div class="label">状态</div><div class="value">draft</div></div>
-        <div class="metric"><div class="label">更新日期</div><div class="value">2026-05-25</div></div>
-        <div class="metric"><div class="label">源码文件</div><div class="value">17990</div></div>
-        <div class="metric"><div class="label">主要语言</div><div class="value">TypeScript</div></div>
+        <div class="metric"><div class="label">Status</div><div class="value">draft</div></div>
+        <div class="metric"><div class="label">Updated</div><div class="value">2026-05-25</div></div>
+        <div class="metric"><div class="label">Source Files</div><div class="value">17990</div></div>
+        <div class="metric"><div class="label">Primary Language</div><div class="value">TypeScript</div></div>
       </div>
     </section>
 
-    <h2>建议阅读顺序</h2>
+    <h2>Suggested Reading Order</h2>
     <section class="panel">
       <ol class="reading-list">
-        <li><a href="./docs.html?doc=research-brief.md">调研简报<span>目标、范围、问题和验收标准</span></a></li>
-<li><a href="./docs.html?doc=external-research.md">外部资料<span>官方、协作和社区资料</span></a></li>
-<li><a href="./docs.html?doc=research-questions.md">研究问题<span>待验证问题和验证状态</span></a></li>
-<li><a href="./docs.html?doc=architecture.md">架构文档<span>模块职责、边界和依赖方向</span></a></li>
-<li><a href="./docs.html?view=visual%2Farchitecture.html">可视化架构图<span>专门的交互式架构图查看器</span></a></li>
-<li><a href="./docs.html?doc=runtime-flows.md">运行流程<span>主链路和关键状态变化</span></a></li>
-<li><a href="./docs.html?doc=key-abstractions.md">核心抽象<span>接口、对象和生命周期</span></a></li>
-<li><a href="./docs.html?doc=extension-points.md">扩展点<span>插件、Hook、Provider 和 Registry</span></a></li>
-<li><a href="./docs.html?doc=design-philosophy.md">设计思想<span>设计取舍和可学习模式</span></a></li>
-<li><a href="./docs.html?doc=source-map.md">源码地图<span>仓库结构、入口和阅读顺序</span></a></li>
-<li><a href="./docs.html?doc=evidence-index.md">证据索引<span>关键结论和证据锚点</span></a></li>
+        <li><a href="./docs.html?doc=research-brief.md">Research Brief<span>Goals, scope, questions, and acceptance criteria</span></a></li>
+<li><a href="./docs.html?doc=external-research.md">External Research<span>Official, collaboration, and community references</span></a></li>
+<li><a href="./docs.html?doc=research-questions.md">Research Questions<span>Questions to verify and verification status</span></a></li>
+<li><a href="./docs.html?doc=architecture.md">Architecture<span>Module responsibilities, boundaries, and dependency direction</span></a></li>
+<li><a href="./docs.html?view=visual%2Farchitecture.html">Visual Architecture<span>Dedicated interactive architecture viewer</span></a></li>
+<li><a href="./docs.html?doc=runtime-flows.md">Runtime Flows<span>Main runtime paths and key state changes</span></a></li>
+<li><a href="./docs.html?doc=key-abstractions.md">Key Abstractions<span>Interfaces, objects, and lifecycles</span></a></li>
+<li><a href="./docs.html?doc=extension-points.md">Extension Points<span>Plugins, hooks, providers, registries, and other extension mechanisms</span></a></li>
+<li><a href="./docs.html?doc=design-philosophy.md">Design Philosophy<span>Design tradeoffs and reusable patterns</span></a></li>
+<li><a href="./docs.html?doc=source-map.md">Source Map<span>Repository structure, entries, and reading order</span></a></li>
+<li><a href="./docs.html?doc=evidence-index.md">Evidence Index<span>Key conclusions and evidence anchors</span></a></li>
       </ol>
     </section>
 
-    <h2>当前结论与待确认</h2>
+    <h2>Current Conclusions and Pending Questions</h2>
     <section class="columns">
       <div class="panel">
-        <h2 style="margin-top:0">当前结论</h2>
-        <ul><li>OpenClaw 官方文档和本地源码共同指向同一核心：它最值得学习的不是“接了很多聊天渠道”，而是把多渠道接入、Agent 执行、会话、工具、设备节点和插件统一成一个 Gateway control plane。C-004</li><li>插件体系采用“manifest 先于 runtime”的控制面设计：先用 openclaw.plugin.json 做身份、能力归属、配置校验和启动规划，再按需加载 runtime 注册能力。C-010</li><li>Agent 运行时是 OpenClaw 自有的 session/workspace/delivery 外壳加 Pi agent core，入口既支持 CLI，也支持 Gateway RPC；网络入口必须显式声明 senderIsOwner 和 allowModelOverride，这是非常值得借鉴的信任边界设计。C-007</li><li>会话隔离和多 Agent 路由是产品架构的一等概念，而不是后补功能；DM、群组、cron、webhook、agent workspace、auth profile 都有明确归属。[C-009]</li><li>对后续学习和单独评估最有价值的思想是：能力归属前置、核心保持 owner-agnostic、运行时热路径携带已解析事实、外部入口信任显式化、插件扩展从“能不能插”升级为“谁拥有这个 capability”。C-003</li></ul>
+        <h2 style="margin-top:0">Current Conclusions</h2>
+        <ul><li>OpenClaw&#39;s official docs and local source point to the same core idea: the most valuable design is not &quot;many chat channels,&quot; but the unification of multi-channel ingress, agent execution, sessions, tools, device nodes, and plugins into a Gateway control plane. C-004</li><li>The plugin system uses a &quot;manifest before runtime&quot; control-plane design: openclaw.plugin.json establishes identity, capability ownership, configuration validation, and startup planning before runtime code is loaded to register capabilities. C-010</li><li>The agent runtime is an OpenClaw-owned session/workspace/delivery shell around Pi agent core. It supports both CLI and Gateway RPC entries. Network entries must explicitly declare senderIsOwner and allowModelOverride, which is a useful trust-boundary pattern. C-007</li><li>Session isolation and multi-agent routing are first-class product architecture concepts, not afterthoughts. DMs, groups, cron, webhooks, agent workspaces, and auth profiles all have explicit ownership. [C-009]</li><li>The highest-value ideas for future study are capability ownership up front, owner-agnostic core design, hot paths carrying resolved facts, explicit external-entry trust, and treating plugin extension as &quot;who owns this capability&quot; rather than only &quot;can this hook be inserted.&quot; C-003</li></ul>
       </div>
       <div class="panel">
-        <h2 style="margin-top:0">待确认</h2>
-        <ul><li>尚未逐一调研所有 bundled plugin 和 channel 的具体实现质量。</li><li>尚未运行 OpenClaw 本地测试或启动 Gateway，只做了静态源码和仓库文档分析。</li><li>已补充官方外部资料互证，但尚未采用独立第三方实践文章作为结论依据。</li><li>横向对比对象待定，建议下一轮选择 Home Assistant、LangGraph、Dify、Botpress 或同类 Agent Gateway 项目之一做对比。</li></ul>
+        <h2 style="margin-top:0">Pending Questions</h2>
+        <ul><li>The implementation quality of every bundled plugin and channel has not been reviewed one by one.</li><li>OpenClaw local tests and Gateway startup have not been run; this pass uses static source and repository-doc analysis.</li><li>Official external references have been cross-checked, but independent third-party practice articles are not yet used as conclusion evidence.</li><li>The comparison target is still open. Recommended next targets include Home Assistant, LangGraph, Dify, Botpress, or a similar Agent Gateway project.</li></ul>
       </div>
     </section>
 
-    <div class="footer">Dashboard 只做阅读导航。Markdown 是知识源，visual/architecture.html 是“架构解析”下的专门架构图查看器，source-map.md 是“源码解析”入口，references/ 保留机器生成或过程性材料但不作为阅读入口。</div>
+    <div class="footer">The dashboard is only a reading navigator. Markdown remains the knowledge source, visual/architecture.html is the dedicated architecture viewer, source-map.md is the source-analysis entry, and references/ is reserved for generated or process material rather than first-level reading.</div>
   </main>
   </div>
 </body>

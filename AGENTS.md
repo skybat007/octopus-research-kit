@@ -4,7 +4,7 @@ A skill is a set of local instructions stored in a `SKILL.md` file.
 
 ## Available skills
 
-- open-source-tech-research: 开源技术调研 Skill。用于分析开源框架源码、生成技术架构文档、源码地图、核心流程、设计思想和学习借鉴笔记。 (file: ./skills/open-source-tech-research/SKILL.md)
+- open-source-tech-research: Open-source technology research skill. Use it to analyze open-source framework source code and produce architecture documents, source maps, core runtime flows, design philosophy, and adoption notes. (file: ./skills/open-source-tech-research/SKILL.md)
 
 ## How to use skills
 

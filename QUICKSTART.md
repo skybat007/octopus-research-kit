@@ -1,33 +1,33 @@
 # Quickstart
 
-本指南帮助你快速开始一次开源框架技术调研。
+This guide helps you start an open-source framework research effort quickly.
 
-## 1. 选择调研对象
+## 1. Choose a Research Target
 
-先明确你要研究的对象，例如：
+First, make the target explicit. For example:
 
 ```text
-我要研究 LangGraph 的状态图执行模型
-我要研究 Spring Framework 的 Bean 生命周期
-我要研究 Vue 的响应式系统
-我要研究 Netty 的 Reactor 线程模型
+I want to study LangGraph's state-graph execution model.
+I want to study the Spring Framework Bean lifecycle.
+I want to study Vue's reactivity system.
+I want to study Netty's Reactor threading model.
 ```
 
-尽量同时明确：
+Try to include:
 
-- 代码来源：本地路径或 GitHub 仓库
-- 版本：tag、commit、release 或当前分支
-- 目标：学习架构、理解设计思想、定位某条运行流程，或沉淀可借鉴的设计模式
+- Code source: a local path or GitHub repository
+- Version: tag, commit, release, or current branch
+- Goal: learn the architecture, understand design philosophy, trace a runtime flow, or capture reusable design patterns
 
-## 2. 创建调研目录
+## 2. Create a Research Directory
 
-在根目录 `research/` 下为每个框架建立独立目录：
+Create one directory per framework under `research/`:
 
 ```text
 research/<framework-name>/
 ```
 
-建议至少包含：
+Recommended minimum contents:
 
 ```text
 README.md
@@ -52,64 +52,64 @@ research-review.md
 references/
 ```
 
-可以从 `docs/tech-research-guide/templates/` 复制模板。
+You can copy starter templates from `docs/tech-research-guide/templates/`.
 
-## 3. 先写 Research Brief
+## 3. Write the Research Brief First
 
-`research-brief.md` 是一次调研的合同。它回答：
+`research-brief.md` is the contract for one research effort. It answers:
 
-- 为什么研究它
-- 本次看哪些模块
-- 本次不看哪些模块
-- 要回答哪些关键问题
-- 最终要产出哪些文档
-- 结论需要达到什么证据标准
+- Why this target is being studied
+- Which modules are in scope
+- Which modules are out of scope
+- Which key questions must be answered
+- Which documents must be produced
+- What evidence standard conclusions must meet
 
-它也可以理解为 Research Charter：先定义这次调研到底要搞明白什么。
+You can also think of it as the Research Charter: define what this research must make clear before reading source broadly.
 
-如果目标还不清楚，先写待确认问题，不要直接进入大范围源码阅读。
+If the goal is still unclear, write open questions first instead of jumping into large-scale source reading.
 
-## 4. 使用调研 Skill
+## 4. Use the Research Skill
 
-当你让 Agent 分析开源框架源码、产出架构文档或设计思想时，触发：
+When asking an agent to analyze open-source source code, produce architecture documents, or extract design philosophy, trigger:
 
 ```text
 open-source-tech-research
 ```
 
-示例：
+Example:
 
 ```text
-使用 open-source-tech-research，帮我分析 /path/to/langgraph 的状态图执行模型，并生成 research/langgraph/ 下的调研文档。
+Use open-source-tech-research to analyze /path/to/langgraph's state-graph execution model and generate research documents under research/langgraph/.
 ```
 
-## 5. 固定证据
+## 5. Pin Evidence
 
-每个关键结论都应该能回到证据：
+Every important conclusion should trace back to evidence:
 
-- 文件路径
-- 类、函数、配置或测试
-- 行号或稳定定位方式
-- 官方文档、README、Release Note、Issue/PR 或社区资料链接
-- 结论是源码事实、官方事实、社区事实，还是基于证据的推断
+- File paths
+- Classes, functions, configuration, or tests
+- Line numbers or stable anchors
+- Official docs, README, release notes, issues, PRs, or community references
+- Whether the conclusion is a source fact, official fact, community fact, or evidence-backed inference
 
-统一记录在：
+Record this in:
 
 ```text
 evidence-index.md
 ```
 
-如果有本地源码，建议先生成结构化源码清单：
+If local source is available, generate a structured source inventory first:
 
 ```bash
 node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name> --source-root /absolute/path/to/source
 ```
 
-`--source-root` 只作为运行时输入，输出产物不应写入个人本机绝对路径。
+`--source-root` is a runtime input only. Generated outputs should not contain personal absolute local paths.
 
-## 6. 生成阅读入口
+## 6. Generate Reading Entry Points
 
-复杂调研建议生成 Dashboard、UTF-8 Markdown 阅读器、可视化架构图和证据解释页：
+For complex research efforts, generate the dashboard, UTF-8 Markdown reader, visual architecture diagram, and evidence viewer:
 
 ```bash
 node docs/tech-research-guide/scripts/build-evidence-visual.js research/<framework-name> --source-root /absolute/path/to/source
@@ -117,27 +117,27 @@ node docs/tech-research-guide/scripts/build-research-dashboard.js research/<fram
 node docs/tech-research-guide/scripts/validate-research.js research/<framework-name>
 ```
 
-Dashboard 是阅读入口，不是新的知识源；核心结论仍以 Markdown 和 `evidence-index.md` 为准。
+The dashboard is a reading entry point, not a new knowledge source. Core conclusions remain in Markdown and `evidence-index.md`.
 
-## 7. 沉淀学习借鉴
+## 7. Capture Adoption Notes
 
-调研的最后一步不是“总结一下”，而是回答：
+The final research step is not "summarize it." It is to answer:
 
-- 这个框架有哪些模式值得借鉴
-- 哪些设计不适合照搬
-- 哪些设计需要结合语境后再吸收
-- 哪些问题还需要运行验证、测试验证或继续外部调研
+- Which patterns are worth adopting
+- Which designs should not be copied directly
+- Which ideas need context-specific adaptation
+- Which questions still require runtime checks, test verification, or more external research
 
-对应文档：
+Use:
 
 ```text
 adoption-notes.md
 ```
 
-## 更多入口
+## More Entry Points
 
-- [技术调研规范](docs/tech-research-guide/TECH_RESEARCH_GUIDE.md)
-- [技术调研快速开始](docs/tech-research-guide/AI_TECH_RESEARCH_QUICKSTART.md)
-- [模板目录](docs/tech-research-guide/templates/)
-- [示例调研目录](research/example-framework/README.md)
-- [调研 Skill](skills/open-source-tech-research/SKILL.md)
+- [Tech Research Guide](docs/tech-research-guide/TECH_RESEARCH_GUIDE.md)
+- [AI Tech Research Quickstart](docs/tech-research-guide/AI_TECH_RESEARCH_QUICKSTART.md)
+- [Template directory](docs/tech-research-guide/templates/)
+- [Example research directory](research/example-framework/README.md)
+- [Research skill](skills/open-source-tech-research/SKILL.md)

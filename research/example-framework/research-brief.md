@@ -1,79 +1,79 @@
-# 调研简报
+# Research Brief
 
 Status: draft
 Owner:
 Last Updated: YYYY-MM-DD
 
-## 1. 研究对象
+## 1. Research Target
 
-| 项 | 内容 |
+| Item | Value |
 |---|---|
-| 名称 | Example Framework |
-| 代码来源 | 待填写 |
-| 项目标识 | 待填写 |
-| 版本/tag/commit | 待填写 |
-| 官方文档 | 待填写 |
-| 调研日期 | 待填写 |
+| Name | Example Framework |
+| Code source | TBD |
+| Project identifier | TBD |
+| Version/tag/commit | TBD |
+| Official docs | TBD |
+| Research date | TBD |
 
-## 2. 背景和动机
+## 2. Background and Motivation
 
-待填写：为什么研究这个框架，它与你当前学习目标、架构理解或技术选型判断有什么关系。
+TBD: why this framework is being studied and how it relates to the current learning goal, architecture understanding, or technology selection.
 
-## 3. 研究目标
+## 3. Research Goals
 
-- OBJ-001：理解该框架的核心架构和模块边界。
-- OBJ-002：追踪一条关键运行流程，并定位核心抽象如何协作。
-- OBJ-003：提炼值得学习、借鉴和不宜照搬的设计模式。
+- OBJ-001: Understand the framework's core architecture and module boundaries.
+- OBJ-002: Trace one key runtime flow and locate how core abstractions collaborate.
+- OBJ-003: Extract designs worth learning from, adapting, or avoiding.
 
-## 4. 核心研究问题
+## 4. Core Research Questions
 
-| 编号 | 问题 | 优先级 | 预期输出 |
+| ID | Question | Priority | Expected output |
 |---|---|---|---|
-| Q-001 | 这个框架的核心抽象是什么？ | P0 | architecture.md |
-| Q-002 | 一个典型用户调用如何进入核心执行流程？ | P0 | runtime-flows.md |
-| Q-003 | 它的扩展机制如何设计？ | P1 | architecture.md |
-| Q-004 | 哪些设计值得学习、借鉴或不宜照搬？ | P1 | adoption-notes.md |
+| Q-001 | What are the framework's core abstractions? | P0 | architecture.md |
+| Q-002 | How does a typical user call enter core execution? | P0 | runtime-flows.md |
+| Q-003 | How is its extension mechanism designed? | P1 | architecture.md |
+| Q-004 | Which designs are worth learning from, adapting, or avoiding? | P1 | adoption-notes.md |
 
-## 5. 范围
+## 5. Scope
 
-### 5.1 本次研究范围
+### 5.1 In Scope
 
-- 待填写
+- TBD
 
-### 5.2 不做范围
+### 5.2 Out of Scope
 
-- 待填写
+- TBD
 
-### 5.3 待确认
+### 5.3 Pending
 
-- 待填写
+- TBD
 
-## 6. 适用场景
+## 6. Use Cases
 
-- 待填写：学习架构、横向对比、技术选型或定位某条运行链路。
+- TBD: architecture learning, comparison, technology selection, or tracing a runtime path.
 
-## 7. 后续如何用于学习借鉴
+## 7. How Results Will Support Learning and Adoption
 
-- 待填写：说明本次调研能帮助你理解哪些设计问题、判断哪些适用前提、避免哪些误读。
+- TBD: explain which design problems this research helps clarify, which assumptions need checking, and which misreads it prevents.
 
-## 8. 预期交付物
+## 8. Expected Deliverables
 
-| 交付物 | 文件 | 说明 |
+| Deliverable | File | Description |
 |---|---|---|
-| 源码地图 | source-map.md | 仓库结构、入口、核心模块和阅读顺序 |
-| 技术架构 | architecture.md | 模块边界、核心抽象、依赖方向和扩展点 |
-| 核心抽象 | key-abstractions.md | 关键接口、数据结构、生命周期对象和协作关系 |
-| 扩展点 | extension-points.md | 插件、Hook、Registry、Provider 等扩展机制 |
-| 主流程追踪 | runtime-flows.md | 从入口到核心执行的源码链路 |
-| 设计思想 | design-philosophy.md | 设计原则、取舍和非显而易见的设计 |
-| 学习借鉴 | adoption-notes.md | 可直接学习、需结合语境后借鉴、不建议照搬 |
-| 证据索引 | evidence-index.md | 关键结论和源码证据 |
-| 调研审查 | research-review.md | 质量门禁、证据完整性和开放问题 |
+| Source map | source-map.md | Repository structure, entries, core modules, and reading order |
+| Technical architecture | architecture.md | Module boundaries, core abstractions, dependency direction, and extension points |
+| Key abstractions | key-abstractions.md | Key interfaces, data structures, lifecycle objects, and collaboration |
+| Extension points | extension-points.md | Plugins, hooks, registries, providers, and other extension mechanisms |
+| Main flow trace | runtime-flows.md | Source path from entry to core execution |
+| Design philosophy | design-philosophy.md | Design principles, tradeoffs, and non-obvious designs |
+| Adoption notes | adoption-notes.md | Directly learnable, context-dependent, and non-copyable designs |
+| Evidence index | evidence-index.md | Key conclusions and source evidence |
+| Research review | research-review.md | Quality gate, evidence completeness, and open questions |
 
-## 9. 验收标准
+## 9. Acceptance Criteria
 
-| 编号 | 标准 | 验收方式 |
+| ID | Criterion | Verification |
 |---|---|---|
-| AC-001 | 关键结论均有源码、文档或测试证据 | 检查 evidence-index.md |
-| AC-002 | 至少完成一条主流程追踪 | 检查 runtime-flows.md |
-| AC-003 | 学习借鉴能说明适用前提、约束和误读风险 | 检查 adoption-notes.md |
+| AC-001 | Key conclusions have source, document, or test evidence | Check evidence-index.md |
+| AC-002 | At least one main runtime flow is traced | Check runtime-flows.md |
+| AC-003 | Adoption notes explain applicability, constraints, and misread risks | Check adoption-notes.md |

@@ -1,105 +1,105 @@
-# 研究问题
+# Research Questions
 
-## 1. 问题清单
+## 1. Question List
 
-| 编号 | 问题 | 来源 | 为什么重要 | 需要验证的源码方向 | 状态 |
+| ID | Question | Source | Why It Matters | Source Directions to Verify | Status |
 |---|---|---|---|---|---|
-| RQ-OC-001 | OpenClaw 的 Gateway 是否真的是长期运行控制面？ | EXT-OC-001 | 决定架构中心是 Gateway 还是 Agent loop | CLI launcher、Gateway server、WS runtime | 已验证 |
-| RQ-OC-002 | Agent runtime 的 OpenClaw-owned layer 与 Pi core 如何分工？ | EXT-OC-002 | 决定如何理解产品上下文与模型工具循环的边界 | Agent RPC、agent-command、attempt-execution、agent loop docs | 部分验证 |
-| RQ-OC-003 | Plugin 是 capability ownership 模型还是普通 hook 列表？ | EXT-OC-003 | 决定扩展机制的核心抽象 | plugin manifest、loader、api-builder、hook-types | 已验证 |
-| RQ-OC-004 | Session、DM isolation、多 Agent 是否是一等隔离模型？ | EXT-OC-004 | 决定多渠道/多 Agent 的状态边界 | session docs、multi-agent docs、agent ingress | 部分验证 |
-| RQ-OC-005 | Channel/Provider plugin 是否能代表完整 capability contract？ | EXT-OC-003 | 决定样例插件能否支撑扩展点结论 | `extensions/anthropic`, `extensions/irc` | 已验证样例 |
+| RQ-OC-001 | Is OpenClaw's Gateway really a long-running control plane? | EXT-OC-001 | Determines whether the architectural center is Gateway or agent loop | CLI launcher, Gateway server, WS runtime | Verified |
+| RQ-OC-002 | How do the OpenClaw-owned agent runtime layer and Pi core divide responsibilities? | EXT-OC-002 | Clarifies the boundary between product context and the model/tool loop | Agent RPC, agent-command, attempt-execution, agent-loop docs | Partly verified |
+| RQ-OC-003 | Is Plugin a capability-ownership model or just a hook list? | EXT-OC-003 | Determines the core abstraction of the extension mechanism | plugin manifest, loader, api-builder, hook-types | Verified |
+| RQ-OC-004 | Are sessions, DM isolation, and multi-agent first-class isolation models? | EXT-OC-004 | Determines state boundaries for multi-channel and multi-agent operation | session docs, multi-agent docs, agent ingress | Partly verified |
+| RQ-OC-005 | Can channel/provider plugins represent a full capability contract? | EXT-OC-003 | Determines whether sample plugins support the extension-point conclusions | `extensions/anthropic`, `extensions/irc` | Sample verified |
 
-## 2. 详细问题
+## 2. Detailed Questions
 
-### RQ-OC-001: Gateway 是否真的是长期运行控制面？
+### RQ-OC-001: Is Gateway Really a Long-Running Control Plane?
 
-外部资料来源：
+External source:
 
 - https://docs.openclaw.ai/architecture
 
-需要源码验证：
+Source verification needed:
 
-- Gateway 启动是否统一进入 server runtime。
-- WS clients、nodes、agent RPC 是否都由 Gateway 管理。
+- Whether Gateway startup consistently enters the server runtime.
+- Whether WS clients, nodes, and agent RPC are all managed by Gateway.
 
-验证结果：
+Verification result:
 
-- 已验证。`openclaw.mjs`、`src/entry.ts`、`src/cli/gateway-cli/run.ts` 和 Gateway server/runtime 证据支撑这一点。
+- Verified. `openclaw.mjs`, `src/entry.ts`, `src/cli/gateway-cli/run.ts`, and Gateway server/runtime evidence support this conclusion.
 
-源码证据：
+Source evidence:
 
 - `C-004`, `C-005`, `C-006`
 
-### RQ-OC-002: Agent runtime 的边界是什么？
+### RQ-OC-002: What Is the Agent Runtime Boundary?
 
-外部资料来源：
+External source:
 
 - https://docs.openclaw.ai/concepts/agent
 
-需要源码验证：
+Source verification needed:
 
-- Gateway agent RPC 如何进入 `agentCommandFromIngress`。
-- OpenClaw session/workspace/delivery 是否包裹 Pi core。
+- How Gateway agent RPC enters `agentCommandFromIngress`.
+- Whether OpenClaw session/workspace/delivery wraps Pi core.
 
-验证结果：
+Verification result:
 
-- 部分验证。入口链路已验证，Pi core 内部事件结构未完全展开。
+- Partly verified. The entry path is verified, but Pi core's internal event structure has not been fully expanded.
 
-源码证据：
+Source evidence:
 
 - `C-007`, `C-008`, `INF-003`
 
-### RQ-OC-003: Plugin 是 capability ownership 还是普通 hook？
+### RQ-OC-003: Is Plugin Capability Ownership or Plain Hooking?
 
-外部资料来源：
+External source:
 
 - https://docs.openclaw.ai/plugins/architecture
 
-需要源码验证：
+Source verification needed:
 
-- manifest/discovery、validation、runtime loading、registry consumption 是否存在。
-- Plugin API 是否注册 provider/channel/tool/hook/http/session/memory 等能力。
+- Whether manifest/discovery, validation, runtime loading, and registry consumption exist.
+- Whether the Plugin API registers providers, channels, tools, hooks, HTTP surfaces, sessions, memory, and related capabilities.
 
-验证结果：
+Verification result:
 
-- 已验证。
+- Verified.
 
-源码证据：
+Source evidence:
 
 - `C-010`, `C-011`, `C-012`, `C-017`, `INF-001`
 
-### RQ-OC-004: Session 与 multi-agent 是否一等隔离模型？
+### RQ-OC-004: Are Session and Multi-Agent First-Class Isolation Models?
 
-外部资料来源：
+External sources:
 
 - https://docs.openclaw.ai/concepts/session
 - https://docs.openclaw.ai/concepts/multi-agent
 
-需要源码验证：
+Source verification needed:
 
-- 不同消息来源如何路由 session。
-- agent workspace、agentDir、auth profile、session store 如何隔离。
+- How different message sources route to sessions.
+- How agent workspace, agentDir, auth profile, and session store are isolated.
 
-验证结果：
+Verification result:
 
-- 部分验证。本轮已有仓库文档和 agent ingress 证据，但还没有跑 live Gateway 多 Agent/channel binding。
+- Partly verified. This pass has repository-doc and agent-ingress evidence, but no live Gateway multi-agent/channel-binding run yet.
 
-源码证据：
+Source evidence:
 
 - `C-008`, `C-009`
 
-## 3. 外部观点验证状态
+## 3. External Claim Verification Status
 
-| 外部观点 | 对应问题 | 验证状态 | 证据 |
+| External Claim | Related Question | Verification Status | Evidence |
 |---|---|---|---|
-| Gateway 是长期运行控制面 | RQ-OC-001 | 已验证 | `C-004`-`C-006` |
-| Agent runtime = OpenClaw 外壳 + Pi core | RQ-OC-002 | 部分验证 | `C-007`, `C-008`, `INF-003` |
-| Capability registration 是 plugin 方向 | RQ-OC-003 | 已验证 | `C-010`-`C-012` |
-| Session/multi-agent 是隔离模型 | RQ-OC-004 | 部分验证 | `C-008`, `C-009` |
+| Gateway is a long-running control plane | RQ-OC-001 | Verified | `C-004`-`C-006` |
+| Agent runtime = OpenClaw shell + Pi core | RQ-OC-002 | Partly verified | `C-007`, `C-008`, `INF-003` |
+| Capability registration is the plugin direction | RQ-OC-003 | Verified | `C-010`-`C-012` |
+| Session/multi-agent is an isolation model | RQ-OC-004 | Partly verified | `C-008`, `C-009` |
 
-## 4. 待继续确认
+## 4. Still to Confirm
 
-- 多 Agent channel binding 的 live behavior。
-- `openclaw plugins inspect <id>` 的实际 runtime 输出。
-- 一个真实 channel inbound 到 session/delivery 的端到端样例。
+- Live behavior of multi-agent channel binding.
+- Actual runtime output from `openclaw plugins inspect <id>`.
+- One real end-to-end example from channel inbound to session/delivery.

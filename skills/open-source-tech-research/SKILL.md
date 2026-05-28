@@ -9,7 +9,7 @@ Use this skill when the user wants to understand an open-source framework, unfam
 
 ## Core Rule
 
-Do not produce generic introductions. Important conclusions must be backed by official docs, source, tests, examples, config, version evidence, or clearly labeled community evidence. 外部资料用于建立问题和背景，源码/测试/配置用于验证真实实现。Mark assumptions and inferences explicitly.
+Do not produce generic introductions. Important conclusions must be backed by official docs, source, tests, examples, config, version evidence, or clearly labeled community evidence. Use external references to build questions and context; use source, tests, and configuration to verify the actual implementation. Mark assumptions and inferences explicitly.
 
 ## Workflow
 

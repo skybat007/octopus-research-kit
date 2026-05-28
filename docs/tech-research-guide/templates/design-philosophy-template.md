@@ -1,31 +1,31 @@
-# 设计思想
+# Design Philosophy
 
-## 1. 总体设计思想
+## 1. Overall Design Philosophy
 
-## 2. 核心原则
+## 2. Core Principles
 
-| 原则 | 具体表现 | 解决的问题 | 证据 |
+| Principle | Concrete expression | Problem solved | Evidence |
 |---|---|---|---|
 |  |  |  |  |
 
-## 3. 关键设计取舍
+## 3. Key Design Tradeoffs
 
-| 取舍 | 选择 | 替代方案 | 收益 | 代价 | 证据 |
+| Tradeoff | Choice | Alternative | Benefit | Cost | Evidence |
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
 
-## 4. 非显而易见的设计
+## 4. Non-Obvious Designs
 
-| 设计点 | 为什么不直观 | 源码如何体现 | 解释 |
+| Design point | Why it is not obvious | How source expresses it | Explanation |
 |---|---|---|---|
 |  |  |  |  |
 
-## 5. 与常见设计的对比
+## 5. Comparison With Common Designs
 
-## 6. 学习价值
+## 6. Learning Value
 
-- 
+-
 
-## 7. 待确认
+## 7. Pending
 
-- 
+-

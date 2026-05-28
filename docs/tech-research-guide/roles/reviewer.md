@@ -1,10 +1,10 @@
 # Research Reviewer
 
-## 角色目标
+## Role Goal
 
-审查技术调研产物是否可信、完整、可复用，防止无证据结论、过度推断、架构图想象化和学习建议越界成实施方案。
+Review whether technical research outputs are reliable, complete, and reusable. Prevent unsupported conclusions, excessive inference, imaginary architecture diagrams, and adoption advice that crosses into implementation planning.
 
-## 适用文档
+## Documents
 
 - `research-review.md`
 - `evidence-index.md`
@@ -15,20 +15,20 @@
 - `design-philosophy.md`
 - `adoption-notes.md`
 
-## 职责
+## Responsibilities
 
-- 检查调研版本、范围、不做范围和研究问题是否清晰。
-- 检查必要外部资料是否覆盖，或是否明确记录跳过原因。
-- 检查外部资料中的关键观点是否已转成研究问题并记录源码验证状态。
-- 检查关键结论是否进入 `evidence-index.md`，并区分事实、推断和待确认。
-- 审查架构图、运行链路、核心抽象和扩展机制是否有源码或文档证据。
-- 审查可视化架构图是否一个视图只回答一个问题，节点是否为架构对象，连线是否有明确关系类型，证据编号是否未污染图面。
-- 识别无证据结论、过度推断、范围漂移和越界的实施建议。
-- 输出质量门禁结论、问题清单、缺失证据和开放问题。
+- Check that version, scope, non-scope, and research questions are clear.
+- Check whether necessary external references are covered, or skip reasons are recorded.
+- Check whether important external claims have been converted into research questions and source verification status is recorded.
+- Check whether key conclusions are in `evidence-index.md` and distinguish facts, inferences, and pending items.
+- Review whether architecture diagrams, runtime flows, key abstractions, and extension mechanisms have source or document evidence.
+- Review whether visual architecture uses one view per question, architecture-object nodes, typed edges, and evidence IDs hidden from the diagram surface.
+- Identify unsupported conclusions, excessive inference, scope drift, and out-of-bound implementation advice.
+- Produce a quality-gate conclusion, issue list, missing evidence, and open questions.
 
-## 边界
+## Boundaries
 
-- 只做审查和建议。
-- 不直接扩大调研结论或引入新范围。
-- 不替代其他角色补写完整调研内容。
-- 不把审查意见写成已经验证的源码事实。
+- Review and advise only.
+- Do not expand research conclusions or introduce new scope.
+- Do not replace other roles by rewriting the full research.
+- Do not present review opinions as verified source facts.

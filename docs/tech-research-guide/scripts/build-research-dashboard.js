@@ -15,12 +15,12 @@ if (process.argv.includes('--help')) {
 const targetDirs = args.length ? args : discoverResearchDirs();
 
 const NAV_GROUPS = [
-  { id: 'overview', label: '总览' },
-  { id: 'prep', label: '调研准备' },
-  { id: 'architecture-analysis', label: '架构解析' },
-  { id: 'source-analysis', label: '源码解析' },
-  { id: 'evidence', label: '证据' },
-  { id: 'support', label: '辅助材料' }
+  { id: 'overview', label: 'Overview' },
+  { id: 'prep', label: 'Research Prep' },
+  { id: 'architecture-analysis', label: 'Architecture Analysis' },
+  { id: 'source-analysis', label: 'Source Analysis' },
+  { id: 'evidence', label: 'Evidence' },
+  { id: 'support', label: 'Supporting Materials' }
 ];
 
 for (const dir of targetDirs) {
@@ -46,9 +46,9 @@ function buildDashboard(researchDir) {
   const title = firstHeading(readme) || titleCase(name);
   const status = readField(readme, 'Status') || 'draft';
   const updated = readField(readme, 'Last Updated') || '';
-  const summary = sectionText(readme, '调研摘要') || sectionText(readme, '当前结论') || '暂无摘要。';
-  const conclusions = bulletSection(readme, '当前结论').slice(0, 5);
-  const todos = bulletSection(readme, '待确认').slice(0, 5);
+  const summary = firstSection(readme, ['Research Summary', 'Current Conclusions']) || 'No summary yet.';
+  const conclusions = firstBulletSection(readme, ['Current Conclusions']).slice(0, 5);
+  const todos = firstBulletSection(readme, ['Pending Questions', 'Pending']).slice(0, 5);
   const inventory = readInventory(path.join(researchDir, 'references', 'source-inventory.json'));
   const docs = documentList(researchDir);
   const outPath = path.join(researchDir, 'dashboard.html');
@@ -63,7 +63,7 @@ function collectIndexItems() {
   return discoverResearchDirs()
     .map(dir => readIndexItem(path.resolve(root, dir)))
     .filter(Boolean)
-    .sort((a, b) => a.title.localeCompare(b.title, 'zh-CN'));
+    .sort((a, b) => a.title.localeCompare(b.title, 'en'));
 }
 
 function readIndexItem(researchDir) {
@@ -74,7 +74,7 @@ function readIndexItem(researchDir) {
   const title = firstHeading(readme) || titleCase(name);
   const status = readField(readme, 'Status') || 'draft';
   const updated = readField(readme, 'Last Updated') || '';
-  const summary = sectionText(readme, '调研摘要') || sectionText(readme, '当前结论') || '暂无摘要。';
+  const summary = firstSection(readme, ['Research Summary', 'Current Conclusions']) || 'No summary yet.';
   const inventory = readInventory(path.join(researchDir, 'references', 'source-inventory.json'));
   return {
     name,
@@ -97,22 +97,22 @@ function buildIndex(items) {
 
 function documentList(researchDir) {
   const specs = [
-    ['README.md', '总览文档', '调研摘要、当前结论和文件导航', 'overview'],
-    ['research-brief.md', '调研简报', '目标、范围、问题和验收标准', 'prep'],
-    ['external-research.md', '外部资料', '官方、协作和社区资料', 'prep'],
-    ['research-questions.md', '研究问题', '待验证问题和验证状态', 'prep'],
-    ['architecture.md', '架构文档', '模块职责、边界和依赖方向', 'architecture-analysis'],
-    ['visual/architecture.html', '可视化架构图', '专门的交互式架构图查看器', 'architecture-analysis'],
-    ['runtime-flows.md', '运行流程', '主链路和关键状态变化', 'architecture-analysis'],
-    ['key-abstractions.md', '核心抽象', '接口、对象和生命周期', 'architecture-analysis'],
-    ['extension-points.md', '扩展点', '插件、Hook、Provider 和 Registry', 'architecture-analysis'],
-    ['design-philosophy.md', '设计思想', '设计取舍和可学习模式', 'architecture-analysis'],
-    ['comparison.md', '横向对比', '相邻框架或同类方案对照', 'architecture-analysis'],
-    ['adoption-notes.md', '学习借鉴', '可学习、需适配和不建议照搬的设计', 'architecture-analysis'],
-    ['source-map.md', '源码地图', '仓库结构、入口和阅读顺序', 'source-analysis'],
-    ['visual/evidence.html', '证据查看器', '从架构图回到证据解释', 'evidence'],
-    ['evidence-index.md', '证据索引', '关键结论和证据锚点', 'evidence'],
-    ['research-review.md', '调研审查', '质量门禁、风险和开放问题', 'support']
+    ['README.md', 'Overview', 'Research summary, current conclusions, and file navigation', 'overview'],
+    ['research-brief.md', 'Research Brief', 'Goals, scope, questions, and acceptance criteria', 'prep'],
+    ['external-research.md', 'External Research', 'Official, collaboration, and community references', 'prep'],
+    ['research-questions.md', 'Research Questions', 'Questions to verify and verification status', 'prep'],
+    ['architecture.md', 'Architecture', 'Module responsibilities, boundaries, and dependency direction', 'architecture-analysis'],
+    ['visual/architecture.html', 'Visual Architecture', 'Dedicated interactive architecture viewer', 'architecture-analysis'],
+    ['runtime-flows.md', 'Runtime Flows', 'Main runtime paths and key state changes', 'architecture-analysis'],
+    ['key-abstractions.md', 'Key Abstractions', 'Interfaces, objects, and lifecycles', 'architecture-analysis'],
+    ['extension-points.md', 'Extension Points', 'Plugins, hooks, providers, registries, and other extension mechanisms', 'architecture-analysis'],
+    ['design-philosophy.md', 'Design Philosophy', 'Design tradeoffs and reusable patterns', 'architecture-analysis'],
+    ['comparison.md', 'Comparison', 'Comparison with neighboring frameworks or similar solutions', 'architecture-analysis'],
+    ['adoption-notes.md', 'Adoption Notes', 'Learn/adapt/avoid design guidance', 'architecture-analysis'],
+    ['source-map.md', 'Source Map', 'Repository structure, entries, and reading order', 'source-analysis'],
+    ['visual/evidence.html', 'Evidence Viewer', 'Trace from diagrams back to evidence explanations', 'evidence'],
+    ['evidence-index.md', 'Evidence Index', 'Key conclusions and evidence anchors', 'evidence'],
+    ['research-review.md', 'Research Review', 'Quality gate, risks, and open questions', 'support']
   ];
   return specs.map(([file, label, desc, group]) => ({
     file,
@@ -141,7 +141,7 @@ function renderDashboard(data) {
     .filter(Boolean);
 
   return `<!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -163,7 +163,7 @@ function renderDashboard(data) {
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.55;
@@ -281,40 +281,40 @@ function renderDashboard(data) {
 </head>
 <body>
   <div class="layout">
-    ${renderSideNav({ title: data.title, subtitle: '调研导航', docs: data.docs, currentFile: 'dashboard.html' })}
+    ${renderSideNav({ title: data.title, subtitle: 'Research Navigation', docs: data.docs, currentFile: 'dashboard.html' })}
   <main>
     <section class="hero">
       <div class="eyebrow">Tech Research Dashboard · ${escapeHtml(data.name)}</div>
       <h1>${escapeHtml(data.title)}</h1>
       <div class="summary">${escapeHtml(shortText(data.summary, 700))}</div>
       <div class="meta">
-        <div class="metric"><div class="label">状态</div><div class="value">${escapeHtml(data.status)}</div></div>
-        <div class="metric"><div class="label">更新日期</div><div class="value">${escapeHtml(data.updated || '未记录')}</div></div>
-        <div class="metric"><div class="label">源码文件</div><div class="value">${escapeHtml(formatCount(data.inventory.fileCount))}</div></div>
-        <div class="metric"><div class="label">主要语言</div><div class="value">${escapeHtml(data.inventory.primaryLanguage || '未生成')}</div></div>
+        <div class="metric"><div class="label">Status</div><div class="value">${escapeHtml(data.status)}</div></div>
+        <div class="metric"><div class="label">Updated</div><div class="value">${escapeHtml(data.updated || 'Not recorded')}</div></div>
+        <div class="metric"><div class="label">Source Files</div><div class="value">${escapeHtml(formatCount(data.inventory.fileCount))}</div></div>
+        <div class="metric"><div class="label">Primary Language</div><div class="value">${escapeHtml(data.inventory.primaryLanguage || 'Not generated')}</div></div>
       </div>
     </section>
 
-    <h2>建议阅读顺序</h2>
+    <h2>Suggested Reading Order</h2>
     <section class="panel">
       <ol class="reading-list">
         ${readingOrder.map(doc => `<li><a href="${escapeAttr(docHref(doc.file))}">${escapeHtml(doc.label)}<span>${escapeHtml(doc.desc)}</span></a></li>`).join('\n')}
       </ol>
     </section>
 
-    <h2>当前结论与待确认</h2>
+    <h2>Current Conclusions and Pending Questions</h2>
     <section class="columns">
       <div class="panel">
-        <h2 style="margin-top:0">当前结论</h2>
-        ${renderList(data.conclusions, 'README.md 中暂未提取到当前结论。')}
+        <h2 style="margin-top:0">Current Conclusions</h2>
+        ${renderList(data.conclusions, 'No current conclusions were extracted from README.md.')}
       </div>
       <div class="panel">
-        <h2 style="margin-top:0">待确认</h2>
-        ${renderList(data.todos, 'README.md 中暂未提取到待确认项。')}
+        <h2 style="margin-top:0">Pending Questions</h2>
+        ${renderList(data.todos, 'No pending questions were extracted from README.md.')}
       </div>
     </section>
 
-    <div class="footer">Dashboard 只做阅读导航。Markdown 是知识源，visual/architecture.html 是“架构解析”下的专门架构图查看器，source-map.md 是“源码解析”入口，references/ 保留机器生成或过程性材料但不作为阅读入口。</div>
+    <div class="footer">The dashboard is only a reading navigator. Markdown remains the knowledge source, visual/architecture.html is the dedicated architecture viewer, source-map.md is the source-analysis entry, and references/ is reserved for generated or process material rather than first-level reading.</div>
   </main>
   </div>
 </body>
@@ -324,13 +324,13 @@ function renderDashboard(data) {
 
 function renderIndex(items) {
   return `<!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tech Research Dashboard</title>
   <style>
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: #f6f8fb; color: #172033; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f6f8fb; color: #172033; }
     a { color: #2563eb; text-decoration: none; }
     a:hover { text-decoration: underline; }
     main { max-width: 1120px; margin: 0 auto; padding: 36px 20px 56px; }
@@ -349,7 +349,7 @@ function renderIndex(items) {
 <body>
   <main>
     <h1>Tech Research Dashboard</h1>
-    <div class="intro">这里是 research 目录的统一入口。每个框架的 Dashboard 负责导航 Markdown 调研文档、可视化架构图和证据查看器；references 下的过程性材料保留给脚本和源码解析使用。</div>
+    <div class="intro">This is the unified entry for the research directory. Each framework dashboard navigates Markdown research documents, visual architecture diagrams, and evidence viewers. Process materials under references are reserved for scripts and source analysis.</div>
     <section class="grid">
       ${items.map(renderIndexCard).join('\n')}
     </section>
@@ -364,7 +364,7 @@ function renderSideNav({ title, subtitle, docs, currentFile = '' }) {
     {
       file: 'dashboard.html',
       label: 'Dashboard',
-      desc: '调研摘要和阅读入口',
+      desc: 'Research summary and reading entry',
       group: 'overview',
       exists: true
     },
@@ -379,7 +379,7 @@ function renderSideNav({ title, subtitle, docs, currentFile = '' }) {
   }
 
   return `<aside>
-      <a class="home-link" href="../index.html" title="返回 Tech Research 首页"><span aria-hidden="true">&larr;</span> 调研首页</a>
+      <a class="home-link" href="../index.html" title="Back to Tech Research home"><span aria-hidden="true">&larr;</span> Research Home</a>
       <div class="brand">${escapeHtml(title)}</div>
       <div class="sub">${escapeHtml(subtitle)}</div>
       ${NAV_GROUPS.map(group => {
@@ -414,8 +414,8 @@ function docHref(file) {
 function renderIndexCard(item) {
   return `<article class="card">
   <div class="title">${escapeHtml(item.title)}</div>
-  <div class="summary">${escapeHtml(item.summary || '暂无摘要。')}</div>
-  <div class="meta">Status: ${escapeHtml(item.status || 'draft')} · Updated: ${escapeHtml(item.updated || '未记录')} · Files: ${escapeHtml(formatCount(item.inventory.fileCount))}</div>
+  <div class="summary">${escapeHtml(item.summary || 'No summary yet.')}</div>
+  <div class="meta">Status: ${escapeHtml(item.status || 'draft')} · Updated: ${escapeHtml(item.updated || 'Not recorded')} · Files: ${escapeHtml(formatCount(item.inventory.fileCount))}</div>
   <div class="actions">
     <a class="button" href="./${escapeAttr(item.name)}/dashboard.html">Dashboard</a>
   </div>
@@ -442,7 +442,7 @@ function renderDocsViewer(data) {
       desc: doc.desc
     }));
   return `<!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -461,7 +461,7 @@ function renderDocsViewer(data) {
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.65;
@@ -641,7 +641,7 @@ function renderDocsViewer(data) {
 </head>
 <body>
   <div class="layout">
-    ${renderSideNav({ title: data.title, subtitle: '调研导航', docs: data.docs })}
+    ${renderSideNav({ title: data.title, subtitle: 'Research Navigation', docs: data.docs })}
     <main>
       <article id="doc" class="doc"></article>
     </main>
@@ -666,7 +666,7 @@ function renderDocsViewer(data) {
       if (current && link.dataset.navFile === current.file) link.classList.add('active');
     });
     if (!current) {
-      container.innerHTML = '<p class="missing">没有可展示的文档。</p>';
+      container.innerHTML = '<p class="missing">No document is available to display.</p>';
     } else if (requestedVisual) {
       container.outerHTML = renderVisual(current);
     } else {
@@ -795,7 +795,7 @@ function renderDocsViewer(data) {
     }
 
     function renderMermaidSource(source) {
-      return '<div class="mermaid-block" data-mermaid-pending="true"><div class="mermaid-status">正在渲染 Mermaid 图形...</div><pre class="mermaid-source"><code>' + escapeHtml(source) + '</code></pre></div>';
+      return '<div class="mermaid-block" data-mermaid-pending="true"><div class="mermaid-status">Rendering Mermaid diagram...</div><pre class="mermaid-source"><code>' + escapeHtml(source) + '</code></pre></div>';
     }
 
     var mermaidLoadPromise;
@@ -805,8 +805,8 @@ function renderDocsViewer(data) {
       mermaidLoadPromise = new Promise((resolve, reject) => {
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js';
-        script.onload = () => window.mermaid ? resolve(window.mermaid) : reject(new Error('Mermaid 脚本未初始化'));
-        script.onerror = () => reject(new Error('Mermaid 脚本加载失败'));
+        script.onload = () => window.mermaid ? resolve(window.mermaid) : reject(new Error('Mermaid script did not initialize'));
+        script.onerror = () => reject(new Error('Mermaid script failed to load'));
         document.head.appendChild(script);
       });
       return mermaidLoadPromise;
@@ -847,7 +847,7 @@ function renderDocsViewer(data) {
       block.classList.add('failed');
       block.removeAttribute('data-mermaid-pending');
       const status = block.querySelector('.mermaid-status');
-      if (status) status.textContent = 'Mermaid 图形渲染失败，下面保留原始源码：' + (error && error.message ? error.message : '未知错误');
+      if (status) status.textContent = 'Mermaid rendering failed. Raw source is preserved below: ' + (error && error.message ? error.message : 'unknown error');
     }
 
     function inline(value) {
@@ -912,9 +912,25 @@ function readField(md, field) {
   return match ? match[1].trim() : '';
 }
 
+function firstSection(md, titles) {
+  for (const title of titles) {
+    const value = sectionText(md, title);
+    if (value) return value;
+  }
+  return '';
+}
+
 function sectionText(md, title) {
   const section = readSection(md, title);
   return stripMarkdown(section).trim();
+}
+
+function firstBulletSection(md, titles) {
+  for (const title of titles) {
+    const value = bulletSection(md, title);
+    if (value.length) return value;
+  }
+  return [];
 }
 
 function bulletSection(md, title) {
@@ -958,7 +974,7 @@ function shortText(value, limit) {
 
 function formatCount(value) {
   const n = Number(value || 0);
-  return n ? String(n) : '未生成';
+  return n ? String(n) : 'Not generated';
 }
 
 function safeScriptJson(value) {

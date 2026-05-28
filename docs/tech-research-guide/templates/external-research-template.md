@@ -1,66 +1,66 @@
-# 外部资料调研
+# External Research
 
 <!--
-本文件是正式资料文档，只记录资料来源、检索范围、关键观点、可信度、源码验证状态、资料边界和与源码的口径差异。
-不要记录调研过程偏差、Agent 执行失误、补救说明、工具调用细节、道歉、重跑脚本原因或“上一版为什么错了”。
-这些过程性信息应写入 research-review.md 的流程审查或问题清单。
+This is a formal reference document. Record sources, search scope, key claims, credibility, source-verification status, reference boundaries, and differences from source.
+Do not record process deviations, agent mistakes, correction notes, tool-call details, apologies, rerun reasons, or "why the previous version was wrong" here.
+Put that process information in research-review.md.
 -->
 
-## 1. 官方资料
+## 1. Official References
 
-| 资料 | 链接或路径 | 主要内容 | 对本次调研的价值 | 可信度等级 |
+| Reference | Link or path | Main content | Value for this research | Credibility |
 |---|---|---|---|---|
-| 官网文档 |  |  |  | A |
+| Official docs |  |  |  | A |
 | README |  |  |  | A |
 | Quickstart |  |  |  | A |
-| Architecture/Concept 文档 |  |  |  | A |
+| Architecture/Concept docs |  |  |  | A |
 | Release Notes/Changelog |  |  |  | A |
-| 官方 Examples |  |  |  | A/S |
+| Official examples |  |  |  | A/S |
 
-## 2. 项目协作资料
+## 2. Collaboration References
 
-| 资料 | 链接或路径 | 主要观点 | 时间/版本 | 可信度等级 | 是否需要源码验证 |
+| Reference | Link or path | Main claim | Date/version | Credibility | Needs source verification |
 |---|---|---|---|---|---|
-| Issue/PR/Discussion |  |  |  | B | 是 |
+| Issue/PR/Discussion |  |  |  | B | yes |
 
-## 3. 社区与第三方资料
+## 3. Community and Third-Party References
 
-| 资料 | 作者/来源 | 主要观点 | 可信度等级 | 是否需要源码验证 |
+| Reference | Author/source | Main claim | Credibility | Needs source verification |
 |---|---|---|---|---|
-| 技术文章/视频/用户实践 |  |  | C | 是 |
+| Article/video/user practice |  |  | C | yes |
 
-## 4. 外部资料中的关键观点
+## 4. Key Claims From External References
 
 ### EXT-001:
 
-来源：
+Source:
 
 -
 
-说明：
+Explanation:
 
 -
 
-是否已被源码验证：
+Source verification status:
 
-- 待验证/已验证/部分验证/无法验证
+- pending/verified/partially verified/unverifiable
 
-对应源码证据：
+Related source evidence:
 
-- 
+-
 
-## 5. 外部资料与源码不一致的地方
+## 5. Differences Between External References and Source
 
-| 外部资料说法 | 源码实际情况 | 判断 | 后续处理 |
+| External claim | Source behavior | Judgment | Follow-up |
 |---|---|---|---|
 |  |  |  |  |
 
-## 6. 资料边界与对调研方向的影响
+## 6. Reference Boundaries and Impact on Research Direction
 
-外部资料帮助确认：
+External references help confirm:
 
 -
 
-资料边界：
+Reference boundaries:
 
 -

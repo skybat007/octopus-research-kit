@@ -21,7 +21,6 @@ for (const dir of targetDirs) {
   for (const file of listFiles(researchDir)) {
     const before = fs.readFileSync(file, 'utf8');
     let after = sanitizePersonalPaths(before);
-    after = after.replace(/\|\s*本地路径\s*\|/g, '| 项目标识 |');
     if (after !== before) {
       fs.writeFileSync(file, after);
       changed += 1;

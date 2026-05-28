@@ -32,7 +32,7 @@
   "configFiles": [],
   "largeFiles": [],
   "notes": [
-    "references/source-inventory.json 是确定性源码扫描索引，不是架构结论。",
-    "架构结论仍应写入 Markdown 文档，并用 evidence-index.md 绑定证据。"
+    "references/source-inventory.json is a deterministic source-scanning index, not an architecture conclusion.",
+    "Architecture conclusions should still be written in Markdown and tied to evidence in evidence-index.md."
   ]
 }

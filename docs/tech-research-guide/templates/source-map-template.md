@@ -1,68 +1,68 @@
-# 源码地图
+# Source Map
 
-## 1. 仓库快照
+## 1. Repository Snapshot
 
-| 项 | 内容 |
+| Item | Value |
 |---|---|
-| 项目标识 |  |
+| Project identifier |  |
 | remote |  |
 | branch/tag/commit |  |
-| 主要语言 |  |
-| 构建工具 |  |
-| source-inventory | `references/source-inventory.json` 已生成/未生成；原因： |
+| Primary languages |  |
+| Build tools |  |
+| source-inventory | `references/source-inventory.json` generated/not generated; reason: |
 
-## 2. 顶层目录
+## 2. Top-Level Directories
 
-| 路径 | 作用 | 是否核心 |
+| Path | Purpose | Core |
 |---|---|---|
-|  |  | 是/否 |
+|  |  | yes/no |
 
-## 2.1 结构化源码清单
+## 2.1 Structured Source Inventory
 
-| 项 | 内容 |
+| Item | Value |
 |---|---|
-| 文件数量 | 见 `references/source-inventory.json` |
-| 主要语言 | 见 `references/source-inventory.json` |
-| 构建文件 | 见 `references/source-inventory.json#buildFiles` |
-| 入口候选 | 见 `references/source-inventory.json#entryCandidates` |
-| 测试/示例/文档 | 见 `references/source-inventory.json#testFiles` / `exampleFiles` / `docsFiles` |
+| File count | See `references/source-inventory.json` |
+| Primary languages | See `references/source-inventory.json` |
+| Build files | See `references/source-inventory.json#buildFiles` |
+| Entry candidates | See `references/source-inventory.json#entryCandidates` |
+| Tests/examples/docs | See `references/source-inventory.json#testFiles` / `exampleFiles` / `docsFiles` |
 
-说明：`references/source-inventory.json` 是确定性源码索引，不是架构结论。源码地图中的模块职责、入口判断和阅读顺序仍需要结合源码证据人工确认。
+`references/source-inventory.json` is a deterministic source index, not an architecture conclusion. Module responsibilities, entry judgments, and reading order in the source map still require human confirmation from source evidence.
 
-## 3. 核心模块
+## 3. Core Modules
 
-| 模块 | 职责 | 关键文件 | 依赖方向 |
+| Module | Responsibility | Key files | Dependency direction |
 |---|---|---|---|
 |  |  |  |  |
 
-## 4. 对外入口
+## 4. External Entries
 
-| 入口类型 | 位置 | 说明 |
+| Entry type | Location | Notes |
 |---|---|---|
-| API/CLI/配置/服务启动 |  |  |
+| API/CLI/config/server startup |  |  |
 
-## 5. 示例和测试入口
+## 5. Example and Test Entries
 
-| 路径 | 覆盖场景 | 阅读价值 |
+| Path | Covered scenario | Reading value |
 |---|---|---|
 |  |  |  |
 
-## 6. 建议阅读顺序
+## 6. Suggested Reading Order
 
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
-## 7. 初步判断
+## 7. Initial Judgment
 
-### 7.1 已确认事实
+### 7.1 Confirmed Facts
 
-- 
+-
 
-### 7.2 推断
+### 7.2 Inferences
 
-- 推断：
+- Inference:
 
-### 7.3 待确认
+### 7.3 Pending
 
-- 
+-

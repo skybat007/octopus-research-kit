@@ -1,38 +1,38 @@
-# 证据索引
+# Evidence Index
 
-## 1. 版本信息
+## 1. Version Information
 
-本文件也可以理解为 Evidence Log，用于约束关键结论必须有证据。
+This file is also the Evidence Log. It keeps important conclusions tied to evidence.
 
-| 项 | 内容 |
+| Item | Value |
 |---|---|
-| 代码来源 |  |
-| 项目标识 |  |
+| Code source |  |
+| Project identifier |  |
 | branch/tag/commit |  |
-| 调研日期 |  |
+| Research date |  |
 
-## 2. 证据索引
+## 2. Evidence Index
 
-| 结论编号 | 结论 | 证据类型 | 可信度等级 | 来源 | 是否已源码验证 | 置信度 | 备注 |
+| Conclusion ID | Conclusion | Evidence type | Credibility level | Source | Source verified | Confidence | Notes |
 |---|---|---|---|---|---|---|---|
-| C-001 |  | 源码事实/官方事实/仓库文档事实/协作事实/社区事实/测试事实/推断 | S/A/B/C/D | 路径、URL、issue、PR 或命令 | 是/否/部分/不适用 | 高/中/低 |  |
+| C-001 |  | source fact / official fact / repository doc fact / collaboration fact / community fact / test fact / inference | S/A/B/C/D | path, URL, issue, PR, or command | yes/no/partial/not applicable | high/medium/low |  |
 
-## 3. 推断链路
+## 3. Inference Chains
 
-| 推断编号 | 依赖证据 | 推断过程 | 待验证点 |
+| Inference ID | Depends on evidence | Reasoning | Pending validation |
 |---|---|---|---|
 | INF-001 | C-001 |  |  |
 
-## 4. 待确认
+## 4. Pending
 
-- 
+-
 
-## 5. 资料可信度说明
+## 5. Credibility Levels
 
-| 等级 | 类型 | 使用规则 |
+| Level | Type | Use rule |
 |---|---|---|
-| S | 源码、测试、配置、可运行示例 | 可支撑最终架构和实现结论 |
-| A | 官方文档、官方 README、Release Notes、官方示例 | 可说明设计目标和推荐用法，关键实现仍建议源码验证 |
-| B | Issue、PR、Discussion、Commit message | 可说明演进背景和历史取舍 |
-| C | 第三方文章、视频、用户实践 | 只能作为背景和启发，不得作为核心结论的唯一证据 |
-| D | AI 推断或无明确证据的判断 | 必须标记为推断或待确认 |
+| S | Source, tests, configuration, runnable examples | Can support final architecture and implementation conclusions |
+| A | Official docs, official README, release notes, official examples | Can explain design goals and recommended usage; source verification is still recommended for key implementation details |
+| B | Issues, PRs, discussions, commit messages | Can explain evolution and historical tradeoffs |
+| C | Third-party articles, videos, user practice | Background and inspiration only; never the only evidence for core conclusions |
+| D | AI inference or unsupported judgment | Must be marked as inference or pending |

@@ -1,111 +1,103 @@
-# 源码地图
+# Source Map
 
-Status: draft
-Last Updated: 2026-05-25
+## 1. Repository Snapshot
 
-## 1. 快照信息
-
-| 项 | 内容 |
+| Item | Value |
 |---|---|
-| 项目标识 | `openclaw` |
-| branch | `main` |
-| commit | `989e53c20d395d3c8bf47efc21fdb9d56e7227b0` |
-| package version | `2026.5.19` |
-| package bin | `openclaw -> openclaw.mjs` |
-| workspace | `.`, `ui`, `packages/*`, `extensions/*` |
-| source-inventory | `references/source-inventory.json`，17990 个文件 |
+| Project identifier | `openclaw` |
+| remote | `https://github.com/openclaw/openclaw.git` |
+| branch/tag/commit | `main@989e53c20d395d3c8bf47efc21fdb9d56e7227b0` |
+| Primary languages | TypeScript plus companion-app languages |
+| Build tools | pnpm workspace, package scripts, platform app build systems |
+| source-inventory | `references/source-inventory.json` generated |
 
-## 2. 顶层结构
+## 2. Top-Level Directories
 
-| 路径 | 角色 | 说明 |
+| Path | Purpose | Core |
 |---|---|---|
-| `openclaw.mjs` | npm/CLI launcher | 校验 Node 版本，识别 source checkout/package 模式，处理 compile cache respawn。[C-002][C-005] |
-| `src/entry.ts` | TS 主入口 | 设置进程环境、profile/container 参数、compile cache，进入 CLI 主流程。[C-005] |
-| `src/cli/**` | CLI 命令层 | `gateway`, `agent`, `plugins`, `channels`, `nodes`, `models` 等命令入口。 |
-| `src/gateway/**` | Gateway 控制面 | HTTP/WS server、协议、server methods、auth、channel manager、runtime state。 |
-| `src/agents/**` | Agent runtime 外壳 | session/workspace/skills/model/delivery 封装，调用 Pi agent core。 |
-| `src/plugins/**` | Plugin loader/registry/runtime | 插件发现、manifest registry、加载、API builder、hook runner、runtime facade。 |
-| `src/plugin-sdk/**` | 插件公开 SDK | 插件作者可依赖的 public API 和 entry helper。 |
-| `src/channels/**` | Channel core implementation | Channel SDK seam 和核心通道能力，不等于具体 bundled plugin。 |
-| `extensions/**` | Bundled plugins | 123 个 `openclaw.plugin.json`，包含 provider/channel/tool/hook 等插件。[C-013] |
-| `packages/**` | 独立包 | SDK、plugin package contract、memory host SDK 等。 |
-| `ui/**` | Control UI | 本轮未深入。 |
-| `docs/**` | 仓库文档 | 架构、Agent、Session、Plugin、Gateway protocol 等核心参考。 |
-| `apps/**` | Companion apps | 本轮未深入。 |
-| `qa/**`, `test/**` | 测试与 QA | 本轮只做静态检索，未跑测试。 |
+| `src/cli/**` | CLI command layer for gateway, agents, plugins, channels, nodes, and models | yes |
+| `src/gateway/**` | Gateway control plane: HTTP/WS server, protocol, methods, auth, channels, runtime state | yes |
+| `src/agents/**` | Agent runtime shell, sessions, workspace, skills, model selection, and delivery | yes |
+| `src/plugins/**` | Plugin loader, registry, runtime registration, API builder, and hooks | yes |
+| `src/plugin-sdk/**` | Public plugin SDK and entry helpers | yes |
+| `src/channels/**` | Channel core and SDK-facing channel seams | yes |
+| `extensions/**` | Bundled plugins for providers, channels, tools, hooks, and services | yes |
+| `packages/**` | Shared packages and contracts | yes |
+| `ui/**` | Control UI | partial |
+| `apps/**` | Companion apps | partial |
+| `docs/**` | Repository documentation and concept references | yes |
+| `qa/**`, `test/**` | QA and tests | partial |
 
-## 3. 主入口阅读顺序
+## 2.1 Structured Source Inventory
 
-### 3.1 CLI/Gateway
+| Item | Value |
+|---|---|
+| File count | See `references/source-inventory.json` |
+| Primary languages | See `references/source-inventory.json` |
+| Build files | See `references/source-inventory.json#buildFiles` |
+| Entry candidates | See `references/source-inventory.json#entryCandidates` |
+| Tests/examples/docs | See `references/source-inventory.json#testFiles` / `exampleFiles` / `docsFiles` |
 
-1. `openclaw.mjs`
-   - Node 22.19+ 检查。
-   - source checkout 识别。
-   - compile cache respawn 策略。
-2. `src/entry.ts`
-   - 只在 main module 时执行，避免重复启动 Gateway。
-   - 设置进程 title、warning filter、env、profile/container。
-3. `src/cli/gateway-cli/run.ts`
-   - 读取配置、解析端口/bind/auth/tailscale。
-   - 动态 import `../../gateway/server.js`。
-   - 调用 `startGatewayServer(port, opts)`。
-4. `src/gateway/server.ts`
-   - 薄 wrapper，懒加载 `server.impl.ts`。
-5. `src/gateway/server.impl.ts`
-   - 读取配置、准备插件 bootstrap、创建 runtime state、attach WS handlers、启动 sidecars/channels/services。
+The inventory is a deterministic source index and does not replace architecture conclusions.
 
-### 3.2 Gateway WS
+## 3. Core Modules
 
-1. `src/gateway/server-runtime-state.ts`
-   - 创建 HTTP server 和 `WebSocketServer({ noServer: true })`。
-   - 在 listen 前 attach upgrade handler，避免连接竞态。[C-006]
-2. `src/gateway/server-ws-runtime.ts`
-   - 把 runtime state/context 注入 `attachGatewayWsConnectionHandler`。
-3. `src/gateway/server/ws-connection.ts`
-   - 建立连接、发送 `connect.challenge`、管理 handshake timer、client set、ping、close cleanup。[C-006]
-4. `src/gateway/server/ws-connection/message-handler.ts`
-   - 第一帧必须是 `req:connect`。
-   - 协议版本、origin、auth、device identity、pairing、scope 校验。
-   - 成功后返回 `hello-ok`，包含 methods/events discovery metadata。[C-006]
+| Module | Responsibility | Key files | Dependency direction |
+|---|---|---|---|
+| CLI/Gateway startup | Launches Node process, entry file, gateway CLI, lazy server, and server implementation | `openclaw.mjs`, `src/entry.ts`, `src/cli/gateway-cli/run.ts`, `src/gateway/server.ts`, `src/gateway/server.impl.ts` | CLI -> Gateway |
+| Gateway runtime state | Creates HTTP server, WebSocket server, runtime state, upgrades, clients, and event surfaces | `src/gateway/server-runtime-state.ts`, `src/gateway/server-ws-runtime.ts` | Gateway core |
+| WS connection handling | Challenge, handshake, auth, version/origin checks, hello-ok, ping, cleanup | `src/gateway/server/ws-connection.ts`, `src/gateway/server/ws-connection/message-handler.ts` | Gateway -> protocol/auth |
+| Agent RPC | Accepts agent requests, validates trust, schedules async agent command | `src/gateway/server-methods/agent.ts` | Gateway -> agents |
+| Agent command | Prepares session, model, skills, delivery, and invokes embedded Pi agent | `src/agents/agent-command.ts`, `src/agents/command/attempt-execution.ts` | Agents -> Pi runtime |
+| Plugin loader/API | Discovers manifests, validates enablement, registers runtime capabilities and APIs | `src/plugins/loader.ts`, `src/plugins/api-builder.ts` | Plugins -> Gateway/Agent |
+| Plugin SDK | Canonical plugin author entry and public API | `src/plugin-sdk/plugin-entry.ts` | Plugin authors -> runtime |
+| Bundled plugins | Provider/channel/tool examples | `extensions/anthropic/**`, `extensions/irc/**` | Plugins -> capability registry |
 
-### 3.3 Agent Run
+## 4. External Entries
 
-1. `src/gateway/server-methods/agent.ts`
-   - 验证请求、解析 session、delivery plan、注册 abort controller。
-   - 先返回 accepted ack，再异步调度 `agentCommandFromIngress`。[C-008]
-2. `src/agents/agent-command.ts`
-   - 网络入口必须显式传入 `senderIsOwner` 和 `allowModelOverride`。
-   - 准备 session、skills snapshot、model 选择、delivery。
-3. `src/agents/command/attempt-execution.ts`
-   - 最终调用 `runEmbeddedPiAgent`，把 session、workspace、model、tools、delivery 等参数传入。[C-008]
-4. `src/agents/pi-embedded-runner/**`
-   - 内嵌 Pi runtime，执行模型、工具、hook、stream、timeout、persistence。
+| Entry type | Location | Notes |
+|---|---|---|
+| Launcher | `openclaw.mjs` | Node version check and source checkout startup |
+| Main entry | `src/entry.ts` | Process title, warnings, environment, profile/container setup |
+| Gateway CLI | `src/cli/gateway-cli/run.ts` | Config, port/bind/auth/tailscale, lazy server import |
+| Gateway server | `src/gateway/server.impl.ts` | Runtime state, plugin bootstrap, sidecars, channels, services |
+| WebSocket client | `src/gateway/server/ws-connection/**` | Control-plane handshake and message handling |
+| Agent RPC | `src/gateway/server-methods/agent.ts` | Network-to-agent entry |
+| Plugin manifests | `extensions/*/openclaw.plugin.json` | Capability and control-plane declarations |
 
-### 3.4 Plugin System
+## 5. Example and Test Entries
 
-1. `docs/plugins/architecture.md`
-   - 先读 capability model 和四层加载架构。
-2. `docs/plugins/manifest.md`
-   - 理解 manifest 的 metadata/control-plane 职责。
-3. `src/plugins/loader.ts`
-   - 插件发现、manifest registry、enable/activation、registration plan、runtime register。
-4. `src/plugins/api-builder.ts`
-   - OpenClawPluginApi 注册面。
-5. `src/plugin-sdk/plugin-entry.ts`
-   - `definePluginEntry`，非 channel 插件的 canonical entry helper。
-6. `extensions/anthropic/**`, `extensions/irc/**`
-   - Provider plugin 与 Channel plugin 样例。
+| Path | Covered scenario | Reading value |
+|---|---|---|
+| `extensions/anthropic/**` | Provider plugin | Shows manifest/runtime provider capability |
+| `extensions/irc/**` | Channel plugin | Shows channel config, security, status, outbound contract |
+| `src/plugins/**` tests | Plugin loader/runtime behavior | Useful for extension-system validation |
+| `src/gateway/**` tests | Gateway protocol and server behavior | Useful for handshake and method validation |
 
-## 4. 建议后续深挖路径
+## 6. Suggested Reading Order
 
-- Provider: `extensions/openai`, `extensions/anthropic`, `src/provider-runtime/**`。
-- Channel: `extensions/telegram`, `extensions/slack`, `src/channels/plugins/**`。
-- Memory: `extensions/active-memory`, `extensions/memory-lancedb`, `src/memory/**`。
-- Protocol: `src/gateway/protocol/**`, `docs/reference/rpc*`。
-- Security: `src/gateway/auth.ts`, `src/gateway/server/ws-connection/message-handler.ts`, `docs/gateway/security*`。
+1. `README.md` and `docs/concepts/architecture.md`
+2. `openclaw.mjs`, `src/entry.ts`, `src/cli/gateway-cli/run.ts`
+3. `src/gateway/server.impl.ts` and `src/gateway/server-runtime-state.ts`
+4. `src/gateway/server/ws-connection/**`
+5. `src/gateway/server-methods/agent.ts`
+6. `src/agents/agent-command.ts` and `src/agents/command/attempt-execution.ts`
+7. `docs/plugins/architecture.md`, `docs/plugins/manifest.md`
+8. `src/plugins/loader.ts`, `src/plugins/api-builder.ts`, `src/plugin-sdk/plugin-entry.ts`
+9. Representative plugins such as `extensions/anthropic/**` and `extensions/irc/**`
 
-## 5. 阅读提醒
+## 7. Initial Judgment
 
-- 仓库自身约束明确要求产品/文档使用 `plugin/plugins`，`extensions/` 是内部目录名。[C-003]
-- Core 不应直接包含 owner-specific provider/channel policy；应通过 manifest、registry、SDK seam 和 plugin-owned contract 承载。[C-003]
-- 由于本轮未跑测试，所有运行行为结论以源码和仓库文档为准，标记为 source/doc fact 或 inference。
+### 7.1 Confirmed Facts
+
+- Gateway is a long-lived control plane, not just a transport layer. [C-004]
+- Agent execution is scheduled asynchronously after an accepted ack. [C-008]
+- Plugin ownership is declared in manifests before runtime loading. [C-010][C-011]
+
+### 7.2 Inferences
+
+- The architecture pattern is capability ownership plus product-context shell around agent core. [INF-001][INF-003]
+
+### 7.3 Pending
+
+- Dynamic plugin inspection and live Gateway frame capture remain open.

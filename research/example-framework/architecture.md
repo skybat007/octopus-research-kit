@@ -1,6 +1,6 @@
-# 技术架构
+# Technical Architecture
 
-待调研后填写。参考模板：
+Fill this in after research. Templates and related visual files:
 
 - [architecture-template.md](../../docs/tech-research-guide/templates/architecture-template.md)
 - [visual/architecture.html](./visual/architecture.html)

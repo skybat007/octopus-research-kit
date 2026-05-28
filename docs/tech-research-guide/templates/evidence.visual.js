@@ -1,6 +1,6 @@
 window.EVIDENCE_META = {
-  title: "证据解释",
-  description: "从架构图回到证据解释：展示架构语境、证据结论、源码/文档片段和原始索引位置。",
+  title: "Evidence Explanation",
+  description: "Trace from the architecture diagram back to evidence: architecture context, evidence conclusions, source/doc snippets, and original index locations.",
   source: "../evidence-index.md",
   projectRoot: "/path/to/project"
 };
@@ -8,23 +8,23 @@ window.EVIDENCE_META = {
 window.EVIDENCE_ITEMS = [
   {
     id: "EVD-001",
-    conclusion: "替换为 evidence-index.md 中已经沉淀的证据结论。",
+    conclusion: "Replace with a conclusion already captured in evidence-index.md.",
     type: "source fact",
     location: "path/to/source.ts:1-20",
-    confidence: "高",
-    verified: "是",
-    note: "示例证据，请复制后替换。",
-    explanation: "说明这条证据在架构图中支撑了哪个节点、连线或分层判断。",
+    confidence: "high",
+    verified: "yes",
+    note: "Sample evidence. Copy and replace.",
+    explanation: "Explain which architecture node, edge, or layer this evidence supports.",
     graphRefs: [
       {
-        kind: "节点",
+        kind: "node",
         viewId: "overview",
-        viewLabel: "架构总览",
-        title: "核心模块",
+        viewLabel: "Architecture Overview",
+        title: "Core Module",
         sub: "module boundary",
         role: "module",
         status: "source-verified",
-        detail: "说明该节点在架构图中的职责。"
+        detail: "Explain this node's responsibility in the architecture diagram."
       }
     ],
     sourceRefs: [

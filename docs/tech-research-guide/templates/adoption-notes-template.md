@@ -1,37 +1,37 @@
-# 学习借鉴笔记
+# Adoption Notes
 
-## 1. 适用语境
+## 1. Applicability Context
 
-## 2. 可直接学习的设计
+## 2. Designs Worth Learning From Directly
 
-| 开源框架设计 | 解决的问题 | 学习价值 | 适用前提 | 证据 |
+| Framework design | Problem solved | Learning value | Preconditions | Evidence |
 |---|---|---|---|---|
 |  |  |  |  |  |
 
-## 3. 需要结合语境后借鉴的设计
+## 3. Designs That Require Context-Specific Adaptation
 
-| 开源框架设计 | 为什么不能直接照搬 | 适用前提 | 不确定性 | 证据 |
+| Framework design | Why it cannot be copied directly | Preconditions | Uncertainty | Evidence |
 |---|---|---|---|---|
 |  |  |  |  |  |
 
-## 4. 不建议照搬的设计
+## 4. Designs Not Recommended for Direct Copying
 
-| 设计 | 不适合原因 | 容易误读的地方 | 证据 |
+| Design | Why it does not fit | Common misread | Evidence |
 |---|---|---|---|
 |  |  |  |  |
 
-## 5. 后续单独评估问题
+## 5. Follow-Up Evaluation Questions
 
-| 问题 | 为什么需要评估 | 建议验证方式 |
+| Question | Why it needs evaluation | Suggested validation |
 |---|---|---|
 |  |  |  |
 
-## 6. 风险和误读
+## 6. Risks and Misreadings
 
-| 风险 | 影响 | 如何避免误读 |
+| Risk | Impact | How to avoid the misread |
 |---|---|---|
 |  |  |  |
 
-## 7. 待确认
+## 7. Pending
 
-- 
+-

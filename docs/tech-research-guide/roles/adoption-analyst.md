@@ -1,10 +1,10 @@
 # Adoption Analyst
 
-## 角色目标
+## Role Goal
 
-把开源框架中的设计模式转化为学习借鉴笔记，明确哪些值得学习、哪些需要结合语境后才能借鉴、哪些不适合照搬。
+Turn design patterns from open-source frameworks into adoption notes. Make clear which designs are worth learning from, which require context-specific adaptation, and which should not be copied directly.
 
-## 适用文档
+## Documents
 
 - `adoption-notes.md`
 - `comparison.md`
@@ -12,17 +12,17 @@
 - `external-research.md`
 - `research-questions.md`
 
-## 职责
+## Responsibilities
 
-- 将开源框架设计抽象成可理解、可比较、可复用的设计观察。
-- 区分可直接借鉴、需要结合语境后借鉴和不建议照搬的设计。
-- 说明每个借鉴点的适用前提、依赖约束、风险和待验证问题。
-- 区分源码验证过的设计、官方推荐的用法和社区经验中的提醒。
-- 在横向对比中提炼不同框架对学习、选型和设计判断的启发。
+- Abstract framework designs into understandable, comparable, reusable design observations.
+- Distinguish directly reusable designs, context-dependent designs, and designs that should not be copied.
+- Explain applicability assumptions, dependencies, risks, and validation questions for each adoption point.
+- Separate source-verified design, officially recommended usage, and community-practice warnings.
+- In comparisons, extract lessons for learning, selection, and design judgment.
 
-## 边界
+## Boundaries
 
-- 不直接照搬开源框架设计。
-- 不在技术调研阶段输出具体实施计划。
-- 不把学习总结包装成可执行任务。
-- 如需应用，只记录“后续需要单独评估的前提和问题”。
+- Do not copy framework designs blindly.
+- Do not produce concrete implementation plans during technical research.
+- Do not turn learning notes into executable tasks.
+- If adoption is possible, record only the assumptions and questions that require separate evaluation.

@@ -1,64 +1,64 @@
-# 调研审查
+# Research Review
 
-## 1. 审查结论
+## 1. Review Conclusion
 
-- [ ] 通过
-- [ ] 需要补充证据
-- [ ] 暂不建议作为最终结论使用
+- [ ] Pass
+- [ ] Needs more evidence
+- [ ] Not recommended as final conclusions yet
 
-原因：
+Reason:
 
 ## 2. Research Quality Gate
 
-| 检查项 | 结果 | 说明 |
+| Check | Result | Notes |
 |---|---|---|
-| 是否明确版本/分支/commit | 通过/不通过 |  |
-| 是否明确调研范围 | 通过/不通过 |  |
-| 是否明确不做范围 | 通过/不通过 |  |
-| 是否覆盖必要外部资料 | 通过/不通过/跳过 |  |
-| 是否生成 research-questions | 通过/不通过/跳过 |  |
-| 外部观点是否完成源码验证 | 通过/不通过/部分 |  |
-| 是否生成 references/source-inventory.json | 通过/不通过/不适用 |  |
-| 是否生成 dashboard.html/docs.html | 通过/不通过/不适用 |  |
-| 是否生成 source-map | 通过/不通过 |  |
-| 是否跟踪至少一条主运行链路 | 通过/不通过 |  |
-| 是否需要 visual/architecture.html 和 visual/architecture.visual.js | 需要/不需要 |  |
-| 是否生成 visual/evidence.html 和 visual/evidence.visual.js | 通过/不通过/不适用 |  |
-| 可视化架构图是否证据可追溯 | 通过/不通过/不适用 |  |
-| 可视化架构图是否做到 Markdown 知识源、visual data、HTML 呈现层分离 | 通过/不通过/不适用 |  |
-| 可视化架构图是否一个 Tab 只回答一个核心问题 | 通过/不通过/不适用 |  |
-| 可视化架构图是否避免把结论堆成概念图 | 通过/不通过/不适用 |  |
-| 可视化架构图节点是否都是架构对象 | 通过/不通过/不适用 |  |
-| 可视化架构图连线是否有明确关系类型 | 通过/不通过/不适用 |  |
-| 可视化架构图是否隐藏图面证据编号 | 通过/不通过/不适用 |  |
-| 是否识别核心抽象 | 通过/不通过 |  |
-| 是否识别扩展点 | 通过/不通过 |  |
-| 架构图是否有源码证据 | 通过/不通过 |  |
-| 设计思想是否来自源码结构 | 通过/不通过 |  |
-| 关键结论是否记录到 evidence-index | 通过/不通过 |  |
-| 是否区分官方事实、源码事实、社区事实、推断、待确认 | 通过/不通过 |  |
-| 是否输出学习借鉴笔记 | 通过/不通过 |  |
-| 是否说明不适合照搬的设计 | 通过/不通过 |  |
-| 是否运行 validate-research.js | 通过/不通过/未运行 |  |
+| Version/branch/commit is explicit | pass/fail |  |
+| Research scope is explicit | pass/fail |  |
+| Non-scope is explicit | pass/fail |  |
+| Necessary external references are covered | pass/fail/skipped |  |
+| research-questions is generated | pass/fail/skipped |  |
+| External claims have source verification | pass/fail/partial |  |
+| references/source-inventory.json is generated | pass/fail/not applicable |  |
+| dashboard.html/docs.html are generated | pass/fail/not applicable |  |
+| source-map is generated | pass/fail |  |
+| At least one main runtime flow is traced | pass/fail |  |
+| visual/architecture.html and visual/architecture.visual.js are needed | needed/not needed |  |
+| visual/evidence.html and visual/evidence.visual.js are generated | pass/fail/not applicable |  |
+| Visual architecture evidence is traceable | pass/fail/not applicable |  |
+| Visual architecture separates Markdown source, visual data, and HTML rendering | pass/fail/not applicable |  |
+| Each visual architecture tab answers one core question | pass/fail/not applicable |  |
+| Visual architecture avoids dumping conclusions into a concept map | pass/fail/not applicable |  |
+| Visual architecture nodes are architecture objects | pass/fail/not applicable |  |
+| Visual architecture edges have explicit relationship types | pass/fail/not applicable |  |
+| Visual architecture hides evidence IDs from the diagram surface | pass/fail/not applicable |  |
+| Key abstractions are identified | pass/fail |  |
+| Extension points are identified | pass/fail |  |
+| Architecture diagrams have source evidence | pass/fail |  |
+| Design philosophy comes from source structure | pass/fail |  |
+| Key conclusions are recorded in evidence-index | pass/fail |  |
+| Official facts, source facts, community facts, inferences, and pending items are separated | pass/fail |  |
+| Adoption notes are produced | pass/fail |  |
+| Designs not suitable for direct copying are explained | pass/fail |  |
+| validate-research.js was run | pass/fail/not run |  |
 
-## 3. 问题清单
+## 3. Issue List
 
-| 编号 | 风险等级 | 问题 | 影响 | 建议 |
+| ID | Severity | Issue | Impact | Recommendation |
 |---|---|---|---|---|
-| REVIEW-001 | 高/中/低 |  |  |  |
+| REVIEW-001 | high/medium/low |  |  |  |
 
-## 4. 需要补充的证据
+## 4. Missing Evidence
 
-| 结论 | 缺失证据 | 建议查找位置 |
+| Conclusion | Missing evidence | Suggested search location |
 |---|---|---|
-|  | 官方资料/源码/测试/Issue/PR/社区资料 |  |
+|  | official reference/source/test/issue/PR/community reference |  |
 
-## 5. 开放问题
+## 5. Open Questions
 
 -
 
-## 6. 流程审查记录
+## 6. Process Review Notes
 
-记录调研过程中的流程偏差、跳过/补做步骤、校验失败与修复、文档边界问题、重跑脚本原因等过程性信息。不要把这些信息写入 `external-research.md`、`architecture.md`、`source-map.md` 等正式调研文档。
+Record process deviations, skipped/compensated steps, validation failures and fixes, document-boundary issues, rerun reasons, and similar process information here. Do not put that information in formal research documents such as `external-research.md`, `architecture.md`, or `source-map.md`.
 
 -

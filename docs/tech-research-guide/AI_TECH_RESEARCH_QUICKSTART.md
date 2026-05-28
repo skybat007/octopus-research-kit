@@ -1,166 +1,166 @@
 # AI Tech Research Quickstart
 
-本文件用于快速启动一次开源技术调研。
+Use this file to start an open-source technology research pass with an AI agent.
 
-## 1. 给 AI 的推荐输入
+## 1. Recommended Input for the Agent
 
-尽量一次性提供：
+Provide as much as possible up front:
 
 ```text
-请使用 open-source-tech-research 调研 <框架名>。
+Use open-source-tech-research to study <framework-name>.
 
-代码位置：
-- 本机源码位置（只作为本次读取输入，不写入调研产物）：
-- GitHub 地址：
-- branch/tag/commit：
+Code location:
+- Local source path, used only as input for this run and not written into outputs:
+- GitHub repository:
+- branch/tag/commit:
 
-本次重点：
-- 
+Focus for this research:
+-
 
-本次不关注：
-- 
+Out of scope:
+-
 
-我希望最终用于：
-- 学习架构
-- 对比框架
-- 沉淀可借鉴设计
+I want to use the result for:
+- Learning the architecture
+- Comparing frameworks
+- Capturing reusable designs
 ```
 
-## 2. 最小调研流程
+## 2. Minimum Research Flow
 
-1. 创建 `research/<framework-name>/research-brief.md`。
-2. 固定代码版本和调研范围。
-3. 收集必要外部资料，生成 `external-research.md`；如果只做本地源码调研，跳过原因写入 `research-review.md`。
-4. 将外部观点和用户目标转成源码验证问题，生成 `research-questions.md`。
-5. 如果有本地源码，生成 `references/source-inventory.json`。
-6. 生成 `source-map.md`。
-7. 追踪一条主运行链路，生成 `runtime-flows.md`。
-8. 提炼核心抽象，生成 `key-abstractions.md`。
-9. 生成 `architecture.md`；如果架构图在 Markdown 中不直观，补充 `visual/architecture.html`、`visual/architecture.visual.js`、`visual/evidence.html` 和 `visual/evidence.visual.js`。
-10. 生成 `design-philosophy.md`。
-11. 记录证据到 `evidence-index.md`。
-12. 输出 `adoption-notes.md`。
-13. 生成 `dashboard.html` 和 `docs.html` 作为阅读入口与 UTF-8 文档阅读器。
+1. Create `research/<framework-name>/research-brief.md`.
+2. Pin the code version and research scope.
+3. Collect necessary external references and write `external-research.md`. If this is local-source-only research, record the skip reason in `research-review.md`.
+4. Turn external claims and user goals into source-verifiable questions in `research-questions.md`.
+5. If local source is available, generate `references/source-inventory.json`.
+6. Generate `source-map.md`.
+7. Trace one main runtime flow and write `runtime-flows.md`.
+8. Extract key abstractions and write `key-abstractions.md`.
+9. Write `architecture.md`. If architecture diagrams are hard to read in Markdown, add `visual/architecture.html`, `visual/architecture.visual.js`, `visual/evidence.html`, and `visual/evidence.visual.js`.
+10. Write `design-philosophy.md`.
+11. Record evidence in `evidence-index.md`.
+12. Write `adoption-notes.md`.
+13. Generate `dashboard.html` and `docs.html` as the browser reading entry and UTF-8 document reader.
 
-## 3. 完整调研流程
+## 3. Full Research Flow
 
-完整调研在最小流程基础上增加：
+Full research adds:
 
-- `extension-points.md`：扩展机制分析
-- `comparison.md`：横向对比
-- `adoption-notes.md`：学习借鉴笔记
-- `research-review.md`：调研质量门禁
+- `extension-points.md`: extension mechanism analysis
+- `comparison.md`: cross-framework comparison
+- `adoption-notes.md`: adoption and learning notes
+- `research-review.md`: research quality gate
 
-## 4. 常用提示词
-
-```text
-先不要泛泛总结。请先生成 research-brief.md，明确调研目标、范围、不做范围、关键问题和证据标准。
-```
+## 4. Common Prompts
 
 ```text
-请先不要直接分析源码。请围绕 <框架名称> 进行外部资料调研，优先收集官方文档、README/Quickstart、Architecture/Concept 文档、Release Notes、官方 Examples、重要 Issue/PR/Discussion 和高质量第三方技术分析。请输出 external-research.md，区分官方资料、协作资料和第三方资料，标记可信度，并标记哪些观点需要源码验证。
-
-注意：external-research.md 是正式资料文档，不记录调研过程偏差、补救说明、工具调用细节或“上一版为什么错了”。这类过程性内容写入 research-review.md。
+Do not start with a generic summary. First generate research-brief.md and define the research goal, scope, non-scope, key questions, and evidence standard.
 ```
 
 ```text
-请基于 external-research.md 生成 research-questions.md。要求把外部资料中的关键说法转成可验证的问题，说明为什么重要，标记需要去源码中验证的位置或方向，不要直接把外部资料观点当成最终结论。
+Do not analyze source code yet. First research <framework-name> externally. Prioritize official docs, README/Quickstart, Architecture/Concept docs, release notes, official examples, important issues/PRs/discussions, and high-quality third-party analysis. Produce external-research.md, separate official references, collaboration references, and third-party references, mark credibility, and identify which claims need source verification.
+
+Note: external-research.md is a formal reference document. Do not record process deviations, correction notes, tool-call details, or "why the previous version was wrong" there. Put that process information in research-review.md.
 ```
 
 ```text
-请基于 research-questions.md 进入源码验证。对每个研究问题给出验证结果，标记已验证、部分验证、未验证或待确认，并给出源码路径、类、函数、配置或测试用例作为证据。
+Generate research-questions.md from external-research.md. Convert important external claims into source-verifiable questions, explain why each question matters, mark likely source areas to inspect, and do not treat external claims as final conclusions.
 ```
 
 ```text
-请在分析源码前生成 references/source-inventory.json。要求通过 `--source-root` 传入本机源码位置，使用确定性扫描记录文件数量、主要语言、顶层目录、构建文件、包文件、入口候选、测试、示例、文档和配置。references/source-inventory.json 是过程性阅读索引，不要把它当作架构结论，也不要作为一级阅读入口；输出和 Markdown 中不得写入个人本机绝对路径。
+Use research-questions.md to perform source verification. For each research question, mark verified, partially verified, unverified, or pending. Provide source paths, classes, functions, configuration, or tests as evidence.
 ```
 
 ```text
-请生成 dashboard.html 和 docs.html 作为本次调研的统一阅读入口与 UTF-8 文档阅读器。要求：
-- Dashboard 只导航已有 Markdown、visual/architecture.html 和 visual/evidence.html
-- Markdown 文档链接必须进入 docs.html?doc=<file>，不要直接打开 .md
-- 不在 Dashboard 中新增 Markdown 没有的架构结论
-- Dashboard 和 docs.html 使用同一套左侧导航
-- docs.html 支持渲染 Markdown 中的 Mermaid 代码块；脚本不可用时保留原始代码块降级展示
-- visual/architecture.html 仍作为专门的架构图查看器保留，并归入“架构解析”
-- design-philosophy.md、comparison.md、adoption-notes.md 归入“架构解析”
-- source-map.md 单独归入“源码解析”，并放在“架构解析”之后
-- visual/evidence.html 归入“证据”
-- references/source-inventory.json 保留给脚本、Dashboard 元信息和 source-map.md 使用，不作为阅读入口展示
-- 根目录的 visual-architecture.html 如存在，只作为旧链接兼容跳转页
-- research/index.html 只保留各框架 Dashboard 入口
+Before analyzing source, generate references/source-inventory.json. Pass the local source path through --source-root. Deterministically record file counts, primary languages, top-level directories, build files, package files, entry candidates, tests, examples, docs, and configuration. references/source-inventory.json is a process reading index, not an architecture conclusion, and not a first-level reading entry. Do not write personal absolute local paths into outputs or Markdown.
 ```
 
 ```text
-请从源码入口追踪一条主链路，输出 runtime-flows.md，并把每个关键步骤绑定到源码位置。
+Generate dashboard.html and docs.html as the unified reading entry and UTF-8 document reader for this research. Requirements:
+- The dashboard only navigates existing Markdown, visual/architecture.html, and visual/evidence.html.
+- Markdown links must go through docs.html?doc=<file>, not directly to raw .md files.
+- Do not add architecture conclusions to the dashboard that do not exist in Markdown.
+- Dashboard and docs.html use the same side navigation.
+- docs.html renders Mermaid blocks in Markdown and falls back to raw code blocks when scripts are unavailable.
+- visual/architecture.html remains a dedicated architecture viewer under "Architecture Analysis".
+- design-philosophy.md, comparison.md, and adoption-notes.md belong under "Architecture Analysis".
+- source-map.md belongs under "Source Analysis" after "Architecture Analysis".
+- visual/evidence.html belongs under "Evidence".
+- references/source-inventory.json is reserved for scripts, dashboard metadata, and source-map.md; it is not a reading entry.
+- A root-level visual-architecture.html, if present, is only a legacy redirect.
+- research/index.html should only keep dashboard entries for each framework.
 ```
 
 ```text
-请基于 architecture.md、runtime-flows.md、source-map.md 和 evidence-index.md 生成可视化架构图。
-
-主从关系：
-- Markdown 是知识源，HTML 只是可视化呈现层。
-- 不允许在 HTML 图或 architecture.visual.js 中新增 architecture.md / evidence-index.md 中没有的结论。
-- 图数据放在 visual/architecture.visual.js。
-- HTML 渲染器放在 visual/architecture.html，并从 visual-architecture-template.html 复制生成。
-- 证据解释页放在 visual/evidence.html，证据解释数据放在 visual/evidence.visual.js，内容应包含架构语境、证据结论和源码/文档片段。
-
-生成前先输出图设计说明：
-1. 本次有哪些视图
-2. 每个视图回答什么问题
-3. 每个视图的节点清单
-4. 每条边的语义类型
-5. 节点和关键边如何回到 evidence-index.md 或对应 Markdown 章节
-
-生成要求：
-- 生成或更新 visual/architecture.visual.js、visual/architecture.html、visual/evidence.visual.js 和 visual/evidence.html
-- 不要直接大改 HTML 模板；HTML 模板只负责渲染，图数据放到 architecture.visual.js
-- 主要修改 ARCHITECTURE_META、ARCHITECTURE_VIEWS、nodes、edges、layers
-- 不要把所有调研结论堆到一张图里，一个 tab/view 只回答一个核心问题
-- 至少考虑这些视图：架构总览、入口与初始化、单轮运行主链路、工具与扩展机制、状态与上下文
-- 每个视图最多 8 到 10 个主节点，超过则拆分
-- 节点必须是架构对象，例如模块、组件、运行时对象、状态对象、扩展点、外部依赖、策略/权限组件
-- 不要把普通函数、字段、设计原则、证据编号或一句调研结论直接画成节点
-- 每条边必须有清晰语义，例如请求流、同步调用、异步事件、依赖、注册/发现、权限检查、上下文构造、读写状态、模型流、结果返回
-- 每个节点必须包含 id、type、role、title、sub、ev、doc、tip
-- 每条关键边必须包含 from、to、label、kind、ev、doc
-- ev 必须能在 evidence-index.md 中找到；doc 必须链接到对应 Markdown 锚点或章节
-- 图面不要展示证据编号；证据编号只保留在图设计说明、architecture.visual.js 或 evidence-index.md 中
-- 节点详情可展示 doc 来源路径；点击来源时打开 visual/evidence.html#<证据编号>，不要直接跳转到原始 Markdown 文件，避免浏览器按错误编码打开 .md
-- 不要新增未经验证的能力、数量或设计结论
+Trace one main runtime path from a source entry point. Produce runtime-flows.md and bind every important step to source evidence.
 ```
 
 ```text
-请提炼 key-abstractions.md。每个抽象都说明它解决什么问题、关键源码、生命周期、和其他对象的关系、可借鉴点。
+Generate a visual architecture diagram from architecture.md, runtime-flows.md, source-map.md, and evidence-index.md.
+
+Authority relationship:
+- Markdown is the knowledge source. HTML is only the visual presentation layer.
+- Do not add conclusions to HTML or architecture.visual.js that are absent from architecture.md or evidence-index.md.
+- Put graph data in visual/architecture.visual.js.
+- Copy visual-architecture-template.html to visual/architecture.html as the renderer.
+- Put the evidence viewer in visual/evidence.html and evidence explanations in visual/evidence.visual.js, including architecture context, evidence conclusions, and source/doc snippets.
+
+Before generation, write a diagram design note:
+1. Views in this diagram
+2. The question each view answers
+3. Node list for each view
+4. Semantic type for each edge
+5. How nodes and key edges trace back to evidence-index.md or Markdown sections
+
+Generation requirements:
+- Generate or update visual/architecture.visual.js, visual/architecture.html, visual/evidence.visual.js, and visual/evidence.html.
+- Do not heavily modify the HTML template. The HTML template renders only; graph data goes in architecture.visual.js.
+- Mainly edit ARCHITECTURE_META, ARCHITECTURE_VIEWS, nodes, edges, and layers.
+- Do not put all research conclusions into one graph. One tab/view answers one core question.
+- Consider at least these views: Architecture Overview, Entry and Initialization, Single-Run Main Flow, Tools and Extension Mechanisms, State and Context.
+- Keep each view to 8-10 main nodes. Split larger views.
+- Nodes must be architecture objects such as modules, components, runtime objects, state objects, extension points, external dependencies, policies, or permission components.
+- Do not turn ordinary functions, fields, design principles, evidence IDs, or conclusion sentences into nodes.
+- Every edge must have clear semantics, such as request flow, sync call, async event, dependency, registration/discovery, permission check, context build, state read/write, model stream, or result return.
+- Every node must include id, type, role, title, sub, ev, doc, and tip.
+- Every key edge must include from, to, label, kind, ev, and doc.
+- ev must exist in evidence-index.md. doc must link to the relevant Markdown anchor or section.
+- Do not display evidence IDs on the diagram surface. Keep evidence IDs in the design note, architecture.visual.js, or evidence-index.md.
+- Node details may show doc source paths. Source clicks should open visual/evidence.html#<evidence-id>, not raw Markdown, to avoid browser encoding issues.
+- Do not add unverified capabilities, counts, or design conclusions.
 ```
 
 ```text
-请生成 adoption-notes.md，说明哪些设计值得学习、哪些需要结合语境后再借鉴、哪些不适合照搬，并标注证据和适用前提。
+Extract key-abstractions.md. For each abstraction, explain the problem it solves, key source, lifecycle, relationships to other objects, and adoption value.
 ```
 
-## 5. 质量门禁
+```text
+Generate adoption-notes.md. Explain which designs are worth learning from, which require context-specific adaptation, which should not be copied directly, and include evidence and applicability assumptions.
+```
 
-最终输出前检查：
+## 5. Quality Gate
 
-- 是否明确调研版本、分支或 commit
-- 是否明确调研范围和不做范围
-- 是否覆盖必要外部资料，或说明跳过原因
-- 是否把外部观点转成研究问题并记录源码验证状态
-- 是否生成 `references/source-inventory.json`，或说明没有本地源码可生成
-- 是否确认 Markdown、Dashboard、visual 数据和 references 中没有个人本机绝对路径
-- 是否生成 `dashboard.html` 和 `docs.html` 作为阅读入口
-- 是否有源码地图
-- 是否至少追踪一条主运行链路
-- 复杂架构是否补充 HTML 可视化图，或说明无需补充
-- 可视化架构图是否一个 tab 只回答一个核心问题
-- 可视化架构图是否隐藏图面证据编号，同时保留证据可追溯性
-- 可视化架构图是否采用 Markdown 知识源、visual data、HTML 呈现层分离
-- visual/architecture.visual.js 中的 ev/doc 是否能通过 visual/evidence.html 回到证据项
-- 是否识别核心抽象
-- 是否识别扩展点
-- 架构图是否有源码证据
-- 设计思想是否来自源码结构和设计取舍
-- 关键结论是否进入 `evidence-index.md`
-- 是否区分官方事实、源码事实、社区事实、推断和待确认
-- 是否输出可学习、可借鉴和不适合照搬的设计判断
-- 是否运行 `node docs/tech-research-guide/scripts/validate-research.js research/<framework-name>`，或记录无法运行原因
+Before final output, check:
+
+- Version, branch, tag, or commit is explicit.
+- Scope and non-scope are explicit.
+- Necessary external references are covered, or a skip reason is recorded.
+- External claims are converted into research questions and source-verification status is recorded.
+- `references/source-inventory.json` is generated, or the absence of local source is explained.
+- Markdown, dashboards, visual data, and references do not contain personal absolute local paths.
+- `dashboard.html` and `docs.html` are generated as reading entries.
+- A source map exists.
+- At least one main runtime flow is traced.
+- Complex architecture has an HTML visual diagram, or the skip reason is explained.
+- Each visual architecture tab answers one core question.
+- Visual architecture hides evidence IDs on the surface while preserving traceability.
+- Visual architecture separates Markdown knowledge source, visual data, and HTML rendering.
+- `ev` and `doc` fields in visual/architecture.visual.js can trace back through visual/evidence.html.
+- Key abstractions are identified.
+- Extension points are identified.
+- Architecture diagrams have source evidence.
+- Design philosophy comes from source structure and tradeoffs.
+- Key conclusions are in `evidence-index.md`.
+- Official facts, source facts, community facts, inferences, and pending items are separated.
+- Adoption notes distinguish designs to learn from, adapt, avoid, or validate later.
+- `node docs/tech-research-guide/scripts/validate-research.js research/<framework-name>` has been run, or the reason it could not run is recorded.

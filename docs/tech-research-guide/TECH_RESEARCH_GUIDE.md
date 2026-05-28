@@ -1,119 +1,119 @@
 # Tech Research Guide
 
-本文档用于指导 Agent 在本项目中进行开源框架、基础设施、中间件、工具链或陌生代码库的技术调研。
+This guide tells agents how to research open-source frameworks, infrastructure projects, middleware, toolchains, or unfamiliar codebases in this repository.
 
-调研目标不是堆资料，而是形成一套能反复复用的理解资产：外部资料摘要、研究问题、源码地图、结构化源码清单、架构图、可视化架构图、Dashboard 阅读入口、关键流程、设计思想、证据索引和学习借鉴笔记。
+The goal is not to pile up notes. The goal is to create reusable understanding: external research, research questions, source maps, source inventories, architecture documents, visual architecture diagrams, dashboard reading entries, runtime flows, design philosophy, evidence indexes, and adoption notes.
 
-## 1. 基本原则
+## 1. Principles
 
-### 1.1 先定义问题，再读源码
+### 1.1 Define the Questions Before Reading Source
 
-每次调研必须先明确研究问题。不要从目录遍历开始无目标阅读。
+Every research effort must begin with explicit research questions. Do not start with aimless directory traversal.
 
-好的研究问题示例：
+Good research questions include:
 
-- 这个框架如何把用户 API 转换为运行时执行计划？
-- 核心生命周期如何启动、扩展和关闭？
-- 插件机制如何隔离框架核心与外部扩展？
-- 状态、上下文或依赖关系如何在模块之间传递？
-- 哪些设计值得学习，哪些不能直接照搬？
+- How does this framework transform user APIs into runtime execution plans?
+- How does the core lifecycle start, extend, and shut down?
+- How does the plugin mechanism isolate the framework core from external extensions?
+- How do state, context, or dependencies move across modules?
+- Which designs are worth learning from, and which should not be copied directly?
 
-### 1.2 先看外部资料，再用源码验证
+### 1.2 Read External References Before Source Verification
 
-开源技术调研不应只看源码。推荐先用官方文档和高质量外部资料建立全局认知，再把关键说法转成可验证的问题，最后进入源码验证。
+Open-source technology research should not rely only on source code. Use official docs and high-quality external references to build context, turn important claims into verifiable questions, and then verify them in source.
 
-外部资料不能替代源码分析：
+External references do not replace source analysis:
 
-- 官方资料帮助理解设计目标、推荐用法和能力边界
-- 社区资料帮助理解实践经验、常见问题和历史讨论
-- 源码、测试和配置用于验证真实实现
-- 未经源码、测试或官方资料验证的内容必须标为推断或待确认
+- Official references explain design goals, recommended usage, and capability boundaries.
+- Community references explain practice, common issues, and historical discussion.
+- Source, tests, and configuration verify actual implementation.
+- Anything not verified by source, tests, or official references must be labeled as inference or pending.
 
-### 1.3 结论必须可追溯
+### 1.3 Conclusions Must Be Traceable
 
-关键结论必须绑定证据。证据可以来自：
+Important conclusions must be tied to evidence. Evidence may come from:
 
-- 源码文件、类、函数、配置、测试
-- 官方文档或设计文档
-- 构建脚本、示例工程、benchmark
-- issue、PR、release note 中的设计讨论
+- Source files, classes, functions, configuration, and tests
+- Official docs or design docs
+- Build scripts, examples, and benchmarks
+- Design discussions in issues, PRs, release notes, or commits
 
-需要区分：
+Distinguish:
 
-- 源码事实：代码直接体现的事实
-- 官方事实：官网、官方 README、官方文档、官方示例或 release note 明确说明的事实
-- 仓库文档事实：目标仓库内文档明确说明的事实
-- 协作事实：issue、PR、discussion、commit message 中能追溯的事实
-- 社区事实：第三方文章、分享、视频或用户实践中提出的观点
-- 测试事实：测试用例、示例工程或 benchmark 展示的事实
-- 推断结论：基于多个证据综合得出的判断
-- 待确认：证据不足，不能写成确定结论
+- Source fact: directly visible in code
+- Official fact: stated by official websites, README, docs, examples, or release notes
+- Repository doc fact: stated by docs inside the researched repository
+- Collaboration fact: traceable to issues, PRs, discussions, or commit messages
+- Community fact: stated by third-party articles, talks, videos, or user practice
+- Test fact: demonstrated by tests, examples, or benchmarks
+- Inference: reasoned from multiple evidence items
+- Pending: not enough evidence for a confirmed conclusion
 
-### 1.4 资料可信度分级
+### 1.4 Credibility Levels
 
-| 等级 | 类型 | 来源 | 用途 | 使用规则 |
+| Level | Type | Source | Use | Rule |
 |---|---|---|---|---|
-| S | 源码事实 | 核心源码、测试、配置、可运行示例 | 支撑最终架构和实现结论 | 最高优先级 |
-| A | 官方资料 | 官网、官方 README、官方文档、官方 Quickstart、官方 Architecture、Release Notes、官方博客 | 理解设计目标、推荐用法、能力边界 | 关键实现仍建议源码验证 |
-| B | 项目协作资料 | Issue、PR、Discussion、Commit message | 理解演进背景、历史取舍、用户痛点 | 需要记录上下文和时间 |
-| C | 第三方分析 | 技术博客、视频、非官方架构分析、用户实践文章 | 补充实践经验和启发 | 不得作为核心结论的唯一证据 |
-| D | AI 推断 | 模型基于上下文生成的解释、无明确证据的设计意图判断 | 帮助形成假设 | 必须标记为推断，不得写成事实 |
+| S | Source fact | Core source, tests, configuration, runnable examples | Support final architecture and implementation conclusions | Highest priority |
+| A | Official reference | Official site, README, docs, quickstart, architecture docs, release notes, official blog | Understand goals, usage, and capability boundaries | Verify key implementation details in source when possible |
+| B | Collaboration reference | Issue, PR, discussion, commit message | Understand evolution, tradeoffs, and pain points | Record context and date |
+| C | Third-party analysis | Blogs, videos, unofficial architecture analysis, user practice | Add practice context and inspiration | Never use as the only evidence for a core conclusion |
+| D | AI inference | Model-generated explanation or unsupported design-intent guess | Form hypotheses | Must be labeled as inference |
 
-### 1.5 什么时候需要联网搜索
+### 1.5 When to Search the Web
 
-需要联网搜索的情况：
+Use web search when:
 
-- 用户只给项目名、框架名或远程仓库名，需要确认官方仓库、官方文档、license、最新 release/tag 或活跃分支
-- 要说明官方定位、推荐用法、稳定 API、兼容性承诺、能力边界或设计目标
-- 要分析版本差异、release note、changelog、breaking changes、废弃或新增能力
-- 要做横向对比，且对比对象没有本地已固定的调研材料
-- 要判断生态成熟度、维护状态、社区痛点、安全公告、包管理器最新版本或插件生态
-- 本地源码不完整、来源特殊，或需要判断本地快照和官方当前行为的差异
-- `research-review.md` 标记某个关键结论缺少官方、社区或版本证据
+- The user gives only a project name, framework name, or remote repo name and you need to confirm the official repo, docs, license, latest release/tag, or active branch.
+- You need official positioning, recommended usage, stable API promises, compatibility, capability boundaries, or design goals.
+- You need version differences, release notes, changelogs, breaking changes, deprecations, or new capabilities.
+- You are comparing frameworks and the comparison targets do not already have pinned local research.
+- You need ecosystem maturity, maintenance status, community pain points, security advisories, package-manager versions, or plugin ecosystem information.
+- Local source is incomplete or from an unusual source, or you need to compare a local snapshot with current official behavior.
+- `research-review.md` marks an important conclusion as missing official, community, or version evidence.
 
-通常不需要联网搜索的情况：
+Web search is usually unnecessary when:
 
-- 生成源码地图、模块边界、调用链和核心抽象
-- 验证真实实现、配置加载、测试覆盖和运行时状态变化
-- 从源码结构提炼设计取舍
-- 用户明确要求只基于本地源码
+- Creating a source map, module boundary map, call chain, or core abstraction analysis
+- Verifying implementation behavior, configuration loading, test coverage, or runtime state changes
+- Extracting design tradeoffs from source structure
+- The user explicitly requests local-source-only research
 
-### 1.6 版本必须固定
+### 1.6 Pin the Version
 
-调研结论必须注明版本来源：
+Research conclusions must state:
 
-- 项目标识
-- git remote
-- branch、tag 或 commit
-- 依赖版本
-- 调研日期
+- Project identifier
+- Git remote
+- Branch, tag, or commit
+- Dependency versions
+- Research date
 
-如果版本未固定，结论只能标为当前快照。
+If the version is not pinned, mark conclusions as current snapshot only.
 
-### 1.7 从用户场景追踪主流程
+### 1.7 Trace Main Flows From User Scenarios
 
-优先从框架对外入口出发：
+Start from outward-facing entries:
 
-- public API
-- CLI 命令
-- 配置入口
-- 示例代码
-- 测试用例
-- server bootstrap
+- Public APIs
+- CLI commands
+- Configuration entries
+- Examples
+- Tests
+- Server bootstrap
 
-不要只按包名横向介绍模块。技术架构文档应该能解释一个真实调用如何穿过核心抽象。
+Do not describe modules only by package name. Architecture documents should explain how a real call travels through core abstractions.
 
-### 1.8 调研要服务技术理解和后续学习
+### 1.8 Research Must Serve Understanding and Reuse
 
-每次调研最后都要回答：
+Every research effort should end by answering:
 
-- 有哪些可复用的设计模式
-- 哪些设计依赖特定生态，不能照搬
-- 这些设计解决了什么问题
-- 如果后续单独评估应用，需要先补哪些背景
-- 哪些风险或约束需要继续验证
+- Which design patterns are reusable?
+- Which designs depend on a specific ecosystem and should not be copied directly?
+- What problem does each design solve?
+- What context is required before evaluating adoption elsewhere?
+- Which risks or constraints need more verification?
 
-## 2. 推荐目录结构
+## 2. Recommended Directory Structure
 
 ```text
 research/<framework-name>/
@@ -142,138 +142,140 @@ research/<framework-name>/
     source-inventory.json
 ```
 
-简单调研可以合并文档，但至少要包含：
+Focused research can merge some documents, but it should still include:
 
-- 研究目标和范围
-- 外部资料摘要和待验证问题
-- 源码地图
-- `references/source-inventory.json` 结构化源码清单，或说明没有本地源码可生成
-- 核心架构
-- 一个主流程追踪
-- 设计思想总结
-- 证据索引
-- 学习借鉴笔记
+- Research goal and scope
+- External reference summary and questions to verify
+- Source map
+- `references/source-inventory.json`, or an explanation when no local source is available
+- Core architecture
+- One main flow trace
+- Design philosophy summary
+- Evidence index
+- Adoption notes
 
-完整调研建议再补充：
+Full research should also include:
 
-- 扩展机制分析
-- 可视化架构图
-- Dashboard 阅读入口
-- 横向对比
-- 学习借鉴笔记
-- 调研质量审查
+- Extension mechanism analysis
+- Visual architecture diagrams
+- Dashboard reading entry
+- Cross-framework comparison
+- Research quality review
 
-## 3. 调研生命周期
+## 3. Research Lifecycle
 
 ### 3.1 Research Brief
 
-先完成 `research-brief.md`。它也可以叫 Research Charter，含义是“这次调研的章程”：
+Complete `research-brief.md` first. It is the Research Charter for the effort:
 
-- 研究对象
-- 版本信息
-- 背景和动机
-- 研究问题
-- 范围和不做范围
-- 预期交付物
-- 验收标准
+- Target
+- Version information
+- Background and motivation
+- Research questions
+- Scope and non-scope
+- Expected deliverables
+- Acceptance criteria
 
 ### 3.2 External Research
 
-完成 `external-research.md`：
+Complete `external-research.md`:
 
-- 官方资料：官网、官方文档、README、Quickstart、Architecture 文档、Release Notes、官方示例
-- 项目协作资料：重要 issue、PR、discussion、commit message
-- 社区资料：高质量技术文章、用户实践、视频或分享
-- 每个资料的可信度等级、主要观点和对本次调研的价值
-- 外部资料中需要源码验证的关键说法
-- 外部资料与本地源码可能不一致的地方
+- Official references: website, docs, README, quickstart, architecture docs, release notes, official examples
+- Collaboration references: important issues, PRs, discussions, commit messages
+- Community references: high-quality technical articles, user practice, videos, or talks
+- Credibility level, key claims, and value for this research
+- Important claims that require source verification
+- Differences between external references and local source
 
-`external-research.md` 是正式资料文档，只记录资料来源、检索范围、关键观点、可信度、源码验证状态、资料边界和与源码的口径差异。不要在这里记录调研过程偏差、Agent 执行失误、补救说明、工具调用细节、道歉、重跑脚本原因或“上一版为什么错了”这类调研系统自身信息；这些内容必须写入 `research-review.md` 的流程审查或问题清单。
+`external-research.md` is a formal reference document. It records sources, search scope, key claims, credibility, source-verification status, reference boundaries, and differences from source. Do not put process deviations, agent mistakes, correction notes, tool-call details, apologies, rerun reasons, or "why the previous version was wrong" there. Put that process information in `research-review.md`.
 
-如果用户明确要求只做本地源码调研，可以跳过联网搜索，但必须在 `research-review.md` 中说明外部资料未覆盖。
+If the user explicitly requests local-source-only research, web search can be skipped, but the skip reason must be recorded in `research-review.md`.
 
 ### 3.3 Research Questions
 
-完成 `research-questions.md`：
+Complete `research-questions.md`:
 
-- 将外部资料、README、用户目标中的关键说法转成可验证问题
-- 为每个问题标注来源、重要性、需要验证的源码方向
-- 在源码分析后更新验证结果：已验证、部分验证、未验证、待确认
-- 如果外部资料和源码不一致，必须单独记录
+- Convert external claims, README statements, and user goals into verifiable questions.
+- Mark the source direction and importance for each question.
+- After source analysis, update each question as verified, partially verified, unverified, or pending.
+- Record external/source mismatches separately.
 
 ### 3.4 Source Map
 
-完成 `source-map.md`：
+Complete `source-map.md`:
 
-- 仓库结构
-- 构建系统
-- 核心模块
-- 对外入口
-- 示例和测试入口
-- 阅读顺序建议
-- 说明是否已生成 `references/source-inventory.json`
+- Repository structure
+- Build system
+- Core modules
+- External entries
+- Example and test entries
+- Recommended reading order
+- Whether `references/source-inventory.json` was generated
 
 ### 3.5 Source Inventory
 
-生成或更新 `references/source-inventory.json`：
+Generate or update `references/source-inventory.json`:
 
 ```bash
 node docs/tech-research-guide/scripts/build-source-inventory.js research/<framework-name> --source-root /absolute/path/to/source
 ```
 
-`references/source-inventory.json` 是从本地源码仓库确定性扫描出来的结构化索引，用于辅助阅读和后续校验。它属于过程性/机器生成材料，默认放在 `references/`，不作为一级阅读入口。生成时可以通过 `--source-root` 传入本机源码路径，但输出文件和 Markdown 文档只保留项目名、仓库内相对路径和版本信息，不写入个人本机绝对路径。它可以记录：
+`references/source-inventory.json` is a deterministic index produced from local source. It supports reading and validation. It is process/machine-generated material, kept under `references/`, and not a first-level reading entry. `--source-root` may point to a local source path at runtime, but outputs and Markdown must only keep project names, repository-relative paths, and version metadata. Do not write personal absolute paths.
 
-- 项目标识、remote、branch、commit、调研版本提示
-- 文件数量、主要语言、顶层目录摘要
-- 构建文件、包文件、入口候选、测试、示例、文档、配置和大文件
-- 对 `source-map.md`、`runtime-flows.md` 和 `evidence-index.md` 有帮助的候选入口
+It may record:
 
-使用规则：
+- Project identifier, remote, branch, commit, and version hint
+- File counts, primary languages, top-level directory summary
+- Build files, package files, entry candidates, tests, examples, docs, configuration, and large files
+- Candidate entries useful for `source-map.md`, `runtime-flows.md`, and `evidence-index.md`
 
-- 它不是架构结论，不能替代 `architecture.md`
-- 它不解释设计思想，只提供确定性的源码索引
-- 重要结论仍必须写入 Markdown，并在 `evidence-index.md` 中绑定证据
-- 如果目标没有本地源码，允许缺失，但必须在 `research-review.md` 中说明原因
+Rules:
+
+- It is not an architecture conclusion and cannot replace `architecture.md`.
+- It does not explain design philosophy. It only provides a deterministic source index.
+- Important conclusions still belong in Markdown and must be bound to evidence in `evidence-index.md`.
+- If local source is unavailable, explain why in `research-review.md`.
 
 ### 3.6 Architecture
 
-完成 `architecture.md`：
+Complete `architecture.md`:
 
-- 总体架构
-- 模块职责
-- 模块依赖方向
-- 核心抽象
-- 扩展点
-- 状态和数据流
+- Overall architecture
+- Module responsibilities
+- Dependency direction
+- Core abstractions
+- Extension points
+- State and data flow
 
 ### 3.7 Dashboard
 
-生成或更新 `dashboard.html`：
+Generate or update `dashboard.html`:
 
 ```bash
 node docs/tech-research-guide/scripts/build-research-dashboard.js research/<framework-name>
 ```
 
-Dashboard 是阅读入口，不是新的知识源。它负责把 README、Markdown 文档、可视化架构图和证据查看器组织成一个可浏览的入口页。`docs.html` 是 Dashboard 使用的 UTF-8 文档阅读器，用来避免浏览器直接打开 `.md` 时出现编码问题。`references/source-inventory.json` 这类过程性材料保留给脚本、Dashboard 元信息和 `source-map.md` 使用，不作为用户阅读入口。
+The dashboard is a reading entry, not a new knowledge source. It organizes README, Markdown research docs, visual architecture diagrams, and evidence viewers. `docs.html` is the UTF-8 document reader used by the dashboard. Process materials such as `references/source-inventory.json` remain for scripts, dashboard metadata, and `source-map.md`; they are not user reading entries.
 
-使用规则：
+Rules:
 
-- Dashboard 只做导航和摘要，不在其中新增 Markdown 中不存在的架构结论
-- Dashboard 中的 Markdown 文档链接必须指向 `docs.html?doc=<file>`，不要直接打开 `.md`
-- Dashboard 和 `docs.html` 使用同一套左侧导航，避免入口数量和分组不一致
-- `docs.html` 应渲染 Markdown 中的 Mermaid 代码块；当 Mermaid 脚本不可用时保留原始代码块作为降级展示
-- `visual/architecture.html` 仍然作为专门的架构图查看器保留，并归入“架构解析”
-- `design-philosophy.md`、`comparison.md`、`adoption-notes.md` 归入“架构解析”，不再单独作为“设计沉淀”一级菜单
-- `source-map.md` 单独归入“源码解析”，并放在“架构解析”之后
-- `visual/evidence.html` 归入“证据”
-- `references/source-inventory.json` 保留在 `references/`，但不要放进 Dashboard 左侧导航或 README 文件导航
-- 旧版 `visual-architecture.html` 可作为兼容跳转页保留，不再作为新规范主入口
-- `research/index.html` 可以作为全部框架调研的总入口，但只保留各框架 `dashboard.html` 入口
-### 3.8 可视化架构图
+- Dashboard only navigates and summarizes. It must not add architecture conclusions that are absent from Markdown.
+- Dashboard Markdown links must point to `docs.html?doc=<file>`, not raw `.md`.
+- Dashboard and `docs.html` use the same side navigation.
+- `docs.html` should render Mermaid blocks and fall back to raw code blocks when Mermaid is unavailable.
+- `visual/architecture.html` remains a dedicated architecture viewer under "Architecture Analysis".
+- `design-philosophy.md`, `comparison.md`, and `adoption-notes.md` belong under "Architecture Analysis".
+- `source-map.md` belongs under "Source Analysis" after "Architecture Analysis".
+- `visual/evidence.html` belongs under "Evidence".
+- `references/source-inventory.json` stays in `references/` and is not shown in side navigation or README file navigation.
+- Legacy `visual-architecture.html` can remain as a compatibility redirect, but is not the main entry for new outputs.
+- `research/index.html` can be the global research index, but should only link to each framework's `dashboard.html`.
 
-当 Markdown/Mermaid 图无法清晰表达多层架构、多入口、多流程或大量扩展点时，补充可视化架构图。
+### 3.8 Visual Architecture
 
-推荐采用联动结构：
+Add visual architecture diagrams when Markdown/Mermaid cannot clearly express layered architecture, multiple entries, multiple flows, or many extension points.
+
+Recommended linked structure:
 
 ```text
 research/<framework-name>/
@@ -288,214 +290,214 @@ research/<framework-name>/
     evidence.visual.js
 ```
 
-主从关系必须明确：
+Authority relationship:
 
-- Markdown 是知识源，负责沉淀架构结论、源码地图、运行链路和证据
-- `architecture.visual.js` 是图数据层，只存 views、nodes、edges、layers、ev、doc、tip 等结构化数据
-- `architecture.html` 是可视化呈现层，只负责渲染和交互
-- `evidence.visual.js` 是证据解释页的数据层，从 `evidence-index.md` 和 `architecture.visual.js` 抽取证据编号、结论、架构语境、源码/文档片段和备注
-- `evidence.html` 是证据解释页，供架构图节点点击后打开，避免浏览器直接打开 Markdown 原文时出现编码问题
-- 不允许在 HTML 或 visual data 中新增 Markdown 里没有的架构结论
-- 旧版单文件 `visual-architecture.html` 可以保留用于兼容或临时输出，但新产物优先使用 `visual/architecture.html` + `visual/architecture.visual.js` + `visual/evidence.html` + `visual/evidence.visual.js`
+- Markdown is the knowledge source.
+- `architecture.visual.js` is graph data only: views, nodes, edges, layers, `ev`, `doc`, `tip`.
+- `architecture.html` is rendering and interaction only.
+- `evidence.visual.js` is evidence explanation data derived from `evidence-index.md` and `architecture.visual.js`.
+- `evidence.html` is the evidence explanation page opened from diagram nodes.
+- Do not add architecture conclusions to HTML or visual data that are absent from Markdown.
+- Legacy single-file `visual-architecture.html` may be kept for compatibility, but new outputs should use `visual/architecture.html` + `visual/architecture.visual.js` + `visual/evidence.html` + `visual/evidence.visual.js`.
 
-适合生成 HTML 可视化图的情况：
+Use HTML visual diagrams when:
 
-- 架构图超过 3 层或 12 个关键节点
-- 同一框架需要同时展示总览、运行流、分层、扩展点、状态流
-- Mermaid 图在文档中太拥挤、连线交叉或需要频繁横向滚动
-- 用户需要面向阅读、汇报、复盘的直观图，而不只是源码追踪证据
+- The diagram has more than 3 layers or 12 important nodes.
+- The same framework needs overview, runtime flow, layered view, extension points, and state flow.
+- Mermaid diagrams become crowded, cross too heavily, or require horizontal scrolling.
+- The user needs a readable presentation/review diagram, not just source-tracing evidence.
 
-HTML 可视化图要求：
+Requirements:
 
-- 必须是 Markdown 架构文档的视觉补充，不替代 `architecture.md`
-- 先输出图设计说明，再生成数据文件：说明有哪些视图、每个视图回答什么问题、节点清单、边语义、证据映射
-- 先阅读 `architecture.md`、`runtime-flows.md`、`source-map.md`、`evidence-index.md`，必要时再读 `design-philosophy.md`
-- 不要把所有调研结论堆进一张大图；一个 tab/view 只回答一个核心问题
-- 每个 view 最多 8 到 10 个主节点；超过 10 个节点必须拆成新的 view
-- 节点必须是架构对象，例如模块、组件、运行时对象、状态对象、扩展点、外部依赖、策略或权限组件
-- 不要把普通函数、字段、设计原则、证据编号或一句调研结论直接画成节点
-- 每条边必须有清晰语义，例如请求流、同步调用、异步事件、依赖、注册/发现、权限检查、上下文构造、读写状态、模型流、结果返回
-- 不要用同一种箭头表达所有关系；主流程、依赖、注册、权限、状态读写和结果返回应在视觉上可区分
-- 推荐拆成多个 tab/view，例如“架构总览”“入口与初始化”“单轮运行主链路”“工具与扩展机制”“状态与上下文”
-- 节点、关键连线和说明必须能回溯到 `evidence-index.md` 中的证据编号
-- 每个节点必须包含 `id`、`type`、`role`、`title`、`sub`、`ev`、`doc`、`tip`
-- 每条关键边必须包含 `from`、`to`、`label`、`kind`、`ev`、`doc`
-- `ev` 必须能在 `evidence-index.md` 中找到；`doc` 必须链接到对应 Markdown 锚点或章节
-- 图面默认不显示证据编号；证据编号保留在生成前设计说明、`architecture.visual.js` 或 `evidence-index.md` 中
-- 大图应支持缩放、拖拽、图例、tooltip 或说明面板
-- 必须离线可打开，不依赖外部 CDN、远程图片或运行服务
-- 不要在图中新增未经验证的能力、数量或设计结论
+- The visual diagram complements `architecture.md`; it does not replace it.
+- Write a diagram design note before data generation: views, each view's question, node list, edge semantics, and evidence mapping.
+- Read `architecture.md`, `runtime-flows.md`, `source-map.md`, and `evidence-index.md` first; read `design-philosophy.md` if needed.
+- One tab/view answers one core question.
+- Keep each view to 8-10 main nodes. Split larger views.
+- Nodes must be architecture objects: modules, components, runtime objects, state objects, extension points, external dependencies, policies, or permission components.
+- Do not turn ordinary functions, fields, design principles, evidence IDs, or conclusion sentences into nodes.
+- Every edge must have clear semantics: request flow, sync call, async event, dependency, registration/discovery, permission check, context build, state read/write, model stream, or result return.
+- Different relationship types should be visually distinguishable.
+- Recommended views include Architecture Overview, Entry and Initialization, Single-Run Main Flow, Tools and Extension Mechanisms, State and Context.
+- Nodes, key edges, and explanations must trace back to evidence IDs in `evidence-index.md`.
+- Every node must include `id`, `type`, `role`, `title`, `sub`, `ev`, `doc`, and `tip`.
+- Every key edge must include `from`, `to`, `label`, `kind`, `ev`, and `doc`.
+- `ev` must exist in `evidence-index.md`; `doc` must link to a Markdown anchor or section.
+- Evidence IDs are hidden on the diagram surface by default and kept in the design note, `architecture.visual.js`, or `evidence-index.md`.
+- Large diagrams should support zooming, dragging, legends, tooltips, or explanation panels.
+- Visual diagrams must open offline and not depend on external CDNs, remote images, or running services.
+- Do not add unverified capabilities, counts, or design conclusions.
 
-HTML 模板使用规则：
+HTML template rules:
 
-- 除非明确要求，不修改 CSS、缩放、拖拽、tooltip、legend、fit 等模板主体逻辑
-- 主要修改 `visual/architecture.visual.js`
-- `visual/architecture.html` 由 `visual-architecture-template.html` 复制而来，只负责读取 `./architecture.visual.js` 并渲染
-- `view.purpose` 必须回答“这个视图解决什么阅读问题”
-- `node.role` 用于区分 `module`、`runtime-object`、`state`、`external-dependency`、`extension-point`、`policy`、`adapter`
-- `edge.kind` 使用固定关系类型，避免“所有线都是调用”
-- `node.ev` 和 `edge.ev` 只作为证据元数据；除非用户明确要求，不渲染到图面
-- 节点详情可以展示 `doc` 来源路径；点击来源时应打开 `visual/evidence.html#<证据编号>`，不要直接跳转到原始 Markdown 文件，避免浏览器按错误编码打开 `.md`
+- Do not modify core CSS, zoom, drag, tooltip, legend, or fit behavior unless explicitly requested.
+- Mainly edit `visual/architecture.visual.js`.
+- `visual/architecture.html` is copied from `visual-architecture-template.html` and only reads `./architecture.visual.js`.
+- `view.purpose` must answer "what reading problem does this view solve?"
+- `node.role` distinguishes `module`, `runtime-object`, `state`, `external-dependency`, `extension-point`, `policy`, and `adapter`.
+- `edge.kind` uses fixed relationship types instead of treating every edge as a call.
+- `node.ev` and `edge.ev` are evidence metadata; do not render them on the diagram surface unless explicitly requested.
+- Node details may show `doc` source paths. Source clicks should open `visual/evidence.html#<evidence-id>`, not raw Markdown.
 
-生成后自检：
+Self-check after generation:
 
-- 每个 tab 是否只回答一个核心问题
-- 是否存在一张图塞入过多调研结论
-- 每个节点是否都是架构对象
-- 是否有普通概念被误画成模块
-- 每条边是否有明确语义
-- 主流程、依赖、注册、权限、状态读写是否区分清楚
-- 节点和关键边是否能回到 `evidence-index.md`
-- `architecture.visual.js` 中的 `ev` 是否都能在 `evidence-index.md` 找到
-- `architecture.visual.js` 中的 `doc` 是否能通过 `visual/evidence.html` 回到证据项
-- 是否存在 HTML/visual data 中有但 Markdown 中没有的结论
-- 是否存在没有证据支撑的结论
-- 是否区分了源码事实、设计推断和待验证内容
-- 是否有线条严重交叉或节点布局拥挤
+- Does each tab answer one core question?
+- Did one graph absorb too many research conclusions?
+- Is every node an architecture object?
+- Was any ordinary concept drawn as a module?
+- Does every edge have clear semantics?
+- Are main flow, dependency, registration, permission, and state read/write distinguishable?
+- Can nodes and key edges trace back to `evidence-index.md`?
+- Do all `ev` values in `architecture.visual.js` exist in `evidence-index.md`?
+- Can `doc` values trace back through `visual/evidence.html`?
+- Are there conclusions in HTML/visual data that do not exist in Markdown?
+- Are any conclusions unsupported by evidence?
+- Are source facts, design inferences, and pending items separated?
+- Is the layout readable?
 
 ### 3.9 Key Abstractions
 
-完成 `key-abstractions.md`：
+Complete `key-abstractions.md`:
 
-- 核心接口、类、函数和数据结构
-- 生命周期对象
-- 抽象之间的协作关系
-- 每个抽象解决的问题
-- 每个抽象的设计限制和可借鉴点
+- Core interfaces, classes, functions, and data structures
+- Lifecycle objects
+- Collaboration between abstractions
+- The problem each abstraction solves
+- Design limits and adoption value for each abstraction
 
 ### 3.10 Runtime Flows
 
-完成 `runtime-flows.md`：
+Complete `runtime-flows.md`:
 
-- 选择 1 到 3 条关键场景
-- 从入口追踪到核心执行
-- 画出时序图或流程图
-- 标注关键函数和状态变化
+- Choose 1-3 key scenarios.
+- Trace from entry to core execution.
+- Draw a sequence diagram or flowchart.
+- Mark important functions and state changes.
 
 ### 3.11 Extension Points
 
-完成 `extension-points.md`：
+Complete `extension-points.md`:
 
-- 插件、Hook、Registry、Provider、Middleware 等扩展点
-- 扩展点如何注册、发现、加载、执行和隔离
-- 扩展失败如何处理
-- 哪些扩展机制适合借鉴
+- Plugins, hooks, registries, providers, middleware, and other extension points
+- How they are registered, discovered, loaded, executed, and isolated
+- How extension failure is handled
+- Which extension mechanisms are worth learning from
 
 ### 3.12 Design Philosophy
 
-完成 `design-philosophy.md`：
+Complete `design-philosophy.md`:
 
-- 它为什么这样设计
-- 解决了什么复杂度
-- 牺牲了什么
-- 与常见替代设计相比有什么不同
-- 哪些设计体现了作者的核心取舍
-- 官方资料可用于解释设计目标
-- 源码证据必须用于确认真实实现
-- 社区资料只能作为实践经验或问题背景
+- Why it is designed this way
+- What complexity it solves
+- What it sacrifices
+- How it differs from common alternatives
+- Which designs reflect core tradeoffs
+- Official references may explain design goals
+- Source evidence must verify actual implementation
+- Community references can only provide practice context or problem background
 
 ### 3.13 Comparison
 
-当用户需要比较多个框架时，完成 `comparison.md`：
+When the user needs framework comparison, complete `comparison.md`:
 
-- 定位和架构风格
-- Runtime、Tool、Workflow、Memory、Plugin 等核心抽象差异
-- 工程化程度和二次开发友好度
-- 对学习、选型或设计判断的启发
+- Positioning and architecture style
+- Differences in runtime, tools, workflow, memory, plugins, and other core abstractions
+- Engineering maturity and extension friendliness
+- Implications for learning, selection, or design judgment
 
 ### 3.14 Adoption Notes
 
-完成 `adoption-notes.md`：
+Complete `adoption-notes.md`:
 
-- 可以直接借鉴的设计
-- 需要结合语境后借鉴的设计
-- 不建议借鉴的设计
-- 适用前提、约束和验证问题
-- 学习价值和后续单独评估方向
+- Designs that can be learned from directly
+- Designs that require context-specific adaptation
+- Designs that should not be copied directly
+- Preconditions, constraints, and validation questions
+- Learning value and later standalone evaluation directions
 
 ### 3.15 Evidence Index
 
-持续维护 `evidence-index.md`：
+Maintain `evidence-index.md` throughout:
 
-- 每个关键结论对应证据
-- 证据类型和位置明确
-- 资料可信度等级明确
-- 标注是否已由源码、测试或官方资料验证
-- 推断结论标明推断链路
-- 低置信度结论不能进入最终建议
+- Every key conclusion has evidence
+- Evidence type and location are explicit
+- Credibility level is explicit
+- Whether source, tests, or official references verify the claim is explicit
+- Inference chains are marked
+- Low-confidence conclusions do not enter final recommendations
 
 ### 3.16 Research Review
 
-完成 `research-review.md`：
+Complete `research-review.md`:
 
-- 调研版本是否固定
-- 是否覆盖必要的外部资料
-- 外部观点是否转成研究问题并由源码验证
-- 结论是否有证据
-- 架构图是否由源码支撑
-- 设计思想是否过度解读
-- 借鉴建议是否越界成实施方案
-- 是否明确待验证问题
-- 调研过程偏差、跳过/补做步骤、校验失败与修复、文档边界问题等流程性记录是否集中在本文件中，而不是污染正式调研文档
+- Whether the research version is pinned
+- Whether necessary external references are covered
+- Whether external claims were converted to research questions and verified in source
+- Whether conclusions have evidence
+- Whether architecture diagrams are source-backed
+- Whether design philosophy over-interprets
+- Whether adoption advice crosses into implementation plans
+- Which questions remain pending
+- Whether process notes, skipped/compensated steps, validation failures and fixes, document-boundary issues, and similar process records are centralized here instead of polluting formal research documents
 
-## 4. 输出质量标准
+## 4. Output Quality Standard
 
-一份合格的技术调研文档应该满足：
+A good technical research output should:
 
-- 读者能在 10 分钟内知道这个框架的核心设计
-- 读者能按源码地图继续深入阅读
-- 每个关键结论能回到证据
-- 至少一条主流程能从入口追到核心执行
-- 设计思想不是泛泛而谈，而是从源码结构和取舍中提炼
-- 借鉴笔记能说明适用前提、约束和不可照搬点
+- Let readers understand the framework's core design within 10 minutes
+- Let readers continue into source using the source map
+- Tie every key conclusion to evidence
+- Trace at least one main flow from entry to core execution
+- Derive design philosophy from source structure and tradeoffs
+- Explain applicability, constraints, and non-copyable parts in adoption notes
 
 ## 5. Research Quality Gate
 
-最终输出前做一次质量门禁：
+Run this gate before final output:
 
-| 检查项 | 要求 |
+| Check | Requirement |
 |---|---|
-| 版本固定 | 明确 branch、tag、commit 或当前快照 |
-| 范围明确 | 明确本次调研范围和不做范围 |
-| 外部资料 | 已覆盖必要官方资料、协作资料或社区资料；若跳过则说明原因 |
-| 研究问题 | 已把外部关键说法转成可验证问题，并记录验证状态 |
-| 源码地图 | 已说明仓库结构、入口、模块和阅读顺序 |
-| 结构化源码清单 | 已生成 `references/source-inventory.json`，或说明没有本地源码可生成 |
-| Dashboard | 已生成 `dashboard.html` 作为阅读入口，或说明不需要 |
-| 主链路 | 至少追踪一条从入口到核心执行的运行链路 |
-| 核心抽象 | 已识别关键接口、对象、数据结构和生命周期 |
-| 扩展点 | 已识别注册、加载、执行、隔离和失败处理方式 |
-| 架构图 | 架构图由源码、文档、测试或示例支撑 |
-| 可视化架构图 | 复杂架构已补充 `visual/architecture.html` 和 `visual/architecture.visual.js`，或说明为什么不需要 |
-| 设计思想 | 来自源码结构和设计取舍，不是主观想象 |
-| 证据索引 | 关键结论已记录到 evidence-index.md |
-| 事实区分 | 区分源码事实、官方事实、仓库文档事实、协作事实、社区事实、测试事实、推断和待确认 |
-| 借鉴笔记 | 输出可学习、不建议照搬和需要继续验证的内容 |
-| 审查记录 | 复杂调研已完成 research-review.md |
-| 自动校验 | 已运行 `node docs/tech-research-guide/scripts/validate-research.js research/<framework-name>`，或记录无法运行原因 |
+| Version pinned | Branch, tag, commit, or current snapshot is explicit |
+| Scope clear | Scope and non-scope are explicit |
+| External references | Necessary official, collaboration, or community references are covered, or skip reason is recorded |
+| Research questions | External claims are converted into verifiable questions and verification status is recorded |
+| Source map | Repository structure, entries, modules, and reading order are explained |
+| Source inventory | `references/source-inventory.json` is generated, or lack of local source is explained |
+| Dashboard | `dashboard.html` is generated as a reading entry, or skip reason is explained |
+| Main flow | At least one runtime flow from entry to core execution is traced |
+| Key abstractions | Key interfaces, objects, data structures, and lifecycles are identified |
+| Extension points | Registration, loading, execution, isolation, and failure handling are identified |
+| Architecture diagram | Diagrams are backed by source, docs, tests, or examples |
+| Visual architecture | Complex architecture has `visual/architecture.html` and `visual/architecture.visual.js`, or skip reason is explained |
+| Design philosophy | Design claims come from source structure and tradeoffs, not imagination |
+| Evidence index | Key conclusions are recorded in `evidence-index.md` |
+| Fact separation | Source facts, official facts, repository doc facts, collaboration facts, community facts, test facts, inferences, and pending items are separated |
+| Adoption notes | Learn/adapt/avoid/validate-later guidance is explicit |
+| Review record | Complex research has `research-review.md` |
+| Automated validation | `node docs/tech-research-guide/scripts/validate-research.js research/<framework-name>` ran, or the failure reason is recorded |
 
-## 6. 调研角色
+## 6. Research Roles
 
-复杂调研可以按角色思考，不要求机械拆成多人执行。每个角色的完整目标、适用文档、职责和边界见 `roles/`。
+Complex research can use these roles as thinking lenses. You do not need to mechanically split work across multiple people. Full goals, documents, responsibilities, and boundaries live under `roles/`.
 
-| 角色 | 角色目标 | 主要适用文档 |
+| Role | Goal | Main documents |
 |---|---|---|
-| Research Lead | 把模糊调研意图转化为范围清晰、问题明确、可验收的 Research Brief，并组织外部资料和研究问题 | `research-brief.md`、`external-research.md`、`research-questions.md`、`README.md`、`research-review.md` |
-| Source Code Analyst | 建立可信的源码入口、目录地图、结构化源码清单和调用链证据，并验证研究问题 | `source-map.md`、`references/source-inventory.json`、`runtime-flows.md`、`research-questions.md`、`evidence-index.md` |
-| Architecture Analyst | 把源码事实抽象成架构模型和核心抽象关系 | `architecture.md`、`key-abstractions.md`、`extension-points.md` |
-| Design Philosophy Analyst | 从官方目标、源码结构和架构取舍中提炼设计思想 | `design-philosophy.md`、`external-research.md`、`architecture.md`、`key-abstractions.md` |
-| Adoption Analyst | 把开源框架设计转化为学习借鉴笔记，说明适用前提和不可照搬点 | `adoption-notes.md`、`comparison.md`、`external-research.md` |
-| Research Reviewer | 审查调研产物是否可信、完整、可复用 | `research-review.md`、`evidence-index.md`、`external-research.md`、`research-questions.md` |
+| Research Lead | Turn vague intent into a scoped, answerable, acceptable Research Brief and organize external references and research questions | `research-brief.md`, `external-research.md`, `research-questions.md`, `README.md`, `research-review.md` |
+| Source Code Analyst | Build reliable source entries, source maps, source inventories, and call-chain evidence; verify research questions | `source-map.md`, `references/source-inventory.json`, `runtime-flows.md`, `research-questions.md`, `evidence-index.md` |
+| Architecture Analyst | Abstract source facts into architecture models and key abstraction relationships | `architecture.md`, `key-abstractions.md`, `extension-points.md` |
+| Design Philosophy Analyst | Extract design philosophy from official goals, source structure, and architecture tradeoffs | `design-philosophy.md`, `external-research.md`, `architecture.md`, `key-abstractions.md` |
+| Adoption Analyst | Turn framework designs into learning and adoption notes with assumptions and non-copyable parts | `adoption-notes.md`, `comparison.md`, `external-research.md` |
+| Research Reviewer | Review whether the research output is reliable, complete, and reusable | `research-review.md`, `evidence-index.md`, `external-research.md`, `research-questions.md` |
 
-## 7. 不推荐的写法
+## 7. Anti-Patterns
 
-避免：
+Avoid:
 
-- 只摘抄官网介绍
-- 只列目录，不解释模块关系
-- 只画架构图，没有源码证据
-- 把复杂关系硬塞进一个难以阅读的 Markdown 图
-- 把推测写成事实
-- 用“高内聚低耦合”等空泛词替代具体设计分析
-- 不固定版本就给确定结论
-- 不区分学习总结和可复用设计
+- Copying only the official introduction
+- Listing directories without explaining module relationships
+- Drawing architecture diagrams without source evidence
+- Forcing complex relationships into one unreadable Markdown diagram
+- Presenting speculation as fact
+- Using empty slogans such as "high cohesion and low coupling" instead of concrete design analysis
+- Giving confirmed conclusions without pinning the version
+- Failing to separate learning notes from reusable design guidance

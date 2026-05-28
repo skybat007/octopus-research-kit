@@ -1,16 +1,16 @@
-# 运行流程
+# Runtime Flows
 
-## Flow 1: <场景名称>
+## Flow 1: <Scenario Name>
 
-### 1. 场景说明
+### 1. Scenario
 
-### 2. 入口
+### 2. Entry Point
 
-| 类型 | 位置 | 说明 |
+| Type | Location | Notes |
 |---|---|---|
 | API/CLI/Test/Example |  |  |
 
-### 3. 时序图
+### 3. Sequence Diagram
 
 ```mermaid
 sequenceDiagram
@@ -20,22 +20,22 @@ sequenceDiagram
     U->>F: call
 ```
 
-### 4. 关键步骤
+### 4. Key Steps
 
-| 步骤 | 代码位置 | 做了什么 | 状态变化 | 证据 |
+| Step | Code location | What happens | State change | Evidence |
 |---|---|---|---|---|
 | 1 |  |  |  |  |
 
-### 5. 异常和边界
+### 5. Exceptions and Boundaries
 
-| 场景 | 处理方式 | 证据 |
+| Scenario | Handling | Evidence |
 |---|---|---|
 |  |  |  |
 
-### 6. 设计观察
+### 6. Design Observations
 
-- 
+-
 
-### 7. 待确认
+### 7. Pending
 
-- 
+-

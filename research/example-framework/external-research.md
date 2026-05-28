@@ -1,7 +1,7 @@
-# 外部资料调研
+# External Research
 
-本文件是示例占位。真实调研时请记录官方文档、README、Release Notes、Issue、PR、Discussion、社区文章和第三方分析，并标记可信度与需要源码验证的观点。
+This is a placeholder. In real research, record official docs, README, release notes, issues, PRs, discussions, community articles, and third-party analysis. Mark credibility and which claims need source verification.
 
-| 资料 | 来源 | 主要观点 | 可信度 | 是否需要源码验证 |
+| Reference | Source | Main claim | Credibility | Needs source verification |
 |---|---|---|---|---|
-| 示例官方文档 |  |  | A | 是 |
+| Example official docs |  |  | A | yes |

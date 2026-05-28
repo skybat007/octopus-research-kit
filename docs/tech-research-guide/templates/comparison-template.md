@@ -1,38 +1,38 @@
-# 横向对比
+# Comparison
 
-## 1. 对比对象
+## 1. Comparison Targets
 
-| 框架 | 版本/commit | 代码来源 | 调研范围 |
+| Framework | Version/commit | Code source | Research scope |
 |---|---|---|---|
 |  |  |  |  |
 
-## 2. 总体定位
+## 2. Overall Positioning
 
-| 维度 | Framework A | Framework B | 对学习和设计判断的启发 |
+| Dimension | Framework A | Framework B | Implication for learning and design judgment |
 |---|---|---|---|
-| 定位 |  |  |  |
-| 架构风格 |  |  |  |
-| 工程化程度 |  |  |  |
+| Positioning |  |  |  |
+| Architecture style |  |  |  |
+| Engineering maturity |  |  |  |
 
-## 3. 核心能力对比
+## 3. Core Capability Comparison
 
-| 维度 | Framework A | Framework B | 证据 | 启发 |
+| Dimension | Framework A | Framework B | Evidence | Takeaway |
 |---|---|---|---|---|
-| Runtime 模型 |  |  |  |  |
-| Tool/Skill 抽象 |  |  |  |  |
+| Runtime model |  |  |  |  |
+| Tool/Skill abstraction |  |  |  |  |
 | Workflow/DAG |  |  |  |  |
 | Memory/Context |  |  |  |  |
-| Plugin 机制 |  |  |  |  |
-| 多 Agent 协作 |  |  |  |  |
+| Plugin mechanism |  |  |  |  |
+| Multi-agent collaboration |  |  |  |  |
 
-## 4. 二次开发友好度
+## 4. Extension Friendliness
 
-| 维度 | 观察 | 风险 | 证据 |
+| Dimension | Observation | Risk | Evidence |
 |---|---|---|---|
 |  |  |  |  |
 
-## 5. 结论
+## 5. Conclusion
 
-## 6. 待确认
+## 6. Pending
 
-- 
+-

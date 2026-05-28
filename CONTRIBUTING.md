@@ -1,27 +1,27 @@
 # Contributing
 
-欢迎改进这套技术调研框架。这个仓库的核心目标是帮助研究者把开源框架理解过程沉淀成可追溯、可复查、可复用的技术文档。
+Contributions are welcome. This repository helps researchers turn open-source framework reading into traceable, reviewable, and reusable technical documents.
 
-## 可以贡献什么
+## What to Contribute
 
-- 调研流程、质量门禁和证据标准
-- `docs/tech-research-guide/templates/` 下的模板
-- `docs/tech-research-guide/roles/` 下的角色边界
-- `docs/tech-research-guide/scripts/` 下的生成和校验脚本
-- `skills/open-source-tech-research/` 下的 Skill 工作流
-- 脱敏后的示例调研产物
+- Research workflow, quality gates, and evidence standards
+- Templates under `docs/tech-research-guide/templates/`
+- Role boundaries under `docs/tech-research-guide/roles/`
+- Generation and validation scripts under `docs/tech-research-guide/scripts/`
+- Skill workflow under `skills/open-source-tech-research/`
+- Sanitized example research outputs
 
-## 贡献原则
+## Contribution Principles
 
-- Markdown 是知识源，HTML/Dashboard/visual data 只做展示和导航。
-- 重要结论必须能回到证据：官方资料、源码、测试、配置、示例、Issue、PR、Release Note 或明确标注的推断。
-- 不要提交个人本机绝对路径、令牌、私钥、账号信息或未脱敏的内部项目内容。
-- 不要把后续工程实施方案混入技术调研规范；调研产物聚焦理解、验证、架构抽象和学习借鉴。
-- 生成物如果包含第三方源码片段，应控制范围，并保留来源、版本和用途说明。
+- Markdown is the knowledge source. HTML, dashboards, and visual data are presentation and navigation layers.
+- Important conclusions must trace back to evidence: official docs, source code, tests, configuration, examples, issues, PRs, release notes, or clearly labeled inferences.
+- Do not submit personal absolute local paths, tokens, private keys, account data, or unsanitized internal project content.
+- Do not mix downstream implementation plans into the technical research guide. Research outputs should focus on understanding, verification, architecture abstraction, and adoption notes.
+- If generated outputs include third-party source snippets, keep them limited and preserve source, version, and usage context.
 
-## 本地校验
+## Local Checks
 
-提交前建议运行：
+Before submitting, run:
 
 ```bash
 npm run research:sanitize
@@ -31,18 +31,18 @@ npm run release:check
 git diff --check
 ```
 
-如果你正在准备公开发布，也建议运行：
+If you are preparing a public release, also run:
 
 ```bash
 npm run research:validate:strict
 ```
 
-## 新增调研目录
+## Adding a Research Directory
 
-新增一次调研时，目录应放在：
+Add each new research effort under:
 
 ```text
 research/<framework-name>/
 ```
 
-建议使用 `docs/tech-research-guide/templates/` 作为起点，并保证 `evidence-index.md` 能支撑主要结论。
+Use `docs/tech-research-guide/templates/` as the starting point, and make sure `evidence-index.md` supports the main conclusions.

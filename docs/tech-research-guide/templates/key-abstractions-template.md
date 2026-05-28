@@ -1,40 +1,40 @@
-# 核心抽象
+# Key Abstractions
 
-## 1. 抽象总览
+## 1. Abstraction Overview
 
-| 抽象 | 类型 | 职责 | 生命周期 | 关键证据 |
+| Abstraction | Type | Responsibility | Lifecycle | Key evidence |
 |---|---|---|---|---|
 |  | Interface/Class/Function/Data |  |  |  |
 
-## 2. 抽象关系
+## 2. Abstraction Relationships
 
 ```mermaid
 classDiagram
     class CoreAbstraction
 ```
 
-## 3. 关键接口
+## 3. Key Interfaces
 
-| 接口/函数 | 调用方 | 实现方 | 输入 | 输出 | 证据 |
+| Interface/function | Caller | Implementer | Input | Output | Evidence |
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
 
-## 4. 关键数据结构
+## 4. Key Data Structures
 
-| 数据结构 | 字段/状态 | 创建位置 | 消费位置 | 证据 |
+| Data structure | Fields/state | Created at | Consumed at | Evidence |
 |---|---|---|---|---|
 |  |  |  |  |  |
 
-## 5. 生命周期对象
+## 5. Lifecycle Objects
 
-| 对象 | 创建 | 初始化 | 使用 | 释放 | 证据 |
+| Object | Creation | Initialization | Usage | Release | Evidence |
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
 
-## 6. 设计观察
+## 6. Design Observations
 
-- 
+-
 
-## 7. 待确认
+## 7. Pending
 
-- 
+-

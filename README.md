@@ -1,38 +1,38 @@
 # Octopus Tech Research Workspace
 
-这个项目用于沉淀技术调研方法、开源框架源码分析过程和可复用的技术文档资产。
+Octopus Tech Research Workspace is a source-backed research framework for studying open-source technologies, reading unfamiliar codebases, and turning that work into reusable technical documents.
 
-它的目标不是简单整理资料，而是帮助你围绕一个开源技术建立可追溯的理解：
+Its goal is not to collect loose notes. It helps you build a traceable understanding of an open-source technology:
 
-- 它解决什么问题
-- 它的架构边界是什么
-- 它的核心抽象如何组织
-- 它的关键运行流程如何在源码中体现
-- 它的设计思想、取舍和扩展机制是什么
-- 哪些模式值得学习、借鉴或后续单独评估
+- What problem it solves
+- Where its architecture boundaries are
+- How its core abstractions are organized
+- How important runtime flows appear in source code
+- What design ideas, tradeoffs, and extension mechanisms it uses
+- Which patterns are worth learning, adapting, or evaluating later
 
-## 核心工作方式
+## Core Workflow
 
-本项目采用 `Research Spec + Research Skill` 的组合。
+This project combines `Research Spec + Research Skill`.
 
-`Research Spec` 用来定义某一次具体调研：
+`Research Spec` defines a specific research effort:
 
-- 调研对象、版本、代码来源
-- 调研目标、范围和不做范围
-- 要回答的关键问题
-- 需要产出的技术文档
-- 外部资料、源码验证问题和关键结论证据
+- Target project, version, and code source
+- Goals, scope, and out-of-scope items
+- Key questions to answer
+- Required technical documents
+- External research, source-verification questions, and evidence for conclusions
 
-`Research Skill` 用来固化调研执行方法：
+`Research Skill` captures the execution method:
 
-- 如何扫描一个陌生开源仓库
-- 如何收集官方资料、社区资料并转成源码验证问题
-- 如何定位入口、核心模块、关键抽象和主流程
-- 如何从源码证据推导架构结论
-- 如何在 Markdown 不友好时补充由 `visual/architecture.visual.js` 驱动的 HTML 可视化架构图
-- 如何产出统一格式的技术架构、设计思想和学习借鉴文档
+- How to scan an unfamiliar open-source repository
+- How to turn official and community materials into source-verification questions
+- How to locate entry points, core modules, key abstractions, and main flows
+- How to derive architecture conclusions from source evidence
+- How to add HTML visual architecture diagrams driven by `visual/architecture.visual.js` when Markdown is not expressive enough
+- How to produce consistent architecture, design-philosophy, and adoption notes
 
-## 目录结构
+## Repository Layout
 
 ```text
 .
@@ -60,43 +60,43 @@
     └── open-source-tech-research/
 ```
 
-## 关键入口
+## Key Entry Points
 
-- [技术调研规范](docs/tech-research-guide/TECH_RESEARCH_GUIDE.md)
-- [技术调研快速开始](docs/tech-research-guide/AI_TECH_RESEARCH_QUICKSTART.md)
-- [技术调研模板](docs/tech-research-guide/templates/)
-- [示例调研 Spec](research/example-framework/README.md)
-- [开源技术调研 Skill](skills/open-source-tech-research/SKILL.md)
+- [Tech Research Guide](docs/tech-research-guide/TECH_RESEARCH_GUIDE.md)
+- [AI Tech Research Quickstart](docs/tech-research-guide/AI_TECH_RESEARCH_QUICKSTART.md)
+- [Research templates](docs/tech-research-guide/templates/)
+- [Example research spec](research/example-framework/README.md)
+- [Open-source tech research skill](skills/open-source-tech-research/SKILL.md)
 
-## 支持项目
+## Support This Project
 
-如果这套技术调研工作台对你有帮助，欢迎在 GitHub 给本仓库点一个 Star。
+If this research workspace helps you, please consider giving the GitHub repository a Star.
 
-Star 不只是鼓励，也能帮助更多需要源码调研、架构梳理和证据化技术文档的人更容易发现这个项目。
+Stars are not just encouragement. They also help more people who need source research, architecture analysis, and evidence-backed technical writing discover the project.
 
-## 使用范围
+## Intended Use
 
-本仓库只作为技术调研工作台使用：
+Use this repository as a technical research workspace for:
 
-- 调研一个开源框架
-- 阅读陌生源码
-- 产出技术架构文档
-- 提炼设计思想
-- 沉淀可复用的技术认知和设计模式
+- Studying an open-source framework
+- Reading unfamiliar source code
+- Producing architecture documents
+- Extracting design philosophy
+- Building reusable technical knowledge and design patterns
 
-## 推荐流程
+## Recommended Flow
 
-1. 在 `research/<framework-name>/` 新建调研目录。
-2. 复制 `docs/tech-research-guide/templates/` 中的模板。
-3. 先完成 `research-brief.md`，明确研究目标和边界。
-4. 生成 `external-research.md` 和 `research-questions.md`，用外部资料建立问题清单，再进入源码验证。
-5. 使用 `open-source-tech-research` skill 推进源码扫描、核心抽象、架构拆解、主流程追踪、扩展点和设计思想提炼。
-6. 将每个关键结论记录到 `evidence-index.md`，保留官方资料、源码、测试、协作资料或社区资料证据。
-7. 在 `adoption-notes.md` 中沉淀值得学习、需要结合语境后再借鉴和不适合照搬的设计。
+1. Create `research/<framework-name>/`.
+2. Copy the templates from `docs/tech-research-guide/templates/`.
+3. Start with `research-brief.md` to define goals and boundaries.
+4. Produce `external-research.md` and `research-questions.md`, using external materials to build a question list before source verification.
+5. Use the `open-source-tech-research` skill to scan source code, map abstractions, break down architecture, trace runtime flows, inspect extension points, and extract design philosophy.
+6. Record each important conclusion in `evidence-index.md`, backed by official docs, source files, tests, configuration, examples, issues, PRs, release notes, or clearly labeled community evidence.
+7. Capture reusable patterns, context-dependent ideas, and designs that should not be copied directly in `adoption-notes.md`.
 
-## 发布前检查
+## Release Checks
 
-公开发布前建议至少执行：
+Before publishing publicly, run at least:
 
 ```bash
 npm run research:sanitize
@@ -105,10 +105,10 @@ npm run research:validate:strict
 npm run release:check
 ```
 
-这些检查用于确认调研产物结构完整、Dashboard 可重新生成、Mermaid 常见语法问题可被发现，并避免把个人本机路径、常见令牌或私钥形态误提交到公开仓库。
+These checks verify research structure, regenerated dashboards, common Mermaid issues, and likely privacy leaks such as local paths, tokens, or private-key shapes.
 
-## 许可证
+## License
 
-本仓库以 [MIT License](LICENSE) 发布，可用于个人学习、团队内部方法沉淀和商业项目中的调研工作流改造。
+This repository is released under the [MIT License](LICENSE). You may use it for personal learning, internal team methods, and commercial project research workflows.
 
-调研过程中引用的第三方开源项目、官方文档、源码片段或外部资料仍然遵循其各自许可证和使用条款；本仓库不会重新授权这些第三方内容。
+Third-party open-source projects, official docs, source snippets, and external materials referenced during research remain governed by their own licenses and terms. This repository does not relicense third-party content.

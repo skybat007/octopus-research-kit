@@ -1,6 +1,6 @@
 window.EVIDENCE_META = {
-  "title": "Example Framework 证据解释",
-  "description": "从架构图回到证据解释：展示架构语境、证据结论、源码/文档片段和原始索引位置。",
+  "title": "Example Framework Evidence Explanation",
+  "description": "Trace from the architecture diagram back to evidence: architecture context, evidence conclusions, source/doc snippets, and original index locations.",
   "source": "../evidence-index.md",
   "projectRoot": "research/example-framework"
 };
@@ -8,27 +8,27 @@ window.EVIDENCE_META = {
 window.EVIDENCE_ITEMS = [
   {
     "id": "TPL-001",
-    "conclusion": "调研应先定义目标、范围、问题和交付物",
+    "conclusion": "Research should define goals, scope, questions, and deliverables first",
     "type": "repository doc fact",
     "location": "`research-brief.md`",
-    "confidence": "高",
+    "confidence": "high",
     "verified": "",
-    "note": "模板约束",
+    "note": "Template constraint",
     "graphRefs": [
       {
-        "kind": "节点",
+        "kind": "node",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "调研简报",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "Research Brief",
         "sub": "research-brief.md",
         "role": "adapter",
         "status": "pending",
-        "detail": "定义目标、范围、问题和交付物。",
+        "detail": "Define goals, scope, questions, and deliverables.",
         "relation": ""
       }
     ],
-    "explanation": "这条证据在架构图中支撑 调研流程 / 节点「调研简报」。证据结论是：调研应先定义目标、范围、问题和交付物。图中的具体解释是：定义目标、范围、问题和交付物。",
+    "explanation": "This evidence supports Research Flow / node \"Research Brief\" in the architecture diagram. Evidence conclusion: Research should define goals, scope, questions, and deliverables first. The diagram explanation says: Define goals, scope, questions, and deliverables.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -43,39 +43,39 @@ window.EVIDENCE_ITEMS = [
   },
   {
     "id": "TPL-002",
-    "conclusion": "外部资料调研应区分官方资料、协作资料和社区资料",
+    "conclusion": "External research should distinguish official, collaboration, and community references",
     "type": "repository doc fact",
     "location": "`external-research.md`",
-    "confidence": "高",
+    "confidence": "high",
     "verified": "",
-    "note": "模板约束",
+    "note": "Template constraint",
     "graphRefs": [
       {
-        "kind": "节点",
+        "kind": "node",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "外部资料调研",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "External Research",
         "sub": "external-research.md",
         "role": "adapter",
         "status": "pending",
-        "detail": "收集官方、协作和社区资料，标记可信度。",
+        "detail": "Collect official, collaboration, and community references and mark credibility.",
         "relation": ""
       },
       {
-        "kind": "连线",
+        "kind": "edge",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "调研简报 -> 外部资料调研",
-        "sub": "确定范围",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "Research Brief -> External Research",
+        "sub": "scope",
         "role": "sync-call",
         "status": "",
-        "detail": "关系语义：确定范围。",
-        "relation": "调研简报 到 外部资料调研"
+        "detail": "Relationship semantics: scope.",
+        "relation": "Research Brief to External Research"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 调研流程 / 节点「外部资料调研」、调研流程 / 连线「调研简报 -> 外部资料调研」。证据结论是：外部资料调研应区分官方资料、协作资料和社区资料。图中的具体解释是：收集官方、协作和社区资料，标记可信度。；关系语义：确定范围。",
+    "explanation": "This evidence supports Research Flow / node \"External Research\", Research Flow / edge \"Research Brief -> External Research\" in the architecture diagram. Evidence conclusion: External research should distinguish official, collaboration, and community references. The diagram explanation says: Collect official, collaboration, and community references and mark credibility.; Relationship semantics: scope.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -90,39 +90,39 @@ window.EVIDENCE_ITEMS = [
   },
   {
     "id": "TPL-003",
-    "conclusion": "外部观点和用户目标应转成可源码验证的问题",
+    "conclusion": "External claims and user goals should become source-verifiable questions",
     "type": "repository doc fact",
     "location": "`research-questions.md`",
-    "confidence": "高",
+    "confidence": "high",
     "verified": "",
-    "note": "模板约束",
+    "note": "Template constraint",
     "graphRefs": [
       {
-        "kind": "节点",
+        "kind": "node",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "研究问题",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "Research Questions",
         "sub": "research-questions.md",
         "role": "module",
         "status": "pending",
-        "detail": "把外部资料中的关键说法转成源码验证问题。",
+        "detail": "Turn key external claims into source-verification questions.",
         "relation": ""
       },
       {
-        "kind": "连线",
+        "kind": "edge",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "外部资料调研 -> 研究问题",
-        "sub": "形成问题",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "External Research -> Research Questions",
+        "sub": "questions",
         "role": "sync-call",
         "status": "",
-        "detail": "关系语义：形成问题。",
-        "relation": "外部资料调研 到 研究问题"
+        "detail": "Relationship semantics: questions.",
+        "relation": "External Research to Research Questions"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 调研流程 / 节点「研究问题」、调研流程 / 连线「外部资料调研 -> 研究问题」。证据结论是：外部观点和用户目标应转成可源码验证的问题。图中的具体解释是：把外部资料中的关键说法转成源码验证问题。；关系语义：形成问题。",
+    "explanation": "This evidence supports Research Flow / node \"Research Questions\", Research Flow / edge \"External Research -> Research Questions\" in the architecture diagram. Evidence conclusion: External claims and user goals should become source-verifiable questions. The diagram explanation says: Turn key external claims into source-verification questions.; Relationship semantics: questions.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -137,39 +137,51 @@ window.EVIDENCE_ITEMS = [
   },
   {
     "id": "TPL-004",
-    "conclusion": "源码地图用于定位入口、模块边界和阅读顺序",
+    "conclusion": "Source maps locate entries, module boundaries, and reading order",
     "type": "repository doc fact",
     "location": "`source-map.md`, `references/source-inventory.json`",
-    "confidence": "高",
+    "confidence": "high",
     "verified": "",
-    "note": "模板约束",
+    "note": "Template constraint",
     "graphRefs": [
       {
-        "kind": "节点",
+        "kind": "node",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "源码地图",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "Source Map",
         "sub": "source-map.md",
         "role": "runtime-object",
         "status": "pending",
-        "detail": "定位入口、模块边界和阅读顺序。",
+        "detail": "Locate entries, module boundaries, and reading order.",
         "relation": ""
       },
       {
-        "kind": "连线",
+        "kind": "edge",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "研究问题 -> 源码地图",
-        "sub": "源码验证",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "Research Questions -> Source Map",
+        "sub": "verify in source",
         "role": "sync-call",
         "status": "",
-        "detail": "关系语义：源码验证。",
-        "relation": "研究问题 到 源码地图"
+        "detail": "Relationship semantics: verify in source.",
+        "relation": "Research Questions to Source Map"
+      },
+      {
+        "kind": "layer",
+        "viewId": "layers",
+        "viewLabel": "Layer Template",
+        "viewDescription": "A compact template for horizontal modules, vertical dependencies, and evidence ownership.",
+        "title": "Entry Layer",
+        "sub": "CLI / API / UI / Channel",
+        "role": "adapter",
+        "status": "pending",
+        "detail": "Replace with real entry evidence.",
+        "relation": "entry adapter / protocol conversion / user interaction / external event"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 调研流程 / 节点「源码地图」、调研流程 / 连线「研究问题 -> 源码地图」。证据结论是：源码地图用于定位入口、模块边界和阅读顺序。图中的具体解释是：定位入口、模块边界和阅读顺序。；关系语义：源码验证。",
+    "explanation": "This evidence supports Research Flow / node \"Source Map\", Research Flow / edge \"Research Questions -> Source Map\", Layer Template / layer \"Entry Layer\" in the architecture diagram. Evidence conclusion: Source maps locate entries, module boundaries, and reading order. The diagram explanation says: Locate entries, module boundaries, and reading order.; Relationship semantics: verify in source.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -192,39 +204,63 @@ window.EVIDENCE_ITEMS = [
   },
   {
     "id": "TPL-005",
-    "conclusion": "架构和运行流程应沉淀模块关系、依赖方向和主链路",
+    "conclusion": "Architecture and runtime flows should preserve module relationships, dependency direction, and main paths",
     "type": "repository doc fact",
     "location": "`architecture.md`, `runtime-flows.md`",
-    "confidence": "高",
+    "confidence": "high",
     "verified": "",
-    "note": "模板约束",
+    "note": "Template constraint",
     "graphRefs": [
       {
-        "kind": "节点",
+        "kind": "node",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "架构与流程",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "Architecture and Flows",
         "sub": "architecture.md / runtime-flows.md",
         "role": "module",
         "status": "pending",
-        "detail": "沉淀模块关系、依赖方向和运行主链路。",
+        "detail": "Capture module relationships, dependency direction, and main runtime paths.",
         "relation": ""
       },
       {
-        "kind": "连线",
+        "kind": "edge",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "源码地图 -> 架构与流程",
-        "sub": "支撑架构",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "Source Map -> Architecture and Flows",
+        "sub": "supports architecture",
         "role": "sync-call",
         "status": "",
-        "detail": "关系语义：支撑架构。",
-        "relation": "源码地图 到 架构与流程"
+        "detail": "Relationship semantics: supports architecture.",
+        "relation": "Source Map to Architecture and Flows"
+      },
+      {
+        "kind": "layer",
+        "viewId": "layers",
+        "viewLabel": "Layer Template",
+        "viewDescription": "A compact template for horizontal modules, vertical dependencies, and evidence ownership.",
+        "title": "Control Layer",
+        "sub": "Routing / Registry / Policy",
+        "role": "module",
+        "status": "pending",
+        "detail": "Replace with real control-plane evidence.",
+        "relation": "config loading / registry / policy / scheduling"
+      },
+      {
+        "kind": "layer",
+        "viewId": "layers",
+        "viewLabel": "Layer Template",
+        "viewDescription": "A compact template for horizontal modules, vertical dependencies, and evidence ownership.",
+        "title": "Execution Layer",
+        "sub": "Loop / Worker / Scheduler",
+        "role": "runtime-object",
+        "status": "pending",
+        "detail": "Replace with real runtime evidence.",
+        "relation": "main loop / task execution / error handling / result generation"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 调研流程 / 节点「架构与流程」、调研流程 / 连线「源码地图 -> 架构与流程」。证据结论是：架构和运行流程应沉淀模块关系、依赖方向和主链路。图中的具体解释是：沉淀模块关系、依赖方向和运行主链路。；关系语义：支撑架构。",
+    "explanation": "This evidence supports Research Flow / node \"Architecture and Flows\", Research Flow / edge \"Source Map -> Architecture and Flows\", Layer Template / layer \"Control Layer\", Layer Template / layer \"Execution Layer\" in the architecture diagram. Evidence conclusion: Architecture and runtime flows should preserve module relationships, dependency direction, and main paths. The diagram explanation says: Capture module relationships, dependency direction, and main runtime paths.; Relationship semantics: supports architecture.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -247,39 +283,51 @@ window.EVIDENCE_ITEMS = [
   },
   {
     "id": "TPL-006",
-    "conclusion": "核心抽象和扩展点应单独记录",
+    "conclusion": "Key abstractions and extension points should be recorded separately",
     "type": "repository doc fact",
     "location": "`key-abstractions.md`, `extension-points.md`",
-    "confidence": "高",
+    "confidence": "high",
     "verified": "",
-    "note": "模板约束",
+    "note": "Template constraint",
     "graphRefs": [
       {
-        "kind": "节点",
+        "kind": "node",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "核心抽象与扩展点",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "Abstractions and Extensions",
         "sub": "key-abstractions / extension-points",
         "role": "extension-point",
         "status": "pending",
-        "detail": "提炼核心对象、接口、插件、Hook、Provider 等扩展机制。",
+        "detail": "Extract core objects, interfaces, plugins, hooks, providers, and other extension mechanisms.",
         "relation": ""
       },
       {
-        "kind": "连线",
+        "kind": "edge",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "源码地图 -> 核心抽象与扩展点",
-        "sub": "支撑抽象",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "Source Map -> Abstractions and Extensions",
+        "sub": "supports abstractions",
         "role": "sync-call",
         "status": "",
-        "detail": "关系语义：支撑抽象。",
-        "relation": "源码地图 到 核心抽象与扩展点"
+        "detail": "Relationship semantics: supports abstractions.",
+        "relation": "Source Map to Abstractions and Extensions"
+      },
+      {
+        "kind": "layer",
+        "viewId": "layers",
+        "viewLabel": "Layer Template",
+        "viewDescription": "A compact template for horizontal modules, vertical dependencies, and evidence ownership.",
+        "title": "Capability Layer",
+        "sub": "Plugin / Hook / Provider / Tool",
+        "role": "extension-point",
+        "status": "pending",
+        "detail": "Replace with real extension evidence.",
+        "relation": "tool / provider / hook / plugin"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 调研流程 / 节点「核心抽象与扩展点」、调研流程 / 连线「源码地图 -> 核心抽象与扩展点」。证据结论是：核心抽象和扩展点应单独记录。图中的具体解释是：提炼核心对象、接口、插件、Hook、Provider 等扩展机制。；关系语义：支撑抽象。",
+    "explanation": "This evidence supports Research Flow / node \"Abstractions and Extensions\", Research Flow / edge \"Source Map -> Abstractions and Extensions\", Layer Template / layer \"Capability Layer\" in the architecture diagram. Evidence conclusion: Key abstractions and extension points should be recorded separately. The diagram explanation says: Extract core objects, interfaces, plugins, hooks, providers, and other extension mechanisms.; Relationship semantics: supports abstractions.",
     "sourceRefs": [
       {
         "kind": "file",
@@ -302,51 +350,63 @@ window.EVIDENCE_ITEMS = [
   },
   {
     "id": "TPL-007",
-    "conclusion": "关键结论应通过证据索引和调研审查保持可追溯",
+    "conclusion": "Important conclusions should remain traceable through the evidence index and research review",
     "type": "repository doc fact",
     "location": "`evidence-index.md`, `research-review.md`",
-    "confidence": "高",
+    "confidence": "high",
     "verified": "",
-    "note": "模板约束",
+    "note": "Template constraint",
     "graphRefs": [
       {
-        "kind": "节点",
+        "kind": "node",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "证据索引与审查",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "Evidence and Review",
         "sub": "evidence-index / research-review",
         "role": "state",
         "status": "pending",
-        "detail": "所有关键结论回到源码、官方资料或明确推断。",
+        "detail": "Trace every important conclusion back to source, official references, or explicit inference.",
         "relation": ""
       },
       {
-        "kind": "连线",
+        "kind": "edge",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "架构与流程 -> 证据索引与审查",
-        "sub": "记录证据",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "Architecture and Flows -> Evidence and Review",
+        "sub": "record evidence",
         "role": "read-write",
         "status": "",
-        "detail": "关系语义：记录证据。",
-        "relation": "架构与流程 到 证据索引与审查"
+        "detail": "Relationship semantics: record evidence.",
+        "relation": "Architecture and Flows to Evidence and Review"
       },
       {
-        "kind": "连线",
+        "kind": "edge",
         "viewId": "researchFlow",
-        "viewLabel": "调研流程",
-        "viewDescription": "这个视图展示新版技术调研方式：先建立外部认知，再转成可验证问题，最后用源码和证据索引支撑架构文档。",
-        "title": "核心抽象与扩展点 -> 证据索引与审查",
-        "sub": "记录证据",
+        "viewLabel": "Research Flow",
+        "viewDescription": "Shows the recommended research flow: build external context, turn it into verifiable questions, then use source evidence and an evidence index to support architecture documents.",
+        "title": "Abstractions and Extensions -> Evidence and Review",
+        "sub": "record evidence",
         "role": "read-write",
         "status": "",
-        "detail": "关系语义：记录证据。",
-        "relation": "核心抽象与扩展点 到 证据索引与审查"
+        "detail": "Relationship semantics: record evidence.",
+        "relation": "Abstractions and Extensions to Evidence and Review"
+      },
+      {
+        "kind": "layer",
+        "viewId": "layers",
+        "viewLabel": "Layer Template",
+        "viewDescription": "A compact template for horizontal modules, vertical dependencies, and evidence ownership.",
+        "title": "Evidence Layer",
+        "sub": "Evidence Index / Research Review",
+        "role": "state",
+        "status": "pending",
+        "detail": "Keep conclusions traceable.",
+        "relation": "claim / evidence / confidence / review"
       }
     ],
-    "explanation": "这条证据在架构图中支撑 调研流程 / 节点「证据索引与审查」、调研流程 / 连线「架构与流程 -> 证据索引与审查」、调研流程 / 连线「核心抽象与扩展点 -> 证据索引与审查」。证据结论是：关键结论应通过证据索引和调研审查保持可追溯。图中的具体解释是：所有关键结论回到源码、官方资料或明确推断。；关系语义：记录证据。",
+    "explanation": "This evidence supports Research Flow / node \"Evidence and Review\", Research Flow / edge \"Architecture and Flows -> Evidence and Review\", Research Flow / edge \"Abstractions and Extensions -> Evidence and Review\", Layer Template / layer \"Evidence Layer\" in the architecture diagram. Evidence conclusion: Important conclusions should remain traceable through the evidence index and research review. The diagram explanation says: Trace every important conclusion back to source, official references, or explicit inference.; Relationship semantics: record evidence.",
     "sourceRefs": [
       {
         "kind": "file",

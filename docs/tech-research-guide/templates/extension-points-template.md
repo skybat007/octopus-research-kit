@@ -1,39 +1,39 @@
-# 扩展点
+# Extension Points
 
-## 1. 扩展点总览
+## 1. Extension Point Overview
 
-| 扩展点 | 类型 | 作用 | 源码位置 | 可借鉴点 |
+| Extension point | Type | Purpose | Source location | Adoption value |
 |---|---|---|---|---|
 |  | Plugin/Hook/Registry/Provider/Middleware/Tool/Adapter |  |  |  |
 
-## 2. 注册机制
+## 2. Registration
 
-| 扩展点 | 注册方式 | 注册入口 | 配置来源 | 证据 |
+| Extension point | Registration method | Registration entry | Configuration source | Evidence |
 |---|---|---|---|---|
 |  |  |  |  |  |
 
-## 3. 发现和加载
+## 3. Discovery and Loading
 
-| 扩展点 | 发现方式 | 加载时机 | 生命周期 | 证据 |
+| Extension point | Discovery method | Load timing | Lifecycle | Evidence |
 |---|---|---|---|---|
 |  |  |  |  |  |
 
-## 4. 执行和隔离
+## 4. Execution and Isolation
 
-| 扩展点 | 调用方 | 执行边界 | 隔离方式 | 失败处理 | 证据 |
+| Extension point | Caller | Execution boundary | Isolation method | Failure handling | Evidence |
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
 
-## 5. 稳定性判断
+## 5. Stability Judgment
 
-| 扩展点 | 是否公开 API | 是否有文档 | 是否有测试 | 稳定性判断 |
+| Extension point | Public API | Documented | Tested | Stability judgment |
 |---|---|---|---|---|
-|  | 是/否 | 是/否 | 是/否 | 高/中/低 |
+|  | yes/no | yes/no | yes/no | high/medium/low |
 
-## 6. 学习启发
+## 6. Learning Takeaways
 
-- 
+-
 
-## 7. 待确认
+## 7. Pending
 
-- 
+-

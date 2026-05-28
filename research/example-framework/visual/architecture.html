@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>可视化架构图</title>
+<title>Visual Architecture</title>
 <style>
 :root {
   --bg: #f7f8fb;
@@ -92,13 +92,13 @@ if (window.top === window.self && !new URLSearchParams(window.location.search).h
 </div>
 <div class="canvas-wrap" id="wrap"><div class="canvas" id="canvas"></div></div>
 <div class="title">
-  <h1 id="docTitle">可视化架构图</h1>
-  <p id="docDescription">本图是 <code>architecture.md</code> 的视觉补充。点击节点可查看职责、状态和来源路径。</p>
+  <h1 id="docTitle">Visual Architecture</h1>
+  <p id="docDescription">This diagram visually complements <code>architecture.md</code>. Click a node to inspect its responsibility, status, and source path.</p>
 </div>
 <div class="legend" id="legend"></div>
 <div class="tooltip" id="tooltip"></div>
 <div class="detail" id="detail">
-  <button class="detail-close" id="detailClose" type="button" aria-label="关闭详情">×</button>
+  <button class="detail-close" id="detailClose" type="button" aria-label="Close details">×</button>
   <div id="detailContent"></div>
 </div>
 
@@ -117,19 +117,19 @@ const palette = {
 const fallbackViews = [
   {
     id: 'missing-data',
-    label: '缺少图数据',
-    purpose: '提示 architecture.visual.js 未加载或未定义 ARCHITECTURE_VIEWS。',
-    description: '请在同级目录创建 architecture.visual.js，并定义 window.ARCHITECTURE_VIEWS。',
+    label: 'Missing Graph Data',
+    purpose: 'Indicates that architecture.visual.js was not loaded or ARCHITECTURE_VIEWS is not defined.',
+    description: 'Create architecture.visual.js in the same directory and define window.ARCHITECTURE_VIEWS.',
     width: 900,
     height: 420,
     nodes: [
-      { id: 'source', type: 'state', role: 'source-doc', x: 90, y: 165, w: 230, h: 72, title: 'Markdown 知识源', sub: 'architecture / evidence / source-map', tip: '先从 Markdown 提取结论和证据。', status: 'pending' },
-      { id: 'data', type: 'core', role: 'visual-data', x: 390, y: 165, w: 220, h: 72, title: 'architecture.visual.js', sub: 'views / nodes / edges', tip: '图数据应放在 JS 数据文件里。', status: 'pending' },
-      { id: 'html', type: 'runtime', role: 'renderer', x: 680, y: 165, w: 160, h: 72, title: 'HTML 渲染器', sub: 'render only', tip: 'HTML 只负责可视化呈现。', status: 'pending' }
+      { id: 'source', type: 'state', role: 'source-doc', x: 90, y: 165, w: 230, h: 72, title: 'Markdown Source', sub: 'architecture / evidence / source-map', tip: 'Extract conclusions and evidence from Markdown first.', status: 'pending' },
+      { id: 'data', type: 'core', role: 'visual-data', x: 390, y: 165, w: 220, h: 72, title: 'architecture.visual.js', sub: 'views / nodes / edges', tip: 'Put graph data in the JS data file.', status: 'pending' },
+      { id: 'html', type: 'runtime', role: 'renderer', x: 680, y: 165, w: 160, h: 72, title: 'HTML Renderer', sub: 'render only', tip: 'HTML only presents the visualization.', status: 'pending' }
     ],
     edges: [
-      { from: 'source', to: 'data', label: '提取图数据', kind: 'context-build' },
-      { from: 'data', to: 'html', label: '渲染', kind: 'dependency' }
+      { from: 'source', to: 'data', label: 'extract graph data', kind: 'context-build' },
+      { from: 'data', to: 'html', label: 'render', kind: 'dependency' }
     ]
   }
 ];
@@ -148,8 +148,8 @@ const detailContent = document.getElementById('detailContent');
 document.getElementById('detailClose').onclick = () => detail.classList.remove('show');
 
 document.title = meta.title || document.title;
-document.getElementById('docTitle').textContent = meta.title || '可视化架构图';
-if (meta.description) document.getElementById('docDescription').innerHTML = `${escapeHtml(meta.description)} 点击节点可查看职责、状态和来源路径。`;
+document.getElementById('docTitle').textContent = meta.title || 'Visual Architecture';
+if (meta.description) document.getElementById('docDescription').innerHTML = `${escapeHtml(meta.description)} Click a node to inspect its responsibility, status, and source path.`;
 
 views.forEach((v, i) => {
   const b = document.createElement('button');
@@ -169,22 +169,45 @@ function render(i) {
   canvas.innerHTML = v.layers ? layerSVG(v) : graphSVG(v);
   detail.classList.remove('show');
   const viewText = v.description || v.desc || v.purpose || '';
-  document.getElementById('docDescription').innerHTML = `${escapeHtml(viewText)} 点击节点可查看职责、状态和来源路径。`;
+  document.getElementById('docDescription').innerHTML = `${escapeHtml(viewText)} Click a node to inspect its responsibility, status, and source path.`;
   bindTooltips();
   fit();
 }
 function graphSVG(v) {
-  const nodes = Object.fromEntries(v.nodes.map(n => [n.id, n]));
-  let s = svgOpen(v);
-  v.edges.forEach(e => {
+  const view = layoutGraph(v);
+  const nodes = Object.fromEntries(view.nodes.map(n => [n.id, n]));
+  let s = svgOpen(view);
+  view.edges.forEach(e => {
     if (!nodes[e.from] || !nodes[e.to]) return;
     const a = center(nodes[e.from]), b = center(nodes[e.to]);
     const cls = ['conn', edgeClass(e.kind), edgeAnim(e.kind)].filter(Boolean).join(' ');
     s += `<path class="${cls}" data-kind="${attr(e.kind)}" data-ev="${attr(e.ev)}" data-doc="${attr(e.doc)}" d="M${a.x},${a.y} L${b.x},${b.y}"/>`;
     if (e.label) s += `<text x="${(a.x+b.x)/2}" y="${(a.y+b.y)/2-8}" text-anchor="middle" class="edge-label">${escapeHtml(e.label)}</text>`;
   });
-  v.nodes.forEach(n => s += nodeSVG(n));
+  view.nodes.forEach(n => s += nodeSVG(n));
   return s + '</svg>';
+}
+function layoutGraph(v) {
+  const rawNodes = Array.isArray(v.nodes) ? v.nodes : [];
+  const needsLayout = !finite(v.width) || !finite(v.height) || rawNodes.some(n => !finite(n.x) || !finite(n.y) || !finite(n.w) || !finite(n.h));
+  if (!needsLayout) return v;
+  const nodeW = 218, nodeH = 82, gapX = 82, gapY = 96, marginX = 72, marginY = 72;
+  const count = Math.max(rawNodes.length, 1);
+  const cols = count <= 4 ? count : (count === 9 ? 3 : 4);
+  const rows = Math.ceil(count / cols);
+  const nodes = rawNodes.map((n, i) => {
+    const w = finite(n.w) ? Number(n.w) : nodeW;
+    const h = finite(n.h) ? Number(n.h) : nodeH;
+    const x = finite(n.x) ? Number(n.x) : marginX + (i % cols) * (nodeW + gapX);
+    const y = finite(n.y) ? Number(n.y) : marginY + Math.floor(i / cols) * (nodeH + gapY);
+    return { ...n, x, y, w, h };
+  });
+  return {
+    ...v,
+    width: finite(v.width) ? Number(v.width) : marginX * 2 + cols * nodeW + (cols - 1) * gapX,
+    height: finite(v.height) ? Number(v.height) : marginY * 2 + rows * nodeH + (rows - 1) * gapY,
+    nodes
+  };
 }
 function layerSVG(v) {
   let s = svgOpen(v);
@@ -220,6 +243,7 @@ function nodeSVG(n) {
 function edgeClass(kind) { return kind || 'dependency'; }
 function edgeAnim(kind) { return ['request-flow', 'model-stream'].includes(kind) ? 'flow' : ''; }
 function center(n) { return { x: n.x + n.w / 2, y: n.y + n.h / 2 }; }
+function finite(value) { return Number.isFinite(Number(value)); }
 function bindTooltips() {
   document.querySelectorAll('.node').forEach(el => {
     el.onmouseenter = () => {
@@ -240,15 +264,15 @@ function bindTooltips() {
   });
 }
 function nodeTooltipHtml(el) {
-  return `<strong>${escapeHtml(el.dataset.title)}</strong><div>${escapeHtml(el.dataset.tip || '')}</div><div class="muted">点击查看完整来源</div>`;
+  return `<strong>${escapeHtml(el.dataset.title)}</strong><div>${escapeHtml(el.dataset.tip || '')}</div><div class="muted">Click to view full source context</div>`;
 }
 function nodeDetailHtml(el) {
-  const source = el.dataset.doc ? `<div>来源路径：<a href="${attr(sourceHref(el.dataset.doc))}" target="_top">${escapeHtml(el.dataset.doc)}</a></div><div class="hint">点击打开证据解释页，避免浏览器直接打开 Markdown 原文。</div>` : '';
+  const source = el.dataset.doc ? `<div>Source path: <a href="${attr(sourceHref(el.dataset.doc))}" target="_top">${escapeHtml(el.dataset.doc)}</a></div><div class="hint">Opens the evidence explanation page instead of raw Markdown.</div>` : '';
   return `<h2>${escapeHtml(el.dataset.title)}</h2>
     <p>${escapeHtml(el.dataset.tip || '')}</p>
     <div class="meta">
-      <div>角色：${escapeHtml(el.dataset.role || '')}</div>
-      <div>状态：${escapeHtml(el.dataset.status || '')}</div>
+      <div>Role: ${escapeHtml(el.dataset.role || '')}</div>
+      <div>Status: ${escapeHtml(el.dataset.status || '')}</div>
       ${source}
     </div>`;
 }
@@ -259,8 +283,8 @@ function sourceHref(doc) {
 }
 function renderLegend() {
   const legend = document.getElementById('legend');
-  const nodeLabels = [['entry','入口'], ['core','核心'], ['runtime','运行时'], ['extension','扩展'], ['state','状态'], ['infra','基础设施'], ['policy','权限/策略']];
-  const edgeLabels = [['line-demo','主流程/调用'], ['line-demo dashed','依赖/注册/事件'], ['line-demo dotted','状态/上下文'], ['line-demo policy','权限检查']];
+  const nodeLabels = [['entry','Entry'], ['core','Core'], ['runtime','Runtime'], ['extension','Extension'], ['state','State'], ['infra','Infrastructure'], ['policy','Permission/Policy']];
+  const edgeLabels = [['line-demo','Main flow / call'], ['line-demo dashed','Dependency / registration / event'], ['line-demo dotted','State / context'], ['line-demo policy','Permission check']];
   legend.innerHTML = nodeLabels.map(([k,l]) => `<span><i class="dot" style="background:${palette[k]}"></i>${l}</span>`).join('') + edgeLabels.map(([k,l]) => `<span><i class="${k}"></i>${l}</span>`).join('');
 }
 function fit() {

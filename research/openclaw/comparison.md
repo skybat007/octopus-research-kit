@@ -1,30 +1,30 @@
-# 横向对比
+# Comparison
 
 Status: pending
 Last Updated: 2026-05-25
 
-## 1. 本轮状态
+## 1. Current Status
 
-本轮没有做横向竞品调研。当前文件保留为后续对比入口，避免在未固定对比对象、未做最新资料核验的情况下给出不可靠结论。
+This pass did not perform comparative product or architecture research. This file remains as a future comparison entry point so the research does not make unreliable claims before fixing comparison targets and checking their latest materials.
 
-## 2. 建议对比对象
+## 2. Suggested Comparison Targets
 
-| 对比对象 | 建议对比维度 | 为什么值得比 |
+| Target | Suggested Dimensions | Why It Is Worth Comparing |
 |---|---|---|
-| Home Assistant | 本地优先、插件/集成、设备控制、自动化 | 和 OpenClaw 一样强调本地控制面与大量 integration |
-| LangGraph | Agent workflow、state、tool/runtime orchestration | 可对比 OpenClaw 的 session/agent loop 与图式编排 |
-| Dify | Agent 应用平台、插件、工作流、模型 Provider | 可对比应用平台化和可视化配置 |
-| Botpress / Rasa | 多渠道 bot、NLU、conversation state | 可对比 channel/session/routing 设计 |
-| Continue / Codex-like harness | 本地 coding agent、tools、workspace、安全 | 可对比 OpenClaw 的 embedded agent runtime 和 workspace contract |
+| Home Assistant | Local-first operation, plugins/integrations, device control, automation | Like OpenClaw, it emphasizes a local control plane and many integrations. |
+| LangGraph | Agent workflow, state, tool/runtime orchestration | Useful for comparing OpenClaw's session/agent loop with graph-based orchestration. |
+| Dify | Agent app platform, plugins, workflows, model providers | Useful for comparing app-platform design and visual configuration. |
+| Botpress / Rasa | Multi-channel bots, NLU, conversation state | Useful for comparing channel/session/routing design. |
+| Continue / Codex-like harnesses | Local coding agents, tools, workspace, security | Useful for comparing OpenClaw's embedded agent runtime and workspace contract. |
 
-## 3. 推荐对比问题
+## 3. Recommended Comparison Questions
 
-- OpenClaw 的 Gateway control plane 与 Home Assistant 的 core/integration model 有哪些相似点和差异？
-- OpenClaw 的 Agent loop 与 LangGraph 的 graph/state model 在可控性、可观测性、扩展性上如何取舍？
-- OpenClaw 的 plugin manifest + runtime registration 与 Dify/Botpress 的插件或 connector 模型有什么不同？
-- OpenClaw 的 session/multi-agent isolation 能否借鉴到多租户 ChatOps 或企业智能助手？
+- How is OpenClaw's Gateway control plane similar to or different from Home Assistant's core/integration model?
+- How do OpenClaw's agent loop and LangGraph's graph/state model trade off controllability, observability, and extensibility?
+- How is OpenClaw's plugin manifest plus runtime registration different from plugin or connector models in Dify/Botpress?
+- Can OpenClaw's session and multi-agent isolation ideas be reused in multi-tenant ChatOps or enterprise assistant systems?
 
-## 4. 待补证据
+## 4. Evidence Still Needed
 
-- 需要为每个对比对象固定版本、官方文档和本地/远程源码证据。
-- 需要避免只做产品功能列表，应追踪至少一条核心运行链路。
+- Fix a version, official documentation set, and local/remote source evidence for each comparison target.
+- Avoid feature-list comparisons; trace at least one core runtime flow for each target.

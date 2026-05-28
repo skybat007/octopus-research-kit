@@ -1,51 +1,51 @@
-# 调研审查
+# Research Review
 
 Status: draft
 Last Updated: 2026-05-25
 
-## 1. 审查结论
+## 1. Review Conclusion
 
-本轮调研已按新版流程补充外部资料阶段：已固定代码快照，覆盖 OpenClaw 官方 docs、GitHub repository、本地源码和仓库文档，并将外部观点转成研究问题后用现有源码证据验证。关键结论能回溯到官方资料、源码或仓库文档。
+This research pass has added the external-research stage required by the newer workflow. It pins the code snapshot, covers OpenClaw official docs, the GitHub repository, local source, and repository docs, then converts external claims into research questions and verifies them with available source evidence. Key conclusions can be traced back to official material, source files, or repository documentation.
 
-## 2. 覆盖情况
+## 2. Coverage
 
-| 检查项 | 状态 | 说明 |
+| Check | Status | Notes |
 |---|---|---|
-| 固定版本/commit | 通过 | `main@989e53c20d395d3c8bf47efc21fdb9d56e7227b0` |
-| 外部资料调研 | 通过 | external-research.md 已覆盖官方 docs、GitHub、本地仓库 docs |
-| 研究问题验证 | 通过 | research-questions.md 已记录 RQ-OC-001 到 RQ-OC-005 |
-| 结构化源码清单 | 通过 | references/source-inventory.json 已生成，覆盖 17990 个文件 |
-| Dashboard | 通过 | dashboard.html 已生成阅读入口 |
-| 模块关系说明 | 通过 | source-map.md 与 architecture.md 已覆盖 |
-| 至少一条运行链路 | 通过 | runtime-flows.md 覆盖 Gateway 启动、WS handshake、Agent run、Plugin load |
-| 可视化架构图 | 通过 | visual/architecture.html 负责渲染，visual/architecture.visual.js 承接图数据与证据链接；visual/evidence.html 提供可点击证据查看 |
-| 证据索引 | 通过 | evidence-index.md 记录 C-001 到 C-017，并补充 EXT-OC-001 到 EXT-OC-004 |
-| 区分事实与推断 | 通过 | evidence-index.md 区分源码/仓库文档/官方资料/推断 |
-| 借鉴建议 | 通过 | adoption-notes.md |
-| 横向对比 | 未完成 | comparison.md 仅保留后续入口 |
-| 自动校验 | 通过 | `validate-research.js research/openclaw` 已通过 |
+| Fixed version/commit | Pass | `main@989e53c20d395d3c8bf47efc21fdb9d56e7227b0` |
+| External research | Pass | `external-research.md` covers official docs, GitHub, and local repository docs. |
+| Research-question verification | Pass | `research-questions.md` records `RQ-OC-001` through `RQ-OC-005`. |
+| Structured source inventory | Pass | `references/source-inventory.json` generated; covers 17990 files. |
+| Dashboard | Pass | `dashboard.html` generated as the reading entry. |
+| Module relationship notes | Pass | `source-map.md` and `architecture.md` cover module relationships. |
+| At least one runtime flow | Pass | `runtime-flows.md` covers Gateway startup, WS handshake, agent run, and plugin load. |
+| Visual architecture diagram | Pass | `visual/architecture.html` renders the diagram; `visual/architecture.visual.js` carries graph data and evidence links; `visual/evidence.html` provides clickable evidence explanations. |
+| Evidence index | Pass | `evidence-index.md` records `C-001` through `C-017` and adds `EXT-OC-001` through `EXT-OC-004`. |
+| Fact/inference separation | Pass | `evidence-index.md` separates source facts, repository-doc facts, official-source facts, and inferences. |
+| Adoption notes | Pass | `adoption-notes.md` |
+| Comparative research | Not complete | `comparison.md` only keeps a future-entry placeholder. |
+| Automated validation | Pass | `validate-research.js research/openclaw` has passed. |
 
-## 3. 主要风险
+## 3. Main Risks
 
-| 风险 | 影响 | 建议 |
+| Risk | Impact | Recommendation |
 |---|---|---|
-| 未运行 Gateway | 无法证明 live behavior 与静态代码完全一致 | 下一轮用本地 Gateway + WS client 做最小验证 |
-| 未跑测试 | 不能确认边界条件和回归保护 | 选取 plugin loader / gateway ws / agent method 相关测试运行 |
-| 未覆盖所有插件 | 对 channel/provider 一致性的结论仍需抽样验证 | 再抽 Telegram/Slack/OpenAI/Memory plugin |
-| 未做横向对比 | 难以判断 OpenClaw 设计的独特性和行业位置 | 固定一个对比对象做同规格调研 |
-| 未采用第三方实践资料 | 缺少社区踩坑和实践视角 | 后续横向对比时补充 issue、PR、用户实践文章 |
+| Gateway not run | Static code cannot prove live behavior exactly matches the implementation reading. | Run a minimal local Gateway + WS client validation. |
+| Tests not run | Boundary behavior and regression protection are not confirmed. | Run tests related to plugin loader, Gateway WS, and agent methods. |
+| Not every plugin covered | Conclusions about channel/provider consistency still need sampling. | Sample Telegram, Slack, OpenAI, and Memory plugins. |
+| Comparative research not done | Hard to judge OpenClaw's distinctiveness and industry position. | Fix one comparison target and research it with the same scope. |
+| No third-party practice material used | Missing community friction and operational-practice perspective. | Add issues, PRs, and user-practice articles during later comparison work. |
 
-## 4. 需要补充的证据
+## 4. Evidence to Add
 
-- `openclaw plugins inspect anthropic --runtime --json` 或同类命令输出。
-- Gateway 启动后一次实际 `connect` + `agent` WS frame 样例。
-- 一个 channel inbound 到 agent delivery 的端到端链路。
-- 一个 plugin reload/config change 的实际流程。
-- 一个 memory plugin 的 slot 选择和 hook 注入链路。
+- Output from `openclaw plugins inspect anthropic --runtime --json` or a similar command.
+- One real `connect` + `agent` WS frame after Gateway startup.
+- One end-to-end path from channel inbound to agent delivery.
+- One actual plugin reload/config-change flow.
+- One memory-plugin slot-selection and hook-injection path.
 
-## 5. 审查意见
+## 5. Review Notes
 
-这版文档已经可以作为后续学习参考使用。下一步不建议继续泛读全部目录，而是做两个定向深挖：
+This version is already usable as a learning reference. The next step should not be broad reading across the whole repository; it should be two targeted deep dives:
 
-1. Plugin runtime deep dive：跑一个实际 plugin inspect，确认 manifest -> registry -> runtime capability 的可观测输出。
-2. Agent delivery deep dive：从一个真实 channel inbound 追踪到 session、agent run、outbound delivery。
+1. Plugin runtime deep dive: run a real plugin inspect and confirm the observable manifest -> registry -> runtime-capability output.
+2. Agent delivery deep dive: trace a real channel inbound through session, agent run, and outbound delivery.

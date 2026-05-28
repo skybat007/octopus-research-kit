@@ -1,56 +1,56 @@
-# 技术架构
+# Technical Architecture
 
-## 1. 架构摘要
+## 1. Architecture Summary
 
-## 2. 架构上下文
+## 2. Architecture Context
 
 ```mermaid
 flowchart LR
     User["User / App"] --> Framework["Framework"]
 ```
 
-## 3. 模块边界
+## 3. Module Boundaries
 
-| 模块 | 职责 | 输入 | 输出 | 关键证据 |
+| Module | Responsibility | Input | Output | Key evidence |
 |---|---|---|---|---|
 |  |  |  |  |  |
 
-## 4. 核心抽象
+## 4. Core Abstractions
 
-| 抽象 | 作用 | 典型实现 | 关键证据 |
+| Abstraction | Role | Typical implementation | Key evidence |
 |---|---|---|---|
 |  |  |  |  |
 
-## 5. 依赖方向
+## 5. Dependency Direction
 
 ```mermaid
 flowchart TD
     A["Module A"] --> B["Module B"]
 ```
 
-## 6. 可视化架构图
+## 6. Visual Architecture
 
-- [查看 HTML 可视化架构图](./visual/architecture.html)
-- 图数据：[visual/architecture.visual.js](./visual/architecture.visual.js)
-- 证据解释页：[visual/evidence.html](./visual/evidence.html)
-- 证据解释数据：[visual/evidence.visual.js](./visual/evidence.visual.js)
+- [Open the HTML visual architecture diagram](./visual/architecture.html)
+- Graph data: [visual/architecture.visual.js](./visual/architecture.visual.js)
+- Evidence viewer: [visual/evidence.html](./visual/evidence.html)
+- Evidence data: [visual/evidence.visual.js](./visual/evidence.visual.js)
 
-说明：本节只放链接。架构结论仍以本文和 `evidence-index.md` 为准，HTML 只负责可视化呈现。
+This section contains links only. Architecture conclusions remain in this document and `evidence-index.md`; HTML is only the visual presentation layer.
 
-## 7. 数据和状态流
+## 7. Data and State Flow
 
-## 8. 扩展机制
+## 8. Extension Mechanisms
 
-| 扩展点 | 使用方式 | 框架如何发现/调用 | 关键证据 |
+| Extension point | Usage | How the framework discovers/calls it | Key evidence |
 |---|---|---|---|
 |  |  |  |  |
 
-## 9. 架构取舍
+## 9. Architecture Tradeoffs
 
-| 取舍 | 收益 | 代价 | 证据 |
+| Tradeoff | Benefit | Cost | Evidence |
 |---|---|---|---|
 |  |  |  |  |
 
-## 10. 待确认问题
+## 10. Pending Questions
 
-- 
+-

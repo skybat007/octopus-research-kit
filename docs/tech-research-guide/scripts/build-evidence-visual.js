@@ -77,8 +77,8 @@ function buildForDir(researchDir, options = {}) {
 
   const name = frameworkName(researchDir);
   const meta = {
-    title: `${name} 证据解释`,
-    description: '从架构图回到证据解释：展示架构语境、证据结论、源码/文档片段和原始索引位置。',
+    title: `${name} Evidence Explanation`,
+    description: 'Trace from the architecture diagram back to evidence: architecture context, evidence conclusions, source/doc snippets, and original index locations.',
     source: '../evidence-index.md',
     projectRoot: sanitizePersonalPaths(projectRoot)
   };
@@ -94,7 +94,7 @@ function frameworkName(researchDir) {
 }
 
 function readProjectRoot(md) {
-  const match = md.match(/\|\s*本地路径\s*\|\s*`?([^`|\n]+)`?\s*\|/);
+  const match = md.match(/\|\s*(?:Local source path|Source root)\s*\|\s*`?([^`|\n]+)`?\s*\|/);
   return match ? match[1].trim() : '';
 }
 
@@ -169,12 +169,12 @@ function parseEvidenceMarkdown(md) {
     const id = match[1] || clean(idCell);
     items.push({
       id,
-      conclusion: pick(row, ['结论', '推断过程', '推断']),
-      type: pick(row, ['证据类型']) || (id.startsWith('INF-') ? 'inference' : 'evidence'),
-      location: pick(row, ['位置', '来源', '依赖证据']),
-      confidence: pick(row, ['置信度', '可信度等级']),
-      verified: pick(row, ['是否已源码验证']),
-      note: pick(row, ['备注', '待验证点'])
+      conclusion: pick(row, ['Conclusion', 'Reasoning', 'Inference']),
+      type: pick(row, ['Evidence type', 'Type']) || (id.startsWith('INF-') ? 'inference' : 'evidence'),
+      location: pick(row, ['Location', 'Source', 'Depends on evidence']),
+      confidence: pick(row, ['Confidence', 'Credibility level']),
+      verified: pick(row, ['Source verified', 'Verified']),
+      note: pick(row, ['Notes', 'Pending validation'])
     });
   }
   return items;
@@ -191,7 +191,7 @@ function collectGraphRefs(archPath) {
     const nodes = Object.fromEntries((view.nodes || []).map(node => [node.id, node]));
     for (const node of view.nodes || []) {
       addRef(refs, evidenceIds(node), {
-        kind: '节点',
+        kind: 'node',
         viewId: view.id,
         viewLabel: view.label,
         viewDescription: view.description || view.desc || view.purpose || '',
@@ -205,7 +205,7 @@ function collectGraphRefs(archPath) {
     }
     for (const layer of view.layers || []) {
       addRef(refs, evidenceIds(layer), {
-        kind: '分层',
+        kind: 'layer',
         viewId: view.id,
         viewLabel: view.label,
         viewDescription: view.description || view.desc || view.purpose || '',
@@ -221,7 +221,7 @@ function collectGraphRefs(archPath) {
       const fromTitle = nodes[edge.from] ? nodes[edge.from].title : edge.from;
       const toTitle = nodes[edge.to] ? nodes[edge.to].title : edge.to;
       addRef(refs, evidenceIds(edge), {
-        kind: '连线',
+        kind: 'edge',
         viewId: view.id,
         viewLabel: view.label,
         viewDescription: view.description || view.desc || view.purpose || '',
@@ -229,8 +229,8 @@ function collectGraphRefs(archPath) {
         sub: edge.label,
         role: edge.kind,
         status: '',
-        detail: `关系语义：${edge.label || edge.kind || '关联'}。`,
-        relation: `${fromTitle} 到 ${toTitle}`
+        detail: `Relationship semantics: ${edge.label || edge.kind || 'related'}.`,
+        relation: `${fromTitle} to ${toTitle}`
       });
     }
   }
@@ -268,12 +268,12 @@ function addRef(refs, ids, ref) {
 
 function buildExplanation(item, refs) {
   if (!refs.length) {
-    return '这条证据当前没有被可视化架构图直接引用，主要用于支撑证据索引中的结论或后续推断。';
+    return 'The current visual architecture does not directly reference this evidence. It mainly supports conclusions or later inferences in the evidence index.';
   }
-  const targets = refs.slice(0, 4).map(ref => `${ref.viewLabel || ref.viewId} / ${ref.kind}「${ref.title}」`).join('、');
-  const tips = refs.map(ref => ref.detail).filter(Boolean).slice(0, 2).join('；');
-  const suffix = tips ? `图中的具体解释是：${tips}` : '它帮助说明该架构对象在系统中的职责和边界。';
-  return `这条证据在架构图中支撑 ${targets}。证据结论是：${item.conclusion || '见证据索引'}。${suffix}`;
+  const targets = refs.slice(0, 4).map(ref => `${ref.viewLabel || ref.viewId} / ${ref.kind} "${ref.title}"`).join(', ');
+  const tips = refs.map(ref => ref.detail).filter(Boolean).slice(0, 2).join('; ');
+  const suffix = tips ? `The diagram explanation says: ${tips}` : 'It helps explain the responsibility and boundary of this architecture object.';
+  return `This evidence supports ${targets} in the architecture diagram. Evidence conclusion: ${item.conclusion || 'see evidence index'}. ${suffix}`;
 }
 
 function buildSourceMeta(items, projectRoot) {
@@ -282,7 +282,7 @@ function buildSourceMeta(items, projectRoot) {
     const refs = parseLocationRefs(item.location, projectRoot);
     const limited = refs.slice(0, 8).map(ref => enrichSourceRef(ref));
     if (refs.length > limited.length) {
-      limited.limitNote = `还有 ${refs.length - limited.length} 个位置未展开，可回到 evidence-index.md 查看完整列表。`;
+      limited.limitNote = `${refs.length - limited.length} additional locations are not expanded here. See evidence-index.md for the full list.`;
     }
     map.set(item.id, limited);
   }
@@ -325,6 +325,6 @@ function enrichSourceRef(ref) {
   for (let lineNo = start; lineNo <= end; lineNo++) {
     snippet.push(`${String(lineNo).padStart(5, ' ')}  ${lines[lineNo - 1] || ''}`);
   }
-  const omitted = requestedEnd > end ? `已截取 ${start}-${end} 行，原始范围到 ${requestedEnd} 行。` : '';
+  const omitted = requestedEnd > end ? `Showing lines ${start}-${end}; original range ended at ${requestedEnd}.` : '';
   return { ...ref, snippet: snippet.join('\n'), omitted };
 }

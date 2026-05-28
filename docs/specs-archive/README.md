@@ -1,8 +1,8 @@
-# 历史 Spec 归档
+# Historical Spec Archive
 
-本目录用于存放从其他项目迁移来的旧业务 spec。它们不属于当前技术调研工作流，仅作为历史参考。
+This directory is reserved for old business specs migrated from other projects. They are not part of the current technical research workflow and are kept only as historical reference.
 
-当前目录仅保留归档说明。若后续确实需要保留旧业务 spec，可以按来源或主题建立子目录：
+The directory currently contains only this archive note. If old business specs must be preserved later, group them by source or topic:
 
 ```text
 docs/specs-archive/
@@ -13,8 +13,8 @@ docs/specs-archive/
     tasks.md
 ```
 
-## 使用规则
+## Usage Rules
 
-- 新的技术调研不要写入本目录。
-- 新的技术调研统一写入 `research/<framework-name>/`。
-- 归档内容中的旧路径、旧业务名和旧链接不再作为当前项目约定。
+- Do not put new technical research here.
+- New technical research belongs under `research/<framework-name>/`.
+- Old paths, business names, and links inside archived content are not current project conventions.

@@ -1,7 +1,7 @@
-# 研究问题
+# Research Questions
 
-本文件是示例占位。真实调研时请把外部资料、仓库文档和用户目标中的关键说法转成可验证问题。
+This is a placeholder. In real research, turn key claims from external references, repository docs, and user goals into verifiable questions.
 
-| 编号 | 问题 | 来源 | 重要性 | 验证状态 |
+| ID | Question | Source | Importance | Verification status |
 |---|---|---|---|---|
-| RQ-TPL-001 | 这个框架的核心入口、运行主链路和扩展点分别是什么？ | 调研目标 | 高 | 待验证 |
+| RQ-TPL-001 | What are this framework's core entry points, main runtime flow, and extension points? | Research goal | high | pending |

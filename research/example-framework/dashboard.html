@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>示例框架技术调研 Dashboard</title>
+  <title>Example Framework Technical Research Dashboard</title>
   <style>
     :root {
       color-scheme: light;
@@ -21,7 +21,7 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.55;
@@ -140,88 +140,88 @@
 <body>
   <div class="layout">
     <aside>
-      <a class="home-link" href="../index.html" title="返回 Tech Research 首页"><span aria-hidden="true">&larr;</span> 调研首页</a>
-      <div class="brand">示例框架技术调研</div>
-      <div class="sub">调研导航</div>
+      <a class="home-link" href="../index.html" title="Back to Tech Research home"><span aria-hidden="true">&larr;</span> Research Home</a>
+      <div class="brand">Example Framework Technical Research</div>
+      <div class="sub">Research Navigation</div>
       <div class="nav-group">
-        <div class="nav-group-title">总览</div>
-        <a class="nav-link active" data-nav-file="dashboard.html" href="./dashboard.html" title="调研摘要和阅读入口">Dashboard</a>
-<a class="nav-link" data-nav-file="README.md" href="./docs.html?doc=README.md" title="调研摘要、当前结论和文件导航">总览文档</a>
+        <div class="nav-group-title">Overview</div>
+        <a class="nav-link active" data-nav-file="dashboard.html" href="./dashboard.html" title="Research summary and reading entry">Dashboard</a>
+<a class="nav-link" data-nav-file="README.md" href="./docs.html?doc=README.md" title="Research summary, current conclusions, and file navigation">Overview</a>
       </div>
 <div class="nav-group">
-        <div class="nav-group-title">调研准备</div>
-        <a class="nav-link" data-nav-file="research-brief.md" href="./docs.html?doc=research-brief.md" title="目标、范围、问题和验收标准">调研简报</a>
-<a class="nav-link" data-nav-file="external-research.md" href="./docs.html?doc=external-research.md" title="官方、协作和社区资料">外部资料</a>
-<a class="nav-link" data-nav-file="research-questions.md" href="./docs.html?doc=research-questions.md" title="待验证问题和验证状态">研究问题</a>
+        <div class="nav-group-title">Research Prep</div>
+        <a class="nav-link" data-nav-file="research-brief.md" href="./docs.html?doc=research-brief.md" title="Goals, scope, questions, and acceptance criteria">Research Brief</a>
+<a class="nav-link" data-nav-file="external-research.md" href="./docs.html?doc=external-research.md" title="Official, collaboration, and community references">External Research</a>
+<a class="nav-link" data-nav-file="research-questions.md" href="./docs.html?doc=research-questions.md" title="Questions to verify and verification status">Research Questions</a>
       </div>
 <div class="nav-group">
-        <div class="nav-group-title">架构解析</div>
-        <a class="nav-link" data-nav-file="architecture.md" href="./docs.html?doc=architecture.md" title="模块职责、边界和依赖方向">架构文档</a>
-<a class="nav-link" data-nav-file="visual/architecture.html" href="./docs.html?view=visual%2Farchitecture.html" title="专门的交互式架构图查看器">可视化架构图</a>
-<a class="nav-link" data-nav-file="runtime-flows.md" href="./docs.html?doc=runtime-flows.md" title="主链路和关键状态变化">运行流程</a>
-<a class="nav-link" data-nav-file="key-abstractions.md" href="./docs.html?doc=key-abstractions.md" title="接口、对象和生命周期">核心抽象</a>
-<a class="nav-link" data-nav-file="extension-points.md" href="./docs.html?doc=extension-points.md" title="插件、Hook、Provider 和 Registry">扩展点</a>
-<a class="nav-link" data-nav-file="design-philosophy.md" href="./docs.html?doc=design-philosophy.md" title="设计取舍和可学习模式">设计思想</a>
-<a class="nav-link" data-nav-file="comparison.md" href="./docs.html?doc=comparison.md" title="相邻框架或同类方案对照">横向对比</a>
-<a class="nav-link" data-nav-file="adoption-notes.md" href="./docs.html?doc=adoption-notes.md" title="可学习、需适配和不建议照搬的设计">学习借鉴</a>
+        <div class="nav-group-title">Architecture Analysis</div>
+        <a class="nav-link" data-nav-file="architecture.md" href="./docs.html?doc=architecture.md" title="Module responsibilities, boundaries, and dependency direction">Architecture</a>
+<a class="nav-link" data-nav-file="visual/architecture.html" href="./docs.html?view=visual%2Farchitecture.html" title="Dedicated interactive architecture viewer">Visual Architecture</a>
+<a class="nav-link" data-nav-file="runtime-flows.md" href="./docs.html?doc=runtime-flows.md" title="Main runtime paths and key state changes">Runtime Flows</a>
+<a class="nav-link" data-nav-file="key-abstractions.md" href="./docs.html?doc=key-abstractions.md" title="Interfaces, objects, and lifecycles">Key Abstractions</a>
+<a class="nav-link" data-nav-file="extension-points.md" href="./docs.html?doc=extension-points.md" title="Plugins, hooks, providers, registries, and other extension mechanisms">Extension Points</a>
+<a class="nav-link" data-nav-file="design-philosophy.md" href="./docs.html?doc=design-philosophy.md" title="Design tradeoffs and reusable patterns">Design Philosophy</a>
+<a class="nav-link" data-nav-file="comparison.md" href="./docs.html?doc=comparison.md" title="Comparison with neighboring frameworks or similar solutions">Comparison</a>
+<a class="nav-link" data-nav-file="adoption-notes.md" href="./docs.html?doc=adoption-notes.md" title="Learn/adapt/avoid design guidance">Adoption Notes</a>
       </div>
 <div class="nav-group">
-        <div class="nav-group-title">源码解析</div>
-        <a class="nav-link" data-nav-file="source-map.md" href="./docs.html?doc=source-map.md" title="仓库结构、入口和阅读顺序">源码地图</a>
+        <div class="nav-group-title">Source Analysis</div>
+        <a class="nav-link" data-nav-file="source-map.md" href="./docs.html?doc=source-map.md" title="Repository structure, entries, and reading order">Source Map</a>
       </div>
 <div class="nav-group">
-        <div class="nav-group-title">证据</div>
-        <a class="nav-link" data-nav-file="visual/evidence.html" href="./docs.html?view=visual%2Fevidence.html" title="从架构图回到证据解释">证据查看器</a>
-<a class="nav-link" data-nav-file="evidence-index.md" href="./docs.html?doc=evidence-index.md" title="关键结论和证据锚点">证据索引</a>
+        <div class="nav-group-title">Evidence</div>
+        <a class="nav-link" data-nav-file="visual/evidence.html" href="./docs.html?view=visual%2Fevidence.html" title="Trace from diagrams back to evidence explanations">Evidence Viewer</a>
+<a class="nav-link" data-nav-file="evidence-index.md" href="./docs.html?doc=evidence-index.md" title="Key conclusions and evidence anchors">Evidence Index</a>
       </div>
 <div class="nav-group">
-        <div class="nav-group-title">辅助材料</div>
-        <a class="nav-link" data-nav-file="research-review.md" href="./docs.html?doc=research-review.md" title="质量门禁、风险和开放问题">调研审查</a>
+        <div class="nav-group-title">Supporting Materials</div>
+        <a class="nav-link" data-nav-file="research-review.md" href="./docs.html?doc=research-review.md" title="Quality gate, risks, and open questions">Research Review</a>
       </div>
     </aside>
   <main>
     <section class="hero">
       <div class="eyebrow">Tech Research Dashboard · example-framework</div>
-      <h1>示例框架技术调研</h1>
-      <div class="summary">暂无摘要。</div>
+      <h1>Example Framework Technical Research</h1>
+      <div class="summary">This is a placeholder example showing the expected research file layout.</div>
       <div class="meta">
-        <div class="metric"><div class="label">状态</div><div class="value">example</div></div>
-        <div class="metric"><div class="label">更新日期</div><div class="value">YYYY-MM-DD</div></div>
-        <div class="metric"><div class="label">源码文件</div><div class="value">未生成</div></div>
-        <div class="metric"><div class="label">主要语言</div><div class="value">未生成</div></div>
+        <div class="metric"><div class="label">Status</div><div class="value">example</div></div>
+        <div class="metric"><div class="label">Updated</div><div class="value">YYYY-MM-DD</div></div>
+        <div class="metric"><div class="label">Source Files</div><div class="value">Not generated</div></div>
+        <div class="metric"><div class="label">Primary Language</div><div class="value">Not generated</div></div>
       </div>
     </section>
 
-    <h2>建议阅读顺序</h2>
+    <h2>Suggested Reading Order</h2>
     <section class="panel">
       <ol class="reading-list">
-        <li><a href="./docs.html?doc=research-brief.md">调研简报<span>目标、范围、问题和验收标准</span></a></li>
-<li><a href="./docs.html?doc=external-research.md">外部资料<span>官方、协作和社区资料</span></a></li>
-<li><a href="./docs.html?doc=research-questions.md">研究问题<span>待验证问题和验证状态</span></a></li>
-<li><a href="./docs.html?doc=architecture.md">架构文档<span>模块职责、边界和依赖方向</span></a></li>
-<li><a href="./docs.html?view=visual%2Farchitecture.html">可视化架构图<span>专门的交互式架构图查看器</span></a></li>
-<li><a href="./docs.html?doc=runtime-flows.md">运行流程<span>主链路和关键状态变化</span></a></li>
-<li><a href="./docs.html?doc=key-abstractions.md">核心抽象<span>接口、对象和生命周期</span></a></li>
-<li><a href="./docs.html?doc=extension-points.md">扩展点<span>插件、Hook、Provider 和 Registry</span></a></li>
-<li><a href="./docs.html?doc=design-philosophy.md">设计思想<span>设计取舍和可学习模式</span></a></li>
-<li><a href="./docs.html?doc=source-map.md">源码地图<span>仓库结构、入口和阅读顺序</span></a></li>
-<li><a href="./docs.html?doc=evidence-index.md">证据索引<span>关键结论和证据锚点</span></a></li>
+        <li><a href="./docs.html?doc=research-brief.md">Research Brief<span>Goals, scope, questions, and acceptance criteria</span></a></li>
+<li><a href="./docs.html?doc=external-research.md">External Research<span>Official, collaboration, and community references</span></a></li>
+<li><a href="./docs.html?doc=research-questions.md">Research Questions<span>Questions to verify and verification status</span></a></li>
+<li><a href="./docs.html?doc=architecture.md">Architecture<span>Module responsibilities, boundaries, and dependency direction</span></a></li>
+<li><a href="./docs.html?view=visual%2Farchitecture.html">Visual Architecture<span>Dedicated interactive architecture viewer</span></a></li>
+<li><a href="./docs.html?doc=runtime-flows.md">Runtime Flows<span>Main runtime paths and key state changes</span></a></li>
+<li><a href="./docs.html?doc=key-abstractions.md">Key Abstractions<span>Interfaces, objects, and lifecycles</span></a></li>
+<li><a href="./docs.html?doc=extension-points.md">Extension Points<span>Plugins, hooks, providers, registries, and other extension mechanisms</span></a></li>
+<li><a href="./docs.html?doc=design-philosophy.md">Design Philosophy<span>Design tradeoffs and reusable patterns</span></a></li>
+<li><a href="./docs.html?doc=source-map.md">Source Map<span>Repository structure, entries, and reading order</span></a></li>
+<li><a href="./docs.html?doc=evidence-index.md">Evidence Index<span>Key conclusions and evidence anchors</span></a></li>
       </ol>
     </section>
 
-    <h2>当前结论与待确认</h2>
+    <h2>Current Conclusions and Pending Questions</h2>
     <section class="columns">
       <div class="panel">
-        <h2 style="margin-top:0">当前结论</h2>
-        <p style="color:#627089">README.md 中暂未提取到当前结论。</p>
+        <h2 style="margin-top:0">Current Conclusions</h2>
+        <ul><li>This directory is only an example structure.</li></ul>
       </div>
       <div class="panel">
-        <h2 style="margin-top:0">待确认</h2>
-        <p style="color:#627089">README.md 中暂未提取到待确认项。</p>
+        <h2 style="margin-top:0">Pending Questions</h2>
+        <ul><li>Replace placeholders with real research content.</li></ul>
       </div>
     </section>
 
-    <div class="footer">Dashboard 只做阅读导航。Markdown 是知识源，visual/architecture.html 是“架构解析”下的专门架构图查看器，source-map.md 是“源码解析”入口，references/ 保留机器生成或过程性材料但不作为阅读入口。</div>
+    <div class="footer">The dashboard is only a reading navigator. Markdown remains the knowledge source, visual/architecture.html is the dedicated architecture viewer, source-map.md is the source-analysis entry, and references/ is reserved for generated or process material rather than first-level reading.</div>
   </main>
   </div>
 </body>

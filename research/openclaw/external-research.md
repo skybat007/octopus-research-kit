@@ -1,115 +1,115 @@
-# 外部资料调研
+# External Research
 
-## 1. 官方资料
+## 1. Official Sources
 
-| 资料 | 链接或路径 | 主要内容 | 对本次调研的价值 | 可信度等级 |
+| Source | Link or Path | Main Content | Value for This Research | Confidence |
 |---|---|---|---|---|
-| Gateway architecture | https://docs.openclaw.ai/architecture | Gateway 是长期运行控制面，连接消息面、控制面客户端和节点 | 确认 OpenClaw 的产品核心不是单一 Agent loop，而是 Gateway control plane | A |
-| Agent runtime | https://docs.openclaw.ai/concepts/agent | 单 Gateway 内嵌 agent runtime、workspace、bootstrap files、session transcript、Pi core 边界 | 生成 Agent runtime 与 OpenClaw-owned layer 的源码验证问题 | A |
-| Session management | https://docs.openclaw.ai/concepts/session | 按 DM、group、room、cron、webhook 路由 session，强调 DM isolation 和 Gateway-owned state | 验证会话隔离、session store、transcript 设计 | A |
-| Multi-agent routing | https://docs.openclaw.ai/concepts/multi-agent | 多 isolated agents，分别拥有 workspace、agentDir、auth profiles、session history | 验证多 Agent 是否是一等模型而非简单 persona | A |
-| Plugin internals | https://docs.openclaw.ai/plugins/architecture | capability model、manifest/discovery、enablement/validation、runtime loading、surface consumption | 验证 plugin capability ownership 和 loader 分层 | A |
-| 本地仓库 README/VISION/docs | `README.md`, `VISION.md`, `docs/**` | 产品定位、安全边界、插件优先、Gateway/Agent/Session/Plugin 概念文档 | 已在第一版源码调研中作为仓库文档证据 | S/A |
+| Gateway architecture | https://docs.openclaw.ai/architecture | Gateway as a long-running control plane connecting the message plane, control-plane clients, and nodes | Confirms that OpenClaw's product core is not a single agent loop, but a Gateway control plane | A |
+| Agent runtime | https://docs.openclaw.ai/concepts/agent | Embedded agent runtime in a single Gateway, workspace, bootstrap files, session transcript, and Pi core boundary | Generates source-verification questions about the agent runtime and OpenClaw-owned layer | A |
+| Session management | https://docs.openclaw.ai/concepts/session | Sessions routed by DM, group, room, cron, and webhook, with emphasis on DM isolation and Gateway-owned state | Verifies session isolation, session store, and transcript design | A |
+| Multi-agent routing | https://docs.openclaw.ai/concepts/multi-agent | Multiple isolated agents, each with its own workspace, agentDir, auth profiles, and session history | Verifies whether multi-agent is a first-class model rather than a persona layer | A |
+| Plugin internals | https://docs.openclaw.ai/plugins/architecture | Capability model, manifest/discovery, enablement/validation, runtime loading, and surface consumption | Verifies plugin capability ownership and loader layering | A |
+| Local repository README/VISION/docs | `README.md`, `VISION.md`, `docs/**` | Product positioning, security boundary, plugin-first design, and Gateway/Agent/Session/Plugin concept docs | Already used as repository-document evidence in the first source pass | S/A |
 
-## 2. 项目协作资料
+## 2. Project Collaboration Sources
 
-| 资料 | 链接或路径 | 主要观点 | 时间/版本 | 可信度等级 | 是否需要源码验证 |
+| Source | Link or Path | Main Point | Time/Version | Confidence | Needs Source Verification |
 |---|---|---|---|---|---|
-| GitHub repository | https://github.com/openclaw/openclaw | 官方代码和 docs 编辑源 | 2026-05-25 查询 | A/B | 是 |
-| Plugin docs edit source links | OpenClaw docs 页面中的 GitHub edit source | docs 与源码仓库同源 | 2026-05-25 查询 | B | 是 |
+| GitHub repository | https://github.com/openclaw/openclaw | Official code and documentation edit source | Checked on 2026-05-25 | A/B | Yes |
+| Plugin docs edit source links | GitHub edit-source links from OpenClaw docs pages | Docs and source repository share the same origin | Checked on 2026-05-25 | B | Yes |
 
-## 3. 社区与第三方资料
+## 3. Community and Third-Party Sources
 
-本轮未采用独立第三方文章作为结论依据。OpenClaw 的外部资料主要来自官方文档站和本地源码仓库；社区资料只作为后续横向对比或实践风险补充入口。
+This pass did not use independent third-party articles as conclusion evidence. The external material is mainly from the official documentation site and the local source repository. Community material remains a later input for comparative research or practice-risk notes.
 
-## 4. 外部资料中的关键观点
+## 4. Key External Claims
 
-### EXT-OC-001: Gateway 是长期运行控制面
+### EXT-OC-001: Gateway Is a Long-Running Control Plane
 
-来源：
+Sources:
 
-- 官方 Gateway architecture 文档
-- 本地 `docs/concepts/architecture.md`
+- Official Gateway architecture documentation
+- Local `docs/concepts/architecture.md`
 
-说明：
+Explanation:
 
-- 外部资料强调一个长期运行 Gateway 负责消息面、控制面客户端、节点和 HTTP/WS surface。
+- External material describes a long-running Gateway responsible for the message plane, control-plane clients, nodes, and HTTP/WS surface.
 
-是否已被源码验证：
+Source verification:
 
-- 已验证。
+- Verified.
 
-对应源码证据：
+Corresponding source evidence:
 
 - [evidence-index.md](./evidence-index.md) `C-004`, `C-005`, `C-006`
 
-### EXT-OC-002: Agent runtime 是 OpenClaw 外壳加 Pi agent core
+### EXT-OC-002: Agent Runtime Is an OpenClaw Shell Plus Pi Agent Core
 
-来源：
+Sources:
 
-- 官方 Agent runtime 文档
-- 本地 `docs/concepts/agent.md`, `docs/concepts/agent-loop.md`
+- Official Agent runtime documentation
+- Local `docs/concepts/agent.md`, `docs/concepts/agent-loop.md`
 
-说明：
+Explanation:
 
-- 官方资料区分 workspace/session/tool/channel delivery 等 OpenClaw-owned layer 与 Pi agent core。
+- Official material separates OpenClaw-owned layers such as workspace, session, tools, and channel delivery from Pi agent core.
 
-是否已被源码验证：
+Source verification:
 
-- 已验证主链路，Pi core 事件结构仍待深挖。
+- Main path verified; Pi core event structure still needs deeper analysis.
 
-对应源码证据：
+Corresponding source evidence:
 
 - `C-007`, `C-008`, `INF-003`
 
-### EXT-OC-003: Plugin capability 是公开 native plugin model
+### EXT-OC-003: Plugin Capability Is the Public Native Plugin Model
 
-来源：
+Sources:
 
-- 官方 Plugin internals 文档
-- 本地 `docs/plugins/architecture.md`, `docs/plugins/manifest.md`
+- Official Plugin internals documentation
+- Local `docs/plugins/architecture.md`, `docs/plugins/manifest.md`
 
-说明：
+Explanation:
 
-- 插件不只是 hook；capability registration、manifest/discovery、runtime registry、surface consumption 构成核心扩展模型。
+- Plugins are not only hooks. Capability registration, manifest/discovery, runtime registry, and surface consumption form the core extension model.
 
-是否已被源码验证：
+Source verification:
 
-- 已验证 loader/API builder 主链路。
+- Loader/API-builder main path verified.
 
-对应源码证据：
+Corresponding source evidence:
 
 - `C-010`, `C-011`, `C-012`, `INF-001`
 
-### EXT-OC-004: Session 和 multi-agent 是隔离模型
+### EXT-OC-004: Session and Multi-Agent Are Isolation Models
 
-来源：
+Sources:
 
-- 官方 Session management 文档
-- 官方 Multi-agent routing 文档
+- Official Session management documentation
+- Official Multi-agent routing documentation
 
-说明：
+Explanation:
 
-- 外部资料强调不同消息来源路由到不同 session，多 agent 拥有独立 workspace、state、auth profiles、session history。
+- External material says different message sources route to different sessions, and each agent owns its workspace, state, auth profiles, and session history.
 
-是否已被源码验证：
+Source verification:
 
-- 已由本地仓库文档和 Agent RPC 链路部分验证；运行态隔离仍需 live Gateway 验证。
+- Partly verified through local repository docs and the Agent RPC path; runtime isolation still needs live Gateway validation.
 
-对应源码证据：
+Corresponding source evidence:
 
 - `C-008`, `C-009`
 
-## 5. 外部资料与源码不一致的地方
+## 5. External/Source Differences
 
-| 外部资料说法 | 源码实际情况 | 判断 | 后续处理 |
+| External Claim | Source Reality | Judgment | Follow-Up |
 |---|---|---|---|
-| 官方 docs 展示 capability-first plugin model | 源码和 docs 同时保留 legacy hook-only 路径 | 不是冲突，是演进期兼容 | 在 extension-points 中保留 capability 与 legacy hook 双轨描述 |
-| 官方 docs 说明多 Agent active | 本轮源码只验证了主要配置/文档和部分 Agent ingress 链路 | 部分验证 | 后续需要跑多 Agent channel binding 样例 |
+| Official docs present a capability-first plugin model. | Source and docs also retain the legacy hook-only path. | Not a conflict; this is evolution-period compatibility. | Keep both capability and legacy-hook tracks in `extension-points.md`. |
+| Official docs say multi-agent is active. | This pass only verified main configuration/docs and part of the agent ingress path. | Partly verified. | Run a multi-agent channel-binding example later. |
 
-## 6. 对调研方向的影响
+## 6. Impact on Research Direction
 
-外部资料帮助确认本轮应重点深挖：
+External material helped confirm that this pass should focus on:
 
 - Gateway control plane
 - Agent runtime boundary

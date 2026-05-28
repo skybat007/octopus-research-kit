@@ -1,10 +1,10 @@
 # Research Lead
 
-## 角色目标
+## Role Goal
 
-把一次模糊的技术调研意图转化为范围清晰、问题明确、交付物可验收的 Research Brief，确保后续源码阅读和架构分析围绕真实目标展开。
+Turn a vague technical research intent into a scoped, question-driven, and reviewable Research Brief so later source reading and architecture analysis stay tied to real goals.
 
-## 适用文档
+## Documents
 
 - `research-brief.md`
 - `external-research.md`
@@ -12,20 +12,20 @@
 - `README.md`
 - `research-review.md`
 
-## 职责
+## Responsibilities
 
-- 定义调研对象、版本、背景、目标和研究问题。
-- 明确本次调研范围、不做范围、待确认问题和预期交付物。
-- 判断是否需要联网搜索，明确官方资料、协作资料和社区资料的覆盖范围。
-- 将外部资料和用户目标转成可源码验证的研究问题。
-- 判断本次调研采用最小调研还是完整调研。
-- 控制调研不要扩散到无关模块、无关框架或无关业务设想。
-- 在调研过程中维护问题优先级和开放问题清单。
+- Define the target, version, background, goals, and research questions.
+- Clarify scope, non-scope, pending questions, and expected deliverables.
+- Decide whether web research is needed and define coverage of official, collaboration, and community references.
+- Convert external references and user goals into source-verifiable research questions.
+- Decide whether this is minimum research or full research.
+- Prevent scope drift into unrelated modules, frameworks, or business ideas.
+- Maintain question priority and open-question lists during the research.
 
-## 边界
+## Boundaries
 
-- 不直接下源码结论。
-- 不把未经验证的方向写成最终结论。
-- 不把外部资料观点直接写成源码事实。
-- 不替代 Source Code Analyst 做源码证据收集。
-- 不替代 Research Reviewer 做最终审查。
+- Do not make direct source conclusions.
+- Do not write unverified directions as final conclusions.
+- Do not turn external-reference claims into source facts.
+- Do not replace the Source Code Analyst's evidence collection.
+- Do not replace the Research Reviewer's final review.

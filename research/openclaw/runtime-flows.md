@@ -1,137 +1,163 @@
-# 运行流程
+# Runtime Flows
 
-Status: draft
-Last Updated: 2026-05-25
+## Flow 1: Gateway Startup
 
-## 1. Flow A: CLI 启动 Gateway
+### 1. Scenario
 
-```mermaid
-sequenceDiagram
-  participant Launcher as "openclaw.mjs"
-  participant Entry as "src/entry.ts"
-  participant CLI as "gateway-cli/run.ts"
-  participant Server as "gateway/server.ts"
-  participant Impl as "gateway/server.impl.ts"
+OpenClaw starts a local Gateway process that owns HTTP/WS surfaces, plugins, channels, services, and runtime state.
 
-  Launcher->>Launcher: "check Node 22.19+"
-  Launcher->>Entry: "load source/package entry"
-  Entry->>Entry: "main-module guard + env/profile/container"
-  Entry->>CLI: "run main CLI"
-  CLI->>CLI: "read config, resolve port/bind/auth"
-  CLI->>Server: "dynamic import gateway/server.js"
-  Server->>Impl: "lazy import server.impl.js"
-  Impl->>Impl: "config snapshot + auth + plugin bootstrap"
-  Impl->>Impl: "create runtime state, channels, methods"
-  Impl->>Impl: "attach WS handlers"
-  Impl->>Impl: "start HTTP listen + sidecars"
-```
+### 2. Entry
 
-关键代码点：
-
-- `openclaw.mjs` 要求 Node 22.19+，并区分 source checkout 与 packaged launcher。[C-005]
-- `src/entry.ts` 使用 main module guard，避免 bundler/shared import 造成重复启动 Gateway。[C-005]
-- `gateway-cli/run.ts` 读取配置、解析 auth/bind/tailscale，动态 import server module，再调用 `startGatewayServer`。[C-005]
-- `server.ts` 是懒加载 wrapper，真正逻辑在 `server.impl.ts`。[C-005]
-- `server.impl.ts` 启动阶段先读取 config/auth，再准备 plugin bootstrap 和 runtime state。[C-005]
-
-## 2. Flow B: Gateway WebSocket handshake
-
-```mermaid
-sequenceDiagram
-  participant Client
-  participant WSS as "WebSocketServer"
-  participant Conn as "ws-connection.ts"
-  participant Handler as "message-handler.ts"
-
-  Client->>WSS: "HTTP upgrade"
-  WSS->>Conn: "connection"
-  Conn-->>Client: "event connect.challenge"
-  Client->>Handler: "req connect(params)"
-  Handler->>Handler: "validate first frame + protocol"
-  Handler->>Handler: "origin/auth/device/pairing/scope checks"
-  Handler->>Conn: "setClient"
-  Handler-->>Client: "res hello-ok(features, snapshot)"
-  Client->>Handler: "req health/status/agent/send..."
-```
-
-关键代码点：
-
-- `createGatewayRuntimeState` 在 listen 前创建 `WebSocketServer({ noServer: true })` 并 attach upgrade handler，避免连接竞态。[C-006]
-- 每个 WS connection 会立即收到 `connect.challenge` nonce。[C-006]
-- 第一帧必须是 `{ type:"req", method:"connect" }`，否则 hard close。[C-004][C-006]
-- handshake 会检查 protocol、origin、auth、device identity、pairing、scope。[C-006]
-- 成功后返回 `hello-ok`，其中 `features.methods/events` 是 discovery metadata。[C-004][C-006]
-
-## 3. Flow C: Gateway `agent` RPC 到内嵌 Agent runtime
-
-```mermaid
-sequenceDiagram
-  participant Client
-  participant Gateway as "server-methods/agent.ts"
-  participant AgentCmd as "agent-command.ts"
-  participant Attempt as "attempt-execution.ts"
-  participant Pi as "runEmbeddedPiAgent"
-
-  Client->>Gateway: "req agent(params)"
-  Gateway->>Gateway: "resolve session + delivery + dedupe"
-  Gateway-->>Client: "res accepted {runId}"
-  Gateway->>Gateway: "yield after ack"
-  Gateway->>AgentCmd: "agentCommandFromIngress(opts)"
-  AgentCmd->>AgentCmd: "prepare session, skills, model, delivery"
-  AgentCmd->>Attempt: "runAgentAttempt"
-  Attempt->>Pi: "runEmbeddedPiAgent(params)"
-  Pi-->>Gateway: "assistant/tool/lifecycle streams"
-  Gateway-->>Client: "events + final res"
-```
-
-关键代码点：
-
-- `agent` method 注册 abort controller 和 dedupe 后，先返回 accepted ack。[C-008]
-- ack flush 后才异步调度 `dispatchAgentRunFromGateway`，避免重同步准备阻塞 immediate `agent.wait`。[C-008]
-- Gateway ingress 调用的是 `agentCommandFromIngress`，要求显式 `senderIsOwner` 和 `allowModelOverride`。[C-008]
-- `attempt-execution.ts` 最终把 session、workspace、model、skills、tools、delivery、abort signal 等参数传给 `runEmbeddedPiAgent`。[C-008]
-- Agent loop 文档说明完整流程是 intake -> context assembly -> model inference -> tool execution -> streaming replies -> persistence。[C-007]
-
-## 4. Flow D: Plugin discovery/load/register
-
-```mermaid
-flowchart TD
-  Config["Runtime config"] --> Discovery["discoverOpenClawPlugins"]
-  Discovery --> ManifestRegistry["loadPluginManifestRegistry"]
-  ManifestRegistry --> Plan["enablement + activation + registration plan"]
-  Plan --> Registry["createPluginRegistry"]
-  Registry --> LoadModule["load plugin module when plan requires"]
-  LoadModule --> Register["runPluginRegisterSync(register, api)"]
-  Register --> Capabilities["providers / channels / tools / hooks / routes / services"]
-  Capabilities --> Gateway["Gateway consumes registry"]
-```
-
-关键代码点：
-
-- `loadOpenClawPlugins` 先解析 cache/load context，再创建 runtime proxy 和 plugin registry。[C-011]
-- Discovery/manifest registry 可以来自显式 snapshot，也可以现场发现插件候选。[C-011]
-- 对每个 candidate，先看 manifest record、enabled state、activation state、registration plan，再决定是否 load module/register。[C-011]
-- `validate`/snapshot 模式避免激活全局 runtime side effects；full 模式才激活 registry 和 global hook runner。[C-011]
-- `register(api)` 失败会 rollback plugin global side effects 并恢复 registry snapshot。[C-011]
-
-## 5. Flow E: Channel plugin outbound send
-
-以 IRC channel 为例：
-
-1. Manifest 声明 `channels: ["irc"]` 和 channel env vars。[C-014]
-2. Channel entry 使用 `defineBundledChannelEntry` 指向 plugin/secrets/runtime export。[C-014]
-3. `ircPlugin` 通过 `createChatChannelPlugin` 定义 config、directory、status、gateway、security、outbound 等能力。[C-014]
-4. Outbound `sendText`/`sendMedia` 懒加载 IRC runtime，再调用 `sendMessageIrc`。[C-014]
-
-这一流程说明：OpenClaw 的 channel 是完整平台适配层，而不是业务代码里随手调用的发送函数。
-
-## 6. 状态变化重点
-
-| 状态 | 何时创建/改变 | 目的 |
+| Type | Location | Notes |
 |---|---|---|
-| `runtimeState.gatewayMethods` | Gateway 启动和插件 reload | 汇总 core/plugin/channel methods |
-| `clients` set | WS handshake 成功/断开 | 广播、presence、cleanup |
-| `sessionStore` / transcript | Agent run 前后 | 保持上下文和 delivery state |
-| `chatAbortControllers` | agent accepted 前注册，run finally 清理 | 允许 abort/timeout |
-| `PluginRegistry` | startup bootstrap / reload | 提供 hooks、providers、channels、routes、services |
-| `currentPluginMetadataSnapshot` | startup/reload/shutdown | 避免重复 discovery，保持 metadata scope |
+| CLI launcher | `openclaw.mjs` | Node version check, source checkout detection, respawn/cache behavior |
+| Main entry | `src/entry.ts` | Process and environment setup |
+| Gateway CLI | `src/cli/gateway-cli/run.ts` | Config, bind/port/auth/tailscale and lazy server import |
+| Gateway implementation | `src/gateway/server.impl.ts` | Runtime state, plugin bootstrap, sidecars/channels/services |
+
+### 3. Sequence
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant L as openclaw.mjs
+    participant E as entry.ts
+    participant C as gateway CLI
+    participant S as server.impl
+    participant P as plugin bootstrap
+    L->>E: start source entry
+    E->>C: run gateway command
+    C->>S: startGatewayServer
+    S->>P: load plugins and services
+    S-->>C: listening Gateway
+```
+
+### 4. Key Steps
+
+| Step | Code location | What happens | State change | Evidence |
+|---|---|---|---|---|
+| 1 | `openclaw.mjs:11-46`, `openclaw.mjs:183-225` | Launcher validates and starts source entry | Process enters OpenClaw runtime | C-005 |
+| 2 | `src/entry.ts:71-153` | Entry configures process context and imports gateway CLI | Main runtime context prepared | C-005 |
+| 3 | `src/cli/gateway-cli/run.ts:503-817` | CLI parses Gateway options and imports server | Gateway startup options resolved | C-005 |
+| 4 | `src/gateway/server.impl.ts:531-740` | Server implementation creates runtime state and starts services | Gateway becomes long-lived control plane | C-004, C-005 |
+
+## Flow 2: WebSocket Handshake
+
+### 1. Scenario
+
+A control client or node connects to Gateway over WebSocket. The connection must complete a challenge/connect handshake before normal messages are accepted.
+
+### 2. Entry
+
+| Type | Location | Notes |
+|---|---|---|
+| HTTP upgrade | `src/gateway/server-runtime-state.ts` | Upgrade handler attached before listen |
+| WS connection | `src/gateway/server/ws-connection.ts` | Challenge, client set, ping, cleanup |
+| Message handler | `src/gateway/server/ws-connection/message-handler.ts` | First frame must be connect |
+
+### 3. Sequence
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Client
+    participant Gateway
+    participant Handler
+    Client->>Gateway: WebSocket upgrade
+    Gateway-->>Client: connect.challenge
+    Client->>Handler: req:connect
+    Handler->>Handler: version/origin/auth/device checks
+    Handler-->>Client: hello-ok
+```
+
+### 4. Key Steps
+
+| Step | Code location | What happens | State change | Evidence |
+|---|---|---|---|---|
+| 1 | `src/gateway/server-runtime-state.ts:223-358` | HTTP and WS runtime are created and upgrade handling is attached | WS runtime ready | C-006 |
+| 2 | `src/gateway/server/ws-connection.ts:202-318` | Connection sends challenge and tracks timers/clients | Connection pending handshake | C-006 |
+| 3 | `src/gateway/server/ws-connection/message-handler.ts:488-560` | First frame must be `req:connect` | Connection moves to validation | C-006 |
+| 4 | `src/gateway/server/ws-connection/message-handler.ts:1696-1756` | Successful connect returns hello-ok metadata | Connection accepted | C-006 |
+
+## Flow 3: Agent RPC to Agent Runtime
+
+### 1. Scenario
+
+Gateway receives an `agent` RPC from a trusted entry. It validates the request, returns accepted ack, and schedules asynchronous agent execution.
+
+### 2. Entry
+
+| Type | Location | Notes |
+|---|---|---|
+| Gateway method | `src/gateway/server-methods/agent.ts` | Validates, acknowledges, schedules |
+| Agent command | `src/agents/agent-command.ts` | Prepares session/workspace/model/skills/delivery |
+| Attempt execution | `src/agents/command/attempt-execution.ts` | Invokes embedded Pi runtime |
+
+### 3. Sequence
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Ingress
+    participant Gateway
+    participant AgentCommand
+    participant PiRuntime
+    participant Delivery
+    Ingress->>Gateway: agent RPC
+    Gateway-->>Ingress: accepted ack
+    Gateway->>AgentCommand: agentCommandFromIngress
+    AgentCommand->>PiRuntime: runEmbeddedPiAgent
+    PiRuntime-->>Delivery: stream/final result
+```
+
+### 4. Key Steps
+
+| Step | Code location | What happens | State change | Evidence |
+|---|---|---|---|---|
+| 1 | `src/gateway/server-methods/agent.ts:475-583` | Request validation and setup begin | Agent request accepted for processing | C-008 |
+| 2 | `src/gateway/server-methods/agent.ts:1440-1507`, `src/gateway/server-methods/agent.ts:1592-1666` | Gateway returns accepted ack and schedules execution | Async run scheduled | C-008 |
+| 3 | `src/agents/agent-command.ts:1593-1643` | Network ingress must declare trust flags | Trust boundary is explicit | C-008 |
+| 4 | `src/agents/command/attempt-execution.ts:630-691` | Runtime invokes embedded Pi agent with session/workspace/model/tools/delivery | Agent loop executes | C-007, C-008 |
+
+## Flow 4: Plugin Loading and Capability Registration
+
+### 1. Scenario
+
+Gateway bootstraps plugins. Manifests are discovered and validated before runtime code registers capabilities.
+
+### 2. Entry
+
+| Type | Location | Notes |
+|---|---|---|
+| Plugin docs | `docs/plugins/architecture.md`, `docs/plugins/manifest.md` | Capability model and layers |
+| Loader | `src/plugins/loader.ts` | Discovery, validation, planning, runtime registration |
+| API builder | `src/plugins/api-builder.ts` | Capability registration surface |
+
+### 3. Key Steps
+
+| Step | Code location | What happens | State change | Evidence |
+|---|---|---|---|---|
+| 1 | `docs/plugins/architecture.md:32-51`, `docs/plugins/manifest.md:28-54` | Manifest/control-plane responsibilities are defined | Plugin metadata model established | C-010 |
+| 2 | `src/plugins/loader.ts:1509-1904` | Discovery, registry, enablement, and registration plan are built | Plugin plan prepared | C-011 |
+| 3 | `src/plugins/loader.ts:2314-2533` | Runtime registration and activation run with rollback paths | Capabilities become available | C-011 |
+| 4 | `src/plugins/api-builder.ts:19-85`, `src/plugins/api-builder.ts:177-260` | API builder exposes registration surfaces | Gateway/agent can consume capabilities | C-012 |
+
+## 5. Exceptions and Boundaries
+
+| Scenario | Handling | Evidence |
+|---|---|---|
+| WS first frame is not connect | Connection is rejected before normal message handling | C-006 |
+| Network agent ingress lacks trust metadata | Agent command requires explicit trust fields | C-008 |
+| Plugin runtime registration fails | Loader has planning/rollback/activation paths | C-011 |
+
+## 6. Design Observations
+
+- Gateway returns accepted ack before long agent execution, which keeps network ingress responsive. [C-008]
+- Trust is explicit at network ingress, avoiding hidden owner assumptions. [C-008]
+- Plugin loading separates manifest planning from runtime registration. [C-010][C-011]
+
+## 7. Pending
+
+- Capture live WebSocket frames.
+- Run a real channel inbound to delivery flow.
+- Inspect live plugin registry output.
