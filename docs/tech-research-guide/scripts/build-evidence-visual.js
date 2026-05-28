@@ -90,8 +90,6 @@ function buildForDir(researchDir, options = {}) {
 function frameworkName(researchDir) {
   const base = path.basename(researchDir);
   if (base === 'openclaw') return 'OpenClaw';
-  if (base === 'hermes-agent') return 'Hermes Agent';
-  if (base === 'claude-code') return 'Claude Code';
   return base.split(/[-_]/).map(part => part ? part[0].toUpperCase() + part.slice(1) : part).join(' ');
 }
 
